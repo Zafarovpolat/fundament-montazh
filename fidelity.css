@@ -3293,3 +3293,44 @@ html .header-menu #main-navigation a[data-figma-text] {
     margin-right: -5px;
   }
 }
+/* Compact left-aligned navigation; one consistent 5px action-button gap. */
+.header-inner > #main-navigation {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  gap: 24px;
+  margin: 0;
+}
+@media (min-width: 1551px) {
+  .header-inner > .header-contact {
+    margin-left: auto;
+  }
+  .header-inner > .header-quote {
+    margin-left: calc(5px - clamp(10px, 1.3vw, 25px));
+  }
+}
+@media (min-width: 1281px) and (max-width: 1550px) {
+  .header-inner > .header-callback {
+    margin-left: auto;
+  }
+}
+@media (max-width: 1550px) {
+  .header-inner > .header-quote {
+    margin-left: -7px;
+  }
+}
+@media (max-width: 1280px) {
+  .header-inner > .header-quote {
+    margin-left: -5px;
+  }
+}
+@media (max-width: 480px) {
+  .header-inner > .header-quote {
+    margin-left: -1px;
+  }
+}
+@media (min-width: 1800px) {
+  .footer-house {
+    left: auto;
+    right: calc(-1 * max(0px, (100vw - 1660px)/2));
+  }
+}
