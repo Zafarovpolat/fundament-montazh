@@ -1,0 +1,535 @@
+/* Compact layout below 1441px. Components reflow; the page is never scaled. */
+@media (max-width: 1024px) {
+  .site-header > .topbar {
+    display: none;
+  }
+}
+@media (max-width: 1440px) {
+  .section,
+  .compact {
+    padding-top: 65px;
+  }
+  .section.dark {
+    margin-top: 65px;
+    padding-block: 38px;
+  }
+  #director {
+    margin-top: 70px;
+  }
+  .hero {
+    padding-block: 45px 38px;
+  }
+  .section-heading {
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+  .section-heading--stacked > div > .heading-description {
+    margin-top: 16px;
+  }
+  .heading-line--inset,
+  #projects .heading-line--inset,
+  #objects .heading-line--inset {
+    margin-left: 80px;
+  }
+  .hero .button-row {
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .hero .button-row .button {
+    width: auto;
+    max-width: 100%;
+  }
+  .hero-copy .lead {
+    margin-bottom: 0;
+  }
+  .hero-benefits {
+    max-width: 920px;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  html .hero-benefits li[data-figma-text] {
+    font-size: 17px;
+    line-height: 24px;
+    padding-left: 26px;
+  }
+  .hero-benefits .benefit-icon {
+    width: 10px;
+    height: 10px;
+    top: 7px;
+  }
+  .price-panel {
+    padding: 24px 22px 18px;
+    border-radius: 18px;
+  }
+  .price-panel > .button {
+    margin-top: 18px;
+  }
+  .price-list {
+    gap: 14px;
+  }
+  .price-note {
+    margin-top: 12px;
+  }
+  .button[data-motion-button] {
+    --button-height: 80px;
+    --button-inset: 8px;
+    --icon-width: 52px;
+    min-height: 80px;
+    border-radius: 16px;
+    padding: 18px 82px 18px 24px;
+  }
+  .button[data-motion-button] .button-icon {
+    width: 52px;
+    top: var(--button-inset);
+    right: var(--button-inset);
+    bottom: var(--button-inset);
+    border-radius: 12px;
+  }
+  .button[data-motion-button]:focus-visible .button-icon {
+    width: calc(100% - var(--button-inset) - var(--button-inset));
+  }
+  .project-card > .button,
+  .social-list .button,
+  #calculator .button {
+    --button-inset: 6px;
+    --button-height: 70px;
+    min-height: 70px;
+    padding: 14px 78px 14px 20px;
+  }
+  .price-panel > .button[data-motion-button] {
+    padding-inline: 20px;
+  }
+  .carousel-controls button {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+  }
+  .section-actions {
+    margin-top: 32px;
+  }
+  .catalog-toolbar {
+    margin-bottom: 24px;
+    gap: 20px;
+  }
+  .filters {
+    min-height: 54px;
+    gap: 6px;
+    padding: 4px;
+  }
+  html .filters button {
+    min-height: 46px;
+    padding: 8px 16px !important;
+  }
+  .project-title {
+    margin-top: 16px;
+  }
+  .project-card > .button {
+    margin-top: 20px;
+  }
+  .number-list {
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .warning {
+    margin-top: 28px;
+    padding: 18px;
+  }
+  .geology-image {
+    max-width: 520px;
+    width: 100%;
+    margin-top: 0;
+  }
+  .director-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: end;
+  }
+  .director-grid > div {
+    min-height: 0;
+  }
+  .director-portrait {
+    width: 100%;
+    max-width: 500px;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 679/945;
+    align-self: end;
+    margin: 0;
+    overflow: visible;
+  }
+  .director-portrait > .director-photo {
+    inset: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+  }
+  .director-portrait::before {
+    top: 0;
+    bottom: 0;
+    left: 25.4786%;
+    width: 64.0648%;
+  }
+  .director-portrait::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .director-portrait figcaption {
+    left: 16%;
+    bottom: 3%;
+    width: 76%;
+    max-width: none;
+  }
+  .signature-art {
+    width: 100%;
+    max-height: 64px;
+  }
+  .stats-grid {
+    margin-top: 28px;
+    gap: 25px 36px;
+    max-width: 660px;
+  }
+  .stats-grid dd {
+    margin-top: 6px;
+  }
+  .objects-gallery {
+    --gallery-height: clamp(420px, 36vw, 560px);
+  }
+  .service-grid {
+    gap: 24px;
+  }
+  .service-grid li::before {
+    font-size: 62px;
+  }
+  .service-grid li:nth-child(even) {
+    padding-top: 0;
+  }
+  .advantage-grid article {
+    min-height: 360px;
+    padding: 20px;
+  }
+  .advantage-grid article > img {
+    max-width: 195px;
+    max-height: 180px;
+    height: 180px;
+    object-fit: contain;
+  }
+  .advantage-copy {
+    margin-top: 22px;
+  }
+  .quiz-options {
+    gap: 12px;
+  }
+  .quiz-options button {
+    padding: 20px;
+    min-height: 175px;
+  }
+  .quiz-options button img {
+    max-height: 100px;
+  }
+  #process .section-heading {
+    margin-bottom: 45px;
+  }
+  .process-list {
+    min-height: 165px;
+  }
+  .process-range {
+    margin-top: 32px;
+  }
+  .mortgage-grid article {
+    padding: 28px;
+    min-height: 510px;
+    height: auto;
+  }
+  .mortgage-grid article:first-child > img {
+    width: 480px;
+    height: auto;
+    top: 240px;
+    left: -72px;
+  }
+  .mortgage-grid article:nth-child(2) > img {
+    width: 390px;
+    height: auto;
+    top: 215px;
+    left: auto;
+    right: -70px;
+  }
+  .mortgage-grid .tags {
+    gap: 7px;
+    margin-top: 18px;
+  }
+  .mortgage-grid .tags li {
+    padding: 8px 12px;
+  }
+  .review-card {
+    min-height: 410px;
+    padding: 22px;
+    gap: 26px;
+  }
+  .review-card figcaption {
+    padding-top: 24px;
+    gap: 12px;
+  }
+  .review-card figcaption img {
+    width: 76px;
+    height: 76px;
+  }
+  .visit-banner {
+    padding: 30px;
+    min-height: 230px;
+    gap: 24px;
+  }
+  .visit-kicker {
+    margin-bottom: 12px;
+  }
+  .video-grid {
+    gap: 24px;
+  }
+  .video-card {
+    min-height: 140px;
+  }
+  .subscriber-count {
+    margin-top: 30px;
+  }
+  .social-grid {
+    gap: 32px;
+  }
+  .social-list article {
+    min-height: 110px;
+    padding: 12px;
+    gap: 12px;
+  }
+  .social-list article > img {
+    width: 70px;
+    max-height: 85px;
+    object-fit: cover;
+  }
+  .faq-grid summary {
+    min-height: 78px;
+    padding: 16px 20px;
+    gap: 16px;
+  }
+  .faq-grid summary span {
+    width: 48px;
+    min-height: 48px;
+  }
+  .faq-grid details > p {
+    padding: 0 20px 22px;
+  }
+  .footer-main {
+    padding-block: 35px 24px;
+  }
+  .footer-cta {
+    padding: 30px;
+    min-height: 440px;
+  }
+  .footer-columns nav > a {
+    min-height: 52px;
+    padding-block: 10px;
+  }
+  .footer-legal {
+    margin-top: 36px;
+  }
+  html .header-menu #main-navigation a[data-figma-text] {
+    font-size: clamp(28px, 4vw, 44px);
+  }
+}
+@media (max-width: 1440px) and (hover: hover) and (pointer: fine) {
+  .button[data-motion-button]:not(:disabled):hover .button-icon {
+    width: calc(100% - var(--button-inset) - var(--button-inset));
+  }
+}
+@media (max-width: 1024px) {
+  .director-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+  .director-portrait {
+    width: min(100%, 420px);
+    justify-self: center;
+  }
+  .director-grid .stats-grid {
+    max-width: 100%;
+  }
+}
+@media (max-width: 760px) {
+  .section,
+  .compact {
+    padding-top: 48px;
+  }
+  .section.dark {
+    margin-top: 48px;
+    padding-block: 30px;
+  }
+  .hero {
+    padding-block: 32px;
+  }
+  .section-heading {
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .heading-line--inset,
+  #projects .heading-line--inset,
+  #objects .heading-line--inset {
+    margin-left: 22px;
+  }
+  html .hero h1[data-figma-text] {
+    font-size: clamp(30px, 7.5vw, 42px);
+  }
+  .hero-benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  html .hero-benefits li[data-figma-text] {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .hero-grid {
+    gap: 26px;
+  }
+  .button[data-motion-button] {
+    --button-height: 72px;
+    min-height: 72px;
+    padding: 16px 80px 16px 20px;
+  }
+  .project-card > .button,
+  .social-list .button,
+  #calculator .button {
+    --button-height: 66px;
+    min-height: 66px;
+    padding: 12px 76px 12px 18px;
+  }
+  .carousel-controls button {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+  }
+  .price-panel {
+    padding: 22px 18px;
+  }
+  .director-grid {
+    gap: 26px;
+  }
+  .director-portrait {
+    width: min(100%, 390px);
+    aspect-ratio: 679/945;
+  }
+  .director-portrait > .director-photo {
+    inset: 0;
+    object-fit: contain;
+  }
+  .director-portrait figcaption {
+    bottom: 3%;
+    left: 16%;
+    width: 76%;
+  }
+  .stats-grid {
+    gap: 24px;
+  }
+  .objects-gallery {
+    height: 430px;
+  }
+  .objects-gallery > .object-card,
+  .objects-gallery > .object-card.is-active {
+    height: 430px;
+  }
+  html .featured-object h3[data-figma-text] {
+    font-size: 22px;
+    white-space: normal;
+  }
+  .advantage-grid article {
+    min-height: 340px;
+    padding: 20px;
+  }
+  .advantage-grid article > img {
+    height: 150px;
+    max-height: 150px;
+  }
+  .quiz-options button {
+    min-height: 150px;
+    padding: 16px;
+  }
+  .mortgage-grid article {
+    min-height: 480px;
+    padding: 24px;
+  }
+  .mortgage-grid article:first-child > img {
+    top: auto;
+    bottom: -15px;
+    left: -85px;
+  }
+  .mortgage-grid article:nth-child(2) > img {
+    top: auto;
+    bottom: -65px;
+    right: -100px;
+  }
+  .visit-banner {
+    padding: 24px;
+    min-height: 0;
+  }
+  .process-list {
+    min-height: 205px;
+  }
+  .video-card {
+    min-height: 0;
+  }
+  .footer-cta {
+    padding: 26px;
+    min-height: 390px;
+  }
+}
+@media (max-width: 1440px) {
+  .price-panel {
+    padding: 18px;
+  }
+  .price-list {
+    gap: 10px;
+  }
+  .price-list li {
+    padding: 14px 16px;
+  }
+  .price-list li > div {
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+  html .price-list h3[data-figma-text],
+  html .price-list li > div > p[data-figma-text] {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 1440px) {
+  .quiz-options button {
+    min-height: 110px;
+    padding: 18px;
+  }
+  .quiz-progress {
+    margin-top: 28px;
+  }
+  .request-dialog .button {
+    min-height: 64px;
+    padding: 16px 24px;
+    border-radius: 16px;
+  }
+  .video-card {
+    height: auto;
+    min-height: 0;
+  }
+  .video-card > img {
+    max-height: 160px;
+    object-fit: cover;
+  }
+}
+@media (max-width: 760px) {
+  .quiz-options button {
+    min-height: 100px;
+    padding: 16px;
+  }
+}

@@ -5,7 +5,7 @@
   --accent: #ffc924;
   --muted: #777b84;
   --line: #10132320;
-  --font-body: "CoFo Sans", Arial, sans-serif;
+  --font-body: "CoFo Sans", "Euclid Circular A", Arial, sans-serif;
   --font-heading: "Euclid Circular A", Arial, sans-serif;
   --container: 1660px;
   --gutter: clamp(20px, 4vw, 64px);

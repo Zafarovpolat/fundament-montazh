@@ -1,0 +1,335 @@
+/* Adaptive typography: no page scaling; small source copy remains unchanged. */
+@media (min-width: 761px) and (max-width: 1440px) {
+  html [data-figma-text="315:301"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:307"][data-figma-text] {
+    font-size: clamp(32px, 3.54167vw, 68px);
+  }
+  html [data-figma-text="315:310"][data-figma-text] {
+    font-size: clamp(32px, 3.54167vw, 68px);
+  }
+  html [data-figma-text="315:313"][data-figma-text] {
+    font-size: clamp(32px, 3.54167vw, 68px);
+  }
+  html [data-figma-text="315:316"][data-figma-text] {
+    font-size: clamp(32px, 3.54167vw, 68px);
+  }
+  html [data-figma-text="315:329"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:334"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:339"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:344"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:349"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:361"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:392"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:399"][data-figma-text] {
+    font-size: clamp(28px, 1.77083vw, 34px);
+  }
+  html [data-figma-text="315:414"][data-figma-text] {
+    font-size: clamp(28px, 1.77083vw, 34px);
+  }
+  html [data-figma-text="315:431"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:458"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:516"][data-figma-text] {
+    font-size: clamp(32px, 4.42708vw, 85px);
+  }
+  html [data-figma-text="315:543"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:544"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:605"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:645"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:646"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:689"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:690"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:704"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="315:712"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="315:746"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:751"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:756"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:761"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:766"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:767"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:772"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:778"][data-figma-text] {
+    font-size: clamp(28px, 2.21354vw, 42.5px);
+  }
+  html [data-figma-text="315:779"][data-figma-text] {
+    font-size: 21.25px;
+  }
+  html [data-figma-text="315:796"][data-figma-text] {
+    font-size: clamp(28px, 2.21354vw, 42.5px);
+  }
+  html [data-figma-text="315:838"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="315:839"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="360:393"][data-figma-text] {
+    font-size: clamp(28px, 3.32031vw, 63.75px);
+  }
+  html [data-figma-text="I315:526;169:200"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:209"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:213"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:217"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:225"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:240"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:246"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:526;169:267"][data-figma-text] {
+    font-size: clamp(28px, 1.99219vw, 38.25px);
+  }
+  html [data-figma-text="I315:674;124:146"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:674;124:149"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:675;124:146"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:675;124:149"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:676;124:146"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:676;124:149"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:677;124:146"][data-figma-text] {
+    font-size: 25.5px;
+  }
+  html [data-figma-text="I315:677;124:149"][data-figma-text] {
+    font-size: 25.5px;
+  }
+}
+@media (max-width: 760px) {
+  html [data-figma-text="315:301"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:307"][data-figma-text] {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+  html [data-figma-text="315:310"][data-figma-text] {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+  html [data-figma-text="315:313"][data-figma-text] {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+  html [data-figma-text="315:316"][data-figma-text] {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+  html [data-figma-text="315:329"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:334"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:339"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:344"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:349"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:361"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:392"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:399"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:414"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:431"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:458"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:516"][data-figma-text] {
+    font-size: clamp(34px, 10vw, 65px);
+  }
+  html [data-figma-text="315:543"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:544"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:605"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:645"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:646"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:689"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:690"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:704"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="315:712"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="315:746"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:751"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:756"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:761"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:766"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:767"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:772"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:778"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:779"][data-figma-text] {
+    font-size: 22px;
+  }
+  html [data-figma-text="315:796"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:838"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="315:839"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="360:393"][data-figma-text] {
+    font-size: clamp(34px, 10vw, 48.75px);
+  }
+  html [data-figma-text="I315:526;169:200"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:209"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:213"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:217"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:225"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:240"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:246"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:526;169:267"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="I315:674;124:146"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:674;124:149"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:675;124:146"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:675;124:149"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:676;124:146"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:676;124:149"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:677;124:146"][data-figma-text] {
+    font-size: 24px;
+  }
+  html [data-figma-text="I315:677;124:149"][data-figma-text] {
+    font-size: 24px;
+  }
+}

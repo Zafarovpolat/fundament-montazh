@@ -6,6 +6,8 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -14,6 +16,8 @@
   font-weight: 900;
   font-style: italic;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -22,6 +26,8 @@
   font-weight: 900;
   font-style: normal;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -30,6 +36,8 @@
   font-weight: 700;
   font-style: italic;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -38,6 +46,8 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -46,6 +56,8 @@
   font-weight: 500;
   font-style: italic;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -54,6 +66,8 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
@@ -62,6 +76,8 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
+  /* Supplied CoFo replaces Cyrillic Phi with a logo: use the next family. */
+  unicode-range: U+0000-0423, U+0425-0443, U+0445-10FFFF;
 }
 
 @font-face {
