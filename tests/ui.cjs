@@ -106,7 +106,19 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   }
   await p.emulateMedia({ reducedMotion: "reduce" });
   await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
-  await p.evaluate(() => window.scrollTo({ top: 1400, behavior: "instant" }));
+  assert.equal(await p.evaluate(() => window.siteMotion.enabled), true);
+  assert.equal(
+    await p.evaluate(() => document.documentElement.dataset.motion),
+    "on",
+  );
+  assert.ok(
+    parseFloat(
+      await p
+        .locator("#hero .button--yellow .button-icon")
+        .evaluate((e) => getComputedStyle(e).transitionDuration),
+    ) > 1,
+  );
+  await p.evaluate(() => window.siteMotion.setEnabled(false));
   assert.equal(await p.locator(".is-pending").count(), 0);
   const transforms = await p
     .locator("[data-parallax]")
@@ -114,7 +126,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   assert.ok(transforms.every((t) => t === "none"));
   assert.deepEqual(errors, []);
   console.log(
-    "PASS: SVG icons, header dividers, expanding button, centered glyph, section progress, 3 short form viewports, reduced motion.",
+    "PASS: SVG icons, header dividers, expanding button, centered glyph, section progress, 3 short form viewports, always-on motion and manual off.",
   );
   await b.close();
 })().catch((e) => {

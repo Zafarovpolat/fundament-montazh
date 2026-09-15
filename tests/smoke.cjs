@@ -102,7 +102,8 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   assert.equal(await page.locator("[data-project]:visible").count(), 4);
   await page.locator('[data-target="project-track"][data-scroll="1"]').click();
   await page.waitForFunction(
-    () => document.querySelector("#project-track").scrollLeft > 50,
+    () =>
+      Number(document.querySelector("#project-track").dataset.slideIndex) > 0,
   );
   const initialHeight = await page
     .locator(".faq-grid")

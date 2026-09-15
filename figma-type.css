@@ -1,0 +1,2366 @@
+/* Typography and fill values read from Figma 315:160. */
+html [data-figma-text="315:301"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 957px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:303"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 820px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:304"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 581px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:307"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 4.16667vw, 80px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 337.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 86.051%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+html [data-figma-text="315:308"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 231px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:310"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 4.16667vw, 80px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 337.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 86.051%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+html [data-figma-text="315:311"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 219px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:313"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 4.16667vw, 80px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 304px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 86.051%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+html [data-figma-text="315:314"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 171px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:316"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 4.16667vw, 80px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 337.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 86.051%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+html [data-figma-text="315:317"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 211px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:323"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 309px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:329"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 936px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:334"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 267px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:335"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 396px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:339"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 267px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:340"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 391px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:344"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 232px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:345"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 382px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:349"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 251px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:350"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 371px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:354"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 89px;
+  color: rgba(255, 255, 255, 0.4);
+}
+html [data-figma-text="315:361"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 957px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:362"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.222222;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 375px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:374"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 255px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:376"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 314px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:378"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 382px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:380"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 255px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:382"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 50px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:388"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 83px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:392"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 1016px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:393"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 286px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:399"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.08333vw, 40px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 361px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:400"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 624px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:403"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 61px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:405"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 68px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:407"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 41px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:409"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 137px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:414"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.08333vw, 40px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 361px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:415"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 624px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:418"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 83px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:420"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 96px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:422"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 176px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:427"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 57px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:431"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 1016px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:432"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 351px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:437"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 500;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 204px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:438"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 168px;
+  color: rgba(0, 0, 0, 0.6);
+}
+html [data-figma-text="315:442"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 28px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:443"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 77px;
+  color: rgba(0, 0, 0, 0.6);
+}
+html [data-figma-text="315:458"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 957px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:460"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 523px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:461"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 733px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:463"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.368421;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 733px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:464"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 733px;
+  color: rgba(255, 201, 36, 1);
+}
+html [data-figma-text="315:480"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 302px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:481"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.466667;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 302px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:496"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 302px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:497"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.466667;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 302px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:512"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 302px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:513"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.466667;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 302px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:516"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 378px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 86.051%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+html [data-figma-text="315:518"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 164px;
+  color: rgba(217, 217, 217, 1);
+}
+html [data-figma-text="315:519"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 134px;
+  color: rgba(217, 217, 217, 1);
+}
+html [data-figma-text="315:521"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.375;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 21px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:523"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.375;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 62px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:525"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.375;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 66px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:531"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 227px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:535"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 244px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:539"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 187px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:540"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 254px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:543"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 820px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:544"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 693px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:547"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 78px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:549"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.222222;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 758px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:552"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.368421;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 725px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:566"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 266px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:567"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 266px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:578"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 253px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:579"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 253px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:586"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 266px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:587"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 266px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:594"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 266px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:595"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 266px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:601"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 66px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:605"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 880px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:641"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 70px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:645"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 820px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:646"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 689px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:649"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 277px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:653"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 27px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:655"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 72px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:657"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 86px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:659"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 88px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:661"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 63px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:663"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 74px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:665"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 54px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:667"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 500;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 54px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:679"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 316px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:686"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 89px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:689"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 505px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:690"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 664px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:692"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 577px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:693"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 278px;
+  color: rgba(0, 0, 0, 0.3);
+}
+html [data-figma-text="315:704"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 386px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:706"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 74px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:708"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 156px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:710"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 68px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:712"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 168px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:713"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 67px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:726"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 206px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:730"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 300px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:736"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 59px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:746"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 441px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:747"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 498px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:751"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 290px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:752"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 490px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:756"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 380px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:757"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 494px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:761"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 470px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:762"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 485px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:766"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 820px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:767"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 733px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:770"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 483px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:772"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 683px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:775"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 76px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:778"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.60417vw, 50px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 48px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:779"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 231px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:780"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 224px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:795"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 637px;
+  color: rgba(255, 255, 255, 0.3);
+}
+html [data-figma-text="315:796"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.60417vw, 50px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 637px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:797"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 507px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:802"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.538462;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 71px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="315:838"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 820px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:839"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.125vw, 60px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 614px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:389"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 574px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:393"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 3.90625vw, 75px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 935px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:394"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.333333;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 714px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:410"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 292px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:438"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 90px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:439"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 68px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:440"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 69px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:441"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 92px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:442"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 77px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:447"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.26;
+  font-weight: 500;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 176px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:448"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 176px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="360:455"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 185px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:552"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 535px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:566"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 172px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:567"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 126px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:582"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 203px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:583"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 143px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="360:604"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 222px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="360:611"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 535px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="375:372"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.333333;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 160px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="375:391"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.333333;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 160px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="375:396"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.333333;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 111px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="375:402"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.333333;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 167px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="375:408"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.333333;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 89px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="391:374"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 587px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="391:384"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 303px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="391:394"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 303px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="391:399"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 326px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="391:404"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 361px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="391:411"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 122px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="391:412"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 674px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:394;199:295"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 206px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:446;199:346"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.368421;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 455px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:446;199:352"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:446;199:353"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:447;199:346"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.368421;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 455px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:447;199:352"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:447;199:353"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:448;199:346"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.368421;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 455px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:448;199:352"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:448;199:353"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:449;199:346"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.368421;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 455px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:449;199:352"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:449;199:353"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 187px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:199"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 330px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:200"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 191px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:209"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 145px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:213"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 144px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:217"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 202px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:222"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 330px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:225"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 255px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:236"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 330px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:240"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 341px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:241"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 330px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:246"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 352px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:526;169:247"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 330px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:253"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 432px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:255"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 50px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:256"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 202px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:526;169:259"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 70px;
+  color: rgba(151, 152, 155, 1);
+}
+html [data-figma-text="I315:526;169:267"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.34375vw, 45px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 505px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:526;169:280;169:273"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 233px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:596;240:368"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 112px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:674;124:146"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 246px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:674;124:149"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 198px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:674;124:152"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 67px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:674;124:162"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 51px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:674;124:166"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 47px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:674;124:169"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 78px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:674;124:232;124:190"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 92px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:674;124:280"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 76px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:675;124:146"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 246px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:675;124:149"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 198px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:675;124:152"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 67px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:675;124:162"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 51px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:675;124:166"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 47px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:675;124:169"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 78px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:675;124:232;124:190"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 92px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:675;124:280"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 76px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:676;124:146"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 246px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:676;124:149"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 198px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:676;124:152"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 67px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:676;124:162"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 51px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:676;124:166"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 47px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:676;124:169"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 78px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:676;124:232;124:190"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 92px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:676;124:280"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 76px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:677;124:146"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 246px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:677;124:149"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 198px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:677;124:152"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 67px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:677;124:162"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 51px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:677;124:166"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 47px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:677;124:169"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 78px;
+  color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="I315:677;124:232;124:190"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 92px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I315:677;124:280"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 76px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:798;292:301"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 222px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="I315:840;292:316"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 124px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="I360:397;88:166"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.714286;
+  font-weight: 400;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  --text-width: 216px;
+  color: rgba(0, 0, 0, 1);
+}

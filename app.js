@@ -92,6 +92,14 @@ document.querySelectorAll("[data-action]").forEach((button) =>
       );
       return;
     }
+    if (action === "reviews") {
+      openDialog(
+        "Отзывы на 2ГИС",
+        "Рейтинг и оформление перенесены из макета. Точная ссылка на карточку компании пока не предоставлена.",
+        true,
+      );
+      return;
+    }
     if (action === "vk" || action === "whatsapp") {
       openDialog(
         action === "vk" ? "ВКонтакте" : "WhatsApp",
@@ -164,23 +172,7 @@ document.addEventListener("keydown", (e) => {
     menuToggle.focus();
   }
 });
-// Native scrolling adapts to the actual card size; no hard-coded translation values.
-document.querySelectorAll("[data-scroll]").forEach((button) =>
-  button.addEventListener("click", () => {
-    const track = document.getElementById(button.dataset.target);
-    const card = [...track.children].find((el) => !el.hidden);
-    if (!card) return;
-    const distance =
-      card.getBoundingClientRect().width +
-      parseFloat(getComputedStyle(track).columnGap);
-    track.scrollBy({
-      left: distance * Number(button.dataset.scroll),
-      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "instant"
-        : "smooth",
-    });
-  }),
-);
+// The source-aligned carousels are implemented in sliders.js.
 const filters = [...document.querySelectorAll("[data-filter]")];
 filters.forEach((button) =>
   button.addEventListener("click", () => {

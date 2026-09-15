@@ -1905,14 +1905,7 @@ textarea {
     padding: 24px 24px 0;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  * {
-    transition: none !important;
-  }
-}
+
 /* Long Russian headings must not force a grid column wider than the viewport. */
 h1,
 h2,

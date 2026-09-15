@@ -1,7 +1,42 @@
 "use strict";
 /** Progressive enhancement only: native scrolling and CSS reflow stay intact. */
 (() => {
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  // Explicit user requirement: motion defaults ON, regardless of OS preference.
+  const listeners = [];
+  let enabled = true;
+  try {
+    enabled = localStorage.getItem("site-motion") !== "off";
+  } catch (_) {}
+  const reducedMotion = {
+    matches: !enabled,
+    addEventListener: (_, cb) => listeners.push(cb),
+  };
+  const setMotion = (value) => {
+    enabled = Boolean(value);
+    reducedMotion.matches = !enabled;
+    document.documentElement.dataset.motion = enabled ? "on" : "off";
+    try {
+      localStorage.setItem("site-motion", enabled ? "on" : "off");
+    } catch (_) {}
+    listeners.forEach((callback) => callback());
+  };
+  document.documentElement.dataset.motion = enabled ? "on" : "off";
+  window.siteMotion = {
+    setEnabled: setMotion,
+    get enabled() {
+      return enabled;
+    },
+  };
+  document.addEventListener("keydown", (event) => {
+    if (event.altKey && event.shiftKey && event.code === "KeyM") {
+      event.preventDefault();
+      setMotion(!enabled);
+      const toast = document.querySelector(".toast");
+      toast.textContent = enabled ? "Анимации включены" : "Анимации отключены";
+      toast.classList.add("is-visible");
+      setTimeout(() => toast.classList.remove("is-visible"), 2000);
+    }
+  });
   const main = document.querySelector("main");
   const rail = document.querySelector(".page-path");
   const fill = rail.querySelector(".path-progress");
@@ -30,8 +65,8 @@
     const y = window.scrollY;
     const mainTop = main.getBoundingClientRect().top + y;
     const first = sections[0].getBoundingClientRect();
-    railStart = first.top + y + 18;
-    const last = sections[sections.length - 1].getBoundingClientRect();
+    railStart = first.top + y + 6;
+    const last = document.querySelector("footer").getBoundingClientRect();
     railHeight = Math.max(1, last.bottom + y - railStart - 20);
     rail.style.top = `${railStart - mainTop}px`;
     rail.style.height = `${railHeight}px`;
@@ -43,7 +78,11 @@
       const transform = getComputedStyle(heading).transform;
       const translateY =
         transform === "none" ? 0 : new DOMMatrixReadOnly(transform).m42;
-      const anchor = heading.getBoundingClientRect().top + y - translateY + 12;
+      const anchor =
+        heading.getBoundingClientRect().top +
+        y -
+        translateY +
+        Number(links[index].dataset.markerOffset || 0);
       links[index].parentElement.style.top =
         `${Math.max(0, anchor - railStart)}px`;
       links[index].classList.toggle(
@@ -76,7 +115,7 @@
     }
     let moving = false;
     const elapsed = previousTime ? Math.min(64, time - previousTime) : 16;
-    const ease = 1 - Math.exp(-elapsed / 90);
+    const ease = 1 - Math.exp(-elapsed / 120);
     previousTime = time;
     // Read all positions before writing transforms to avoid alternating layout reads/writes.
     media.forEach((item) => {
@@ -84,8 +123,8 @@
       const rect = item.surface.getBoundingClientRect();
       item.target = clamp(
         (viewport / 2 - (rect.top + rect.height / 2)) * item.speed,
-        -28,
-        28,
+        -36,
+        36,
       );
     });
     media.forEach((item) => {
