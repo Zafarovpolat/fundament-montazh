@@ -109,6 +109,10 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     .locator(".faq-grid")
     .evaluate((e) => e.getBoundingClientRect().height);
   await page.locator(".faq-grid summary").first().click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector(".faq-grid details").getAnimations().length === 0,
+  );
   assert.ok(
     await page
       .locator(".faq-grid details")

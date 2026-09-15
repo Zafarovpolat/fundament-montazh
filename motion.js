@@ -67,7 +67,7 @@
     const first = sections[0].getBoundingClientRect();
     railStart = first.top + y + 6;
     const last = document.querySelector("footer").getBoundingClientRect();
-    railHeight = Math.max(1, last.bottom + y - railStart - 20);
+    railHeight = Math.max(1, last.top + y - railStart);
     rail.style.top = `${railStart - mainTop}px`;
     rail.style.height = `${railHeight}px`;
     anchors = sections.map((section, index) => {

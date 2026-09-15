@@ -639,15 +639,15 @@ dd[data-figma-text] {
   margin: 0;
   flex: none;
 }
-.advantage-grid article:nth-child(2) > img {
+.advantage-grid article[data-advantage-art="2"] > img {
   height: 234px;
   width: 199px;
 }
-.advantage-grid article:nth-child(3) > img {
+.advantage-grid article[data-advantage-art="3"] > img {
   height: 223px;
   width: 230px;
 }
-.advantage-grid article:nth-child(4) > img {
+.advantage-grid article[data-advantage-art="4"] > img {
   height: 206px;
   width: 159px;
 }
@@ -2754,4 +2754,194 @@ html .page-path .is-dark.is-passed .path-label[data-figma-text] {
   transition:
     opacity 650ms ease,
     transform 1800ms ease;
+}
+
+/* Review 3.4: open container edges, secondary copy and source detailing. */
+#projects,
+#advantages,
+#reviews {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.carousel-bleed,
+.card-track {
+  overflow: visible;
+}
+/* Only the physical window edge clips the content, never the content container. */
+html .filters button {
+  padding-inline: 20px !important;
+  border-radius: 999px;
+}
+.section.dark > .parallax-surface::after {
+  background: linear-gradient(180deg, rgba(7, 11, 31, 0.6) 3.97%, #070b1f 100%);
+}
+#calculator > .parallax-surface::after {
+  opacity: 0.92;
+}
+html .page-path .path-label[data-figma-text] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  max-height: 42px;
+  color: rgba(7, 11, 31, 0.4);
+}
+html .page-path .is-dark .path-label[data-figma-text] {
+  color: rgba(255, 255, 255, 0.4);
+}
+html .page-path .is-passed .path-label[data-figma-text] {
+  color: rgba(7, 11, 31, 0.55);
+}
+html .page-path .is-dark.is-passed .path-label[data-figma-text] {
+  color: rgba(255, 255, 255, 0.55);
+}
+#advantage-track {
+  --card-gap: 8px;
+  gap: 8px;
+}
+html .heading-description[data-figma-text],
+html .heading-description [data-figma-text] {
+  font-weight: 400;
+  color: rgba(7, 11, 31, 0.65);
+}
+html .dark .heading-description[data-figma-text],
+html .dark .heading-description [data-figma-text] {
+  color: rgba(255, 255, 255, 0.55);
+}
+#calculator .heading-description::before,
+#mortgage .heading-description::before,
+#reviews .heading-description::before {
+  display: none;
+  content: none;
+}
+html #calculator .heading-description[data-figma-text] {
+  max-width: 580px;
+  width: 100%;
+  padding-left: 0;
+}
+html #mortgage .heading-description[data-figma-text] {
+  max-width: 680px;
+  width: 100%;
+  padding-left: 0;
+}
+html #reviews .heading-description[data-figma-text] {
+  max-width: 520px;
+  width: 100%;
+  padding-left: 0;
+}
+.mortgage-grid .tags li {
+  background: transparent;
+  border: 1px solid rgba(7, 11, 31, 0.25);
+  border-radius: 999px;
+  padding: 10px 15px;
+}
+.gis-card {
+  transition:
+    background-color 450ms ease,
+    box-shadow 450ms ease;
+}
+.gis-card:hover,
+.gis-card:focus-visible {
+  background: #fafafa;
+  box-shadow: 0 4px 14px rgba(7, 11, 31, 0.025);
+}
+html .visit-kicker[data-figma-text] {
+  font: 400 15px/18.9px var(--font-body);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 0 18px;
+  max-width: none;
+}
+#faq .section-heading {
+  justify-content: space-between;
+  align-items: center;
+}
+#faq .section-heading > .button {
+  flex: none;
+  margin: 0;
+}
+.faq-grid details {
+  overflow: hidden;
+}
+.faq-grid summary .figma-icon {
+  transition: transform 500ms ease;
+}
+.faq-grid details[open] summary .figma-icon {
+  transform: rotate(45deg);
+}
+.social-list article {
+  background: #fff;
+  border-radius: 15px;
+}
+.site-header a,
+.site-header button:not(.button),
+.site-footer a,
+.site-footer button:not(.button) {
+  transition:
+    color 400ms ease,
+    opacity 400ms ease,
+    background-color 400ms ease,
+    transform 400ms ease;
+}
+.site-header a:hover,
+.site-header a:focus-visible,
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  opacity: 0.7;
+}
+.footer-columns nav > a:hover img,
+.footer-columns nav > a:focus-visible img {
+  transform: translate(3px, -3px);
+}
+.footer-columns nav > a img {
+  transition: transform 400ms ease;
+}
+.footer-legal > div {
+  align-items: center;
+  align-self: center;
+}
+.footer-credit a {
+  display: inline-flex;
+  align-items: center;
+}
+.process-list {
+  min-height: 190px;
+}
+html #process .process-list:not([data-step="0"]) h3[data-figma-text],
+html #process .process-list:not([data-step="0"]) p[data-figma-text] {
+  max-width: 600px;
+  white-space: normal;
+}
+@media (max-width: 760px) {
+  #faq .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #faq .section-heading > .button {
+    width: auto;
+  }
+  .process-list {
+    min-height: 240px;
+  }
+}
+html #objects .heading-description > span:first-child,
+html #objects .heading-description > span:last-child {
+  color: rgba(7, 11, 31, 0.65);
+}
+html #mortgage .heading-description[data-figma-text] {
+  max-width: 480px;
+  white-space: normal;
+}
+.process-list {
+  grid-template-columns: minmax(0, 1fr);
+}
+.process-list:not([data-step="0"]) li {
+  max-width: 600px;
+}
+.faq-grid details[open] summary span {
+  transform: none;
+}
+.faq-grid details[open][data-expanded="false"] summary .figma-icon {
+  transform: rotate(0deg);
 }

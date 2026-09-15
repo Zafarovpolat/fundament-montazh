@@ -39,7 +39,7 @@ const assert = require("node:assert/strict");
     (
       await p
         .locator(".path-line")
-        .evaluate((e) => getComputedStyle(e,"::before").backgroundImage)
+        .evaluate((e) => getComputedStyle(e, "::before").backgroundImage)
     ).includes("255, 255, 255"),
   );
   const pic = p.locator(".project-picture").first();

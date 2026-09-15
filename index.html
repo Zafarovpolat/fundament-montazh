@@ -24,14 +24,15 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="fonts.css?v=3.3.0" rel="stylesheet" />
-    <link href="styles.css?v=3.3.0" rel="stylesheet" />
-    <script defer="" src="app.js?v=3.3.0"></script>
-    <link href="interactions.css?v=3.3.0" rel="stylesheet" />
-    <script defer="" src="motion.js?v=3.3.0"></script>
-    <link href="figma-type.css?v=3.3.0" rel="stylesheet" />
-    <link href="fidelity.css?v=3.3.0" rel="stylesheet" />
-    <script defer="" src="sliders.js?v=3.3.0"></script>
+    <link href="fonts.css?v=3.4.0" rel="stylesheet" />
+    <link href="styles.css?v=3.4.0" rel="stylesheet" />
+    <script defer="" src="app.js?v=3.4.0"></script>
+    <link href="interactions.css?v=3.4.0" rel="stylesheet" />
+    <script defer="" src="motion.js?v=3.4.0"></script>
+    <link href="figma-type.css?v=3.4.0" rel="stylesheet" />
+    <link href="fidelity.css?v=3.4.0" rel="stylesheet" />
+    <script defer="" src="sliders.js?v=3.4.0"></script>
+    <script defer="" src="refinements.js?v=3.4.0"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -1175,7 +1176,6 @@
                 loading="lazy"
                 src="assets/figma-315-695.webp"
               />
-
               <figcaption
                 aria-label="Демонстрационные данные центрального объекта"
                 data-demo-caption="true"
@@ -1208,7 +1208,6 @@
                 loading="lazy"
                 src="assets/figma-315-697.webp"
               />
-
               <figcaption
                 aria-label="Демонстрационные данные центрального объекта"
                 data-demo-caption="true"
@@ -1272,7 +1271,6 @@
                 loading="lazy"
                 src="assets/figma-315-720.webp"
               />
-
               <figcaption
                 aria-label="Демонстрационные данные центрального объекта"
                 data-demo-caption="true"
@@ -1305,7 +1303,6 @@
                 loading="lazy"
                 src="assets/figma-315-722.webp"
               />
-
               <figcaption
                 aria-label="Демонстрационные данные центрального объекта"
                 data-demo-caption="true"
@@ -1454,7 +1451,7 @@
               data-carousel=""
               id="advantage-track"
             >
-              <article>
+              <article data-advantage-art="1">
                 <img
                   alt=""
                   decoding="async"
@@ -1470,7 +1467,7 @@
                   </p>
                 </div>
               </article>
-              <article>
+              <article data-advantage-art="2">
                 <img
                   alt=""
                   decoding="async"
@@ -1488,7 +1485,7 @@
                   </p>
                 </div>
               </article>
-              <article>
+              <article data-advantage-art="3">
                 <img
                   alt=""
                   decoding="async"
@@ -1507,7 +1504,7 @@
                   </p>
                 </div>
               </article>
-              <article>
+              <article data-advantage-art="4">
                 <img
                   alt=""
                   decoding="async"
@@ -1657,7 +1654,7 @@
               <h2 data-figma-text="315:772">6 шагов от звонка до новоселья</h2>
             </div>
           </div>
-          <ol class="process-list">
+          <ol aria-live="polite" class="process-list" data-step="0">
             <li>
               <span class="process-number" data-figma-text="315:778">01</span>
               <h3 class="" data-figma-text="315:779">Звонок и консультация</h3>
@@ -1952,6 +1949,9 @@
               />
             </div>
             <div>
+              <p class="visit-kicker" data-figma-text="315:795">
+                Хотите сначала увидеть нашу работу?
+              </p>
               <h2 data-figma-text="315:796">Покажем действующий объект</h2>
               <p data-figma-text="315:797">
                 Сможете посмотреть качество работ, используемые материалы и
@@ -2111,6 +2111,23 @@
                 >
               </h2>
             </div>
+            <button
+              class="button button--dark"
+              data-action="question"
+              data-motion-button=""
+              type="button"
+            >
+              <span class="button-label" data-figma-text="I315:840;292:316"
+                >Задать вопрос</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/question-arrow.svg"
+              /></span>
+            </button>
           </div>
           <div class="faq-grid">
             <details>
@@ -2245,25 +2262,6 @@
                 остаётся прежней. Условия закрепляются в договоре.
               </p>
             </details>
-          </div>
-          <div class="section-actions end">
-            <button
-              class="button button--dark"
-              data-action="question"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="I315:840;292:316"
-                >Задать вопрос</span
-              ><span aria-hidden="true" class="button-icon"
-                ><img
-                  alt=""
-                  aria-hidden="true"
-                  class="figma-icon"
-                  decoding="async"
-                  src="assets/icons/question-arrow.svg"
-              /></span>
-            </button>
           </div>
         </div>
       </section>
@@ -2494,7 +2492,13 @@
             </div>
             <p class="footer-credit">
               <span data-figma-text="I315:526;169:259">Сделано в</span
-              ><img alt="" src="assets/figma-I315-526_169-260.webp" />
+              ><a
+                aria-label="Студия RUSO"
+                href="https://ruso.ru"
+                rel="noopener noreferrer"
+                target="_blank"
+                ><img alt="" src="assets/figma-I315-526_169-260.webp"
+              /></a>
             </p>
           </div>
         </div>

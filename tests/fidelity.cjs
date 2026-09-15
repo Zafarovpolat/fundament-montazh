@@ -52,7 +52,7 @@ const expected = require("./figma-expectations.json").map((e) => ({
     await page
       .locator("#advantages .fidelity-track")
       .evaluate((e) => getComputedStyle(e).columnGap),
-    "0px",
+    "8px",
   );
   for (const section of ["projects", "advantages", "reviews"]) {
     const next = page.locator(`#${section} [data-scroll="1"]`);

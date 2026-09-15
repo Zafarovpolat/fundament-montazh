@@ -14,9 +14,9 @@ const assert = require("node:assert/strict");
     "labels must be siblings, not inside dots",
   );
   for (const label of await p.locator(".path-label").all())
-    assert.equal(
+    assert.notEqual(
       await label.evaluate((e) => getComputedStyle(e).display),
-      "block",
+      "none",
     );
   const first = p.locator(".path-dot").first();
   assert.equal(
