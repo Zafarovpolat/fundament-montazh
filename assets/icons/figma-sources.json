@@ -1,0 +1,27 @@
+{
+  "file": "OI1QsiS9LrdOCIIflblvMs",
+  "nodes": {
+    "arrow-dark": "360:412",
+    "arrow-light": "315:384",
+    "arrow-left": "315:670",
+    "arrow-right": "315:672",
+    "calculator": "I360:397;97:382",
+    "vk": "360:450",
+    "whatsapp": "360:452",
+    "benefit-dot": "375:377",
+    "clock": "360:559",
+    "warning": "391:416",
+    "faq-plus": "315:807",
+    "star": "315:441",
+    "object-cursor": "315:714",
+    "close": "42:5",
+    "section-dot": "315:600",
+    "review-map": "315:434",
+    "question-arrow": "292:318",
+    "visit-arrow": "292:303",
+    "mortgage-arrow": "199:297",
+    "quote-arrow": "85:9",
+    "project-arrow": "I315:674;124:232;124:192",
+    "subscribe-arrow": "I315:568;240:370"
+  }
+}

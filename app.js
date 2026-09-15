@@ -49,6 +49,7 @@ const headings = {
   visit: "Записаться на экскурсию",
   question: "Задать вопрос",
   project: "Проект «Уют» — 100 м²",
+  object: "Дом «Классик» — 130 м²",
 };
 document.querySelectorAll("[data-action]").forEach((button) =>
   button.addEventListener("click", () => {
@@ -91,6 +92,14 @@ document.querySelectorAll("[data-action]").forEach((button) =>
       );
       return;
     }
+    if (action === "vk" || action === "whatsapp") {
+      openDialog(
+        action === "vk" ? "ВКонтакте" : "WhatsApp",
+        "Иконка восстановлена из макета. Точный адрес аккаунта не предоставлен — добавим ссылку после подтверждения владельцем.",
+        true,
+      );
+      return;
+    }
     if (action === "social") {
       openDialog(
         "Социальные сети",
@@ -101,9 +110,11 @@ document.querySelectorAll("[data-action]").forEach((button) =>
     }
     openDialog(
       headings[action] || "Связаться с нами",
-      action === "project"
-        ? "Каркасный дом, 100 м², 1 этаж, 3 комнаты. Цена из макета — от 2 100 000 ₽. Уточните комплектацию и актуальную стоимость."
-        : "Демонстрационная форма. Можно подготовить и скачать заявку; автоматическая отправка не подключена.",
+      action === "object"
+        ? "Газобетонный дом в Академгородке, 130 м². Срок строительства из макета — 5 месяцев, стоимость — 2 800 000 ₽. Заявку можно подготовить ниже."
+        : action === "project"
+          ? "Каркасный дом, 100 м², 1 этаж, 3 комнаты. Цена из макета — от 2 100 000 ₽. Уточните комплектацию и актуальную стоимость."
+          : "Демонстрационная форма. Можно подготовить и скачать заявку; автоматическая отправка не подключена.",
     );
   }),
 );
@@ -122,6 +133,9 @@ form.addEventListener("submit", (e) => {
   status.replaceChildren(
     document.createTextNode("Заявка подготовлена, но не отправлена. "),
     link,
+  );
+  requestAnimationFrame(() =>
+    status.scrollIntoView({ block: "nearest", behavior: "instant" }),
   );
   link.addEventListener(
     "click",

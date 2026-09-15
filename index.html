@@ -1,59 +1,64 @@
 <!doctype html>
+
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta
-      name="description"
       content="Фундамент под ключ в Новосибирске. Геология, проектирование и строительство — ФундаментМонтаж."
+      name="description"
     />
-    <meta name="theme-color" content="#101323" />
+    <meta content="#101323" name="theme-color" />
     <title>ФундаментМонтаж — фундамент под ключ</title>
     <link
-      rel="preload"
-      href="assets/fonts/web/euclid-circular-a-400-normal.woff2"
       as="font"
+      crossorigin=""
+      href="assets/fonts/web/euclid-circular-a-400-normal.woff2"
+      rel="preload"
       type="font/woff2"
-      crossorigin
     />
     <link
-      rel="preload"
-      href="assets/fonts/web/cofo-sans-400-normal.woff2"
       as="font"
+      crossorigin=""
+      href="assets/fonts/web/cofo-sans-400-normal.woff2"
+      rel="preload"
       type="font/woff2"
-      crossorigin
     />
-    <link rel="stylesheet" href="fonts.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
+    <link href="fonts.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+    <script defer="" src="app.js"></script>
+    <link href="interactions.css" rel="stylesheet" />
+    <script defer="" src="motion.js"></script>
   </head>
   <body>
-    <a href="#main" class="skip-link">Перейти к содержимому</a>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
     <header class="site-header">
       <div class="topbar">
         <div class="container topbar-inner">
           <p>Работаем в Новосибирске и НСО</p>
+          <span aria-hidden="true" class="topbar-divider"></span>
           <p>Аккредитация ДОМ.РФ и Сбербанк</p>
+          <span aria-hidden="true" class="topbar-divider"></span>
           <p>Гарантия 5 лет по договору</p>
           <p class="hours">Пн–Пт 9:00–18:00 · Сб 10:00–16:00</p>
         </div>
       </div>
       <div class="container header-inner">
-        <a class="brand" href="#hero" aria-label="ФундаментМонтаж — главная"
+        <a aria-label="ФундаментМонтаж — главная" class="brand" href="#hero"
           ><img
-            src="assets/figma-360-436.webp"
             alt="ФундаментМонтаж"
+            decoding="async"
             loading="lazy"
-            decoding="async" /></a
+            src="assets/figma-360-436.webp" /></a
         ><button
-          class="menu-toggle"
           aria-controls="main-navigation"
           aria-expanded="false"
+          class="menu-toggle"
           type="button"
         >
-          Меню <span aria-hidden="true">☰</span>
+          Меню
         </button>
-        <nav id="main-navigation" aria-label="Основная навигация">
+        <nav aria-label="Основная навигация" id="main-navigation">
           <a href="#geology">Материалы</a><a href="#projects">Проекты</a
           ><a href="#objects">Объекты</a><a href="#process">Как строим</a
           ><a href="#contacts">Контакты</a>
@@ -64,25 +69,275 @@
             Заказать звонок
           </button>
         </div>
+        <div aria-label="Связь в социальных сетях" class="header-social">
+          <button
+            aria-label="ВКонтакте"
+            class="social-icon-button"
+            data-action="vk"
+            type="button"
+          >
+            <img
+              alt=""
+              aria-hidden="true"
+              class="figma-icon"
+              decoding="async"
+              src="assets/icons/vk.svg"
+            /></button
+          ><button
+            aria-label="WhatsApp"
+            class="social-icon-button"
+            data-action="whatsapp"
+            type="button"
+          >
+            <img
+              alt=""
+              aria-hidden="true"
+              class="figma-icon"
+              decoding="async"
+              src="assets/icons/whatsapp.svg"
+            />
+          </button>
+        </div>
         <button
-          type="button"
           class="button button--dark header-quote"
           data-action="quote"
+          type="button"
         >
-          <span>Рассчитать стоимость</span
-          ><span class="button-icon" aria-hidden="true">↗</span>
+          <span class="button-label">Рассчитать стоимость</span>
         </button>
       </div>
     </header>
     <main id="main">
-      <section id="hero" class="hero dark">
-        <img
-          src="assets/figma-360-462.webp"
-          alt=""
-          class="section-background"
-          loading="lazy"
-          decoding="async"
-        />
+      <nav aria-label="Путь по разделам страницы" class="page-path" hidden="">
+        <div aria-hidden="true" class="path-line">
+          <span class="path-progress"></span>
+        </div>
+        <ol>
+          <li>
+            <a
+              aria-label="Важно знать"
+              class="path-link"
+              data-section="geology"
+              href="#geology"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Важно знать</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Личная ответственность"
+              class="path-link"
+              data-section="director"
+              href="#director"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Личная ответственность</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Каталог проектов"
+              class="path-link"
+              data-section="projects"
+              href="#projects"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Каталог проектов</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Готовые объекты"
+              class="path-link"
+              data-section="objects"
+              href="#objects"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Готовые объекты</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Проектирование"
+              class="path-link"
+              data-section="design"
+              href="#design"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Проектирование</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Почему мы?"
+              class="path-link"
+              data-section="advantages"
+              href="#advantages"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Почему мы?</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Калькулятор"
+              class="path-link"
+              data-section="calculator"
+              href="#calculator"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Калькулятор</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Процесс работы"
+              class="path-link"
+              data-section="process"
+              href="#process"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Процесс работы</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Финансирование"
+              class="path-link"
+              data-section="mortgage"
+              href="#mortgage"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Финансирование</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Отзывы"
+              class="path-link"
+              data-section="reviews"
+              href="#reviews"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Отзывы</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Хотите сначала увидеть нашу работу?"
+              class="path-link"
+              data-section="visit"
+              href="#visit"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label"
+                >Хотите сначала увидеть нашу работу?</span
+              ></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Директор-блогер"
+              class="path-link"
+              data-section="videos"
+              href="#videos"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Директор-блогер</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Вопросы и ответы"
+              class="path-link"
+              data-section="faq"
+              href="#faq"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Вопросы и ответы</span></a
+            >
+          </li>
+          <li>
+            <a
+              aria-label="Социальные сети"
+              class="path-link"
+              data-section="social"
+              href="#social"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="path-dot"
+                decoding="async"
+                src="assets/icons/section-dot.svg"
+              /><span class="path-label">Социальные сети</span></a
+            >
+          </li>
+        </ol>
+      </nav>
+      <section class="hero dark" id="hero">
+        <div aria-hidden="true" class="parallax-surface">
+          <img
+            alt=""
+            class="section-background"
+            data-parallax="0.065"
+            decoding="async"
+            loading="lazy"
+            src="assets/figma-360-462.webp"
+          />
+        </div>
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="hero-badge">
@@ -101,22 +356,36 @@
             </p>
             <div class="button-row">
               <button
-                type="button"
                 class="button button--yellow"
                 data-action="quote"
+                data-motion-button=""
+                type="button"
               >
-                <span>Рассчитать стоимость фундамента</span
-                ><span class="button-icon" aria-hidden="true">↗</span></button
-              ><a class="button" href="#foundation-prices"
-                ><span>Виды фундаментов и цены</span
-                ><span class="button-icon" aria-hidden="true">⌘</span></a
-              >
+                <span class="button-label">Рассчитать стоимость фундамента</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/quote-arrow.svg"
+                /></span></button
+              ><a class="button" data-motion-button="" href="#foundation-prices"
+                ><span class="button-label">Виды фундаментов и цены</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/calculator.svg" /></span
+              ></a>
             </div>
           </div>
           <aside
-            id="foundation-prices"
-            class="price-panel"
             aria-label="Ориентировочная стоимость"
+            class="price-panel"
+            id="foundation-prices"
           >
             <h2 class="panel-title">Ориентировочная стоимость</h2>
             <ul class="price-list">
@@ -125,46 +394,134 @@
                   <h3>Ленточный фундамент</h3>
                   <p>от 13 500 ₽/м³</p>
                 </div>
-                <span class="muted">◷ 5–7 дней</span>
+                <span class="muted"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/clock.svg"
+                  />
+                  5–7 дней</span
+                >
               </li>
               <li>
                 <div>
                   <h3>Монолитная плита</h3>
                   <p>от 485 000 ₽</p>
                 </div>
-                <span class="muted">◷ 7–10 дней</span>
+                <span class="muted"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/clock.svg"
+                  />
+                  7–10 дней</span
+                >
               </li>
               <li>
                 <div>
                   <h3>Ленточный фундамент</h3>
                   <p>от 13 500 ₽/м³</p>
                 </div>
-                <span class="muted">◷ 5–7 дней</span>
+                <span class="muted"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/clock.svg"
+                  />
+                  5–7 дней</span
+                >
               </li>
               <li>
                 <div>
                   <h3>Ленточный фундамент</h3>
                   <p>от 13 500 ₽/м³</p>
                 </div>
-                <span class="muted">◷ 5–7 дней</span>
+                <span class="muted"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/clock.svg"
+                  />
+                  5–7 дней</span
+                >
               </li>
             </ul>
-            <button type="button" class="button" data-action="quote">
-              <span>Рассчитать мой фундамент</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+            <button
+              class="button"
+              data-action="quote"
+              data-motion-button=""
+              type="button"
+            >
+              <span class="button-label">Рассчитать мой фундамент</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-light.svg"
+              /></span>
             </button>
             <p class="price-note">Смета в день обращения · Бесплатно</p>
           </aside>
           <ul class="hero-benefits">
-            <li>Геология — всегда, без исключений</li>
-            <li>Проект до начала работ</li>
-            <li>Фотоотчёт каждый день</li>
-            <li>Цена фиксирована в договоре</li>
-            <li>Гарантия 5 лет</li>
+            <li>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="benefit-icon"
+                decoding="async"
+                src="assets/icons/benefit-dot.svg"
+              />Геология — всегда, без исключений
+            </li>
+            <li>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="benefit-icon"
+                decoding="async"
+                src="assets/icons/benefit-dot.svg"
+              />Проект до начала работ
+            </li>
+            <li>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="benefit-icon"
+                decoding="async"
+                src="assets/icons/benefit-dot.svg"
+              />Фотоотчёт каждый день
+            </li>
+            <li>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="benefit-icon"
+                decoding="async"
+                src="assets/icons/benefit-dot.svg"
+              />Цена фиксирована в договоре
+            </li>
+            <li>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="benefit-icon"
+                decoding="async"
+                src="assets/icons/benefit-dot.svg"
+              />Гарантия 5 лет
+            </li>
           </ul>
         </div>
       </section>
-      <section id="geology" class="section">
+      <section class="section" id="geology">
         <div class="container">
           <div class="geology-grid">
             <div>
@@ -199,7 +556,16 @@
                 </li>
               </ol>
               <aside class="warning">
-                <h3>⚠ Внимание!</h3>
+                <h3>
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/warning.svg"
+                  />
+                  Внимание!
+                </h3>
                 <p>
                   Ни один профессиональный проектировщик не запроектирует
                   фундамент без геологии. Если вам предлагают фундамент «без
@@ -208,23 +574,27 @@
               </aside>
             </div>
             <img
-              src="assets/figma-391-444.webp"
               alt="Геологическое обследование участка"
               class="geology-image"
-              loading="lazy"
+              data-parallax="0.04"
               decoding="async"
+              loading="lazy"
+              src="assets/figma-391-444.webp"
             />
           </div>
         </div>
       </section>
-      <section id="director" class="section dark director">
-        <img
-          src="assets/figma-315-298.webp"
-          alt=""
-          class="section-background"
-          loading="lazy"
-          decoding="async"
-        />
+      <section class="section dark director" id="director">
+        <div aria-hidden="true" class="parallax-surface">
+          <img
+            alt=""
+            class="section-background"
+            data-parallax="0.065"
+            decoding="async"
+            loading="lazy"
+            src="assets/figma-315-298.webp"
+          />
+        </div>
         <div class="container">
           <div class="director-grid">
             <div>
@@ -270,10 +640,10 @@
             </div>
             <figure class="director-portrait">
               <img
-                src="assets/figma-315-319.webp"
                 alt="Павел Ремизов — руководитель компании"
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-319.webp"
               />
               <figcaption>
                 <p class="signature">Павел Ремизов</p>
@@ -283,7 +653,7 @@
           </div>
         </div>
       </section>
-      <section id="projects" class="section">
+      <section class="section" id="projects">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -298,59 +668,71 @@
             </p>
           </div>
           <div class="catalog-toolbar">
-            <div class="filters" aria-label="Фильтры проектов">
-              <button type="button" data-filter="0" aria-pressed="true">
+            <div aria-label="Фильтры проектов" class="filters">
+              <button aria-pressed="true" data-filter="0" type="button">
                 Все</button
-              ><button type="button" data-filter="1" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="1" type="button">
                 До 100 м²</button
-              ><button type="button" data-filter="2" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="2" type="button">
                 100–150 м²</button
-              ><button type="button" data-filter="3" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="3" type="button">
                 150–200 м²</button
-              ><button type="button" data-filter="4" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="4" type="button">
                 200+ м²</button
-              ><button type="button" data-filter="5" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="5" type="button">
                 Газобетон</button
-              ><button type="button" data-filter="6" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="6" type="button">
                 Кирпич</button
-              ><button type="button" data-filter="7" aria-pressed="false">
+              ><button aria-pressed="false" data-filter="7" type="button">
                 Каркас
               </button>
             </div>
             <div class="carousel-controls">
               <button
+                aria-label="Предыдущие проекты"
                 data-scroll="-1"
                 data-target="project-track"
-                aria-label="Предыдущие проекты"
               >
-                ←</button
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-left.svg"
+                /></button
               ><button
+                aria-label="Следующие проекты"
                 data-scroll="1"
                 data-target="project-track"
-                aria-label="Следующие проекты"
               >
-                →
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-right.svg"
+                />
               </button>
             </div>
           </div>
           <div
-            id="project-track"
-            class="card-track"
-            tabindex="0"
             aria-label="Проекты домов"
+            class="card-track"
+            id="project-track"
+            tabindex="0"
           >
             <article
               class="project-card"
-              data-project
               data-area="100"
               data-material="Каркас"
+              data-project=""
             >
               <div class="project-picture">
                 <img
+                  alt="Проект каркасного дома «Уют»"
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-I315-674_124-246.webp"
-                  alt="Проект каркасного дома «Уют»"
-                  loading="lazy"
-                  decoding="async"
                 /><span class="badge">Каркасный</span>
               </div>
               <div class="project-title">
@@ -363,26 +745,34 @@
                 <li>3 комнаты</li>
               </ul>
               <button
-                type="button"
                 class="button button--dark"
                 data-action="project"
+                data-motion-button=""
+                type="button"
               >
-                <span>Подробнее</span
-                ><span class="button-icon" aria-hidden="true">↗</span>
+                <span class="button-label">Подробнее</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/project-arrow.svg"
+                /></span>
               </button>
             </article>
             <article
               class="project-card"
-              data-project
               data-area="100"
               data-material="Каркас"
+              data-project=""
             >
               <div class="project-picture">
                 <img
+                  alt="Проект каркасного дома «Уют»"
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-I315-675_124-246.webp"
-                  alt="Проект каркасного дома «Уют»"
-                  loading="lazy"
-                  decoding="async"
                 /><span class="badge">Каркасный</span>
               </div>
               <div class="project-title">
@@ -395,26 +785,34 @@
                 <li>3 комнаты</li>
               </ul>
               <button
-                type="button"
                 class="button button--dark"
                 data-action="project"
+                data-motion-button=""
+                type="button"
               >
-                <span>Подробнее</span
-                ><span class="button-icon" aria-hidden="true">↗</span>
+                <span class="button-label">Подробнее</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/project-arrow.svg"
+                /></span>
               </button>
             </article>
             <article
               class="project-card"
-              data-project
               data-area="100"
               data-material="Каркас"
+              data-project=""
             >
               <div class="project-picture">
                 <img
+                  alt="Проект каркасного дома «Уют»"
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-I315-676_124-246.webp"
-                  alt="Проект каркасного дома «Уют»"
-                  loading="lazy"
-                  decoding="async"
                 /><span class="badge">Каркасный</span>
               </div>
               <div class="project-title">
@@ -427,26 +825,34 @@
                 <li>3 комнаты</li>
               </ul>
               <button
-                type="button"
                 class="button button--dark"
                 data-action="project"
+                data-motion-button=""
+                type="button"
               >
-                <span>Подробнее</span
-                ><span class="button-icon" aria-hidden="true">↗</span>
+                <span class="button-label">Подробнее</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/project-arrow.svg"
+                /></span>
               </button>
             </article>
             <article
               class="project-card"
-              data-project
               data-area="100"
               data-material="Каркас"
+              data-project=""
             >
               <div class="project-picture">
                 <img
-                  src="assets/figma-I315-677_124-246.webp"
                   alt="Проект каркасного дома «Уют»"
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-I315-677_124-246.webp"
                 /><span class="badge">Каркасный</span>
               </div>
               <div class="project-title">
@@ -459,27 +865,48 @@
                 <li>3 комнаты</li>
               </ul>
               <button
-                type="button"
                 class="button button--dark"
                 data-action="project"
+                data-motion-button=""
+                type="button"
               >
-                <span>Подробнее</span
-                ><span class="button-icon" aria-hidden="true">↗</span>
+                <span class="button-label">Подробнее</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/project-arrow.svg"
+                /></span>
               </button>
             </article>
           </div>
-          <p class="empty-projects" hidden>
+          <p class="empty-projects" hidden="">
             В макете нет проектов по этому фильтру.
           </p>
           <div class="section-actions">
-            <button type="button" class="button" data-action="catalog">
-              <span>Смотреть все проекты · 50+ вариантов</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+            <button
+              class="button button--soft-icon"
+              data-action="catalog"
+              data-motion-button=""
+              type="button"
+            >
+              <span class="button-label"
+                >Смотреть все проекты · 50+ вариантов</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-dark.svg"
+              /></span>
             </button>
           </div>
         </div>
       </section>
-      <section id="objects" class="section">
+      <section class="section" id="objects">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -496,68 +923,105 @@
           </div>
           <div class="objects-gallery">
             <img
+              alt="Построенный загородный дом"
+              class="object-side"
+              decoding="async"
+              loading="lazy"
               src="assets/figma-315-695.webp"
-              alt="Построенный загородный дом"
-              class="object-side"
-              loading="lazy"
-              decoding="async"
             /><img
-              src="assets/figma-315-697.webp"
               alt="Построенный загородный дом"
               class="object-side"
-              loading="lazy"
               decoding="async"
+              loading="lazy"
+              src="assets/figma-315-697.webp"
             />
             <figure class="featured-object">
               <img
-                src="assets/figma-315-700.webp"
                 alt="Дом «Классик», Академгородок"
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-700.webp"
               />
               <figcaption>
                 <h3>Дом «Классик» 130 м² · Академгородок</h3>
                 <p>Газобетон · 5 мес. строительства · 2024 год</p>
                 <p class="object-price">2 800 000 ₽ <small>под ключ</small></p>
               </figcaption>
+              <button
+                aria-label="Подробнее о доме «Классик»"
+                class="object-preview"
+                data-action="object"
+                type="button"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/object-cursor.svg"
+                />
+              </button>
             </figure>
             <img
+              alt="Завершённый объект"
+              class="object-side"
+              decoding="async"
+              loading="lazy"
               src="assets/figma-315-720.webp"
-              alt="Завершённый объект"
-              class="object-side"
-              loading="lazy"
-              decoding="async"
             /><img
-              src="assets/figma-315-722.webp"
               alt="Завершённый объект"
               class="object-side"
-              loading="lazy"
               decoding="async"
+              loading="lazy"
+              src="assets/figma-315-722.webp"
             />
           </div>
           <div class="section-actions centered">
             <button
-              type="button"
-              class="button button--dark"
+              class="button button--soft-icon"
               data-action="objects"
+              data-motion-button=""
+              type="button"
             >
-              <span>Все объекты · 200+ домов</span
-              ><span class="button-icon" aria-hidden="true">↗</span></button
-            ><button type="button" class="button" data-action="visit">
-              <span>Записаться на экскурсию</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+              <span class="button-label">Все объекты · 200+ домов</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-dark.svg"
+              /></span></button
+            ><button
+              class="button button--dark"
+              data-action="visit"
+              data-motion-button=""
+              type="button"
+            >
+              <span class="button-label">Записаться на экскурсию</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/visit-arrow.svg"
+              /></span>
             </button>
           </div>
         </div>
       </section>
-      <section id="design" class="section dark">
-        <img
-          src="assets/figma-315-325.webp"
-          alt=""
-          class="section-background"
-          loading="lazy"
-          decoding="async"
-        />
+      <section class="section dark" id="design">
+        <div aria-hidden="true" class="parallax-surface">
+          <img
+            alt=""
+            class="section-background"
+            data-parallax="0.065"
+            decoding="async"
+            loading="lazy"
+            src="assets/figma-315-325.webp"
+          />
+        </div>
         <div class="container">
           <div class="section-heading">
             <div>
@@ -597,7 +1061,7 @@
           </ol>
         </div>
       </section>
-      <section id="advantages" class="section">
+      <section class="section" id="advantages">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -615,10 +1079,10 @@
           <div class="advantage-grid">
             <article>
               <img
-                src="assets/figma-315-748.webp"
                 alt=""
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-748.webp"
               />
               <h3>Цена фиксирована в договоре</h3>
               <p>
@@ -629,10 +1093,10 @@
             </article>
             <article>
               <img
-                src="assets/figma-315-753.webp"
                 alt=""
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-753.webp"
               />
               <h3>Фиксируем сроки строительства</h3>
               <p>
@@ -643,10 +1107,10 @@
             </article>
             <article>
               <img
-                src="assets/figma-315-758.webp"
                 alt=""
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-758.webp"
               />
               <h3>Одна компания отвечает за результат</h3>
               <p>
@@ -657,10 +1121,10 @@
             </article>
             <article>
               <img
-                src="assets/figma-315-763.webp"
                 alt=""
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-763.webp"
               />
               <h3>Проектируем до начала строительства</h3>
               <p>
@@ -673,14 +1137,17 @@
           </div>
         </div>
       </section>
-      <section id="calculator" class="section dark">
-        <img
-          src="assets/figma-315-359.webp"
-          alt=""
-          class="section-background"
-          loading="lazy"
-          decoding="async"
-        />
+      <section class="section dark" id="calculator">
+        <div aria-hidden="true" class="parallax-surface">
+          <img
+            alt=""
+            class="section-background"
+            data-parallax="0.065"
+            decoding="async"
+            loading="lazy"
+            src="assets/figma-315-359.webp"
+          />
+        </div>
         <div class="container">
           <div class="section-heading">
             <div>
@@ -698,41 +1165,53 @@
             </p>
           </div>
           <div
+            aria-label="Выберите материал дома"
             class="quiz-options"
             role="group"
-            aria-label="Выберите материал дома"
           >
-            <button type="button" data-quiz-option="0" aria-pressed="true">
+            <button aria-pressed="true" data-quiz-option="0" type="button">
               Газобетон (тепло, доступно)</button
-            ><button type="button" data-quiz-option="1" aria-pressed="false">
+            ><button aria-pressed="false" data-quiz-option="1" type="button">
               Кирпич (надёжность, статус)</button
-            ><button type="button" data-quiz-option="2" aria-pressed="false">
+            ><button aria-pressed="false" data-quiz-option="2" type="button">
               Клееный брус (натуральность, премиум)</button
-            ><button type="button" data-quiz-option="3" aria-pressed="false">
+            ><button aria-pressed="false" data-quiz-option="3" type="button">
               Каркас (быстро, бюджетно)
             </button>
           </div>
           <div class="quiz-progress">
             <progress
+              aria-label="Прогресс расчёта"
               id="quiz-progress"
               max="4"
               value="1"
-              aria-label="Прогресс расчёта"
             ></progress>
             <div>
-              <span id="quiz-step" aria-live="polite">1 / 4</span
+              <span aria-live="polite" id="quiz-step">1 / 4</span
               ><span id="quiz-percent">25%</span>
             </div>
           </div>
           <div class="section-actions end">
-            <button type="button" class="button" data-action="quiz-next">
-              <span>Далее</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+            <button
+              class="button"
+              data-action="quiz-next"
+              data-motion-button=""
+              type="button"
+            >
+              <span class="button-label">Далее</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-light.svg"
+              /></span>
             </button>
           </div>
         </div>
       </section>
-      <section id="process" class="section">
+      <section class="section" id="process">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -748,7 +1227,7 @@
           </ol>
         </div>
       </section>
-      <section id="mortgage" class="section">
+      <section class="section" id="mortgage">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -777,10 +1256,10 @@
                 <li>Одобрение за 3 дня</li>
               </ul>
               <img
-                src="assets/figma-315-410.webp"
                 alt=""
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-410.webp"
               />
             </article>
             <article>
@@ -796,26 +1275,34 @@
                 <li>Помогаем с документами</li>
               </ul>
               <img
-                src="assets/figma-315-423.webp"
                 alt=""
-                loading="lazy"
                 decoding="async"
+                loading="lazy"
+                src="assets/figma-315-423.webp"
               />
             </article>
           </div>
           <div class="section-actions end">
             <button
-              type="button"
               class="button button--dark"
               data-action="mortgage"
+              data-motion-button=""
+              type="button"
             >
-              <span>Узнать условия ипотеки</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+              <span class="button-label">Узнать условия ипотеки</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/mortgage-arrow.svg"
+              /></span>
             </button>
           </div>
         </div>
       </section>
-      <section id="reviews" class="section">
+      <section class="section" id="reviews">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -831,28 +1318,49 @@
             </p>
           </div>
           <div class="review-top">
-            <p>★ 4.9 · 34 оценки на 2GIS</p>
+            <p>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="figma-icon"
+                decoding="async"
+                src="assets/icons/star.svg"
+              />
+              4.9 · 34 оценки на 2GIS
+            </p>
             <div class="carousel-controls">
               <button
+                aria-label="Предыдущие отзывы"
                 data-scroll="-1"
                 data-target="review-track"
-                aria-label="Предыдущие отзывы"
               >
-                ←</button
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-left.svg"
+                /></button
               ><button
+                aria-label="Следующие отзывы"
                 data-scroll="1"
                 data-target="review-track"
-                aria-label="Следующие отзывы"
               >
-                →
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/arrow-right.svg"
+                />
               </button>
             </div>
           </div>
           <div
-            id="review-track"
-            class="card-track"
-            tabindex="0"
             aria-label="Отзывы клиентов"
+            class="card-track"
+            id="review-track"
+            tabindex="0"
           >
             <figure class="review-card">
               <blockquote>
@@ -866,10 +1374,10 @@
               </blockquote>
               <figcaption>
                 <img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-I315-446_199-345.webp"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div>
                   <h3>Александр.к</h3>
@@ -889,10 +1397,10 @@
               </blockquote>
               <figcaption>
                 <img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-I315-447_199-345.webp"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div>
                   <h3>Александр.к</h3>
@@ -912,10 +1420,10 @@
               </blockquote>
               <figcaption>
                 <img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-I315-448_199-345.webp"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
                 />
                 <div>
                   <h3>Александр.к</h3>
@@ -935,10 +1443,10 @@
               </blockquote>
               <figcaption>
                 <img
-                  src="assets/figma-I315-449_199-345.webp"
                   alt=""
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-I315-449_199-345.webp"
                 />
                 <div>
                   <h3>Александр.к</h3>
@@ -949,16 +1457,19 @@
           </div>
         </div>
       </section>
-      <section id="visit" class="section compact">
+      <section class="section compact" id="visit">
         <div class="container">
           <div class="visit-banner dark">
-            <img
-              src="assets/figma-315-791.webp"
-              alt=""
-              class="section-background"
-              loading="lazy"
-              decoding="async"
-            />
+            <div aria-hidden="true" class="parallax-surface">
+              <img
+                alt=""
+                class="section-background"
+                data-parallax="0.065"
+                decoding="async"
+                loading="lazy"
+                src="assets/figma-315-791.webp"
+              />
+            </div>
             <div>
               <p class="eyebrow">Хотите сначала увидеть нашу работу?</p>
               <h2>Покажем действующий объект</h2>
@@ -968,24 +1479,35 @@
               </p>
             </div>
             <button
-              type="button"
               class="button button--yellow"
               data-action="visit"
+              data-motion-button=""
+              type="button"
             >
-              <span>Записаться на экскурсию</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+              <span class="button-label">Записаться на экскурсию</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/visit-arrow.svg"
+              /></span>
             </button>
           </div>
         </div>
       </section>
-      <section id="videos" class="section dark">
-        <img
-          src="assets/figma-315-456.webp"
-          alt=""
-          class="section-background"
-          loading="lazy"
-          decoding="async"
-        />
+      <section class="section dark" id="videos">
+        <div aria-hidden="true" class="parallax-surface">
+          <img
+            alt=""
+            class="section-background"
+            data-parallax="0.065"
+            decoding="async"
+            loading="lazy"
+            src="assets/figma-315-456.webp"
+          />
+        </div>
         <div class="container">
           <div class="video-grid">
             <div>
@@ -1022,32 +1544,32 @@
               </p>
             </div>
             <div class="video-list">
-              <button type="button" data-action="video" class="video-card">
+              <button class="video-card" data-action="video" type="button">
                 <img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-315-467.webp"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
                 /><span
                   ><strong>Как правильно заливать фундамент</strong
                   ><small>15.4т просмотров</small></span
                 ></button
-              ><button type="button" data-action="video" class="video-card">
+              ><button class="video-card" data-action="video" type="button">
                 <img
+                  alt=""
+                  decoding="async"
+                  loading="lazy"
                   src="assets/figma-315-483.webp"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
                 /><span
                   ><strong>Как правильно заливать фундамент</strong
                   ><small>15.4т просмотров</small></span
                 ></button
-              ><button type="button" data-action="video" class="video-card">
+              ><button class="video-card" data-action="video" type="button">
                 <img
-                  src="assets/figma-315-499.webp"
                   alt=""
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-315-499.webp"
                 /><span
                   ><strong>Как правильно заливать фундамент</strong
                   ><small>15.4т просмотров</small></span
@@ -1057,7 +1579,7 @@
           </div>
         </div>
       </section>
-      <section id="faq" class="section">
+      <section class="section" id="faq">
         <div class="container">
           <div class="section-heading">
             <div>
@@ -1072,8 +1594,13 @@
             <details>
               <summary>
                 Сколько стоит дом 100 м² под ключ?<span aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 В макете проект «Уют» 100 м² указан от 2 100 000 ₽. Итоговая
@@ -1084,8 +1611,13 @@
             <details>
               <summary>
                 Действительно ли проект дома бесплатно?<span aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 В макете указано: при заключении договора на строительство
@@ -1094,7 +1626,14 @@
             </details>
             <details>
               <summary>
-                Что входит в цену «под ключ»?<span aria-hidden="true">+</span>
+                Что входит в цену «под ключ»?<span aria-hidden="true"
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 Состав работ и комплектация согласовываются до начала
@@ -1105,8 +1644,13 @@
             <details>
               <summary>
                 Как вы гарантируете соблюдение сроков?<span aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 До начала работ составляется график строительства, сроки
@@ -1116,8 +1660,13 @@
             <details>
               <summary>
                 Можно ли взять ипотеку на строительство?<span aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 В макете указана аккредитация в ДОМ.РФ и Сбербанке. Актуальные
@@ -1128,8 +1677,13 @@
               <summary>
                 Работаете ли вы в области и в каких районах?<span
                   aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 Регион работы — Новосибирск и Новосибирская область. Доступность
@@ -1140,8 +1694,13 @@
               <summary>
                 Можно ли приехать посмотреть на строящийся дом?<span
                   aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 Можно записаться на экскурсию на действующий объект.
@@ -1151,8 +1710,13 @@
             <details>
               <summary>
                 Что будет, если смета превысит договор?<span aria-hidden="true"
-                  >+</span
-                >
+                  ><img
+                    alt=""
+                    aria-hidden="true"
+                    class="figma-icon"
+                    decoding="async"
+                    src="assets/icons/faq-plus.svg"
+                /></span>
               </summary>
               <p>
                 При неизменных проекте и объёме работ согласованная стоимость
@@ -1162,17 +1726,25 @@
           </div>
           <div class="section-actions end">
             <button
-              type="button"
               class="button button--dark"
               data-action="question"
+              data-motion-button=""
+              type="button"
             >
-              <span>Задать вопрос</span
-              ><span class="button-icon" aria-hidden="true">↗</span>
+              <span class="button-label">Задать вопрос</span
+              ><span aria-hidden="true" class="button-icon"
+                ><img
+                  alt=""
+                  aria-hidden="true"
+                  class="figma-icon"
+                  decoding="async"
+                  src="assets/icons/question-arrow.svg"
+              /></span>
             </button>
           </div>
         </div>
       </section>
-      <section id="social" class="section">
+      <section class="section" id="social">
         <div class="container">
           <div class="social-grid">
             <div>
@@ -1199,10 +1771,10 @@
             <div class="social-list">
               <article>
                 <img
-                  src="assets/figma-315-555.webp"
                   alt=""
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-315-555.webp"
                 />
                 <div>
                   <h3>ВКОнтакте</h3>
@@ -1211,20 +1783,28 @@
                   </p>
                 </div>
                 <button
-                  type="button"
                   class="button button--dark"
                   data-action="social"
+                  data-motion-button=""
+                  type="button"
                 >
-                  <span>Подписаться</span
-                  ><span class="button-icon" aria-hidden="true">↗</span>
+                  <span class="button-label">Подписаться</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><img
+                      alt=""
+                      aria-hidden="true"
+                      class="figma-icon"
+                      decoding="async"
+                      src="assets/icons/subscribe-arrow.svg"
+                  /></span>
                 </button>
               </article>
               <article>
                 <img
-                  src="assets/figma-315-570.webp"
                   alt=""
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-315-570.webp"
                 />
                 <div>
                   <h3>Youtube-канал</h3>
@@ -1234,52 +1814,76 @@
                   </p>
                 </div>
                 <button
-                  type="button"
                   class="button button--dark"
                   data-action="social"
+                  data-motion-button=""
+                  type="button"
                 >
-                  <span>Подписаться</span
-                  ><span class="button-icon" aria-hidden="true">↗</span>
+                  <span class="button-label">Подписаться</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><img
+                      alt=""
+                      aria-hidden="true"
+                      class="figma-icon"
+                      decoding="async"
+                      src="assets/icons/subscribe-arrow.svg"
+                  /></span>
                 </button>
               </article>
               <article>
                 <img
-                  src="assets/figma-315-582.webp"
                   alt=""
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-315-582.webp"
                 />
                 <div>
                   <h3>Instagram</h3>
                   <p>Фотографии объектов, детали проектов и рабочий процесс</p>
                 </div>
                 <button
-                  type="button"
                   class="button button--dark"
                   data-action="social"
+                  data-motion-button=""
+                  type="button"
                 >
-                  <span>Подписаться</span
-                  ><span class="button-icon" aria-hidden="true">↗</span>
+                  <span class="button-label">Подписаться</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><img
+                      alt=""
+                      aria-hidden="true"
+                      class="figma-icon"
+                      decoding="async"
+                      src="assets/icons/subscribe-arrow.svg"
+                  /></span>
                 </button>
               </article>
               <article>
                 <img
-                  src="assets/figma-315-590.webp"
                   alt=""
-                  loading="lazy"
                   decoding="async"
+                  loading="lazy"
+                  src="assets/figma-315-590.webp"
                 />
                 <div>
                   <h3>Telegram-канал</h3>
                   <p>Фотографии объектов, детали проектов и рабочий процесс</p>
                 </div>
                 <button
-                  type="button"
                   class="button button--dark"
                   data-action="social"
+                  data-motion-button=""
+                  type="button"
                 >
-                  <span>Подписаться</span
-                  ><span class="button-icon" aria-hidden="true">↗</span>
+                  <span class="button-label">Подписаться</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><img
+                      alt=""
+                      aria-hidden="true"
+                      class="figma-icon"
+                      decoding="async"
+                      src="assets/icons/subscribe-arrow.svg"
+                  /></span>
                 </button>
               </article>
             </div>
@@ -1287,16 +1891,41 @@
         </div>
       </section>
     </main>
-    <footer id="contacts" class="site-footer">
+    <footer class="site-footer" id="contacts">
       <div class="container footer-grid">
         <div class="footer-main">
           <div class="footer-columns">
             <nav aria-label="Навигация в подвале">
               <p class="eyebrow">Информация</p>
-              <a href="#geology">Материалы <span>↗</span></a
-              ><a href="#projects">Проекты <span>↗</span></a
-              ><a href="#objects">Объекты <span>↗</span></a
-              ><a href="#process">Как строим <span>↗</span></a>
+              <a href="#geology"
+                >Материалы
+                <span aria-hidden="true"
+                  ><img
+                    alt=""
+                    class="figma-icon"
+                    src="assets/figma-I315-526_169-206.webp" /></span></a
+              ><a href="#projects"
+                >Проекты
+                <span aria-hidden="true"
+                  ><img
+                    alt=""
+                    class="figma-icon"
+                    src="assets/figma-I315-526_169-206.webp" /></span></a
+              ><a href="#objects"
+                >Объекты
+                <span aria-hidden="true"
+                  ><img
+                    alt=""
+                    class="figma-icon"
+                    src="assets/figma-I315-526_169-206.webp" /></span></a
+              ><a href="#process"
+                >Как строим
+                <span aria-hidden="true"
+                  ><img
+                    alt=""
+                    class="figma-icon"
+                    src="assets/figma-I315-526_169-206.webp" /></span
+              ></a>
             </nav>
             <address>
               <p class="eyebrow">Контакты</p>
@@ -1326,57 +1955,95 @@
             Расскажите, какой<br />
             дом планируете
           </h2>
-          <button type="button" class="button" data-action="quote">
-            <span>Рассчитать стоимость дома</span
-            ><span class="button-icon" aria-hidden="true">↗</span></button
+          <button
+            class="button button--dark"
+            data-action="quote"
+            data-motion-button=""
+            type="button"
+          >
+            <span class="button-label">Рассчитать стоимость дома</span
+            ><span aria-hidden="true" class="button-icon"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="figma-icon"
+                decoding="async"
+                src="assets/icons/arrow-dark.svg"
+            /></span></button
           ><img
-            src="assets/figma-I315-526_169-289.webp"
             alt=""
             class="footer-house"
-            loading="lazy"
             decoding="async"
+            loading="lazy"
+            src="assets/figma-I315-526_169-289.webp"
           />
         </div>
       </div>
     </footer>
-    <dialog aria-labelledby="dialog-title" id="contact-dialog">
-      <button aria-label="Закрыть" class="dialog-close" type="button">×</button>
-      <p class="eyebrow">ФУНДАМЕНТМОНТАЖ</p>
-      <h2 id="dialog-title">Рассчитать стоимость</h2>
-      <p id="dialog-description">Расскажите о вашем проекте.</p>
-      <form id="contact-form">
-        <label
-          >Ваше имя<input
-            autocomplete="name"
-            maxlength="80"
-            name="name"
-            placeholder="Как к вам обращаться"
-            required="" /></label
-        ><label
-          >Телефон<input
-            autocomplete="tel"
-            name="phone"
-            pattern="[+0-9() \-]{10,22}"
-            placeholder="+7 (___) ___-__-__"
-            required=""
-            type="tel" /></label
-        ><label
-          >О проекте<textarea
-            maxlength="2000"
-            name="message"
-            placeholder="Участок, площадь, пожелания"
-            rows="3"
-          ></textarea></label
-        ><label class="consent"
-          ><input required="" type="checkbox" />Я понимаю, что это
-          демонстрационная форма: данные не отправляются.</label
-        ><button class="primary-button" type="submit">
-          Подготовить заявку <span>↗</span>
-        </button>
-        <p class="form-status" role="status"></p>
-      </form>
-      <div hidden="" id="info-content"></div>
+    <dialog
+      aria-labelledby="dialog-title"
+      class="request-dialog"
+      id="contact-dialog"
+    >
+      <button aria-label="Закрыть" class="dialog-close" type="button">
+        <img
+          alt=""
+          aria-hidden="true"
+          class="figma-icon"
+          decoding="async"
+          src="assets/icons/close.svg"
+        />
+      </button>
+      <div aria-label="Форма обратной связи" class="dialog-scroll" tabindex="0">
+        <p class="eyebrow">ФУНДАМЕНТМОНТАЖ</p>
+        <h2 id="dialog-title">Рассчитать стоимость</h2>
+        <p id="dialog-description">Расскажите о вашем проекте.</p>
+        <form id="contact-form">
+          <label
+            >Ваше имя<input
+              autocomplete="name"
+              maxlength="80"
+              name="name"
+              placeholder="Как к вам обращаться"
+              required="" /></label
+          ><label
+            >Телефон<input
+              autocomplete="tel"
+              name="phone"
+              pattern="[+0-9\s\(\)\-]{10,22}"
+              placeholder="+7 (___) ___-__-__"
+              required=""
+              type="tel" /></label
+          ><label
+            >О проекте<textarea
+              maxlength="2000"
+              name="message"
+              placeholder="Участок, площадь, пожелания"
+              rows="3"
+            ></textarea></label
+          ><label class="consent"
+            ><input required="" type="checkbox" />Я понимаю, что это
+            демонстрационная форма: данные не отправляются.</label
+          ><button
+            class="button button--yellow form-submit"
+            data-motion-button=""
+            type="submit"
+          >
+            <span class="button-label">Подготовить заявку</span
+            ><span aria-hidden="true" class="button-icon"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="figma-icon"
+                decoding="async"
+                src="assets/icons/quote-arrow.svg"
+            /></span>
+          </button>
+          <p class="form-status" role="status"></p>
+        </form>
+        <div hidden="" id="info-content"></div>
+      </div>
     </dialog>
-    <div class="toast" role="status" aria-live="polite"></div>
+    <div aria-live="polite" class="toast" role="status"></div>
   </body>
 </html>
