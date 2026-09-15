@@ -267,7 +267,7 @@
   }
   function schedule() {
     clearTimeout(timer);
-    timer = setTimeout(step, 4800);
+    timer = setTimeout(step, 1800);
   }
   async function step() {
     if (
@@ -309,15 +309,19 @@
     choose(track.carousel.currentCard()?.querySelector(".project-picture"));
     schedule();
   });
-  track.addEventListener("pointerenter", () => (paused = true));
-  track.addEventListener("pointerleave", () => {
+  // Hover does not stall the sequence; pause only during dragging or keyboard focus.
+  track.addEventListener("pointerdown", () => (paused = true));
+  window.addEventListener("pointerup", () => {
     paused = false;
-    schedule();
   });
-  track.addEventListener("focusin", () => (paused = true));
+  window.addEventListener("pointercancel", () => {
+    paused = false;
+  });
+  track.addEventListener("focusin", (e) => {
+    if (e.target.matches(":focus-visible")) paused = true;
+  });
   track.addEventListener("focusout", () => {
     paused = false;
-    schedule();
   });
   new IntersectionObserver(
     (entries) => {

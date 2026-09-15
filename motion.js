@@ -106,8 +106,10 @@
         );
     });
     stops.push(`#070b1f ${railHeight}px`);
-    rail.querySelector(".path-line").style.background =
-      `linear-gradient(to bottom,${stops.join(",")})`;
+    rail.style.setProperty(
+      "--path-colors",
+      `linear-gradient(to bottom,${stops.join(",")})`,
+    );
     rail.hidden = false;
     measurePending = false;
   }
@@ -116,15 +118,21 @@
     frame = 0;
     if (measurePending) measurePath();
     const viewport = window.innerHeight;
-    const point = window.scrollY + viewport * 0.42;
+    const atBottom =
+      window.scrollY + viewport >= document.documentElement.scrollHeight - 2;
+    const point = atBottom
+      ? railStart + railHeight
+      : window.scrollY + viewport * 0.42;
     const progress = clamp((point - railStart) / railHeight, 0, 1);
-    fill.style.transform = `scaleY(${progress})`;
+    fill.style.clipPath = `inset(0 0 ${100 - progress * 100}% 0)`;
+    rail.dataset.progress = progress.toFixed(4);
     let active = -1;
     anchors.forEach((anchor, index) => {
       if (anchor <= point) active = index;
     });
     if (current !== active) {
       links.forEach((link, index) => {
+        link.classList.toggle("is-passed", index <= active);
         if (index === active) link.setAttribute("aria-current", "location");
         else link.removeAttribute("aria-current");
       });

@@ -2668,3 +2668,90 @@ html #advantages .heading-description.with-yellow-rule[data-figma-text] {
   flex-wrap: wrap;
   row-gap: 6px;
 }
+
+/* Review 3.3: round points and scroll-filled rail; complete demo captions. */
+.hero-proof-item {
+  display: inline-block;
+  white-space: nowrap;
+}
+@media (min-width: 1200px) {
+  html .hero-badge[data-figma-text] {
+    white-space: nowrap;
+    width: max-content;
+    max-width: none;
+  }
+}
+@media (max-width: 1199px) {
+  html .hero-badge[data-figma-text] {
+    white-space: normal;
+    width: auto;
+    max-width: 100%;
+    font-size: clamp(12px, 1.6vw, 15px);
+    line-height: 22px;
+  }
+}
+.filters button:not([aria-pressed="true"]) {
+  padding-inline: 20px;
+}
+.filters,
+.filters button {
+  border-radius: 999px;
+}
+.page-path .path-dot,
+.page-path .path-link[aria-current] .path-dot {
+  width: 9px;
+  height: 9px;
+  min-width: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  opacity: 0.25;
+  transition: opacity 300ms ease;
+}
+.page-path .path-link.is-passed .path-dot {
+  opacity: 1;
+}
+.page-path .path-line {
+  background: transparent !important;
+}
+.page-path .path-line::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--path-colors);
+  opacity: 0.25;
+}
+.page-path .path-progress {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--path-colors);
+  transform: none;
+  clip-path: inset(0 0 100% 0);
+}
+html .page-path .path-label[data-figma-text] {
+  color: rgba(7, 11, 31, 0.4);
+}
+html .page-path .is-dark .path-label[data-figma-text] {
+  color: rgba(255, 255, 255, 0.4);
+}
+html .page-path .is-passed .path-label[data-figma-text] {
+  color: #070b1f;
+}
+html .page-path .is-dark.is-passed .path-label[data-figma-text] {
+  color: #fff;
+}
+@media (min-width: 1200px) {
+  html .page-path .path-label[data-figma-text] {
+    display: block;
+  }
+  main > .section > .container {
+    width: calc(100% - max(260px, 2 * var(--gutter)));
+  }
+}
+.project-picture > .project-frame {
+  transition:
+    opacity 650ms ease,
+    transform 1800ms ease;
+}
