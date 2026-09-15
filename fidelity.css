@@ -2214,3 +2214,373 @@ html h3[data-figma-text] {
 .filters button:not([aria-pressed="true"]) {
   color: rgba(0, 0, 0, 0.4);
 }
+
+/* Review 3.1: explicit refinements from the owner's annotated screenshots. */
+.price-panel > .button[data-motion-button] {
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+.price-panel > .button .button-label {
+  margin-inline: auto;
+  max-width: calc(100% - 120px);
+}
+html .number-list li[data-figma-text] {
+  color: rgba(0, 0, 0, 0.45);
+}
+.number-list li::before {
+  color: #fff;
+}
+.warning {
+  border: 0 !important;
+  border-radius: 15px;
+}
+html .warning h3[data-figma-text] {
+  text-transform: uppercase;
+}
+html .warning p[data-figma-text] {
+  color: rgba(0, 0, 0, 0.45);
+}
+html .director-grid > div > p[data-figma-text],
+html .service-grid p[data-figma-text] {
+  color: rgba(255, 255, 255, 0.6);
+}
+html .stats-grid dt[data-figma-text] {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.08)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+html .project-title small[data-figma-text],
+html .inline-list [data-figma-text] {
+  color: rgba(0, 0, 0, 0.4);
+}
+html .object-meta [data-figma-text],
+html .object-price small[data-figma-text] {
+  color: rgba(255, 255, 255, 0.6);
+}
+.heading-description {
+  position: relative;
+  padding-left: 15px;
+}
+.heading-description::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 22px;
+  background: #ffc924;
+}
+html #objects .heading-description {
+  max-width: 620px;
+  flex-shrink: 0;
+}
+html #objects .heading-description > span:first-child {
+  color: #000;
+}
+html #objects .heading-description > span:last-child {
+  color: rgba(0, 0, 0, 0.4);
+}
+#projects .heading-line--inset,
+#objects .heading-line--inset {
+  margin-left: 136px;
+}
+.filters {
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  padding: 5px;
+}
+.filters button {
+  border: 0;
+  border-radius: 999px;
+}
+.filters button[aria-pressed="true"] {
+  background: #070b1f;
+}
+.carousel-controls button {
+  border: 0;
+  box-shadow: none;
+  width: 84px;
+  height: 84px;
+}
+.card-track {
+  overflow: visible;
+}
+html .page-path .path-label[data-figma-text] {
+  font-size: 15px;
+  line-height: 21px;
+  text-transform: uppercase;
+  width: max-content;
+  min-width: 0;
+  max-width: 90px;
+  white-space: normal;
+  color: rgba(7, 11, 31, 0.55);
+}
+html .page-path .is-dark .path-label[data-figma-text] {
+  color: rgba(255, 255, 255, 0.75);
+}
+.path-link.is-dark .path-dot {
+  filter: brightness(0) invert(1);
+}
+@media (min-width: 1200px) {
+  .director-portrait > .director-photo {
+    height: calc(100% + 227px);
+    width: 100%;
+    object-fit: cover;
+    object-position: center top;
+    bottom: -50px;
+    left: 0;
+  }
+  .director-portrait::after {
+    height: calc(100% + 227px);
+    aspect-ratio: auto;
+    background: linear-gradient(
+      180deg,
+      transparent 48%,
+      rgba(7, 11, 31, 0.4) 74%,
+      #070b1f 100%
+    );
+  }
+  #objects .heading-description > span:first-child {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 1899px) {
+  .page-path .path-label {
+    display: none;
+  }
+}
+@media (max-width: 1199px) {
+  #projects .heading-line--inset,
+  #objects .heading-line--inset {
+    margin-left: clamp(20px, 7vw, 80px);
+  }
+  html #objects .heading-description {
+    max-width: 100%;
+    flex-shrink: 1;
+  }
+}
+
+/* Cross-fading views: the supplied image and two detail crops. */
+.project-picture {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 15px;
+  isolation: isolate;
+}
+.project-picture > .project-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition:
+    opacity 1000ms ease,
+    transform 5000ms ease;
+  transform: scale(1);
+}
+.project-picture > .project-frame.is-active {
+  opacity: 1;
+}
+.project-picture > .project-frame--1 {
+  transform: scale(1.18);
+  transform-origin: 35% 50%;
+}
+.project-picture > .project-frame--2 {
+  transform: scale(1.28);
+  transform-origin: 75% 45%;
+}
+.project-picture .badge {
+  z-index: 3;
+}
+.project-pagination {
+  position: absolute;
+  z-index: 3;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
+.project-pagination button {
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  width: 18px;
+  height: 24px;
+  cursor: pointer;
+}
+.project-pagination button::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transition:
+    background 500ms,
+    transform 500ms;
+}
+.project-pagination button[aria-pressed="true"]::before {
+  background: #fff;
+  transform: scale(1.15);
+}
+.project-pagination button:focus-visible {
+  outline: 2px solid #ffc924;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* Active photo expands in its own position; neighbours shrink smoothly. */
+.objects-gallery {
+  --gallery-height: clamp(500px, 39.6354vw, 761px);
+  height: var(--gallery-height);
+  align-items: center;
+  transition: grid-template-columns 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+.objects-gallery > .object-card {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+  max-width: none;
+  width: 100%;
+  height: calc(var(--gallery-height) * 0.61367);
+  aspect-ratio: auto;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: height 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
+  isolation: isolate;
+}
+.objects-gallery > .object-card.is-active {
+  height: var(--gallery-height);
+}
+.objects-gallery > .object-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+.objects-gallery > .source-object > img {
+  transform: scale(1.281);
+}
+.objects-gallery > .object-card::after {
+  opacity: 0;
+  transition: opacity 650ms ease;
+}
+.objects-gallery > .object-card.is-active::after {
+  opacity: 1;
+}
+.objects-gallery > .object-card figcaption {
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+  transition:
+    opacity 550ms ease,
+    transform 700ms ease;
+  transition-delay: 0ms;
+}
+.objects-gallery > .object-card.is-active figcaption {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 220ms;
+}
+html .featured-object h3[data-figma-text] {
+  font-size: clamp(15px, 1.22vw, 23.424px);
+  line-height: 1.3;
+  white-space: nowrap;
+  max-width: none;
+}
+.featured-object .object-meta {
+  display: block;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+.featured-object .object-meta > span {
+  display: inline;
+}
+@media (max-width: 1199px) and (min-width: 761px) {
+  .featured-object figcaption {
+    left: 15px;
+    right: 15px;
+  }
+  .featured-object .object-meta {
+    font-size: 13px;
+  }
+  html .object-meta [data-figma-text] {
+    font-size: 13px;
+  }
+}
+@media (max-width: 760px) {
+  .objects-gallery {
+    display: flex;
+    height: 480px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    touch-action: auto;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+  .objects-gallery > .object-card,
+  .objects-gallery > .object-card.is-active {
+    flex: 0 0 90%;
+    height: 480px;
+    scroll-snap-align: center;
+  }
+  .objects-gallery > .object-card figcaption {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0ms;
+  }
+  .objects-gallery > .object-card::after {
+    opacity: 1;
+  }
+  html .featured-object h3[data-figma-text] {
+    white-space: normal;
+    font-size: 22px;
+  }
+  .carousel-controls button {
+    width: 62px;
+    height: 62px;
+  }
+}
+/* Keep the complete desktop title on one line, including uppercase font metrics. */
+html .featured-object h3[data-figma-text] {
+  font-size: clamp(12px, 1.09vw, 20.928px);
+}
+@media (max-width: 1199px) {
+  html .featured-object h3[data-figma-text] {
+    white-space: normal;
+    font-size: 18px;
+  }
+}
+@media (max-width: 760px) {
+  html .featured-object h3[data-figma-text] {
+    font-size: 22px;
+  }
+}
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+}

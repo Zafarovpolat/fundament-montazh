@@ -1,6 +1,6 @@
 {
   "name": "fundament-montazh",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "description": "Responsive FundamentMontazh website based on Figma frame 315:160",
   "scripts": {
@@ -8,7 +8,8 @@
     "test": "node --check app.js && node --check motion.js && node --check sliders.js",
     "test:browser": "node tests/smoke.cjs",
     "test:ui": "node tests/ui.cjs",
-    "test:fidelity": "node tests/fidelity.cjs"
+    "test:fidelity": "node tests/fidelity.cjs",
+    "test:review": "node tests/review.cjs"
   },
   "devDependencies": {
     "playwright": "1.63.0"

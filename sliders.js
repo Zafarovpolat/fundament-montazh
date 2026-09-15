@@ -126,80 +126,113 @@
     );
 })();
 
-/** Original object cursor is a pointer state, never a form-opening button. */
+/** Expand the photo under the pointer; photos never swap between slots. */
 (() => {
   const gallery = document.querySelector(".objects-gallery");
-  const slots = [
-    ...gallery.querySelectorAll(
-      ":scope > .object-side, :scope > .featured-object > img",
-    ),
-  ];
-  const images = slots.map((img) => ({
-    src: img.getAttribute("src"),
-    alt: img.getAttribute("alt"),
-  }));
-  const center = gallery.querySelector(".featured-object > img");
-  const caption = gallery.querySelector("figcaption");
+  const cards = [...gallery.querySelectorAll(":scope > .object-card")];
   const cursor = gallery.querySelector(".object-hover-cursor");
   let active = 2,
     start = 0,
     drag = false,
     pointer = null;
-  function display() {
-    slots.forEach((img, position) => {
-      const source =
-        images[(active + position - 2 + images.length) % images.length];
-      img.src = source.src;
-      img.alt = source.alt;
-    });
-    center.classList.toggle("is-other-object", active !== 2);
-    // Only the central source project has supplied specifications. Never invent others.
-    caption.hidden = active !== 2;
+  function activate(index) {
+    active = (index + cards.length) % cards.length;
+    cards.forEach((card, i) =>
+      card.classList.toggle("is-active", i === active),
+    );
+    gallery.style.gridTemplateColumns = cards
+      .map((_, i) => (i === active ? "1.9673fr" : "1fr"))
+      .join(" ");
     gallery.dataset.activeObject = String(active);
-    gallery.classList.remove("is-changing");
-    requestAnimationFrame(() => gallery.classList.add("is-changing"));
   }
-  gallery.dataset.activeObject = String(active);
-  function go(direction) {
-    active = (active + direction + images.length) % images.length;
-    display();
-  }
-  function moveCursor(event) {
-    if (event.pointerType === "touch") return;
-    const r = gallery.getBoundingClientRect();
-    const x = Math.max(36, Math.min(r.width - 36, event.clientX - r.left));
-    const y = Math.max(36, Math.min(r.height - 36, event.clientY - r.top));
-    cursor.style.transform = `translate3d(${x - 36}px,${y - 36}px,0)`;
-    gallery.classList.add("has-pointer");
-  }
-  gallery.addEventListener("pointermove", moveCursor);
-  gallery.addEventListener("pointerleave", () => {
-    if (!drag) gallery.classList.remove("has-pointer");
+  activate(2);
+  cards.forEach((card, i) => {
+    card.addEventListener("pointerenter", (e) => {
+      if (e.pointerType !== "touch" && !drag) activate(i);
+    });
+    card.addEventListener("click", () => {
+      if (!drag) activate(i);
+    });
   });
-  gallery.addEventListener("pointerdown", (event) => {
-    if (event.button !== 0) return;
-    start = event.clientX;
-    pointer = event.pointerId;
+  gallery.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch") return;
+    const r = gallery.getBoundingClientRect();
+    cursor.style.transform = `translate3d(${e.clientX - r.left - 36}px,${e.clientY - r.top - 36}px,0)`;
+    gallery.classList.toggle(
+      "has-pointer",
+      Boolean(e.target.closest(".object-card")),
+    );
+  });
+  gallery.addEventListener("pointerleave", () =>
+    gallery.classList.remove("has-pointer"),
+  );
+  gallery.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0 || innerWidth <= 760) return;
+    start = e.clientX;
+    pointer = e.pointerId;
     drag = true;
     gallery.setPointerCapture(pointer);
   });
-  function release(event) {
-    if (!drag || event.pointerId !== pointer) return;
-    const difference = event.clientX - start;
+  function release(e) {
+    if (!drag || e.pointerId !== pointer) return;
+    const dx = e.clientX - start;
     drag = false;
     if (gallery.hasPointerCapture(pointer))
       gallery.releasePointerCapture(pointer);
+    if (e.type === "pointerup" && Math.abs(dx) > 45)
+      activate(active + (dx < 0 ? 1 : -1));
     pointer = null;
-    if (event.type === "pointerup" && Math.abs(difference) > 45)
-      go(difference < 0 ? 1 : -1);
-    if (event.type === "pointercancel") gallery.classList.remove("has-pointer");
   }
   gallery.addEventListener("pointerup", release);
   gallery.addEventListener("pointercancel", release);
-  gallery.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-      event.preventDefault();
-      go(event.key === "ArrowRight" ? 1 : -1);
+  gallery.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      e.preventDefault();
+      activate(active + (e.key === "ArrowRight" ? 1 : -1));
+      if (innerWidth <= 760)
+        cards[active].scrollIntoView({
+          block: "nearest",
+          inline: "center",
+          behavior: "smooth",
+        });
     }
+  });
+})();
+
+/** Three crops of the supplied project photograph; no unrelated house imagery. */
+(() => {
+  document.querySelectorAll(".project-picture").forEach((picture) => {
+    const frames = [...picture.querySelectorAll(".project-frame")];
+    const dots = [...picture.querySelectorAll("[data-photo-index]")];
+    let active = 0,
+      visible = false,
+      paused = false;
+    function select(index) {
+      active = index;
+      picture.dataset.activePhoto = String(index);
+      frames.forEach((f, i) => f.classList.toggle("is-active", i === index));
+      dots.forEach((b, i) =>
+        b.setAttribute("aria-pressed", String(i === index)),
+      );
+    }
+    dots.forEach((b, i) => b.addEventListener("click", () => select(i)));
+    picture.addEventListener("pointerenter", () => (paused = true));
+    picture.addEventListener("pointerleave", () => (paused = false));
+    picture.addEventListener("focusin", () => (paused = true));
+    picture.addEventListener("focusout", () => (paused = false));
+    new IntersectionObserver(
+      (entries) => (visible = entries[0].isIntersecting),
+      { threshold: 0.1 },
+    ).observe(picture);
+    setInterval(() => {
+      if (
+        visible &&
+        !paused &&
+        !document.hidden &&
+        window.siteMotion?.enabled !== false
+      )
+        select((active + 1) % frames.length);
+    }, 4800);
+    select(0);
   });
 })();

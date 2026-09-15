@@ -24,14 +24,14 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="fonts.css?v=3.0.0" rel="stylesheet" />
-    <link href="styles.css?v=3.0.0" rel="stylesheet" />
-    <script defer="" src="app.js?v=3.0.0"></script>
-    <link href="interactions.css?v=3.0.0" rel="stylesheet" />
-    <script defer="" src="motion.js?v=3.0.0"></script>
-    <link href="figma-type.css?v=3.0.0" rel="stylesheet" />
-    <link href="fidelity.css?v=3.0.0" rel="stylesheet" />
-    <script defer="" src="sliders.js?v=3.0.0"></script>
+    <link href="fonts.css?v=3.1.0" rel="stylesheet" />
+    <link href="styles.css?v=3.1.0" rel="stylesheet" />
+    <script defer="" src="app.js?v=3.1.0"></script>
+    <link href="interactions.css?v=3.1.0" rel="stylesheet" />
+    <script defer="" src="motion.js?v=3.1.0"></script>
+    <link href="figma-type.css?v=3.1.0" rel="stylesheet" />
+    <link href="fidelity.css?v=3.1.0" rel="stylesheet" />
+    <script defer="" src="sliders.js?v=3.1.0"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -141,7 +141,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:601"
-                >Важно знать</span
+                >Важно<br />знать</span
               ></a
             >
           </li>
@@ -159,7 +159,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:641"
-                >Каталог проектов</span
+                >Каталог<br />проектов</span
               ></a
             >
           </li>
@@ -177,7 +177,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:686"
-                >Готовые объекты</span
+                >Готовые<br />объекты</span
               ></a
             >
           </li>
@@ -195,7 +195,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:354"
-                >Готовые объекты</span
+                >Готовые<br />объекты</span
               ></a
             >
           </li>
@@ -213,7 +213,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:736"
-                >Почему мы?</span
+                >Почему<br />мы?</span
               ></a
             >
           </li>
@@ -231,7 +231,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:775"
-                >Процесс работы</span
+                >Процесс<br />работы</span
               ></a
             >
           </li>
@@ -249,8 +249,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:388"
-                >Финанси-<br />
-                рование</span
+                >Финанси-<br />рование</span
               ></a
             >
           </li>
@@ -268,8 +267,8 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:427"
-                >Отзывы
-              </span></a
+                >Отзывы</span
+              ></a
             >
           </li>
           <li>
@@ -286,7 +285,7 @@
                 loading="lazy"
                 src="assets/icons/section-dot.svg"
               /><span class="path-label" data-figma-text="315:802"
-                >Вопросы и ответы</span
+                >Вопросы<br />и<br />ответы</span
               ></a
             >
           </li>
@@ -788,12 +787,55 @@
                 <div class="project-picture">
                   <img
                     alt="Проект каркасного дома «Уют»"
+                    class="project-frame is-active"
+                    data-photo="0"
                     decoding="async"
                     loading="lazy"
                     src="assets/figma-I315-674_124-246.webp"
                   /><span class="badge" data-figma-text="I315:674;124:280"
                     >Каркасный</span
                   >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--1"
+                    data-photo="1"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-674_124-246.webp"
+                  /><img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--2"
+                    data-photo="2"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-674_124-246.webp"
+                  />
+                  <div
+                    aria-label="Виды фотографии проекта"
+                    class="project-pagination"
+                    role="group"
+                  >
+                    <button
+                      aria-label="Общий вид"
+                      aria-pressed="true"
+                      data-photo-index="0"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 2"
+                      aria-pressed="false"
+                      data-photo-index="1"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 3"
+                      aria-pressed="false"
+                      data-photo-index="2"
+                      type="button"
+                    ></button>
+                  </div>
                 </div>
                 <div class="project-title">
                   <h3 data-figma-text="I315:674;124:146">«Уют» 100 м²</h3>
@@ -840,12 +882,55 @@
                 <div class="project-picture">
                   <img
                     alt="Проект каркасного дома «Уют»"
+                    class="project-frame is-active"
+                    data-photo="0"
                     decoding="async"
                     loading="lazy"
                     src="assets/figma-I315-675_124-246.webp"
                   /><span class="badge" data-figma-text="I315:675;124:280"
                     >Каркасный</span
                   >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--1"
+                    data-photo="1"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-675_124-246.webp"
+                  /><img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--2"
+                    data-photo="2"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-675_124-246.webp"
+                  />
+                  <div
+                    aria-label="Виды фотографии проекта"
+                    class="project-pagination"
+                    role="group"
+                  >
+                    <button
+                      aria-label="Общий вид"
+                      aria-pressed="true"
+                      data-photo-index="0"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 2"
+                      aria-pressed="false"
+                      data-photo-index="1"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 3"
+                      aria-pressed="false"
+                      data-photo-index="2"
+                      type="button"
+                    ></button>
+                  </div>
                 </div>
                 <div class="project-title">
                   <h3 data-figma-text="I315:675;124:146">«Уют» 100 м²</h3>
@@ -892,12 +977,55 @@
                 <div class="project-picture">
                   <img
                     alt="Проект каркасного дома «Уют»"
+                    class="project-frame is-active"
+                    data-photo="0"
                     decoding="async"
                     loading="lazy"
                     src="assets/figma-I315-676_124-246.webp"
                   /><span class="badge" data-figma-text="I315:676;124:280"
                     >Каркасный</span
                   >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--1"
+                    data-photo="1"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-676_124-246.webp"
+                  /><img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--2"
+                    data-photo="2"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-676_124-246.webp"
+                  />
+                  <div
+                    aria-label="Виды фотографии проекта"
+                    class="project-pagination"
+                    role="group"
+                  >
+                    <button
+                      aria-label="Общий вид"
+                      aria-pressed="true"
+                      data-photo-index="0"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 2"
+                      aria-pressed="false"
+                      data-photo-index="1"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 3"
+                      aria-pressed="false"
+                      data-photo-index="2"
+                      type="button"
+                    ></button>
+                  </div>
                 </div>
                 <div class="project-title">
                   <h3 data-figma-text="I315:676;124:146">«Уют» 100 м²</h3>
@@ -944,12 +1072,55 @@
                 <div class="project-picture">
                   <img
                     alt="Проект каркасного дома «Уют»"
+                    class="project-frame is-active"
+                    data-photo="0"
                     decoding="async"
                     loading="lazy"
                     src="assets/figma-I315-677_124-246.webp"
                   /><span class="badge" data-figma-text="I315:677;124:280"
                     >Каркасный</span
                   >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--1"
+                    data-photo="1"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-677_124-246.webp"
+                  /><img
+                    alt=""
+                    aria-hidden="true"
+                    class="project-frame project-frame--2"
+                    data-photo="2"
+                    decoding="async"
+                    loading="lazy"
+                    src="assets/figma-I315-677_124-246.webp"
+                  />
+                  <div
+                    aria-label="Виды фотографии проекта"
+                    class="project-pagination"
+                    role="group"
+                  >
+                    <button
+                      aria-label="Общий вид"
+                      aria-pressed="true"
+                      data-photo-index="0"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 2"
+                      aria-pressed="false"
+                      data-photo-index="1"
+                      type="button"
+                    ></button
+                    ><button
+                      aria-label="Фрагмент фотографии 3"
+                      aria-pressed="false"
+                      data-photo-index="2"
+                      type="button"
+                    ></button>
+                  </div>
                 </div>
                 <div class="project-title">
                   <h3 data-figma-text="I315:677;124:146">«Уют» 100 м²</h3>
@@ -1042,22 +1213,30 @@
             role="region"
             tabindex="0"
           >
-            <img
-              alt="Построенный загородный дом"
-              class="object-side"
-              decoding="async"
-              draggable="false"
-              loading="lazy"
-              src="assets/figma-315-695.webp"
-            /><img
-              alt="Построенный загородный дом"
-              class="object-side"
-              decoding="async"
-              draggable="false"
-              loading="lazy"
-              src="assets/figma-315-697.webp"
-            />
-            <figure class="featured-object">
+            <figure class="featured-object object-card" data-object-index="0">
+              <img
+                alt="Построенный загородный дом"
+                class=""
+                decoding="async"
+                draggable="false"
+                loading="lazy"
+                src="assets/figma-315-695.webp"
+              />
+            </figure>
+            <figure class="featured-object object-card" data-object-index="1">
+              <img
+                alt="Построенный загородный дом"
+                class=""
+                decoding="async"
+                draggable="false"
+                loading="lazy"
+                src="assets/figma-315-697.webp"
+              />
+            </figure>
+            <figure
+              class="featured-object object-card is-active source-object"
+              data-object-index="2"
+            >
               <img
                 alt="Дом «Классик», Академгородок"
                 decoding="async"
@@ -1069,40 +1248,42 @@
                 <h3 class="" data-figma-text="315:704">
                   Дом «Классик» 130 м² · Академгородок
                 </h3>
-                <ul class="object-meta">
-                  <li>
-                    <span class="" data-figma-text="315:706">Газобетон</span>
-                  </li>
-                  <li>
-                    <span class="" data-figma-text="315:708"
-                      >5 мес. строительства</span
-                    >
-                  </li>
-                  <li>
-                    <span class="" data-figma-text="315:710">2024 год</span>
-                  </li>
-                </ul>
+                <p class="object-meta">
+                  <span class="" data-figma-text="315:706">Газобетон</span>
+
+                  ·
+                  <span class="" data-figma-text="315:708"
+                    >5 мес. строительства</span
+                  >
+
+                  · <span class="" data-figma-text="315:710">2024 год</span>
+                </p>
                 <p class="object-price">
                   <span class="" data-figma-text="315:712">2 800 000 ₽</span>
                   <small class="" data-figma-text="315:713">под ключ</small>
                 </p>
               </figcaption>
             </figure>
-            <img
-              alt="Завершённый объект"
-              class="object-side"
-              decoding="async"
-              draggable="false"
-              loading="lazy"
-              src="assets/figma-315-720.webp"
-            /><img
-              alt="Завершённый объект"
-              class="object-side"
-              decoding="async"
-              draggable="false"
-              loading="lazy"
-              src="assets/figma-315-722.webp"
-            />
+            <figure class="featured-object object-card" data-object-index="3">
+              <img
+                alt="Завершённый объект"
+                class=""
+                decoding="async"
+                draggable="false"
+                loading="lazy"
+                src="assets/figma-315-720.webp"
+              />
+            </figure>
+            <figure class="featured-object object-card" data-object-index="4">
+              <img
+                alt="Завершённый объект"
+                class=""
+                decoding="async"
+                draggable="false"
+                loading="lazy"
+                src="assets/figma-315-722.webp"
+              />
+            </figure>
             <span aria-hidden="true" class="object-hover-cursor"
               ><img
                 alt=""
@@ -1726,9 +1907,6 @@
               />
             </div>
             <div>
-              <p class="eyebrow" data-figma-text="315:795">
-                Хотите сначала увидеть нашу работу?
-              </p>
               <h2 data-figma-text="315:796">Покажем действующий объект</h2>
               <p data-figma-text="315:797">
                 Сможете посмотреть качество работ, используемые материалы и

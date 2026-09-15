@@ -91,6 +91,23 @@
       );
       return anchor;
     });
+    // Color the rail per actual section bounds, including unmarked dark sections.
+    const stops = ["rgba(7,11,31,.25) 0px"];
+    document.querySelectorAll("main > section.dark").forEach((section) => {
+      const r = section.getBoundingClientRect();
+      const from = Math.max(0, r.top + y - railStart),
+        to = Math.min(railHeight, r.bottom + y - railStart);
+      if (to > from)
+        stops.push(
+          `rgba(7,11,31,.25) ${from}px`,
+          `#ffc924 ${from}px`,
+          `#ffc924 ${to}px`,
+          `rgba(7,11,31,.25) ${to}px`,
+        );
+    });
+    stops.push(`rgba(7,11,31,.25) ${railHeight}px`);
+    rail.querySelector(".path-line").style.background =
+      `linear-gradient(to bottom,${stops.join(",")})`;
     rail.hidden = false;
     measurePending = false;
   }

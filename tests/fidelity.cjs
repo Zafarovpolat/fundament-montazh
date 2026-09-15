@@ -1,6 +1,10 @@
 const { chromium } = require("playwright");
 const assert = require("node:assert/strict");
-const expected = require("./figma-expectations.json");
+const overrides = require("./review-overrides.json");
+const expected = require("./figma-expectations.json").map((e) => ({
+  ...e,
+  ...overrides[e.id],
+}));
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({
@@ -83,7 +87,7 @@ const expected = require("./figma-expectations.json");
   assert.deepEqual(errors, []);
   await browser.close();
   console.log(
-    `PASS: ${actual.length} Figma text metrics/colors, 10 source markers, rounded notice, 3 carousels, object gallery without form trigger, process range, 2GIS action, motion despite OS reduced-motion.`,
+    `PASS: ${actual.length} Figma text metrics/colors with explicit review overrides, 10 source markers, rounded notice, 3 carousels, object gallery without form trigger, process range, 2GIS action, motion despite OS reduced-motion.`,
   );
 })().catch((e) => {
   console.error(e);
