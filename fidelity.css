@@ -3338,3 +3338,7 @@ html .header-menu #main-navigation a[data-figma-text] {
     right: calc(-1 * max(0px, (100vw - 1660px)/2));
   }
 }
+/* Wide header: centered links with bounded spacing, never space-between. */
+@media(min-width:1550px){
+ .header-inner>#main-navigation{justify-content:center;gap:clamp(24px,3vw,75px)}
+}
