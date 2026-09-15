@@ -1,8 +1,8 @@
 {
   "name": "fundament-montazh",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Static implementation of Figma frame 315:160",
+  "description": "Responsive FundamentMontazh website based on Figma frame 315:160",
   "scripts": {
     "start": "python3 -m http.server 5173 --bind 0.0.0.0",
     "test": "node --check app.js",

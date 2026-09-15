@@ -1,14 +1,5 @@
 "use strict";
-/** Responsive artboard scaling; no runtime libraries or network dependencies. */
-const canvas = document.querySelector(".site-canvas");
-function resizeCanvas() {
-  document.documentElement.style.setProperty(
-    "--canvas-scale",
-    Math.min(window.innerWidth / 1920, 1.25),
-  );
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas, { passive: true });
+// Layout is CSS-driven; JavaScript only handles interaction.
 const dialog = document.querySelector("#contact-dialog");
 const title = document.querySelector("#dialog-title");
 const description = document.querySelector("#dialog-description");
@@ -64,7 +55,7 @@ document.querySelectorAll("[data-action]").forEach((button) =>
     const action = button.dataset.action;
     if (action === "prices") {
       document
-        .querySelector('[data-node="360:613"]')
+        .querySelector("#foundation-prices")
         .scrollIntoView({ block: "center", behavior: "smooth" });
       return;
     }
@@ -88,6 +79,14 @@ document.querySelectorAll("[data-action]").forEach((button) =>
       openDialog(
         button.textContent.trim(),
         "Юридический документ не приложен к макету. Его необходимо добавить до публикации рабочего сайта.",
+        true,
+      );
+      return;
+    }
+    if (action === "video") {
+      openDialog(
+        "Видео о строительстве",
+        "Ссылки на видеоролики не предоставлены. Их необходимо добавить перед публикацией.",
         true,
       );
       return;
@@ -130,55 +129,74 @@ form.addEventListener("submit", (e) => {
     { once: true },
   );
 });
-const faqAnswers = [
-  "В макете проект «Уют» 100 м² указан от 2 100 000 ₽. Окончательная стоимость зависит от проекта, участка и комплектации и фиксируется в договоре.",
-  "В макете указано: при заключении договора на строительство проект — в подарок. Подробные условия необходимо уточнить у компании.",
-  "Состав работ и комплектация согласовываются до начала строительства и фиксируются в договоре. Запросите подробную смету для вашего проекта.",
-  "До начала работ составляется график строительства, сроки закрепляются в договоре.",
-  "В макете указана аккредитация в ДОМ.РФ и Сбербанке. Актуальные ставки и условия уточняются в банке; условия макета не являются офертой.",
-  "Регион работы, указанный в макете: Новосибирск и Новосибирская область. Доступность конкретного района уточните у компании.",
-  "Да, в макете предусмотрена запись на экскурсию. Нажмите «Записаться на экскурсию» и подготовьте заявку.",
-  "Согласно описанию в макете, при неизменных проекте и объёме работ согласованная стоимость остаётся прежней. Все условия закрепляются в договоре.",
-];
-document.querySelectorAll("[data-faq]").forEach((button) =>
+// Collapsible navigation uses normal document flow, so text enlargement cannot clip it.
+const menuToggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector("#main-navigation");
+function closeMenu() {
+  menuToggle.setAttribute("aria-expanded", "false");
+  navigation.classList.remove("is-open");
+}
+menuToggle.addEventListener("click", () => {
+  const open = menuToggle.getAttribute("aria-expanded") !== "true";
+  menuToggle.setAttribute("aria-expanded", String(open));
+  navigation.classList.toggle("is-open", open);
+});
+navigation
+  .querySelectorAll("a")
+  .forEach((a) => a.addEventListener("click", closeMenu));
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navigation.classList.contains("is-open")) {
+    closeMenu();
+    menuToggle.focus();
+  }
+});
+// Native scrolling adapts to the actual card size; no hard-coded translation values.
+document.querySelectorAll("[data-scroll]").forEach((button) =>
   button.addEventListener("click", () => {
-    const open = button.getAttribute("aria-expanded") === "true";
-    document.querySelectorAll("[data-faq]").forEach((b) => {
-      b.classList.remove("is-open");
-      b.setAttribute("aria-expanded", "false");
-      b.querySelector(".faq-answer")?.remove();
+    const track = document.getElementById(button.dataset.target);
+    const card = [...track.children].find((el) => !el.hidden);
+    if (!card) return;
+    const distance =
+      card.getBoundingClientRect().width +
+      parseFloat(getComputedStyle(track).columnGap);
+    track.scrollBy({
+      left: distance * Number(button.dataset.scroll),
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
     });
-    if (!open) {
-      button.classList.add("is-open");
-      button.setAttribute("aria-expanded", "true");
-      const answer = document.createElement("span");
-      answer.className = "faq-answer";
-      answer.textContent = faqAnswers[Number(button.dataset.faq)];
-      button.append(answer);
-    }
   }),
 );
-const filterButtons = [...document.querySelectorAll("[data-filter]")];
-filterButtons.forEach((button) =>
+const filters = [...document.querySelectorAll("[data-filter]")];
+filters.forEach((button) =>
   button.addEventListener("click", () => {
     const filter = Number(button.dataset.filter);
-    filterButtons.forEach((b) =>
+    filters.forEach((b) =>
       b.setAttribute("aria-pressed", String(b === button)),
     );
-    const show = [0, 1, 2, 7].includes(filter);
-    document
-      .querySelectorAll("[data-project]")
-      .forEach((card) => (card.hidden = !show));
-    document.querySelector(".empty-projects")?.remove();
-    if (!show) {
-      const text = document.createElement("p");
-      text.className = "empty-projects";
-      text.textContent = "В макете нет проектов по этому фильтру.";
-      document.querySelector("#projects").append(text);
-    }
+    let count = 0;
+    document.querySelectorAll("[data-project]").forEach((card) => {
+      const area = Number(card.dataset.area),
+        material = card.dataset.material;
+      const matches = [
+        true,
+        area <= 100,
+        area >= 100 && area <= 150,
+        area > 150 && area <= 200,
+        area > 200,
+        material === "Газобетон",
+        material === "Кирпич",
+        material === "Каркас",
+      ][filter];
+      card.hidden = !matches;
+      if (matches) count++;
+    });
+    document.querySelector(".empty-projects").hidden = count > 0;
+    document.querySelector("#project-track").hidden = count === 0;
+    document.querySelector("#project-track").scrollLeft = 0;
   }),
 );
-// The source contains only the first screen. Subsequent questions are a functional demo.
+// Four-question demo. No invented price or simulated server submission.
 const quizScreens = [
   [
     "Газобетон (тепло, доступно)",
@@ -196,10 +214,10 @@ const quizScreens = [
   ],
 ];
 const quizTitles = [
-  "Узнайте стоимость вашего\nдома за 2 минуты",
-  "Какая площадь дома\nвам нужна?",
-  "Сколько этажей\nвы планируете?",
-  "У вас уже есть\nучасток?",
+  "Узнайте стоимость вашего дома за 2 минуты",
+  "Какая площадь дома вам нужна?",
+  "Сколько этажей вы планируете?",
+  "У вас уже есть участок?",
 ];
 let quizStep = 0,
   quizSelected = 0;
@@ -227,44 +245,12 @@ function nextQuiz() {
   quizStep++;
   quizSelected = 0;
   options.forEach((b, i) => {
-    b.querySelector(".copy").textContent = quizScreens[quizStep][i];
+    b.textContent = quizScreens[quizStep][i];
     b.setAttribute("aria-pressed", String(i === 0));
   });
-  document.querySelector('[data-node="315:361"]').innerText =
-    quizTitles[quizStep];
-  document.querySelector('[data-node="315:368"]').textContent = quizStep + 1;
-  document.querySelector('[data-node="315:371"]').textContent =
+  document.querySelector("#quiz-title").textContent = quizTitles[quizStep];
+  document.querySelector("#quiz-step").textContent = `${quizStep + 1} / 4`;
+  document.querySelector("#quiz-percent").textContent =
     (quizStep + 1) * 25 + "%";
+  document.querySelector("#quiz-progress").value = quizStep + 1;
 }
-// Accessible carousel controls sit over the exported arrow artwork.
-[
-  { art: ".n-315-668", track: "315:673", step: 560 },
-  { art: ".n-315-450", track: "315:445", step: 557 },
-  { art: ".n-315-738", track: "315:743", step: 554 },
-].forEach(({ art, track, step }) => {
-  const image = document.querySelector(art),
-    strip = document.querySelector(`[data-node="${track}"]`);
-  if (!image || !strip) return;
-  strip.classList.add("slider-track");
-  let index = 0;
-  const controls = document.createElement("div");
-  controls.className = "slider-controls";
-  const style = getComputedStyle(image);
-  ["left", "top", "width", "height"].forEach(
-    (k) => (controls.style[k] = style[k]),
-  );
-  [-1, 1].forEach((direction) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.setAttribute(
-      "aria-label",
-      direction < 0 ? "Предыдущие карточки" : "Следующие карточки",
-    );
-    button.addEventListener("click", () => {
-      index = Math.max(0, Math.min(1, index + direction));
-      strip.style.transform = `translateX(${-step * index}px)`;
-    });
-    controls.append(button);
-  });
-  image.after(controls);
-});
