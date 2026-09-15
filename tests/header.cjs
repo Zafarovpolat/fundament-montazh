@@ -19,11 +19,11 @@ const assert = require("node:assert/strict");
     );
     assert.equal(
       await p.locator(".header-callback .header-action-icon").isVisible(),
-      width <= 1550,
+      width <= 1550 && width > 1280,
     );
     assert.equal(
       await p.locator(".header-quote>.header-action-icon").isVisible(),
-      width <= 1440,
+      width <= 1440 && width > 1280,
     );
     assert.equal(await p.locator(".menu-toggle").isVisible(), width <= 1280);
     assert.equal(
@@ -34,7 +34,7 @@ const assert = require("node:assert/strict");
       await p.locator(".header-inner>#main-navigation").count(),
       width > 1280 ? 1 : 0,
     );
-    if (width <= 1440) {
+    if (width <= 1440 && width > 1280) {
       const r = await p.locator(".header-quote").boundingBox();
       assert.ok(Math.abs(r.width - r.height) < 1);
       const icon = await p
@@ -63,9 +63,32 @@ const assert = require("node:assert/strict");
       .evaluate((e) => e === document.activeElement),
     true,
   );
-  assert.equal(await p.locator(".header-callback").getAttribute("href"), "tel:+78452323553");
-  assert.equal(await p.locator(".header-callback").getAttribute("data-action"), null);
+  assert.equal(
+    await p.locator(".header-callback").getAttribute("href"),
+    "tel:+78452323553",
+  );
+  assert.equal(
+    await p.locator(".header-callback").getAttribute("data-action"),
+    null,
+  );
+  await p.locator(".menu-toggle").click();
+  assert.ok(await p.locator("#header-menu .header-contact .phone").isVisible());
+  assert.ok(
+    await p
+      .locator("#header-menu .header-callback>[data-figma-text]")
+      .isVisible(),
+  );
+  assert.ok(
+    await p.locator("#header-menu .header-quote>.button-label").isVisible(),
+  );
+  assert.equal(
+    await p
+      .locator("#header-menu .header-quote>.header-action-icon")
+      .isVisible(),
+    false,
+  );
   await p.locator(".header-quote").click();
+  await p.waitForFunction(() => document.querySelector("#contact-dialog").open);
   assert.ok(await p.locator("#contact-dialog").evaluate((e) => e.open));
   await p.keyboard.press("Escape");
   await p.locator(".menu-toggle").click();

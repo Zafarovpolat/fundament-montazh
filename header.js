@@ -4,6 +4,11 @@
   const nav = document.getElementById("main-navigation");
   const socials = document.querySelector(".header-social");
   const callback = document.querySelector(".header-callback");
+  const contact = document.querySelector(".header-contact");
+  const quote = document.querySelector(".header-quote");
+  const actionSlot = document.createElement("div");
+  actionSlot.className = "menu-actions-slot";
+  document.querySelector(".menu-social-slot").before(actionSlot);
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.getElementById("header-menu");
   const closeButton = menu.querySelector(".menu-close");
@@ -16,7 +21,9 @@
   }
   const restoreNav = home(nav),
     restoreSocial = home(socials),
-    restoreCallback = home(callback);
+    restoreCallback = home(callback),
+    restoreContact = home(contact),
+    restoreQuote = home(quote);
   let animation = null,
     closing = null,
     previousOverflow = "",
@@ -115,14 +122,15 @@
     } else navSlot.append(nav);
     if (innerWidth <= 768) socialSlot.append(socials);
     else restoreSocial();
-    if (innerWidth <= 1550)
-      header.insertBefore(
-        callback,
-        socials.parentElement === header
-          ? socials
-          : header.querySelector(".header-quote"),
-      );
-    else restoreCallback();
+    if (innerWidth <= 1280) {
+      restoreCallback();
+      actionSlot.append(contact, quote);
+    } else {
+      restoreContact();
+      restoreQuote();
+      if (innerWidth <= 1550) header.insertBefore(callback, socials);
+      else restoreCallback();
+    }
   }
   window.addEventListener("resize", layout);
   layout();
