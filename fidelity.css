@@ -763,6 +763,8 @@ dd[data-figma-text] {
   right: 0;
 }
 .process-range input {
+  position: relative;
+  z-index: 2;
   appearance: none;
   -webkit-appearance: none;
   display: block;
@@ -2208,7 +2210,7 @@ html h3[data-figma-text] {
 }
 @media (max-width: 1799px) {
   .footer-credit {
-    align-self: start;
+    align-self: center;
   }
 }
 .filters button:not([aria-pressed="true"]) {
