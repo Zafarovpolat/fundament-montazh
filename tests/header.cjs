@@ -63,9 +63,8 @@ const assert = require("node:assert/strict");
       .evaluate((e) => e === document.activeElement),
     true,
   );
-  await p.locator(".header-callback").click();
-  assert.ok(await p.locator("#contact-dialog").evaluate((e) => e.open));
-  await p.keyboard.press("Escape");
+  assert.equal(await p.locator(".header-callback").getAttribute("href"), "tel:+78452323553");
+  assert.equal(await p.locator(".header-callback").getAttribute("data-action"), null);
   await p.locator(".header-quote").click();
   assert.ok(await p.locator("#contact-dialog").evaluate((e) => e.open));
   await p.keyboard.press("Escape");
