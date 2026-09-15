@@ -236,19 +236,6 @@ function nextQuiz() {
   document.querySelector('[data-node="315:371"]').textContent =
     (quizStep + 1) * 25 + "%";
 }
-// Keep single-line labels inside their Figma boxes when a local font is unavailable.
-function fitLabels() {
-  document.querySelectorAll(".copy").forEach((el) => {
-    if (getComputedStyle(el).whiteSpace === "nowrap") {
-      el.style.transform = "";
-      const width = el.clientWidth;
-      if (el.scrollWidth > width && width > 0)
-        el.style.transform = `scaleX(${width / el.scrollWidth})`;
-    }
-  });
-}
-fitLabels();
-document.fonts.ready.then(fitLabels);
 // Accessible carousel controls sit over the exported arrow artwork.
 [
   { art: ".n-315-668", track: "315:673", step: 560 },

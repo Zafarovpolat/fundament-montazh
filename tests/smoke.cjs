@@ -23,6 +23,25 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
           .map((e) => e.decode().catch(() => {})),
       ),
     );
+  const fontStates = await page.evaluate(async () => {
+    const faces = [...document.fonts];
+    await Promise.all(faces.map((face) => face.load()));
+    return faces.map((face) => face.status);
+  });
+  assert.equal(fontStates.length, 18);
+  assert.ok(fontStates.every((status) => status === "loaded"));
+  const footerBorders = await page
+    .locator('[data-node="I315:526;169:251"]')
+    .evaluate((el) => {
+      const s = getComputedStyle(el);
+      return [
+        s.borderTopWidth,
+        s.borderRightWidth,
+        s.borderBottomWidth,
+        s.borderLeftWidth,
+      ];
+    });
+  assert.deepEqual(footerBorders, ["1px", "0px", "0px", "0px"]);
   await page.screenshot({ path: "tests/artifacts/desktop.png" });
   assert.equal(await page.locator("h1").count(), 1);
   assert.equal(
