@@ -15,6 +15,7 @@
       dragging = false,
       suppressClick = false;
     let pointer = null;
+    let finishLoop = null;
     const visibleCards = () =>
       [...track.children].filter((card) => !card.hidden);
     function measure() {
@@ -39,9 +40,11 @@
       });
     }
     function go(direction) {
+      finishLoop?.();
       index = Math.max(0, Math.min(limit, index + direction));
       delta = 0;
       paint();
+      track.dispatchEvent(new Event("carouselchange"));
     }
     controls.forEach((button) =>
       button.addEventListener("click", () => go(Number(button.dataset.scroll))),
@@ -106,11 +109,45 @@
     );
     const observer = new ResizeObserver(measure);
     observer.observe(content);
+    track.carousel = {
+      async advanceLoop() {
+        finishLoop?.();
+        const cards = visibleCards();
+        if (cards.length < 2) return;
+        function rotate(count) {
+          track.style.transition = "none";
+          for (let i = 0; i < count; i++) track.append(visibleCards()[0]);
+          index = 0;
+          delta = 0;
+          paint();
+          void track.offsetWidth;
+          track.style.removeProperty("transition");
+        }
+        if (index) rotate(index);
+        index = 1;
+        paint();
+        await new Promise((resolve) => {
+          let timer;
+          finishLoop = () => {
+            clearTimeout(timer);
+            rotate(1);
+            finishLoop = null;
+            resolve();
+          };
+          timer = setTimeout(() => finishLoop?.(), 700);
+        });
+      },
+      currentCard() {
+        return visibleCards()[index] || visibleCards()[0];
+      },
+    };
     controllers.set(track.id, {
       reset() {
+        finishLoop?.();
         index = 0;
         delta = 0;
         measure();
+        track.dispatchEvent(new Event("carouselchange"));
       },
       go,
     });
@@ -199,40 +236,95 @@
   });
 })();
 
-/** Three crops of the supplied project photograph; no unrelated house imagery. */
+/** One sequential clock: current project's photos, next project, repeat. */
 (() => {
-  document.querySelectorAll(".project-picture").forEach((picture) => {
-    const frames = [...picture.querySelectorAll(".project-frame")];
-    const dots = [...picture.querySelectorAll("[data-photo-index]")];
-    let active = 0,
-      visible = false,
-      paused = false;
-    function select(index) {
-      active = index;
-      picture.dataset.activePhoto = String(index);
-      frames.forEach((f, i) => f.classList.toggle("is-active", i === index));
-      dots.forEach((b, i) =>
-        b.setAttribute("aria-pressed", String(i === index)),
-      );
+  const track = document.querySelector("#project-track");
+  const pictures = [...track.querySelectorAll(".project-picture")];
+  let current = null,
+    visible = false,
+    paused = false,
+    busy = false,
+    timer = null;
+  const frames = (p) => [...p.querySelectorAll(".project-frame")];
+  function photo(p, index) {
+    p.dataset.activePhoto = String(index);
+    frames(p).forEach((f, i) => f.classList.toggle("is-active", i === index));
+    p.querySelectorAll("[data-photo-index]").forEach((b, i) =>
+      b.setAttribute("aria-pressed", String(i === index)),
+    );
+  }
+  function choose(p) {
+    current = p;
+    pictures.forEach((other) => {
+      photo(other, 0);
+      other
+        .closest(".project-card")
+        .classList.toggle("is-autoplay-project", other === p);
+    });
+    track.dataset.autoplayProject = p
+      ? p.closest(".project-card").querySelector("h3")?.dataset.figmaText || ""
+      : "";
+  }
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(step, 4800);
+  }
+  async function step() {
+    if (
+      !visible ||
+      paused ||
+      document.hidden ||
+      window.siteMotion?.enabled === false ||
+      busy
+    ) {
+      schedule();
+      return;
     }
-    dots.forEach((b, i) => b.addEventListener("click", () => select(i)));
-    picture.addEventListener("pointerenter", () => (paused = true));
-    picture.addEventListener("pointerleave", () => (paused = false));
-    picture.addEventListener("focusin", () => (paused = true));
-    picture.addEventListener("focusout", () => (paused = false));
-    new IntersectionObserver(
-      (entries) => (visible = entries[0].isIntersecting),
-      { threshold: 0.1 },
-    ).observe(picture);
-    setInterval(() => {
-      if (
-        visible &&
-        !paused &&
-        !document.hidden &&
-        window.siteMotion?.enabled !== false
-      )
-        select((active + 1) % frames.length);
-    }, 4800);
-    select(0);
+    if (!current || current.closest(".project-card").hidden)
+      choose(track.carousel.currentCard()?.querySelector(".project-picture"));
+    if (!current) {
+      schedule();
+      return;
+    }
+    const index = Number(current.dataset.activePhoto);
+    if (index < frames(current).length - 1) photo(current, index + 1);
+    else {
+      busy = true;
+      await track.carousel.advanceLoop();
+      choose(track.carousel.currentCard()?.querySelector(".project-picture"));
+      busy = false;
+    }
+    schedule();
+  }
+  pictures.forEach((p) =>
+    p.querySelectorAll("[data-photo-index]").forEach((b) =>
+      b.addEventListener("click", () => {
+        choose(p);
+        photo(p, Number(b.dataset.photoIndex));
+        schedule();
+      }),
+    ),
+  );
+  track.addEventListener("carouselchange", () => {
+    choose(track.carousel.currentCard()?.querySelector(".project-picture"));
+    schedule();
   });
+  track.addEventListener("pointerenter", () => (paused = true));
+  track.addEventListener("pointerleave", () => {
+    paused = false;
+    schedule();
+  });
+  track.addEventListener("focusin", () => (paused = true));
+  track.addEventListener("focusout", () => {
+    paused = false;
+    schedule();
+  });
+  new IntersectionObserver(
+    (entries) => {
+      visible = entries[0].isIntersecting;
+    },
+    { threshold: 0.1 },
+  ).observe(track);
+  choose(track.carousel.currentCard()?.querySelector(".project-picture"));
+  schedule();
 })();

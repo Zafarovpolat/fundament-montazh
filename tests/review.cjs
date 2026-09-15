@@ -40,7 +40,7 @@ const assert = require("node:assert/strict");
       await p
         .locator(".path-line")
         .evaluate((e) => getComputedStyle(e).backgroundImage)
-    ).includes("255, 201, 36"),
+    ).includes("255, 255, 255"),
   );
   const pic = p.locator(".project-picture").first();
   await pic.scrollIntoViewIfNeeded();

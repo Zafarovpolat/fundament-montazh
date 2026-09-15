@@ -92,20 +92,20 @@
       return anchor;
     });
     // Color the rail per actual section bounds, including unmarked dark sections.
-    const stops = ["rgba(7,11,31,.25) 0px"];
+    const stops = ["#070b1f 0px"];
     document.querySelectorAll("main > section.dark").forEach((section) => {
       const r = section.getBoundingClientRect();
       const from = Math.max(0, r.top + y - railStart),
         to = Math.min(railHeight, r.bottom + y - railStart);
       if (to > from)
         stops.push(
-          `rgba(7,11,31,.25) ${from}px`,
-          `#ffc924 ${from}px`,
-          `#ffc924 ${to}px`,
-          `rgba(7,11,31,.25) ${to}px`,
+          `#070b1f ${from}px`,
+          `#fff ${from}px`,
+          `#fff ${to}px`,
+          `#070b1f ${to}px`,
         );
     });
-    stops.push(`rgba(7,11,31,.25) ${railHeight}px`);
+    stops.push(`#070b1f ${railHeight}px`);
     rail.querySelector(".path-line").style.background =
       `linear-gradient(to bottom,${stops.join(",")})`;
     rail.hidden = false;
