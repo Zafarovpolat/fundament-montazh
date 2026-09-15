@@ -151,27 +151,7 @@ form.addEventListener("submit", (e) => {
     { once: true },
   );
 });
-// Collapsible navigation uses normal document flow, so text enlargement cannot clip it.
-const menuToggle = document.querySelector(".menu-toggle");
-const navigation = document.querySelector("#main-navigation");
-function closeMenu() {
-  menuToggle.setAttribute("aria-expanded", "false");
-  navigation.classList.remove("is-open");
-}
-menuToggle.addEventListener("click", () => {
-  const open = menuToggle.getAttribute("aria-expanded") !== "true";
-  menuToggle.setAttribute("aria-expanded", String(open));
-  navigation.classList.toggle("is-open", open);
-});
-navigation
-  .querySelectorAll("a")
-  .forEach((a) => a.addEventListener("click", closeMenu));
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && navigation.classList.contains("is-open")) {
-    closeMenu();
-    menuToggle.focus();
-  }
-});
+// Responsive full-screen navigation is managed in header.js.
 // The source-aligned carousels are implemented in sliders.js.
 const filters = [...document.querySelectorAll("[data-filter]")];
 filters.forEach((button) =>

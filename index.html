@@ -24,15 +24,16 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="fonts.css?v=3.4.0" rel="stylesheet" />
-    <link href="styles.css?v=3.4.0" rel="stylesheet" />
-    <script defer="" src="app.js?v=3.4.0"></script>
-    <link href="interactions.css?v=3.4.0" rel="stylesheet" />
-    <script defer="" src="motion.js?v=3.4.0"></script>
-    <link href="figma-type.css?v=3.4.0" rel="stylesheet" />
-    <link href="fidelity.css?v=3.4.0" rel="stylesheet" />
-    <script defer="" src="sliders.js?v=3.4.0"></script>
-    <script defer="" src="refinements.js?v=3.4.0"></script>
+    <link href="fonts.css?v=3.5.0" rel="stylesheet" />
+    <link href="styles.css?v=3.5.0" rel="stylesheet" />
+    <script defer="" src="app.js?v=3.5.0"></script>
+    <link href="interactions.css?v=3.5.0" rel="stylesheet" />
+    <script defer="" src="motion.js?v=3.5.0"></script>
+    <link href="figma-type.css?v=3.5.0" rel="stylesheet" />
+    <link href="fidelity.css?v=3.5.0" rel="stylesheet" />
+    <script defer="" src="sliders.js?v=3.5.0"></script>
+    <script defer="" src="refinements.js?v=3.5.0"></script>
+    <script defer="" src="header.js?v=3.5.0"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -57,12 +58,25 @@
             loading="lazy"
             src="assets/figma-360-436.webp" /></a
         ><button
-          aria-controls="main-navigation"
+          aria-controls="header-menu"
           aria-expanded="false"
+          aria-label="Открыть меню"
           class="menu-toggle"
           type="button"
         >
-          Меню
+          <svg
+            aria-hidden="true"
+            class="header-action-icon"
+            fill="none"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M4 6h16M4 12h16M4 18h16"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="1.8"
+            ></path>
+          </svg>
         </button>
         <nav aria-label="Основная навигация" id="main-navigation">
           <a data-figma-text="360:438" href="#geology">Материалы</a
@@ -75,11 +89,24 @@
           <a class="phone" data-figma-text="360:447" href="tel:+78452323553"
             >+7 (8452) 32-35-53</a
           ><button
-            class="text-button"
+            aria-label="Заказать звонок"
+            class="text-button header-callback"
             data-action="quote"
-            data-figma-text="360:448"
           >
-            заказать звонок
+            <span data-figma-text="360:448">заказать звонок</span
+            ><svg
+              aria-hidden="true"
+              class="header-action-icon"
+              fill="none"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M7.2 3H4.6C3.7 3 3 3.7 3 4.6 3 13.7 10.3 21 19.4 21c.9 0 1.6-.7 1.6-1.6v-2.6l-4.6-2-1.8 1.8a14 14 0 0 1-7.2-7.2l1.8-1.8L7.2 3Z"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="1.7"
+              ></path>
+            </svg>
           </button>
         </div>
         <div aria-label="Связь в социальных сетях" class="header-social">
@@ -112,6 +139,7 @@
           </button>
         </div>
         <button
+          aria-label="Рассчитать стоимость"
           class="button button--dark header-quote"
           data-action="quote"
           type="button"
@@ -119,6 +147,12 @@
           <span class="button-label" data-figma-text="360:455"
             >Расчитать стоимость
           </span>
+          <img
+            alt=""
+            aria-hidden="true"
+            class="header-action-icon"
+            src="assets/icons/calculator.svg"
+          />
         </button>
       </div>
     </header>
@@ -2600,5 +2634,37 @@
       </div>
     </dialog>
     <div aria-live="polite" class="toast" role="status"></div>
+    <dialog
+      aria-label="Навигация по сайту"
+      class="header-menu"
+      id="header-menu"
+    >
+      <div class="header-menu-top">
+        <a
+          aria-label="ФундаментМонтаж — главная"
+          class="menu-brand"
+          href="#hero"
+          ><img alt="ФундаментМонтаж" src="assets/figma-360-436.webp" /></a
+        ><button aria-label="Закрыть меню" class="menu-close" type="button">
+          <svg
+            aria-hidden="true"
+            class="header-action-icon"
+            fill="none"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="m6 6 12 12M18 6 6 18"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="1.8"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="header-menu-content">
+        <div class="menu-navigation-slot"></div>
+        <div class="menu-social-slot"></div>
+      </div>
+    </dialog>
   </body>
 </html>

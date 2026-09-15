@@ -2945,3 +2945,330 @@ html #mortgage .heading-description[data-figma-text] {
 .faq-grid details[open][data-expanded="false"] summary .figma-icon {
   transform: rotate(0deg);
 }
+
+/* Review 3.5: left edge clipped, right bleed remains open to the viewport. */
+.carousel-bleed {
+  overflow: visible;
+  clip-path: inset(-60px -100vw -60px 0);
+}
+/* One family of square actions, distinct icons and original social colours. */
+.header-inner {
+  --header-action-size: 53px;
+  flex-wrap: nowrap;
+  gap: clamp(10px, 1.3vw, 25px);
+}
+.header-inner > .brand {
+  order: 0;
+}
+.header-inner > #main-navigation {
+  order: 1;
+}
+.header-inner > .header-contact {
+  order: 2;
+}
+.header-inner > .header-callback {
+  order: 3;
+}
+.header-inner > .header-social {
+  order: 4;
+}
+.header-inner > .header-quote {
+  order: 5;
+  display: inline-flex;
+}
+.header-inner > .menu-toggle {
+  order: 6;
+}
+.header-action-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+.header-callback .header-action-icon,
+.header-quote > .header-action-icon {
+  display: none;
+}
+.header-callback {
+  white-space: nowrap;
+}
+.header-inner .social-icon-button {
+  width: var(--header-action-size);
+  height: var(--header-action-size);
+  border-radius: 15px;
+}
+.header-inner .menu-toggle {
+  display: none;
+}
+.header-inner > .header-callback,
+.header-inner > .menu-toggle,
+.header-inner > .header-quote,
+.menu-close {
+  transition:
+    background-color 350ms ease,
+    opacity 350ms ease,
+    transform 350ms ease;
+}
+.header-inner > .header-callback:hover,
+.header-inner > .menu-toggle:hover,
+.header-inner > .header-quote:hover,
+.menu-close:hover {
+  transform: translateY(-2px);
+}
+@media (max-width: 1550px) {
+  .header-inner {
+    gap: 12px;
+  }
+  .header-inner > .brand {
+    flex: 0 1 220px;
+    min-width: 160px;
+  }
+  .header-inner > .header-callback {
+    display: grid;
+    place-items: center;
+    flex: 0 0 var(--header-action-size);
+    width: var(--header-action-size);
+    height: var(--header-action-size);
+    padding: 0;
+    border: 0;
+    border-radius: 15px;
+    background: #ffc924;
+    color: #070b1f;
+    margin: 0;
+  }
+  .header-callback > [data-figma-text] {
+    display: none;
+  }
+  .header-callback .header-action-icon {
+    display: block;
+  }
+  .header-inner > .header-quote {
+    min-height: 53px;
+    padding: 15px 18px;
+    border-radius: 15px;
+  }
+  .header-inner > #main-navigation {
+    gap: 14px;
+  }
+}
+@media (min-width: 1281px) {
+  .header-inner > .header-contact {
+    display: grid;
+    flex: none;
+  }
+  .header-inner > #main-navigation {
+    display: flex;
+    border: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+  }
+}
+@media (max-width: 1440px) {
+  .header-inner > .header-quote {
+    display: grid;
+    place-items: center;
+    flex: 0 0 var(--header-action-size);
+    width: var(--header-action-size);
+    height: var(--header-action-size);
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    background: #070b1f;
+    border-radius: 15px;
+  }
+  .header-quote > .button-label {
+    display: none;
+  }
+  .header-quote > .header-action-icon {
+    display: block;
+  }
+}
+@media (max-width: 1280px) {
+  .header-inner {
+    min-height: 90px;
+    gap: 10px;
+    padding-block: 18px;
+    justify-content: flex-start;
+  }
+  .header-inner > .brand {
+    flex: 0 1 190px;
+    min-width: 0;
+    margin-right: auto;
+  }
+  .header-inner > .header-contact {
+    display: none;
+  }
+  .header-inner > .menu-toggle {
+    display: grid;
+    place-items: center;
+    flex: 0 0 var(--header-action-size);
+    width: var(--header-action-size);
+    height: var(--header-action-size);
+    padding: 0;
+    margin: 0;
+    border-radius: 15px;
+    border: 0;
+    background: #e9ecf1;
+    color: #070b1f;
+  }
+}
+@media (max-width: 768px) {
+  .header-inner {
+    --header-action-size: 48px;
+  }
+  .header-inner > .brand {
+    max-width: 185px;
+  }
+  .header-inner > .header-social {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .header-inner {
+    --header-action-size: 44px;
+    gap: 6px;
+    min-height: 78px;
+    padding-block: 15px;
+  }
+  .header-inner > .brand {
+    flex: 1 1 auto;
+    max-width: 155px;
+    min-width: 0;
+  }
+  .header-action-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+/* Full-screen native modal: focus trapping, Escape and a scrollable interior. */
+.header-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: clamp(20px, 4vw, 56px);
+  border: 0;
+  border-radius: 0;
+  background: #f4f4f4;
+  color: #070b1f;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.header-menu[open] {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 5vh, 64px);
+}
+.header-menu::backdrop {
+  background: rgba(7, 11, 31, 0.35);
+}
+.header-menu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex: none;
+}
+.menu-brand {
+  display: block;
+  width: clamp(145px, 24vw, 240px);
+}
+.menu-brand img {
+  display: block;
+  width: 100%;
+}
+.menu-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 53px;
+  height: 53px;
+  padding: 0;
+  border: 0;
+  border-radius: 15px;
+  background: #070b1f;
+  color: #fff;
+}
+.header-menu-content {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0 4px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.header-menu #main-navigation {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  gap: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+html .header-menu #main-navigation a[data-figma-text] {
+  display: block;
+  font: 400 clamp(30px, 5vw, 58px)/1.25 var(--font-heading);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(7, 11, 31, 0.12);
+  white-space: normal;
+  color: #070b1f;
+  text-decoration: none;
+  transition:
+    color 350ms ease,
+    padding-left 350ms ease;
+}
+.header-menu #main-navigation a:hover,
+.header-menu #main-navigation a:focus-visible {
+  color: #a67b00;
+  padding-left: 10px;
+}
+.header-menu .header-social {
+  display: flex;
+  gap: 10px;
+  order: 0;
+  margin: 0;
+}
+.header-menu .social-icon-button {
+  width: 53px;
+  height: 53px;
+  border-radius: 15px;
+  transition: transform 350ms ease;
+}
+.header-menu .social-icon-button:hover {
+  transform: translateY(-3px);
+}
+.header-menu a:focus-visible,
+.header-menu button:focus-visible {
+  outline: 2px solid #a67b00;
+  outline-offset: 3px;
+}
+@media (max-width: 480px) {
+  .header-menu {
+    padding: 20px;
+  }
+  .header-menu[open] {
+    gap: 24px;
+  }
+  .header-menu #main-navigation a {
+    padding-block: 12px;
+  }
+  .menu-close {
+    width: 44px;
+    height: 44px;
+  }
+}
+@media (max-width: 1440px) {
+  .header-inner > .header-quote {
+    justify-content: center;
+    align-content: center;
+  }
+}
+.header-menu .header-social {
+  justify-content: flex-start;
+}

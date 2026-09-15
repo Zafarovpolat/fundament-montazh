@@ -88,7 +88,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     "false",
   );
   await page.locator('#hero [data-action="quote"]').first().click();
-  assert.ok(await page.locator("dialog").evaluate((e) => e.open));
+  assert.ok(await page.locator("#contact-dialog").evaluate((e) => e.open));
   await page.locator('[name="name"]').fill("Тест");
   await page.locator('[name="phone"]').fill("+7 (999) 123-45-67");
   await page.locator(".consent input").check();
@@ -127,7 +127,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   );
   for (let i = 0; i < 4; i++)
     await page.locator('[data-action="quiz-next"]').click();
-  assert.ok(await page.locator("dialog").evaluate((e) => e.open));
+  assert.ok(await page.locator("#contact-dialog").evaluate((e) => e.open));
   await page.keyboard.press("Escape");
   // Stress-test content reflow without concealing overflow or reducing fonts.
   await page
