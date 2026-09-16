@@ -25,7 +25,7 @@ const assert = require("node:assert/strict");
   );
   assert.ok(
     await p.locator(".hero-badge").evaluate((e) => {
-      const tops = [...e.children].map((e) => e.getBoundingClientRect().top);
+      const tops = [...e.querySelectorAll(".hero-proof-item")].map((e) => e.getBoundingClientRect().top);
       return tops.every((n) => Math.abs(n - tops[0]) < 1);
     }),
   );

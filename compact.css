@@ -728,3 +728,38 @@
     gap: 16px;
   }
 }
+
+/* 3.6.2: let labels and captions grow instead of truncating source copy. */
+html .page-path .path-label[data-figma-text] {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+  max-height: none;
+  height: auto;
+  overflow-wrap: anywhere;
+}
+html .featured-object h3[data-figma-text] {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.social-list article > img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+  align-self: stretch;
+  object-fit: cover;
+}
+@media (max-width: 1440px) {
+  .service-grid li:nth-child(even) { padding-top: 60px; }
+}
+@media (max-width: 760px) {
+  .service-grid li:nth-child(even) { padding-top: 36px; }
+}
+@media (max-width: 1024px) {
+  .price-panel > .button { margin-left: 0; margin-right: auto; }
+  .price-panel .price-note { text-align: left; }
+}

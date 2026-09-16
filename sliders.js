@@ -202,9 +202,14 @@
       Boolean(e.target.closest(".object-card")),
     );
   });
-  gallery.addEventListener("pointerleave", () =>
-    gallery.classList.remove("has-pointer"),
-  );
+  // An invisible translated cursor still contributes to scrollable overflow.
+  // Clear stale desktop coordinates both on leave and when the gallery shrinks.
+  function resetCursor() {
+    gallery.classList.remove("has-pointer");
+    cursor.style.transform = "translate3d(0,0,0)";
+  }
+  gallery.addEventListener("pointerleave", resetCursor);
+  new ResizeObserver(resetCursor).observe(gallery);
   gallery.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || innerWidth <= 760) return;
     start = e.clientX;

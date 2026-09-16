@@ -17,10 +17,10 @@
     const rightGaps = bleeds.map((el) =>
       Math.max(
         0,
-        width - el.closest(".container").getBoundingClientRect().right,
+        width - (el.closest(".container").getBoundingClientRect().right + window.scrollX),
       ),
     );
-    const footerGap = Math.max(0, width - footer.getBoundingClientRect().right);
+    const footerGap = Math.max(0, width - (footer.getBoundingClientRect().right + window.scrollX));
     set(root, "--layout-width", width + "px");
     bleeds.forEach((el, i) => set(el, "--bleed", rightGaps[i] + "px"));
     set(cta, "--footer-bleed", footerGap + "px");
