@@ -533,3 +533,198 @@
     padding: 16px;
   }
 }
+
+/* Edge-safe footer: extend the actual CTA box, not just a painted pseudo-element. */
+.footer-cta {
+  --footer-pad: 35px;
+  --footer-bleed: max(
+    var(--gutter),
+    calc((var(--layout-width, 100vw) - 1660px) / 2)
+  );
+  position: relative;
+  isolation: isolate;
+  background: #ffc924;
+  margin-right: calc(-1 * var(--footer-bleed));
+  padding: 40px var(--footer-pad) 0;
+  width: auto;
+  overflow: hidden;
+}
+.footer-cta::before {
+  content: none;
+  display: none;
+  inset: 0;
+}
+.footer-house {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  flex: none;
+  align-self: flex-end;
+  width: min(539px, calc(100% + var(--footer-pad) + var(--footer-pad)));
+  max-width: none;
+  height: auto;
+  aspect-ratio: 539/263;
+  margin-top: auto;
+  margin-right: calc(-1 * var(--footer-pad));
+  margin-bottom: 0;
+  object-fit: contain;
+  object-position: right bottom;
+}
+@media (min-width: 1800px) {
+  .footer-cta {
+    --footer-pad: 38px;
+  }
+  .footer-house {
+    position: absolute;
+    width: 539px;
+    height: 263px;
+    right: 0;
+    left: auto;
+    bottom: 0;
+    margin: 0;
+  }
+}
+@media (max-width: 1440px) {
+  .footer-cta {
+    --footer-pad: 30px;
+    padding-top: 30px;
+  }
+}
+@media (max-width: 760px) {
+  .footer-cta {
+    --footer-pad: 26px;
+    padding-top: 26px;
+    margin-left: calc(-1 * var(--footer-bleed));
+  }
+}
+
+/* A row of complete proof chips, not an accidentally wrapped long capsule. */
+@media (max-width: 1200px) {
+  html .hero-badge[data-figma-text] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    white-space: normal;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .hero-badge .hero-proof-separator {
+    display: none;
+  }
+  .hero-badge .hero-proof-item {
+    display: block;
+    flex: none;
+    max-width: 100%;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+/* Prices always have their own non-shrinking text area in the narrow side panel. */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .price-list li > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  html .price-list h3[data-figma-text] {
+    max-width: 100%;
+  }
+}
+.price-list li > div > p {
+  flex-shrink: 0;
+  visibility: visible;
+  opacity: 1;
+}
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .hero-copy,
+  .hero-benefits,
+  .price-panel {
+    grid-column: 1;
+    min-width: 0;
+  }
+  .price-panel {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+  .price-panel .panel-title {
+    margin-bottom: 16px;
+  }
+  .price-list {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+  }
+  .price-list li {
+    flex: 0 0 calc((100% - 12px) / 2);
+    min-width: 0;
+    padding: 16px;
+  }
+  .price-list li > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  html .price-list h3[data-figma-text],
+  html .price-list li > div > p[data-figma-text] {
+    max-width: 100%;
+    width: auto;
+    white-space: normal;
+    overflow-wrap: normal;
+  }
+  html .price-list li > div > p[data-figma-text] {
+    white-space: nowrap;
+  }
+  .price-panel > .button {
+    width: min(100%, 420px);
+    max-width: 100%;
+    margin: 20px auto 0;
+    display: flex;
+  }
+  .price-panel .price-note {
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .price-list {
+    gap: 10px;
+  }
+  .price-list li {
+    flex-basis: calc((100% - 10px) / 2);
+    padding: 12px 10px;
+  }
+  html .price-list h3[data-figma-text],
+  html .price-list li > div > p[data-figma-text] {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .price-list .muted {
+    font-size: 14px;
+    line-height: 20px;
+    gap: 6px;
+  }
+  .price-list .muted .figma-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .hero-benefits {
+    gap: 16px;
+  }
+}

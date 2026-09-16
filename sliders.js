@@ -194,7 +194,9 @@
   gallery.addEventListener("pointermove", (e) => {
     if (e.pointerType === "touch") return;
     const r = gallery.getBoundingClientRect();
-    cursor.style.transform = `translate3d(${e.clientX - r.left - 36}px,${e.clientY - r.top - 36}px,0)`;
+    const x = Math.max(0, Math.min(r.width - 72, e.clientX - r.left - 36));
+    const y = Math.max(0, Math.min(r.height - 72, e.clientY - r.top - 36));
+    cursor.style.transform = `translate3d(${x}px,${y}px,0)`;
     gallery.classList.toggle(
       "has-pointer",
       Boolean(e.target.closest(".object-card")),

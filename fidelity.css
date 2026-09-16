@@ -316,7 +316,16 @@ dd[data-figma-text] {
 /* Catalog and bleed: fourth card remains visible in the outer page gutter.
    Only the outer viewport boundary is clipped, not the 1660px content boundary. */
 .carousel-bleed {
-  --bleed: max(0px, calc((100vw - min(1660px, 100vw - 2 * var(--gutter))) / 2));
+  --bleed: max(
+    0px,
+    calc(
+      (
+          var(--layout-width, 100vw) -
+            min(1660px, var(--layout-width, 100vw) - 2 * var(--gutter))
+        ) /
+        2
+    )
+  );
   width: calc(100% + var(--bleed));
   overflow: clip;
   padding: 0;
@@ -3413,8 +3422,12 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 }
 /* Separate the cost action from social buttons on wider headers. */
 @media (min-width: 1440px) and (max-width: 1550px) {
-  .header-inner > .header-quote { margin-left: 8px; }
+  .header-inner > .header-quote {
+    margin-left: 8px;
+  }
 }
 @media (min-width: 1551px) {
-  .header-inner > .header-quote { margin-left: calc(20px - clamp(10px, 1.3vw, 25px)); }
+  .header-inner > .header-quote {
+    margin-left: calc(20px - clamp(10px, 1.3vw, 25px));
+  }
 }
