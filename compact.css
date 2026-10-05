@@ -858,3 +858,38 @@ html .featured-object h3[data-figma-text] {
     margin-top: 24px;
   }
 }
+
+/* «7 шагов»: рельс и «лесенка» сохраняются на всех ширинах —
+   смещение чётных карточек пропорциональное (clamp), поэтому
+   переопределения не нужны; меняются только ширина карточек и шаг. */
+/* В гуттере эйброу живёт только пока гуттер шире его блока: ниже 1200
+   контейнер врезается уже не на 130 px, и подпись наезжала бы на заголовок. */
+@media (max-width: 1199.98px) {
+  #design .eyebrow {
+    position: static;
+    width: auto;
+    margin: 0 0 14px;
+  }
+}
+@media (max-width: 1024px) {
+  .step-card,
+  .steps-track .step-card:nth-child(1),
+  .steps-track .step-card:nth-child(2),
+  .steps-track .step-card:nth-child(4) {
+    width: min(320px, 72vw);
+  }
+  .steps-track {
+    --card-gap: 24px;
+  }
+}
+@media (max-width: 760px) {
+  .step-card,
+  .steps-track .step-card:nth-child(1),
+  .steps-track .step-card:nth-child(2),
+  .steps-track .step-card:nth-child(4) {
+    width: min(280px, 78vw);
+  }
+  #design .button {
+    width: 100%;
+  }
+}

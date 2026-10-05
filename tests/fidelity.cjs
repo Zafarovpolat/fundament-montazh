@@ -19,8 +19,12 @@ const expected = require("./figma-expectations.json").map((e) => ({
   const actual = await page.locator("[data-figma-text]").evaluateAll((es) =>
     es.map((e) => {
       const s = getComputedStyle(e);
+      // data-figma-scope: тот же узел макета используется второй раз в другом
+      // компоненте (подпись пути дублирует текст эйброу секции) и сверяется
+      // по записи "<id>@<scope>".
+      const scope = e.dataset.figmaScope;
       return {
-        id: e.dataset.figmaText,
+        id: scope ? `${e.dataset.figmaText}@${scope}` : e.dataset.figmaText,
         size: parseFloat(s.fontSize),
         line: parseFloat(s.lineHeight),
         color: s.color,

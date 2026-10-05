@@ -150,7 +150,7 @@ html [data-figma-text="315:323"][data-figma-text] {
 html [data-figma-text="315:329"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: clamp(32px, 3.125vw, 60px);
-  line-height: 1.268;
+  line-height: 1.26833;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
@@ -170,7 +170,7 @@ html [data-figma-text="315:334"][data-figma-text] {
 html [data-figma-text="315:335"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 17px;
-  line-height: 1.294118;
+  line-height: 1.29412;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
@@ -190,7 +190,7 @@ html [data-figma-text="315:339"][data-figma-text] {
 html [data-figma-text="315:340"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 17px;
-  line-height: 1.294118;
+  line-height: 1.29412;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
@@ -204,13 +204,13 @@ html [data-figma-text="315:344"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 232px;
+  --text-width: 326px;
   color: rgba(255, 255, 255, 1);
 }
 html [data-figma-text="315:345"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 17px;
-  line-height: 1.294118;
+  line-height: 1.29412;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
@@ -224,23 +224,23 @@ html [data-figma-text="315:349"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 251px;
+  --text-width: 241px;
   color: rgba(255, 255, 255, 1);
 }
 html [data-figma-text="315:350"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 17px;
-  line-height: 1.294118;
+  line-height: 1.29412;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
-  --text-width: 371px;
+  --text-width: 328px;
   color: rgba(255, 255, 255, 0.6);
 }
 html [data-figma-text="315:354"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 13px;
-  line-height: 1.538462;
+  line-height: 1.53846;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
@@ -3113,4 +3113,84 @@ html [data-figma-text="491:620"][data-figma-text] {
   text-transform: none;
   --text-width: 470px;
   color: rgba(0, 0, 0, 0.4);
+}
+html [data-figma-text="491:680"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.71429;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  --text-width: 286px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="315:332"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 396px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:342"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 407px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:337"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 391px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:347"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 328px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="491:631"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 391px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="491:633"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 267px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="491:634"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.29412;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 391px;
+  color: rgba(255, 255, 255, 0.6);
 }

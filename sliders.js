@@ -110,6 +110,16 @@
     const observer = new ResizeObserver(measure);
     observer.observe(content);
     track.carousel = {
+      /** Страниц для карусели и текущая — нужно рельсу-слайдеру в макете 315:324. */
+      get pages() {
+        return limit + 1;
+      },
+      get page() {
+        return index;
+      },
+      goTo(to) {
+        go(to - index);
+      },
       async advanceLoop() {
         finishLoop?.();
         const cards = visibleCards();
@@ -242,6 +252,30 @@
         });
     }
   });
+})();
+
+/** Рельс под рядом шагов (491:667): range листает трек и наоборот. */
+(() => {
+  const rail = document.querySelector("[data-steps-range]");
+  if (!rail) return;
+  const track = document.getElementById(rail.dataset.stepsRange);
+  const input = rail.querySelector('input[type="range"]');
+  if (!track?.carousel || !input) return;
+  const api = track.carousel;
+  const sync = () => {
+    const pages = Math.max(1, api.pages);
+    input.max = String(pages - 1);
+    input.value = String(Math.min(api.page, pages - 1));
+    rail.hidden = pages < 2;
+  };
+  input.addEventListener("input", () => api.goTo(Number(input.value)));
+  new MutationObserver(sync).observe(track, {
+    attributes: true,
+    attributeFilter: ["data-slide-index"],
+  });
+  window.addEventListener("resize", sync);
+  document.fonts.ready.then(sync);
+  sync();
 })();
 
 /** One sequential clock: current project's photos, next project, repeat. */

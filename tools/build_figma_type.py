@@ -58,12 +58,14 @@ def num(x):
 
 
 entries, big_ids, missing = [], [], []
+REFRESH = "--refresh" in sys.argv
+changed = []
 for nid in used:
-    if nid in known:
-        continue
     node = by_id.get(nid)
     if not node:
-        missing.append(nid)
+        # узлы других секций в этот снимок не входили — их не трогаем
+        if nid not in known:
+            missing.append(nid)
         continue
     st = parse_style(node.get("style"))
     fs = float(st.get("fontSize", 0) or 0)
@@ -83,7 +85,6 @@ for nid in used:
     if fs >= 40:
         floor = CLAMP_FLOOR_BIG if fs >= 80 else CLAMP_FLOOR
         size = f"clamp({floor}px, {num(fs / 1920 * 100)}vw, {num(fs)}px)"
-        big_ids.append(nid)
     lines = [
         f"  font-family: {family};",
         f"  font-size: {size};",
@@ -99,17 +100,39 @@ for nid in used:
     if node.get("w"):
         lines.append(f"  --text-width: {num(node['w'])}px;")
     lines.append(f"  color: {color};")
-    entries.append(
-        f'html [data-figma-text="{nid}"][data-figma-text] {{\n' + "\n".join(lines) + "\n}"
+    rule = (
+        f'html [data-figma-text="{nid}"][data-figma-text] {{\n'
+        + "\n".join(lines)
+        + "\n}"
     )
+    if nid in known:
+        if REFRESH:
+            changed.append((nid, rule))
+        continue
+    # Адаптивные переопределения в compact-type.css есть только для 60-пиксельных
+    # заголовков секций; для прочих крупных размеров хватает clamp() в базовом правиле.
+    if fs == 60:
+        big_ids.append(nid)
+    entries.append(rule)
 
 if missing:
     sys.exit("узлов нет в снятом дереве: " + ", ".join(missing[:8]))
 
+text = type_path.read_text(encoding="utf-8")
 if entries:
-    with type_path.open("a", encoding="utf-8") as f:
-        f.write("\n" + "\n".join(entries) + "\n")
-print(f"figma-type.css: добавлено правил {len(entries)}")
+    text = text.rstrip("\n") + "\n" + "\n".join(entries) + "\n"
+for nid, rule in changed:
+    m = re.search(
+        r'html \[data-figma-text="' + re.escape(nid) + r'"\]\[data-figma-text\] \{[^}]*\}',
+        text,
+    )
+    if m and m.group(0) != rule:
+        text = text[: m.start()] + rule + text[m.end() :]
+if entries or changed:
+    type_path.write_text(text, encoding="utf-8")
+print(
+    f"figma-type.css: добавлено {len(entries)}, обновлено по новой ревизии {len([1 for n, r in changed if r])}"
+)
 
 if big_ids:
     ct = Path("compact-type.css")

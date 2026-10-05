@@ -2807,7 +2807,10 @@ html .page-path .is-dark.is-passed .path-label[data-figma-text] {
 /* Review 3.4: open container edges, secondary copy and source detailing. */
 #projects,
 #advantages,
+#design,
 #reviews {
+  /* #design — секция с рельсом .carousel-bleed: без clip документ
+     получил бы горизонтальный переполнение на мобиле */
   overflow-x: clip;
   overflow-y: visible;
 }
@@ -3653,4 +3656,156 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 .included-saving__text {
   max-width: 470px;
   margin: 10px 0 0;
+}
+
+/* ── «7 шагов от первого звонка до готового фундамента» (макет 315:324) ───
+   Секция 1920×795: паддинги 50/50, заголовок и CTA в одной строке, ряд
+   карточек 2104 px со ступенчатым смещением чётных на 71 px, ниже — рельс
+   1660×32 (491:667): линия 2 px rgba(255,255,255,.2), жёлтый бегунок 10×10
+   и белая точка-ограничитель справа. Типографика узлов — в figma-type.css. */
+#design {
+  --design-pad: clamp(32px, 2.60417vw, 50px);
+  padding-block: var(--design-pad);
+}
+#design .steps-rail {
+  position: absolute;
+  top: 0;
+  left: clamp(12px, 1.09375vw, 21px);
+  width: 1px;
+  height: min(699px, 100%);
+  background: rgb(255 255 255 / 20%);
+}
+#included .eyebrow,
+#design .eyebrow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#included .eyebrow::before,
+#design .eyebrow::before {
+  content: "";
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #000;
+}
+#design .eyebrow::before {
+  background: #fff;
+}
+/* Эйброу (315:354) в макете стоит не над заголовком, а в левом гуттере:
+   точкой на вертикальной линии 315:351 (x=21), текст в две строки (89 px),
+   верх y=66. Отсчёт идёт от `.container` (он position: relative), поэтому
+   вычитаем его врезку от края секции: на ≥1200 её задаёт правило
+   `main > .section > .container` с max(260px, 2 * --gutter) в этом файле,
+   ниже 1200 — просто --gutter (см. @media в конце блока). */
+#design .section-heading {
+  margin-bottom: clamp(28px, 2.60417vw, 50px);
+}
+#design .eyebrow {
+  --edge: max(130px, var(--gutter));
+  position: absolute;
+  z-index: 2;
+  top: calc(clamp(20px, 3.4375vw, 66px) - var(--design-pad));
+  left: calc(clamp(12px, 1.09375vw, 21px) - var(--edge));
+  width: 89px;
+  gap: 6px;
+  margin: 0;
+}
+#design .button {
+  width: 412px;
+  max-width: 100%;
+  padding-left: 30px;
+  border-radius: 20px;
+}
+#design .button .button-icon {
+  width: 60px;
+  flex: 0 0 60px;
+  flex-basis: 60px;
+  border-radius: 17px;
+}
+.steps-track {
+  --card-gap: 48px;
+  /* ширину даёт .fidelity-track (100%), карточки — 2104 px в сумме,
+     излишек обрезает .carousel-bleed; max-content ломал бы document flow */
+}
+.step-card {
+  flex: 0 0 auto;
+  width: 391px;
+}
+.steps-track .step-card:nth-child(1) {
+  width: 396px;
+}
+.steps-track .step-card:nth-child(2) {
+  width: 407px;
+}
+.steps-track .step-card:nth-child(4) {
+  width: 328px;
+}
+.steps-track .step-card:nth-child(even) {
+  margin-top: clamp(0px, 3.69792vw, 71px);
+}
+.step-card__num,
+.step-card__title,
+.step-card__text {
+  margin: 0;
+}
+.step-card__title {
+  margin-top: 25px;
+}
+.step-card__text {
+  margin-top: 15px;
+}
+.steps-range {
+  position: relative;
+  height: 32px;
+  margin-top: clamp(28px, 3.69792vw, 71px);
+}
+.steps-range::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
+}
+.steps-range input {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  outline-offset: 8px;
+  cursor: ew-resize;
+}
+.steps-range input::-webkit-slider-runnable-track,
+.steps-range input::-moz-range-track {
+  height: 2px;
+  background: rgb(255 255 255 / 20%);
+}
+.steps-range input::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  appearance: none;
+  -webkit-appearance: none;
+}
+.steps-range input::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
 }

@@ -48,7 +48,8 @@ const assert = require("node:assert/strict");
             s(e).whiteSpace === "normal" && e.scrollWidth <= e.clientWidth + 1,
         ),
         indent: parseFloat(
-          s(document.querySelector(".service-grid li:nth-child(2)")).paddingTop,
+          // «лесенка» чётных карточек в секции «7 шагов»
+          s(document.querySelector(".step-card:nth-child(2)")).marginTop,
         ),
         left: r(button).left - r(panel).left,
         imgs: [...document.querySelectorAll(".social-list article>img")].map(
