@@ -177,9 +177,14 @@ filters.forEach((button) =>
       card.hidden = !matches;
       if (matches) count++;
     });
-    document.querySelector(".empty-projects").hidden = count > 0;
-    document.querySelector("#project-track").hidden = count === 0;
-    document.querySelector("#project-track").scrollLeft = 0;
+    // Свойство, а не атрибут: [hidden] совпадает и с hidden="false".
+    const empty = document.querySelector(".empty-projects");
+    if (empty) empty.hidden = count > 0;
+    const track = document.querySelector("#project-track");
+    if (track) {
+      track.hidden = count === 0;
+      track.scrollLeft = 0;
+    }
   }),
 );
 // Four-question demo. No invented price or simulated server submission.

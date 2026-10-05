@@ -2,6 +2,7 @@
 // Shared carousel engine; independent clocks for advantages and reviews.
 for (const id of ["advantage-track", "review-track"]) {
   const track = document.getElementById(id);
+  if (!track) continue; // карусели преимуществ/отзывов есть не на каждой странице
   let visible = false,
     busy = false,
     interacting = false;
@@ -32,8 +33,9 @@ for (const id of ["advantage-track", "review-track"]) {
 // Extra steps are illustrative copy requested by the owner, not source Figma data.
 (() => {
   const input = document.querySelector(".process-range input");
-  const list = document.querySelector(".process-list"),
-    item = list.querySelector("li");
+  const list = document.querySelector(".process-list");
+  if (!list) return; // блок «как мы работаем» есть не на всех страницах
+  const item = list.querySelector("li");
   const steps = [
     ["Звонок и консультация", "Бесплатно, без обязательств"],
     [

@@ -3,8 +3,19 @@ const assert = require("node:assert/strict");
 (async () => {
   const browser = await chromium.launch();
   const p = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
-  await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  // Карусель проектов вынесена со второй ревизии главной страницы
+  // (sections/projects.html) — проверяем её на стенде второй страницы.
+  const base = (process.env.TEST_URL || "http://127.0.0.1:5173").replace(
+    /\/$/,
+    "",
+  );
+  await p.goto(`${base}/tests/fixtures/projects-page2.html`);
   await p.evaluate(() => document.fonts.ready);
+  await p.locator('[data-filter="5"]').click();
+  assert.equal(await p.locator("[data-project]:visible").count(), 0);
+  assert.ok(await p.locator(".empty-projects").isVisible());
+  await p.locator('[data-filter="0"]').click();
+  assert.equal(await p.locator("[data-project]:visible").count(), 4);
   const ids = await p
     .locator("#project-track .project-card h3")
     .evaluateAll((es) => es.map((e) => e.dataset.figmaText));
@@ -61,6 +72,8 @@ const assert = require("node:assert/strict");
     await p.locator('.project-picture[data-active-photo="1"]').count(),
     1,
   );
+  // Дальше — проверки главной страницы, на неё и возвращаемся.
+  await p.goto(base);
   assert.equal(await p.locator(".object-card figcaption").count(), 5);
   assert.equal(
     await p.locator(".warning h3").evaluate((e) => e.clientHeight),
@@ -96,7 +109,7 @@ const assert = require("node:assert/strict");
   );
   await browser.close();
   console.log(
-    "PASS: exclusive photo autoplay 0→1→2, carousel rotation to project 2, second photo sequence, five captions, one-line warning, two-line descriptions, dark overlay.",
+    "PASS: стенд второй страницы (фильтры, 0→1→2, поворот карусели), главной — пять подписей, одна строка warning, две строки описаний, тёмная подложка.",
   );
 })().catch((e) => {
   console.error(e);

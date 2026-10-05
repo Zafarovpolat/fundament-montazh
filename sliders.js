@@ -166,6 +166,7 @@
 /** Expand the photo under the pointer; photos never swap between slots. */
 (() => {
   const gallery = document.querySelector(".objects-gallery");
+  if (!gallery) return; // галереи объектов нет на всех страницах сайта
   const cards = [...gallery.querySelectorAll(":scope > .object-card")];
   const cursor = gallery.querySelector(".object-hover-cursor");
   let active = 2,
@@ -246,6 +247,7 @@
 /** One sequential clock: current project's photos, next project, repeat. */
 (() => {
   const track = document.querySelector("#project-track");
+  if (!track) return; // на главной карточки — статичная сетка, карусели нет
   const pictures = [...track.querySelectorAll(".project-picture")];
   let current = null,
     visible = false,

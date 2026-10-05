@@ -42,17 +42,16 @@ const assert = require("node:assert/strict");
         .evaluate((e) => getComputedStyle(e, "::before").backgroundImage)
     ).includes("255, 255, 255"),
   );
-  const pic = p.locator(".project-picture").first();
-  await pic.scrollIntoViewIfNeeded();
-  await p.mouse.move(0, 0);
-  await p.waitForFunction(
-    () =>
-      document.querySelector(".project-picture").dataset.activePhoto !== "0",
-    {},
-    { timeout: 8000 },
+  // Смена фото внутри карусели проектов проверяется на стенде второй страницы
+  // (tests/sequential.cjs) — на главной секция заменена статичной сеткой.
+  const card = p.locator(".foundation-card__media").first();
+  await card.scrollIntoViewIfNeeded();
+  assert.equal(await p.locator(".foundation-card__img[srcset]").count(), 6);
+  assert.ok(
+    await card
+      .locator("img")
+      .evaluate((e) => e.currentSrc.includes("assets/figma-476-")),
   );
-  await pic.locator('[data-photo-index="2"]').click();
-  assert.equal(await pic.getAttribute("data-active-photo"), "2");
   const gallery = p.locator(".objects-gallery");
   await gallery.scrollIntoViewIfNeeded();
   await p.mouse.move(0, 0);

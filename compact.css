@@ -783,3 +783,40 @@ html .featured-object h3[data-figma-text] {
     text-align: left;
   }
 }
+
+/* Сетка карточек фундаментов: 3 → 2 → 1 колонка, пропорции макета сохранены. */
+@media (max-width: 1280px) {
+  .foundation-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .foundation-card .button {
+    width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  .foundation-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .foundation-card {
+    padding: 12px;
+  }
+  .foundation-card__title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .foundation-card__price {
+    font-size: 26px;
+    line-height: 33px;
+  }
+  .foundation-card .button[data-motion-button] {
+    --button-inset: 6px;
+  }
+  .foundation-card .button[data-motion-button] .button-icon {
+    width: 52px;
+    flex-basis: 52px;
+    min-height: 58px;
+    border-radius: 12px;
+  }
+}

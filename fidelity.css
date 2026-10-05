@@ -3475,3 +3475,134 @@ html .header-menu .header-contact > .phone[data-figma-text] {
     margin-left: calc(20px - clamp(10px, 1.3vw, 25px));
   }
 }
+
+/* ── Виды фундаментов: сетка карточек 3×2 (макет 476:1119) ────────────────
+   Значения сняты с узлов Figma, отступы — относительно карточки 541×773.
+   Границ у карточек и фото в макете нет (strokes: []), только скругления. */
+.foundation-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 19px;
+}
+.foundation-card {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 20px;
+  background: #fff;
+}
+.foundation-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 511 / 354;
+  border-radius: 10px;
+  background: #ececec;
+}
+.foundation-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.foundation-card__badge {
+  position: absolute;
+  inset: 15px auto auto 15px;
+  margin: 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: #ffc924;
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 16.4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.foundation-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+.foundation-card__title {
+  margin: 15px 0 0;
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 31.7px;
+  text-transform: uppercase;
+}
+.foundation-card__desc {
+  margin: 10px 0 0;
+  color: rgb(0 0 0 / 40%);
+  font-size: 17px;
+  line-height: 21.4px;
+}
+.foundation-card__suites {
+  margin: 20px 0 0;
+  color: rgb(0 0 0 / 40%);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 22.8px;
+  text-transform: uppercase;
+}
+.foundation-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.foundation-card__chips li {
+  padding: 10px;
+  border-radius: 10px;
+  background: #f4f4f4;
+  color: #000;
+  font-size: 16px;
+  line-height: 20.2px;
+}
+.foundation-card__price {
+  margin: 15px 0 0;
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 38px;
+  text-transform: uppercase;
+}
+.foundation-card__note {
+  margin: 5px 0 0;
+  color: rgb(0 0 0 / 40%);
+  font-size: 16px;
+  line-height: 20.2px;
+}
+.foundation-card .button {
+  width: 297px;
+  max-width: 100%;
+  margin: 15px 0 0;
+  padding: 5px 5px 5px 26px;
+  border-radius: 20px;
+  /* В макете кнопка карточки 297×83 (иконка 73 + по 5 px), а не глобальные 107. */
+  min-height: 83px;
+}
+.foundation-card .button--yellow {
+  /* В макете подпись на жёлтой кнопке — чисто чёрная, а не --ink. */
+  color: #000;
+}
+/* Плашка иконки: в макете 60×73 при кнопке 83, т.е. отступ 5 px со всех сторон.
+   Селектор повторяет паттерн сайта (.button[data-motion-button] .button-icon),
+   иначе его absolute-позиционирование с --button-inset переопределяет размеры. */
+.foundation-card .button[data-motion-button] {
+  --button-inset: 5px;
+  --icon-width: 60px;
+}
+.foundation-card .button[data-motion-button] .button-icon {
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 60px;
+  flex-basis: 60px;
+  min-height: 73px;
+  border-radius: 17px;
+}

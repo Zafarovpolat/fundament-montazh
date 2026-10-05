@@ -54,7 +54,7 @@ const expected = require("./figma-expectations.json").map((e) => ({
       .evaluate((e) => getComputedStyle(e).columnGap),
     "8px",
   );
-  for (const section of ["projects", "advantages", "reviews"]) {
+  for (const section of ["advantages", "reviews"]) {
     const next = page.locator(`#${section} [data-scroll="1"]`);
     await next.click();
     assert.equal(

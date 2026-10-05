@@ -95,16 +95,30 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   await page.locator('[type="submit"]').click();
   assert.match(await page.locator(".form-status").innerText(), /не отправлена/);
   await page.keyboard.press("Escape");
-  await page.locator('[data-filter="5"]').click();
-  assert.equal(await page.locator("[data-project]:visible").count(), 0);
-  assert.ok(await page.locator(".empty-projects").isVisible());
-  await page.locator('[data-filter="0"]').click();
-  assert.equal(await page.locator("[data-project]:visible").count(), 4);
-  await page.locator('[data-target="project-track"][data-scroll="1"]').click();
-  await page.waitForFunction(
-    () =>
-      Number(document.querySelector("#project-track").dataset.slideIndex) > 0,
+  // Виды фундаментов (макет 476:1119): статичная сетка 3x2 без карусели.
+  await page.locator(".foundation-cards").scrollIntoViewIfNeeded();
+  assert.equal(await page.locator(".foundation-card").count(), 6);
+  assert.equal(await page.locator("[data-project]").count(), 0);
+  assert.equal(
+    // textContent — регистр задаёт CSS text-transform, innerText вернул бы капс
+    (await page.locator(".foundation-card__badge").textContent()).trim(),
+    "Популярный",
   );
+  assert.ok(
+    await page
+      .locator(".foundation-card__img")
+      .first()
+      .evaluate(
+        (e) =>
+          e.getAttribute("loading") === "lazy" && !!e.getAttribute("srcset"),
+      ),
+  );
+  await page
+    .locator('#projects .foundation-card .button[data-action="quote"]')
+    .first()
+    .click();
+  assert.ok(await page.locator("#contact-dialog").evaluate((e) => e.open));
+  await page.keyboard.press("Escape");
   const initialHeight = await page
     .locator(".faq-grid")
     .evaluate((e) => e.getBoundingClientRect().height);
