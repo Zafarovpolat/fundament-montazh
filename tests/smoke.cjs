@@ -1,4 +1,4 @@
-const { chromium } = require("playwright");
+const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 fs.mkdirSync("tests/artifacts", { recursive: true });

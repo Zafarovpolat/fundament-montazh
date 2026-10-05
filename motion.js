@@ -301,7 +301,9 @@
   root.classList.add("img-fade");
   const show = (img) => img.classList.add("is-loaded");
   const nextFrame = () =>
-    new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
   targets.forEach((img) => {
     if (img.complete) {
       // Уже в кеше: показываем на следующем кадре, чтобы transition состоялся.

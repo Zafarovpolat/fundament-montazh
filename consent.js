@@ -72,15 +72,24 @@
   publish(current);
 
   banner.addEventListener("click", (event) => {
-    const action = event.target.closest("[data-consent-accept],[data-consent-decline],[data-consent-dismiss]");
+    const action = event.target.closest(
+      "[data-consent-accept],[data-consent-decline],[data-consent-dismiss]",
+    );
     if (!action) return;
     if (action.hasAttribute("data-consent-accept")) save({ analytics: true });
-    else if (action.hasAttribute("data-consent-decline")) save({ analytics: false });
-    else save({ analytics: current.analytics === null ? false : current.analytics });
+    else if (action.hasAttribute("data-consent-decline"))
+      save({ analytics: false });
+    else
+      save({
+        analytics: current.analytics === null ? false : current.analytics,
+      });
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !banner.hidden) save({ analytics: current.analytics === null ? false : current.analytics });
+    if (event.key === "Escape" && !banner.hidden)
+      save({
+        analytics: current.analytics === null ? false : current.analytics,
+      });
   });
 
   // Отложенный показ: не перекрываем hero в момент первой отрисовки.

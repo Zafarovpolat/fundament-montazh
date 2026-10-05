@@ -1,4 +1,4 @@
-const { chromium } = require("playwright");
+const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
 const overrides = require("./review-overrides.json");
 const expected = require("./figma-expectations.json").map((e) => ({

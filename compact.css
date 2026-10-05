@@ -215,7 +215,8 @@
     min-height: 360px;
     padding: 20px;
   }
-  .advantage-grid article > img, .advantage-grid article > svg {
+  .advantage-grid article > img,
+  .advantage-grid article > svg {
     max-width: 195px;
     max-height: 180px;
     height: 180px;
@@ -231,7 +232,8 @@
     padding: 20px;
     min-height: 175px;
   }
-  .quiz-options button img, .quiz-options button svg {
+  .quiz-options button img,
+  .quiz-options button svg {
     max-height: 100px;
   }
   #process .section-heading {
@@ -279,7 +281,8 @@
     padding-top: 24px;
     gap: 12px;
   }
-  .review-card figcaption img, .review-card figcaption svg {
+  .review-card figcaption img,
+  .review-card figcaption svg {
     width: 76px;
     height: 76px;
   }
@@ -308,7 +311,8 @@
     padding: 12px;
     gap: 12px;
   }
-  .social-list article > img, .social-list article > svg {
+  .social-list article > img,
+  .social-list article > svg {
     width: 70px;
     max-height: 85px;
     object-fit: cover;
@@ -450,7 +454,8 @@
     min-height: 340px;
     padding: 20px;
   }
-  .advantage-grid article > img, .advantage-grid article > svg {
+  .advantage-grid article > img,
+  .advantage-grid article > svg {
     height: 150px;
     max-height: 150px;
   }
@@ -526,7 +531,8 @@
     height: auto;
     min-height: 0;
   }
-  .video-card > img, .video-card > svg {
+  .video-card > img,
+  .video-card > svg {
     max-height: 160px;
     object-fit: cover;
   }
@@ -749,7 +755,8 @@ html .featured-object h3[data-figma-text] {
   white-space: normal;
   overflow-wrap: anywhere;
 }
-.social-list article > img, .social-list article > svg {
+.social-list article > img,
+.social-list article > svg {
   width: 100%;
   height: 100%;
   max-height: none;
@@ -758,12 +765,21 @@ html .featured-object h3[data-figma-text] {
   object-fit: cover;
 }
 @media (max-width: 1440px) {
-  .service-grid li:nth-child(even) { padding-top: 60px; }
+  .service-grid li:nth-child(even) {
+    padding-top: 60px;
+  }
 }
 @media (max-width: 760px) {
-  .service-grid li:nth-child(even) { padding-top: 36px; }
+  .service-grid li:nth-child(even) {
+    padding-top: 36px;
+  }
 }
 @media (max-width: 1024px) {
-  .price-panel > .button { margin-left: 0; margin-right: auto; }
-  .price-panel .price-note { text-align: left; }
+  .price-panel > .button {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .price-panel .price-note {
+    text-align: left;
+  }
 }

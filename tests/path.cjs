@@ -1,4 +1,4 @@
-const { chromium } = require("playwright");
+const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
 (async () => {
   const b = await chromium.launch();
@@ -25,7 +25,9 @@ const assert = require("node:assert/strict");
   );
   assert.ok(
     await p.locator(".hero-badge").evaluate((e) => {
-      const tops = [...e.querySelectorAll(".hero-proof-item")].map((e) => e.getBoundingClientRect().top);
+      const tops = [...e.querySelectorAll(".hero-proof-item")].map(
+        (e) => e.getBoundingClientRect().top,
+      );
       return tops.every((n) => Math.abs(n - tops[0]) < 1);
     }),
   );

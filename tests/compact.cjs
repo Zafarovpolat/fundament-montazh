@@ -1,4 +1,4 @@
-const { chromium } = require("playwright");
+const { engine: chromium, isChromium, loadImage } = require("./browser.cjs");
 const assert = require("node:assert/strict");
 (async () => {
   const b = await chromium.launch();
@@ -16,23 +16,59 @@ const assert = require("node:assert/strict");
         .getBoundingClientRect().width,
     }));
   const desktop = await metrics();
-  const c = await p.context().newCDPSession(p);
-  await c.send("DOM.enable");
-  await c.send("CSS.enable");
-  const { root } = await c.send("DOM.getDocument");
-  const { nodeId } = await c.send("DOM.querySelector", {
-    nodeId: root.nodeId,
-    selector: '[data-figma-text="375:396"]',
-  });
-  const { fonts } = await c.send("CSS.getPlatformFontsForNode", { nodeId });
-  assert.ok(
-    fonts.some(
-      (f) => f.familyName === "Euclid Circular A" && f.glyphCount === 1,
-    ),
-  );
-  assert.ok(
-    fonts.some((f) => f.familyName.includes("CoFo") && f.glyphCount > 10),
-  );
+  if (isChromium) {
+    const c = await p.context().newCDPSession(p);
+    await c.send("DOM.enable");
+    await c.send("CSS.enable");
+    const { root } = await c.send("DOM.getDocument");
+    const { nodeId } = await c.send("DOM.querySelector", {
+      nodeId: root.nodeId,
+      selector: '[data-figma-text="375:396"]',
+    });
+    const { fonts } = await c.send("CSS.getPlatformFontsForNode", { nodeId });
+    assert.ok(
+      fonts.some(
+        (f) => f.familyName === "Euclid Circular A" && f.glyphCount === 1,
+      ),
+    );
+    assert.ok(
+      fonts.some((f) => f.familyName.includes("CoFo") && f.glyphCount > 10),
+    );
+  } else {
+    // CSS.getPlatformFontsForNode есть только в CDP, поэтому в Firefox и
+    // WebKit проверяем шрифты средствами движка: регистрация в FontFaceSet и
+    // реальное влияние веб-шрифта на метрику текста.
+    const fonts = await p.evaluate(async () => {
+      await document.fonts.ready;
+      const probe =
+        document.querySelector('[data-figma-text="375:396"]') ||
+        document.querySelector("h1");
+      const measure = (family) => {
+        const c = probe.cloneNode(true);
+        c.style.cssText = `position:absolute;left:-9999px;top:0;font-family:${family}`;
+        probe.parentElement.appendChild(c);
+        const width = c.getBoundingClientRect().width;
+        c.remove();
+        return width;
+      };
+      return {
+        euclid: document.fonts.check('16px "Euclid Circular A"'),
+        cofo: [...document.fonts].some((f) => f.family.includes("CoFo")),
+        webfont: measure('"Euclid Circular A"'),
+        fallback: measure("monospace"),
+      };
+    });
+    assert.ok(
+      fonts.euclid,
+      "Euclid Circular A не зарегистрирован в FontFaceSet",
+    );
+    assert.ok(fonts.cofo, "CoFo Readhead не найден среди подключённых шрифтов");
+    assert.notEqual(
+      Math.round(fonts.webfont),
+      Math.round(fonts.fallback),
+      "веб-шрифт не меняет метрику текста — вероятно, не загрузился",
+    );
+  }
   for (const width of [1440, 1280, 1025, 1024, 768, 640, 390, 320]) {
     await p.setViewportSize({ width, height: 900 });
     await p.evaluate(() => new Promise(requestAnimationFrame));
@@ -45,6 +81,7 @@ const assert = require("node:assert/strict");
     assert.ok(m.h1 < desktop.h1);
     assert.ok(m.button < desktop.button);
     assert.ok(m.arrow < desktop.arrow);
+    await loadImage(p, ".director-photo");
     const portrait = await p.locator(".director-photo").evaluate((e) => {
       const r = e.getBoundingClientRect(),
         parent = e.closest("#director").getBoundingClientRect();
