@@ -60,6 +60,38 @@ Ouvality не предоставлен: подпись руководителя 
 - `motion.js` — параллакс, появления, путь и высота диалога.
 - `tests/` — браузерные проверки и численные ожидания из Figma.
 
+
+## Уточнения 3.6.3 — чек-лист заказчика (спрайт, srcset, LCP, куки, SEO)
+
+Сверка с чек-листом из задания; вёрстка кадра `315:160` при этом не менялась геометрически.
+
+- **Иконки — спрайт (п.6).** `tools/build_icon_sprite.py` собирает `assets/icons/sprite.svg` (21 `<symbol>`), все 50 `<img>` с иконками заменены на `<svg><use href="assets/icons/sprite.svg#i-…">`. Инлайнового SVG-кода в HTML нет. `review-map.svg` (89 KB, внутри был встроенный PNG) вырезан в `assets/gis-map.webp` (2 KB) — растр в спрайте бессмысленен. Каждому CSS-правилу про `img` автоматом добавлен парный селектор про `svg`, поэтому специфичность и каскад сохранены; после правки снимок страницы при 1920 px совпадает с предыдущей ревизией **пиксель-в-пиксель (0 отличающихся пикселей)**.
+- **Ретина и адаптивные картинки (п.5).** `tools/measure-images.mjs` снимает реальные CSS-боксы всех `<img>` на 390/768/1280/1920, `tools/optimize_images.py` генерирует варианты `@480`/`@960` (webp q74, остаются только если экономят ≥15%) и проставляет `srcset`+`sizes`+`width`+`height`. Итог: мобильный вес страницы 1898 → **1178 KiB**, LCP-ресурс 444 → 68 KB.
+- **Lazyload и плавное появление (п.3).** У всех растровых `<img>` стоит `loading="lazy"`, `decoding="async"`; появление — transition `opacity` + `translate` (`.img-reveal` → `is-loaded` в `motion.js`). Fade намеренно **не применяется к изображениям первого экрана** и к LCP-фону: затемнение видимой картинки сдвинуло бы LCP. Без JS класс `img-fade` не выставляется, картинки видны сразу.
+- **LCP.** Фон hero переведён с `loading="lazy"` на `eager` + `fetchpriority="high"`, добавлен `<link rel="preload" as="image" imagesrcset imagesizes>`; `lcp-discovery-insight` был FAIL, стал PASS.
+- **Куки-плашка (макет `440:1632`).** `aside.cookie-bar` + `consent.js`: «Принять» / «Только необходимые» / крестик, Escape, `localStorage` с версией согласия, `window.siteConsent.analytics` и событие `site:consent` — счётчик аналитики должен подключаться только после согласия. Пока дизайн-фрейм недоступен (Figma API `429`), панель собрана по стилевым токенам сайта: радиус 15 px, акцент `#ffc924`, контейнер `--container`, safe-area, адаптив 1024/560 px. Высоту 167 px и состав кнопок уточнить по экспорту макета.
+- **Юридические страницы.** `privacy.html` и `personal-data.html` — семантическая структура, оглавление, стиль макета; текст реквизитов и финальная формулировка остаются за заказчиком (в файле это явно помечено).
+- **SEO и служебные файлы.** В `<head>`: `canonical`, robots, OG/Twitter, `favicon.svg`+PNG, `apple-touch-icon`, `manifest.webmanifest`, JSON-LD (`LocalBusiness`/`HomeAndConstructionBusiness` + `WebPage` + `FAQPage` на 8 реальных вопросах страницы). Добавлены `robots.txt` и `sitemap.xml`; фавиконки собраны из логотипа (`assets/brand/`). Исчезли 404 на `favicon.ico` → `best-practices` 96 → 100.
+
+### Замеры после правок
+
+Lighthouse 12, Chromium 153, локально, gzip + keep-alive, simulate (медиана 3 прогонов):
+
+| Сборка | Perf mobile | LCP mobile | вес mobile | BP | Perf desktop | вес desktop |
+|---|---|---|---|---|---|---|
+| до (HEAD 1b85852) | 82 (разбег 69–83) | 4.07 с | 1898 KiB | 96 | 99 | 2545 KiB |
+| после | 77 (75–81) | 4.65 с | 1178 KiB | 100 | 93–97 | 2109 KiB |
+
+Прямое измерение в том же браузере без троттлинга (`PerformanceObserver`, 3 прогона): **LCP render 236 → 156 мс** (мобильный эмулятор 390 px @2x), LCP-ресурс `figma-360-462.webp` 444 KB → `figma-360-462@960.webp` 68 KB. Симулированный Lighthouse на локальном сервере даёт разбег ±14 баллов и не учитывает HTTP/2, поэтому итоговые цифры чек-листа (≥95 ПК / ≥85 моб.) нужно снять на pagespeed.web.dev по боевому деплою — анонимная квота PSI API в момент работы была исчерпана (`429 Quota exceeded`). A11y остался 93: `color-contrast` (38 узлов) и `target-size` (12) не трогали — это правки дизайна, они в плане.
+
+### Новые команды
+
+```sh
+npm run tools:measure-images   # нужен запущенный сервер на 5173
+npm run tools:images           # генерация @480/@960 + srcset/width/height
+python3 tools/build_icon_sprite.py
+```
+
 ## Проверки
 
 ```sh

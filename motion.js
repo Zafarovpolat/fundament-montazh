@@ -280,3 +280,39 @@
     }
   });
 })();
+
+/** Плавное появление картинок: класс is-loaded после декодирования.
+    Progressive enhancement: без JS html.img-fade не выставляется, и все
+    изображения видны сразу. См. .img-reveal в interactions.css. */
+(() => {
+  const root = document.documentElement;
+  const targets = [...document.images].filter((img) => {
+    if (!img.classList.contains("img-reveal")) return false;
+    // Только те, что стартуют ниже первого экрана: fade над видимым
+    // изображением сдвинул бы LCP, а это дороже плавности.
+    const top = img.getBoundingClientRect().top + window.scrollY;
+    if (top < window.innerHeight * 0.9) {
+      img.classList.add("is-loaded");
+      return false;
+    }
+    return true;
+  });
+  if (!targets.length) return;
+  root.classList.add("img-fade");
+  const show = (img) => img.classList.add("is-loaded");
+  const nextFrame = () =>
+    new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  targets.forEach((img) => {
+    if (img.complete) {
+      // Уже в кеше: показываем на следующем кадре, чтобы transition состоялся.
+      nextFrame().then(() => show(img));
+      return;
+    }
+    const done = () => show(img);
+    img.addEventListener("load", done, { once: true });
+    // Битая или заблокированная картинка не должна оставаться невидимой.
+    img.addEventListener("error", done, { once: true });
+  });
+  // Страховка: всё, что не дошло за 6 с, показываем без ожидания.
+  setTimeout(() => targets.forEach(show), 6000);
+})();

@@ -512,3 +512,167 @@ main {
   }
 }
 
+
+/* Плавное появление изображений (чек-лист п.3).
+   html.img-fade ставит JS (motion.js); без JS класс не появляется и картинки
+   видны сразу. Изображения первого экрана (loading="eager") класса img-reveal
+   не получают: их затемнение задержало бы LCP.
+   ВАЖНО: переопределяем только «скрытое» состояние. Состояние видимости — это
+   исходные значения дизайна, поэтому правило не конфликтует с чужими
+   трансформами (например scale(1.281) активной фотографии в галерее объектов)
+   и с translate из @keyframes object-arrive. */
+html.img-fade .img-reveal:not(.is-loaded) {
+  opacity: 0;
+  translate: 0 14px;
+}
+html.img-fade .img-reveal {
+  transition:
+    opacity 620ms ease,
+    translate 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.img-fade .img-reveal:not(.is-loaded) {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* ============================================================
+   Куки-плашка (макет 440:1632, панель 1663×167).
+   Поязается снизу, живёт над параллаксом, не блокирует контент.
+   ============================================================ */
+.cookie-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  padding: 0 var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px));
+  pointer-events: none;
+}
+.cookie-bar[hidden] {
+  display: none;
+}
+.cookie-bar__inner {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 22px 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  box-shadow: 0 18px 48px #070b1f26;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.cookie-shown .cookie-bar__inner {
+  opacity: 1;
+  transform: none;
+}
+.cookie-bar__title {
+  font: 600 17px/1.3 var(--font-heading);
+  margin: 0 0 6px;
+}
+.cookie-bar__note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.cookie-bar__note a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 200ms ease;
+}
+.cookie-bar__note a:hover,
+.cookie-bar__note a:focus-visible {
+  opacity: 0.7;
+}
+.cookie-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cookie-bar__accept {
+  --button-height: 46px;
+  min-width: 140px;
+}
+.cookie-bar__decline,
+.cookie-bar__close {
+  font: 500 14px/1 var(--font-body);
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    opacity 200ms ease;
+}
+.cookie-bar__decline:hover {
+  background: #f3f3f3;
+}
+.cookie-bar__decline:focus-visible,
+.cookie-bar__close:focus-visible,
+.cookie-bar__accept:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.cookie-bar__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.cookie-bar__close .figma-icon {
+  width: 10px;
+  height: 10px;
+}
+.cookie-bar__close:hover {
+  background: #1d2133;
+  border-color: #1d2133;
+}
+@media (max-width: 1024px) {
+  .cookie-bar__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .cookie-bar__actions {
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 560px) {
+  .cookie-bar {
+    padding-inline: 12px;
+  }
+  .cookie-bar__inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+  }
+  .cookie-bar__actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .cookie-bar__accept {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cookie-bar__inner {
+    transition: none;
+  }
+}

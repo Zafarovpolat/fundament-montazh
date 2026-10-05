@@ -100,7 +100,8 @@ button:hover,
 a.button:hover {
   filter: brightness(0.94);
 }
-img {
+img,
+svg {
   display: block;
   max-width: 100%;
   height: auto;
@@ -295,7 +296,7 @@ address {
   flex: 0 1 293px;
   min-width: 180px;
 }
-.brand img {
+.brand img, .brand svg {
   width: 100%;
 }
 #main-navigation {
@@ -521,7 +522,7 @@ address {
   max-width: 680px;
   margin-bottom: calc(-1 * var(--section-space));
 }
-.director-portrait img {
+.director-portrait img, .director-portrait svg {
   width: 100%;
 }
 .director-portrait figcaption {
@@ -595,7 +596,7 @@ address {
 .project-picture {
   position: relative;
 }
-.project-picture > img {
+.project-picture > img, .project-picture > svg {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
@@ -663,7 +664,7 @@ address {
   border-radius: 12px;
   overflow: hidden;
 }
-.featured-object > img {
+.featured-object > img, .featured-object > svg {
   width: 100%;
   aspect-ratio: 0.7;
   object-fit: cover;
@@ -725,7 +726,7 @@ address {
   background: white;
   border-radius: 12px;
 }
-.advantage-grid img {
+.advantage-grid img, .advantage-grid svg {
   height: 200px;
   width: 100%;
   object-fit: contain;
@@ -841,14 +842,15 @@ progress::-moz-progress-bar {
   border-radius: 6px;
   padding: 6px 10px;
 }
-.mortgage-grid img {
+.mortgage-grid img, .mortgage-grid svg {
   height: 300px;
   width: 100%;
   object-fit: contain;
   object-position: left bottom;
   margin-top: 25px;
 }
-.mortgage-grid article:nth-child(2) img {
+.mortgage-grid article:nth-child(2) img,
+.mortgage-grid article:nth-child(2) svg {
   object-position: right bottom;
 }
 .review-card {
@@ -869,7 +871,7 @@ progress::-moz-progress-bar {
   gap: 20px;
   align-items: center;
 }
-.review-card figcaption img {
+.review-card figcaption img, .review-card figcaption svg {
   width: 85px;
   height: 85px;
   object-fit: cover;
@@ -957,7 +959,7 @@ progress::-moz-progress-bar {
   text-align: left;
   padding: 10px;
 }
-.video-card img {
+.video-card img, .video-card svg {
   width: 100%;
   border-radius: 8px;
   aspect-ratio: 1.37;
@@ -1024,7 +1026,7 @@ progress::-moz-progress-bar {
   align-items: center;
   gap: 20px;
 }
-.social-list img {
+.social-list img, .social-list svg {
   width: 82px;
   border-radius: 8px;
 }
@@ -1276,7 +1278,7 @@ textarea {
     grid-column: 2;
     justify-self: start;
   }
-  .social-list img {
+  .social-list img, .social-list svg {
     width: 65px;
   }
   .footer-columns {
@@ -1385,7 +1387,7 @@ textarea {
   .objects-gallery > .object-side:last-child {
     display: none;
   }
-  .featured-object > img {
+  .featured-object > img, .featured-object > svg {
     aspect-ratio: 0.8;
   }
   .video-grid,
@@ -1396,7 +1398,7 @@ textarea {
   .video-card {
     grid-template-columns: 1fr;
   }
-  .video-card img {
+  .video-card img, .video-card svg {
     max-height: 240px;
   }
   .video-card > span {
@@ -1409,7 +1411,7 @@ textarea {
   .mortgage-grid article {
     padding: 28px 28px 0;
   }
-  .mortgage-grid img {
+  .mortgage-grid img, .mortgage-grid svg {
     height: 250px;
   }
   .visit-banner {
@@ -1640,7 +1642,7 @@ textarea {
     width: 100%;
     margin-inline: auto;
   }
-  .featured-object > img {
+  .featured-object > img, .featured-object > svg {
     aspect-ratio: 0.9;
     max-height: 650px;
   }
@@ -1670,7 +1672,7 @@ textarea {
   .advantage-grid article {
     padding: 20px;
   }
-  .advantage-grid img {
+  .advantage-grid img, .advantage-grid svg {
     height: 140px;
   }
   .advantage-grid h3 {
@@ -1693,7 +1695,7 @@ textarea {
   .mortgage-grid h3 {
     font-size: 32px;
   }
-  .mortgage-grid img {
+  .mortgage-grid img, .mortgage-grid svg {
     height: 280px;
   }
   .review-card {
@@ -1705,7 +1707,7 @@ textarea {
   .review-card figcaption {
     gap: 14px;
   }
-  .review-card figcaption img {
+  .review-card figcaption img, .review-card figcaption svg {
     width: 65px;
     height: 65px;
   }
@@ -1765,7 +1767,7 @@ textarea {
   .social-list article > .button {
     grid-column: auto;
   }
-  .social-list img {
+  .social-list img, .social-list svg {
     width: 74px;
   }
   .social-list h3 {
@@ -1848,7 +1850,7 @@ textarea {
   .service-grid li::before {
     margin-bottom: 12px;
   }
-  .advantage-grid img {
+  .advantage-grid img, .advantage-grid svg {
     height: 165px;
   }
   .advantage-grid p {
@@ -1864,7 +1866,7 @@ textarea {
     grid-column: 2;
     justify-self: stretch;
   }
-  .social-list img {
+  .social-list img, .social-list svg {
     width: 65px;
   }
   .footer-columns {
@@ -1886,7 +1888,7 @@ textarea {
   .video-card {
     grid-template-columns: 1fr;
   }
-  .video-card img {
+  .video-card img, .video-card svg {
     max-height: none;
   }
   .video-card > span {

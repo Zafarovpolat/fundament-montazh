@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55" role="img" aria-label="ФундаментМонтаж">
+  <rect width="55" height="55" rx="12" fill="#fff" />
+  <rect x="1.75" y="1.75" width="51.5" height="51.5" rx="3" fill="none" stroke="#FFC924" stroke-width="3.5" />
+  <rect x="8.5" y="8.5" width="37" height="37" rx="1.5" fill="none" stroke="#FFC924" stroke-width="5.5" />
+  <g stroke="#101323" stroke-width="3.6" fill="none" stroke-linecap="round">
+    <circle cx="27" cy="27" r="9.2" />
+    <path d="M27 17.2V36.8" />
+  </g>
+</svg>

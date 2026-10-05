@@ -215,7 +215,7 @@
     min-height: 360px;
     padding: 20px;
   }
-  .advantage-grid article > img {
+  .advantage-grid article > img, .advantage-grid article > svg {
     max-width: 195px;
     max-height: 180px;
     height: 180px;
@@ -231,7 +231,7 @@
     padding: 20px;
     min-height: 175px;
   }
-  .quiz-options button img {
+  .quiz-options button img, .quiz-options button svg {
     max-height: 100px;
   }
   #process .section-heading {
@@ -248,13 +248,15 @@
     min-height: 510px;
     height: auto;
   }
-  .mortgage-grid article:first-child > img {
+  .mortgage-grid article:first-child > img,
+  .mortgage-grid article:first-child > svg {
     width: 480px;
     height: auto;
     top: 240px;
     left: -72px;
   }
-  .mortgage-grid article:nth-child(2) > img {
+  .mortgage-grid article:nth-child(2) > img,
+  .mortgage-grid article:nth-child(2) > svg {
     width: 390px;
     height: auto;
     top: 215px;
@@ -277,7 +279,7 @@
     padding-top: 24px;
     gap: 12px;
   }
-  .review-card figcaption img {
+  .review-card figcaption img, .review-card figcaption svg {
     width: 76px;
     height: 76px;
   }
@@ -306,7 +308,7 @@
     padding: 12px;
     gap: 12px;
   }
-  .social-list article > img {
+  .social-list article > img, .social-list article > svg {
     width: 70px;
     max-height: 85px;
     object-fit: cover;
@@ -448,7 +450,7 @@
     min-height: 340px;
     padding: 20px;
   }
-  .advantage-grid article > img {
+  .advantage-grid article > img, .advantage-grid article > svg {
     height: 150px;
     max-height: 150px;
   }
@@ -460,12 +462,14 @@
     min-height: 480px;
     padding: 24px;
   }
-  .mortgage-grid article:first-child > img {
+  .mortgage-grid article:first-child > img,
+  .mortgage-grid article:first-child > svg {
     top: auto;
     bottom: -15px;
     left: -85px;
   }
-  .mortgage-grid article:nth-child(2) > img {
+  .mortgage-grid article:nth-child(2) > img,
+  .mortgage-grid article:nth-child(2) > svg {
     top: auto;
     bottom: -65px;
     right: -100px;
@@ -522,7 +526,7 @@
     height: auto;
     min-height: 0;
   }
-  .video-card > img {
+  .video-card > img, .video-card > svg {
     max-height: 160px;
     object-fit: cover;
   }
@@ -745,7 +749,7 @@ html .featured-object h3[data-figma-text] {
   white-space: normal;
   overflow-wrap: anywhere;
 }
-.social-list article > img {
+.social-list article > img, .social-list article > svg {
   width: 100%;
   height: 100%;
   max-height: none;

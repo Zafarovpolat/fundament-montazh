@@ -1,0 +1,1202 @@
+{
+  "assets/figma-360-436.webp": {
+    "box": {
+      "mobile": [
+        155,
+        29
+      ],
+      "tablet": [
+        185,
+        35
+      ],
+      "laptop": [
+        190,
+        36
+      ],
+      "desktop": [
+        293,
+        55
+      ]
+    }
+  },
+  "assets/figma-360-462.webp": {
+    "box": {
+      "mobile": [
+        390,
+        1363
+      ],
+      "tablet": [
+        768,
+        1181
+      ],
+      "laptop": [
+        1280,
+        1049
+      ],
+      "desktop": [
+        1920,
+        1007
+      ]
+    }
+  },
+  "assets/icons/quote-arrow.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/icons/calculator.svg": {
+    "box": {
+      "mobile": [
+        22,
+        22
+      ],
+      "tablet": [
+        22,
+        22
+      ],
+      "laptop": [
+        22,
+        22
+      ],
+      "desktop": [
+        22,
+        22
+      ]
+    }
+  },
+  "assets/icons/clock.svg": {
+    "box": {
+      "mobile": [
+        18,
+        18
+      ],
+      "tablet": [
+        21,
+        21
+      ],
+      "laptop": [
+        21,
+        21
+      ],
+      "desktop": [
+        21,
+        21
+      ]
+    }
+  },
+  "assets/icons/arrow-light.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/icons/benefit-dot.svg": {
+    "box": {
+      "mobile": [
+        10,
+        10
+      ],
+      "tablet": [
+        10,
+        10
+      ],
+      "laptop": [
+        10,
+        10
+      ],
+      "desktop": [
+        17,
+        17
+      ]
+    }
+  },
+  "assets/icons/warning.svg": {
+    "box": {
+      "mobile": [
+        24,
+        24
+      ],
+      "tablet": [
+        24,
+        24
+      ],
+      "laptop": [
+        24,
+        24
+      ],
+      "desktop": [
+        24,
+        24
+      ]
+    }
+  },
+  "assets/figma-391-444.webp": {
+    "box": {
+      "mobile": [
+        354,
+        509
+      ],
+      "tablet": [
+        302,
+        434
+      ],
+      "laptop": [
+        393,
+        564
+      ],
+      "desktop": [
+        670,
+        962
+      ]
+    }
+  },
+  "assets/figma-315-298.webp": {
+    "box": {
+      "mobile": [
+        390,
+        1369
+      ],
+      "tablet": [
+        768,
+        1253
+      ],
+      "laptop": [
+        1280,
+        734
+      ],
+      "desktop": [
+        1920,
+        899
+      ]
+    }
+  },
+  "assets/director-portrait.webp": {
+    "box": {
+      "mobile": [
+        354,
+        493
+      ],
+      "tablet": [
+        420,
+        585
+      ],
+      "laptop": [
+        415,
+        578
+      ],
+      "desktop": [
+        679,
+        945
+      ]
+    }
+  },
+  "assets/director-signature.png": {
+    "box": {
+      "mobile": [
+        269,
+        64
+      ],
+      "tablet": [
+        319,
+        64
+      ],
+      "laptop": [
+        315,
+        64
+      ],
+      "desktop": [
+        354,
+        94
+      ]
+    }
+  },
+  "assets/icons/arrow-left.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/icons/arrow-right.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/figma-I315-674_124-246.webp": {
+    "box": {
+      "mobile": [
+        408,
+        408
+      ],
+      "tablet": [
+        438,
+        438
+      ],
+      "laptop": [
+        419,
+        419
+      ],
+      "desktop": [
+        692,
+        692
+      ]
+    }
+  },
+  "assets/icons/project-arrow.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/figma-I315-675_124-246.webp": {
+    "box": {
+      "mobile": [
+        408,
+        408
+      ],
+      "tablet": [
+        438,
+        438
+      ],
+      "laptop": [
+        419,
+        419
+      ],
+      "desktop": [
+        692,
+        692
+      ]
+    }
+  },
+  "assets/figma-I315-676_124-246.webp": {
+    "box": {
+      "mobile": [
+        408,
+        408
+      ],
+      "tablet": [
+        438,
+        438
+      ],
+      "laptop": [
+        419,
+        419
+      ],
+      "desktop": [
+        692,
+        692
+      ]
+    }
+  },
+  "assets/figma-I315-677_124-246.webp": {
+    "box": {
+      "mobile": [
+        408,
+        408
+      ],
+      "tablet": [
+        438,
+        438
+      ],
+      "laptop": [
+        419,
+        419
+      ],
+      "desktop": [
+        692,
+        692
+      ]
+    }
+  },
+  "assets/icons/arrow-dark.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/figma-315-695.webp": {
+    "box": {
+      "mobile": [
+        319,
+        430
+      ],
+      "tablet": [
+        115,
+        258
+      ],
+      "laptop": [
+        168,
+        283
+      ],
+      "desktop": [
+        275,
+        467
+      ]
+    }
+  },
+  "assets/figma-315-697.webp": {
+    "box": {
+      "mobile": [
+        319,
+        430
+      ],
+      "tablet": [
+        115,
+        258
+      ],
+      "laptop": [
+        168,
+        283
+      ],
+      "desktop": [
+        275,
+        467
+      ]
+    }
+  },
+  "assets/figma-315-700.webp": {
+    "box": {
+      "mobile": [
+        408,
+        551
+      ],
+      "tablet": [
+        289,
+        538
+      ],
+      "laptop": [
+        422,
+        590
+      ],
+      "desktop": [
+        693,
+        975
+      ]
+    }
+  },
+  "assets/figma-315-720.webp": {
+    "box": {
+      "mobile": [
+        319,
+        430
+      ],
+      "tablet": [
+        115,
+        258
+      ],
+      "laptop": [
+        168,
+        283
+      ],
+      "desktop": [
+        275,
+        467
+      ]
+    }
+  },
+  "assets/figma-315-722.webp": {
+    "box": {
+      "mobile": [
+        319,
+        430
+      ],
+      "tablet": [
+        115,
+        258
+      ],
+      "laptop": [
+        168,
+        283
+      ],
+      "desktop": [
+        275,
+        467
+      ]
+    }
+  },
+  "assets/icons/object-cursor.svg": {
+    "box": {
+      "mobile": [
+        0,
+        0
+      ],
+      "tablet": [
+        72,
+        72
+      ],
+      "laptop": [
+        72,
+        72
+      ],
+      "desktop": [
+        72,
+        72
+      ]
+    }
+  },
+  "assets/icons/visit-arrow.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/figma-315-325.webp": {
+    "box": {
+      "mobile": [
+        390,
+        1278
+      ],
+      "tablet": [
+        768,
+        838
+      ],
+      "laptop": [
+        1280,
+        593
+      ],
+      "desktop": [
+        1920,
+        768
+      ]
+    }
+  },
+  "assets/figma-315-748.webp": {
+    "box": {
+      "mobile": [
+        186,
+        150
+      ],
+      "tablet": [
+        186,
+        180
+      ],
+      "laptop": [
+        186,
+        180
+      ],
+      "desktop": [
+        186,
+        236
+      ]
+    }
+  },
+  "assets/figma-315-753.webp": {
+    "box": {
+      "mobile": [
+        195,
+        150
+      ],
+      "tablet": [
+        195,
+        180
+      ],
+      "laptop": [
+        195,
+        180
+      ],
+      "desktop": [
+        199,
+        234
+      ]
+    }
+  },
+  "assets/figma-315-758.webp": {
+    "box": {
+      "mobile": [
+        195,
+        150
+      ],
+      "tablet": [
+        195,
+        180
+      ],
+      "laptop": [
+        195,
+        180
+      ],
+      "desktop": [
+        230,
+        223
+      ]
+    }
+  },
+  "assets/figma-315-763.webp": {
+    "box": {
+      "mobile": [
+        159,
+        150
+      ],
+      "tablet": [
+        159,
+        180
+      ],
+      "laptop": [
+        159,
+        180
+      ],
+      "desktop": [
+        159,
+        206
+      ]
+    }
+  },
+  "assets/figma-315-359.webp": {
+    "box": {
+      "mobile": [
+        390,
+        990
+      ],
+      "tablet": [
+        768,
+        741
+      ],
+      "laptop": [
+        1280,
+        749
+      ],
+      "desktop": [
+        1920,
+        926
+      ]
+    }
+  },
+  "assets/icons/mortgage-arrow.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/figma-315-410.webp": {
+    "box": {
+      "mobile": [
+        480,
+        0
+      ],
+      "tablet": [
+        480,
+        0
+      ],
+      "laptop": [
+        480,
+        0
+      ],
+      "desktop": [
+        580,
+        444
+      ]
+    }
+  },
+  "assets/figma-315-423.webp": {
+    "box": {
+      "mobile": [
+        390,
+        0
+      ],
+      "tablet": [
+        390,
+        0
+      ],
+      "laptop": [
+        390,
+        0
+      ],
+      "desktop": [
+        465,
+        464
+      ]
+    }
+  },
+  "assets/icons/review-map.svg": {
+    "box": {
+      "mobile": [
+        55,
+        81
+      ],
+      "tablet": [
+        55,
+        81
+      ],
+      "laptop": [
+        65,
+        96
+      ],
+      "desktop": [
+        65,
+        96
+      ]
+    }
+  },
+  "assets/icons/star.svg": {
+    "box": {
+      "mobile": [
+        23,
+        23
+      ],
+      "tablet": [
+        23,
+        23
+      ],
+      "laptop": [
+        23,
+        23
+      ],
+      "desktop": [
+        23,
+        23
+      ]
+    }
+  },
+  "assets/figma-I315-446_199-345.webp": {
+    "box": {
+      "mobile": [
+        76,
+        76
+      ],
+      "tablet": [
+        76,
+        76
+      ],
+      "laptop": [
+        76,
+        76
+      ],
+      "desktop": [
+        98,
+        98
+      ]
+    }
+  },
+  "assets/figma-I315-447_199-345.webp": {
+    "box": {
+      "mobile": [
+        76,
+        76
+      ],
+      "tablet": [
+        76,
+        76
+      ],
+      "laptop": [
+        76,
+        76
+      ],
+      "desktop": [
+        98,
+        98
+      ]
+    }
+  },
+  "assets/figma-I315-448_199-345.webp": {
+    "box": {
+      "mobile": [
+        76,
+        76
+      ],
+      "tablet": [
+        76,
+        76
+      ],
+      "laptop": [
+        76,
+        76
+      ],
+      "desktop": [
+        98,
+        98
+      ]
+    }
+  },
+  "assets/figma-I315-449_199-345.webp": {
+    "box": {
+      "mobile": [
+        76,
+        76
+      ],
+      "tablet": [
+        76,
+        76
+      ],
+      "laptop": [
+        76,
+        76
+      ],
+      "desktop": [
+        98,
+        98
+      ]
+    }
+  },
+  "assets/figma-315-791.webp": {
+    "box": {
+      "mobile": [
+        354,
+        497
+      ],
+      "tablet": [
+        680,
+        375
+      ],
+      "laptop": [
+        680,
+        310
+      ],
+      "desktop": [
+        680,
+        395
+      ]
+    }
+  },
+  "assets/figma-315-456.webp": {
+    "box": {
+      "mobile": [
+        390,
+        1743
+      ],
+      "tablet": [
+        768,
+        1078
+      ],
+      "laptop": [
+        1280,
+        700
+      ],
+      "desktop": [
+        1920,
+        823
+      ]
+    }
+  },
+  "assets/figma-315-467.webp": {
+    "box": {
+      "mobile": [
+        334,
+        160
+      ],
+      "tablet": [
+        296,
+        160
+      ],
+      "laptop": [
+        165,
+        160
+      ],
+      "desktop": [
+        243,
+        177
+      ]
+    }
+  },
+  "assets/figma-315-483.webp": {
+    "box": {
+      "mobile": [
+        334,
+        160
+      ],
+      "tablet": [
+        296,
+        160
+      ],
+      "laptop": [
+        165,
+        160
+      ],
+      "desktop": [
+        243,
+        177
+      ]
+    }
+  },
+  "assets/figma-315-499.webp": {
+    "box": {
+      "mobile": [
+        334,
+        160
+      ],
+      "tablet": [
+        296,
+        160
+      ],
+      "laptop": [
+        165,
+        160
+      ],
+      "desktop": [
+        243,
+        177
+      ]
+    }
+  },
+  "assets/icons/question-arrow.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/icons/faq-plus.svg": {
+    "box": {
+      "mobile": [
+        9,
+        9
+      ],
+      "tablet": [
+        9,
+        9
+      ],
+      "laptop": [
+        9,
+        9
+      ],
+      "desktop": [
+        9,
+        9
+      ]
+    }
+  },
+  "assets/figma-315-555.webp": {
+    "box": {
+      "mobile": [
+        75,
+        96
+      ],
+      "tablet": [
+        65,
+        96
+      ],
+      "laptop": [
+        80,
+        184
+      ],
+      "desktop": [
+        132,
+        103
+      ]
+    }
+  },
+  "assets/icons/subscribe-arrow.svg": {
+    "box": {
+      "mobile": [
+        14,
+        12
+      ],
+      "tablet": [
+        14,
+        12
+      ],
+      "laptop": [
+        14,
+        12
+      ],
+      "desktop": [
+        14,
+        12
+      ]
+    }
+  },
+  "assets/figma-315-570.webp": {
+    "box": {
+      "mobile": [
+        75,
+        96
+      ],
+      "tablet": [
+        65,
+        96
+      ],
+      "laptop": [
+        80,
+        184
+      ],
+      "desktop": [
+        132,
+        103
+      ]
+    }
+  },
+  "assets/figma-315-582.webp": {
+    "box": {
+      "mobile": [
+        75,
+        76
+      ],
+      "tablet": [
+        65,
+        76
+      ],
+      "laptop": [
+        80,
+        184
+      ],
+      "desktop": [
+        132,
+        103
+      ]
+    }
+  },
+  "assets/figma-315-590.webp": {
+    "box": {
+      "mobile": [
+        75,
+        76
+      ],
+      "tablet": [
+        65,
+        76
+      ],
+      "laptop": [
+        80,
+        184
+      ],
+      "desktop": [
+        132,
+        103
+      ]
+    }
+  },
+  "assets/figma-I315-526_169-206.webp": {
+    "box": {
+      "mobile": [
+        13,
+        13
+      ],
+      "tablet": [
+        13,
+        13
+      ],
+      "laptop": [
+        13,
+        13
+      ],
+      "desktop": [
+        13,
+        13
+      ]
+    }
+  },
+  "assets/figma-I315-526_169-260.webp": {
+    "box": {
+      "mobile": [
+        58,
+        14
+      ],
+      "tablet": [
+        58,
+        14
+      ],
+      "laptop": [
+        58,
+        14
+      ],
+      "desktop": [
+        58,
+        14
+      ]
+    }
+  },
+  "assets/figma-I315-526_169-289.webp": {
+    "box": {
+      "mobile": [
+        390,
+        190
+      ],
+      "tablet": [
+        313,
+        153
+      ],
+      "laptop": [
+        473,
+        231
+      ],
+      "desktop": [
+        539,
+        263
+      ]
+    }
+  },
+  "assets/icons/close.svg": {
+    "box": {
+      "mobile": [
+        0,
+        0
+      ],
+      "tablet": [
+        0,
+        0
+      ],
+      "laptop": [
+        0,
+        0
+      ],
+      "desktop": [
+        0,
+        0
+      ]
+    }
+  },
+  "assets/icons/vk.svg": {
+    "box": {
+      "mobile": [
+        0,
+        0
+      ],
+      "tablet": [
+        0,
+        0
+      ],
+      "laptop": [
+        53,
+        53
+      ],
+      "desktop": [
+        53,
+        53
+      ]
+    }
+  },
+  "assets/icons/whatsapp.svg": {
+    "box": {
+      "mobile": [
+        0,
+        0
+      ],
+      "tablet": [
+        0,
+        0
+      ],
+      "laptop": [
+        53,
+        53
+      ],
+      "desktop": [
+        53,
+        53
+      ]
+    }
+  }
+}
