@@ -165,6 +165,12 @@
   html [data-figma-text="I315:677;124:149"][data-figma-text] {
     font-size: 25.5px;
   }
+  html [data-figma-text="478:1263"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
+  html [data-figma-text="478:1264"][data-figma-text] {
+    font-size: clamp(28px, 2.65625vw, 51px);
+  }
 }
 @media (max-width: 760px) {
   html [data-figma-text="315:301"][data-figma-text] {
@@ -331,5 +337,11 @@
   }
   html [data-figma-text="I315:677;124:149"][data-figma-text] {
     font-size: 24px;
+  }
+  html [data-figma-text="478:1263"][data-figma-text] {
+    font-size: 28px;
+  }
+  html [data-figma-text="478:1264"][data-figma-text] {
+    font-size: 28px;
   }
 }

@@ -10,7 +10,14 @@ const assert = require("node:assert/strict");
   p.on("pageerror", (e) => errors.push(e.message));
   await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
   await p.evaluate(() => document.fonts.ready);
-  assert.equal(await p.locator("main .eyebrow").count(), 0);
+  // В новой ревизии макета «эйброу» с точкой вернулся в секции «Что входит»
+  // (узел 478:1233) и вернётся в «7 шагов»; в остальных секциях его нет.
+  assert.deepEqual(
+    await p
+      .locator("main .eyebrow")
+      .evaluateAll((es) => es.map((e) => e.dataset.figmaText)),
+    ["478:1233"],
+  );
   const label = p.locator(".price-panel .button-label"),
     button = p.locator(".price-panel>.button");
   let l = await label.boundingBox(),
@@ -105,7 +112,7 @@ const assert = require("node:assert/strict");
   assert.deepEqual(errors, []);
   await b.close();
   console.log(
-    "PASS: centered CTA, source labels without eyebrows, warning, white list numbers, themed path, project autoplay/dots, expanding hover gallery, unclipped title, protruding portrait.",
+    "PASS: centered CTA, eyebrow only where the new mockup has it, warning, white list numbers, themed path, project autoplay/dots, expanding hover gallery, unclipped title, protruding portrait.",
   );
 })().catch((e) => {
   console.error(e);

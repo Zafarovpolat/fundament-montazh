@@ -3476,7 +3476,9 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   }
 }
 
-/* ── Виды фундаментов: сетка карточек 3×2 (макет 476:1119) ────────────────
+/* ── Виды фундаментов: сетка карточек 3×2 (макет 476:1119)
+   Типографика узлов — в figma-type.css (по одному правилу на узел),
+   здесь только геометрия и оформление блоков. ────────────────
    Значения сняты с узлов Figma, отступы — относительно карточки 541×773.
    Границ у карточек и фото в макете нет (strokes: []), только скругления. */
 .foundation-cards {
@@ -3511,12 +3513,6 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   padding: 10px;
   border-radius: 10px;
   background: #ffc924;
-  color: #000;
-  font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 16.4px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
 }
 .foundation-card__body {
   display: flex;
@@ -3525,26 +3521,12 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 }
 .foundation-card__title {
   margin: 15px 0 0;
-  color: #000;
-  font-family: var(--font-heading);
-  font-size: 25px;
-  font-weight: 500;
-  line-height: 31.7px;
-  text-transform: uppercase;
 }
 .foundation-card__desc {
   margin: 10px 0 0;
-  color: rgb(0 0 0 / 40%);
-  font-size: 17px;
-  line-height: 21.4px;
 }
 .foundation-card__suites {
   margin: 20px 0 0;
-  color: rgb(0 0 0 / 40%);
-  font-family: var(--font-heading);
-  font-size: 18px;
-  line-height: 22.8px;
-  text-transform: uppercase;
 }
 .foundation-card__chips {
   display: flex;
@@ -3558,24 +3540,12 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   padding: 10px;
   border-radius: 10px;
   background: #f4f4f4;
-  color: #000;
-  font-size: 16px;
-  line-height: 20.2px;
 }
 .foundation-card__price {
   margin: 15px 0 0;
-  color: #000;
-  font-family: var(--font-heading);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 38px;
-  text-transform: uppercase;
 }
 .foundation-card__note {
   margin: 5px 0 0;
-  color: rgb(0 0 0 / 40%);
-  font-size: 16px;
-  line-height: 20.2px;
 }
 .foundation-card .button {
   width: 297px;
@@ -3588,7 +3558,6 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 }
 .foundation-card .button--yellow {
   /* В макете подпись на жёлтой кнопке — чисто чёрная, а не --ink. */
-  color: #000;
 }
 /* Плашка иконки: в макете 60×73 при кнопке 83, т.е. отступ 5 px со всех сторон.
    Селектор повторяет паттерн сайта (.button[data-motion-button] .button-icon),
@@ -3605,4 +3574,83 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   flex-basis: 60px;
   min-height: 73px;
   border-radius: 17px;
+}
+
+/* ── «Что входит» (макет 491:625) ─────────────────────────────────────────
+   Две панели 820×513 с радиусом 25; плашка прижата к верхнему краю панели,
+   сетка плиток 3×3 и 3×2 по 240×110 с шагом 11. */
+#included .heading-line--inset {
+  margin-left: 71px; /* 184 - 113 в макете */
+}
+#included .heading-description {
+  max-width: 354px;
+}
+.included-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.included-panel {
+  padding: 0 40px 42px;
+  border-radius: 25px;
+  background: #fff;
+}
+.included-panel__tab {
+  display: flex;
+  align-items: center;
+  min-width: 338px;
+  height: 90px;
+  margin: 0;
+  padding: 0 30px 0 70px;
+  background: #ffc924;
+}
+.included-panel--extra .included-panel__tab {
+  min-width: 344px;
+  padding-left: 64px;
+  background: var(--ink);
+}
+.included-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  margin: 23px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.included-tile {
+  display: flex;
+  flex-direction: column;
+  /* Строка макета 112 px: 10 + 37.8 + 10 + 2*21.4 + 9.2 */
+  min-height: 112px;
+  padding: 10px 15px 9px;
+  border-radius: 10px;
+}
+.included-tile.is-muted,
+.included-tile--price {
+  background: #f4f4f4;
+}
+.included-tile__num {
+}
+.included-tile__text {
+  margin-top: 10px;
+}
+.included-tile--price {
+  justify-content: space-between;
+  min-height: 110px; /* правые плитки макета — 240x110 */
+  padding: 15px;
+}
+.included-tile__name {
+}
+.included-tile__price {
+}
+.included-saving {
+  margin-top: 39px;
+}
+.included-saving__title {
+  margin: 0;
+}
+.included-saving__text {
+  max-width: 470px;
+  margin: 10px 0 0;
 }
