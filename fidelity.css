@@ -177,9 +177,11 @@ dd[data-figma-text] {
 .geology-grid .section-heading {
   margin-bottom: 20px;
 }
+/* 478:1228 — 669×857, верх фото на 66 px выше заголовка, низ — на 45 px
+   ниже блока текста (секция «2»: группа 391:447 ровно по высоте фото). */
 .geology-image {
-  margin-top: -54px;
-  width: 671px;
+  margin-top: -66px;
+  width: 669px;
   max-width: 100%;
   max-height: none;
 }
@@ -246,6 +248,10 @@ dd[data-figma-text] {
 .stats-grid dd {
   margin-top: 10px;
 }
+/* Размер блока фото оставлен как в принятой вёрстке (679 px, наезд на 127 px
+   выше секции — это намеренный приём, его сторожит tests/review.cjs).
+   Из макета взяты пропорции плашки 597:1791 (left 27.27 %, width 59.34 %)
+   и подписи 315:321 (354 px от левого 30.3 %). */
 .director-portrait {
   width: 96.59%;
   max-width: 679px;
@@ -261,8 +267,8 @@ dd[data-figma-text] {
   position: absolute;
   top: -50px;
   bottom: -50px;
-  left: 25.4786%;
-  width: 64.0648%;
+  left: 27.27%;
+  width: 59.34%;
   background: var(--accent);
   z-index: -1;
 }
@@ -274,6 +280,10 @@ dd[data-figma-text] {
   max-width: none;
   height: auto;
   z-index: 0;
+  /* две заметные тени из пяти слоёв 597:1793, масштаб 679/792; остальные
+     дают <2 % плотности, а filter на полном слое стоит дороже */
+  filter: drop-shadow(11px 4px 26px rgba(13, 13, 13, 0.2))
+    drop-shadow(45px 16px 47px rgba(13, 13, 13, 0.17));
 }
 .director-portrait::after {
   content: "";
@@ -288,9 +298,9 @@ dd[data-figma-text] {
 }
 .director-portrait figcaption {
   position: absolute;
-  left: 27.39%;
+  left: 30.3%;
   bottom: 10px;
-  width: 52.14%;
+  width: 57.3%;
   max-width: 354px;
   z-index: 2;
   padding: 0;
@@ -2384,6 +2394,11 @@ html .page-path .is-dark .path-label[data-figma-text] {
     object-position: center top;
     bottom: -50px;
     left: 0;
+  }
+  /* плашка 597:1791: низ у низа фото, верх — 17.7 % высоты фото
+     (-177 px верх фото + 167 px = -10 px от верха figure) */
+  .director-portrait::before {
+    top: -10px;
   }
   .director-portrait::after {
     height: calc(100% + 227px);

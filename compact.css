@@ -168,11 +168,12 @@
     object-position: center;
     transform: none;
   }
+  /* пропорции плашки 597:1791 из макета: верх — 17.68 % высоты фото */
   .director-portrait::before {
-    top: 0;
+    top: 17.68%;
     bottom: 0;
-    left: 25.4786%;
-    width: 64.0648%;
+    left: 27.27%;
+    width: 59.34%;
   }
   .director-portrait::after {
     bottom: 0;

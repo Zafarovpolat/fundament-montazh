@@ -1654,6 +1654,16 @@ html [data-figma-text="391:394"][data-figma-text] {
   --text-width: 303px;
   color: rgba(0, 0, 0, 0.4);
 }
+html [data-figma-text="391:389"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.294118;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+  --text-width: 303px;
+  color: rgba(0, 0, 0, 0.4);
+}
 html [data-figma-text="391:399"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 17px;
