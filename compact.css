@@ -168,12 +168,15 @@
     object-position: center;
     transform: none;
   }
-  /* пропорции плашки 597:1791 из макета: верх — 17.68 % высоты фото */
+  /* пропорции плашки 597:1791 из макета: верх — 17.68 % высоты фото;
+     радиус масштабируется вместе с портретом, поэтому 21.34 % ширины
+     (= 100/470) с потолком в 86 px */
   .director-portrait::before {
     top: 17.68%;
     bottom: 0;
-    left: 27.27%;
-    width: 59.34%;
+    left: 24.6%;
+    width: 62%;
+    border-radius: min(86px, 36%) min(86px, 36%) 0 0;
   }
   .director-portrait::after {
     bottom: 0;

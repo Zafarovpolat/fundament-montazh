@@ -1,18 +1,20 @@
 "use strict";
 /**
- * Пин секции «7 шагов» (#design, макет 315:324).
+ * Пин секции «7 шагов» (#design, макет 315:324) со свободным диапазоном.
  *
  * Когда верхний край секции доходит до кромки вьюпорта, страница замирает, а
- * вертикальный скролл начинает листать ряд карточек — тот же рельс 491:667,
- * которым управляют стрелки и range, поэтому прогресс, disabled у стрелок и
- * подпись шага синхронизируются сами (MutationObserver в sliders.js).
- * Как только ряд дошёл до последнего листа, блокировка снимается и страница
- * едет дальше; на обратном ходу симметрично: сначала первый лист, потом вверх.
+ * вертикальный скролл начинает двигать ряд карточек — не по листам, а 1:1:
+ * на сколько пикселей проехалось колесо, настолько и сдвинулся трек (шаг
+ * = ширина карточки + gap, его отдаёт carousel.step). Рельс 491:667, жёлтая
+ * полоса и пилюля со стрелками наследуют эту же дробную позицию, поэтому
+ * стрелки, перетаскивание ползунка, drag самого ряда и колесо — один и тот же
+ * диапазон без притягивания к целому шагу.
  *
- * Пин не меняет высоту секции и не добавляет обёрток в разметку. Ловятся
- * только wheel/touch, поэтому якорные ссылки, programmatic scroll и тесты
- * (там нет колеса) работают как раньше. Выключен при data-motion="off" и при
- * ширине ≤1441px: ниже ряд остаётся обычным листальным.
+ * На краях диапазона блокировка снимается: довели ряд до конца — дальше едет
+ * страница; на обратном ходу симметрично. Пин не меняет высоту секции и не
+ * добавляет обёрток в разметку; ловятся только wheel/touch, поэтому якорные
+ * ссылки, programmatic scroll и тесты (там нет колеса) работают как раньше.
+ * Выключен при data-motion="off" и при ширине ≤1441px.
  */
 (() => {
   const section = document.getElementById("design");
@@ -36,8 +38,6 @@
   function init() {
     const wide = window.matchMedia("(min-width: 1441px)");
     const motionOn = () => document.documentElement.dataset.motion !== "off";
-    // Сколько колеса стоит один лист ряда: ~три щелчка мыши.
-    const PAGE_DELTA = 260;
     // Верх секции считается «у кромки» в этом диапазоне — вход в пин.
     const ENTER_SLACK = 320;
     // html { scroll-padding-top }: секция пристыкуется не к 0, а к этой метке,
@@ -45,14 +45,14 @@
     const park = () =>
       parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) ||
       0;
+    const span = () => Math.max(0, api.pages - 1);
+    const atStart = () => api.position <= 0.001;
+    const atEnd = () => api.position >= span() - 0.001;
 
     let anchor = null; // pageY, на котором держим страницу
-    let acc = 0; // накопленный delta внутри текущего листа
     let touchY = null;
 
-    const enabled = () => wide.matches && motionOn() && api.pages > 1;
-    const atStart = () => api.page <= 0;
-    const atEnd = () => api.page >= api.pages - 1;
+    const enabled = () => wide.matches && motionOn() && span() > 0;
     const pinned = () => anchor !== null;
 
     function hold() {
@@ -66,7 +66,6 @@
 
     function release() {
       anchor = null;
-      acc = 0;
       document.documentElement.classList.remove("is-steps-pinned");
       window.removeEventListener("scroll", reassert);
     }
@@ -86,7 +85,7 @@
       }
     }
 
-    // Вход: секция верхом у кромки, ряд ещё не доскроллен в нужную сторону.
+    // Вход: секция верхом у кромки, ряд ещё не досведён в нужную сторону.
     function enter(dir) {
       if (!enabled()) return false;
       const r = section.getBoundingClientRect();
@@ -97,17 +96,17 @@
       return true;
     }
 
-    /** Превращает вертикальный delta в один лист ряда. true — событие съедено. */
+    /** Превращает delta колеса в сдвиг ряда 1:1. true — событие съедено. */
     function consume(dy) {
-      const dir = dy > 0 ? 1 : -1;
-      if (dir > 0 ? atEnd() : atStart()) {
+      const step = api.step || 1;
+      const next = Math.max(0, Math.min(span(), api.position + dy / step));
+      if (next <= 0.001 || next >= span() - 0.001) {
+        // До края доводим и отпускаем страницу: дальше скролл обычный.
+        api.position = next;
         release();
         return false;
       }
-      acc += dy;
-      if (Math.abs(acc) < PAGE_DELTA) return true;
-      api.goTo(Math.max(0, Math.min(api.pages - 1, api.page + dir)));
-      acc = 0;
+      api.position = next;
       return true;
     }
 

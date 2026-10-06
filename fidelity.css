@@ -104,8 +104,14 @@ dd[data-figma-text] {
   padding: 71px 0 50px;
 }
 .hero-grid {
+  /* 360:393: в макете зазор 193 px и колонка текста 935 px, но самая длинная
+     строка заголовка занимает 932 px. Выше 1920 px контейнер упирается в
+     --container: 1660 px, а кегль уже на clamp-потолке (75 px) — запас в 1-3 px
+     и на больших экранах третья строка («за 5-10 дней») переезжала на четвёртую.
+     Зазор режем на 35 px: текст получает 956 px, панель цен — 546 px (ей только
+     на пользу: строки «Ленточный фундамент / от 13 500 ₽/м³» шире не рвётся). */
   grid-template-columns: minmax(0, 935fr) minmax(0, 535fr);
-  column-gap: 193px;
+  column-gap: 158px;
   row-gap: 7px;
 }
 .hero-badge {
@@ -117,7 +123,9 @@ dd[data-figma-text] {
   margin-bottom: 20px;
 }
 .hero h1 {
-  max-width: 935px;
+  /* 985 px = --text-width узла 360:393; 935 px не давали колонке использовать
+     прирост от уменьшенного зазора. */
+  max-width: 985px;
   margin-bottom: 20px;
 }
 .hero-copy .lead {
@@ -272,11 +280,17 @@ html .price-list .muted {
 .director-portrait::before {
   content: "";
   position: absolute;
-  top: -50px;
+  /* 597:1790/597:1791: плашка 470x908 сидит в группе 793x1103 со сдвигом
+     (216, 195); портрет в CSS — 679 px = 0.856 макетной ширины, отсюда
+     top = 195*0.856 - 176 (верх фото выступает на 176 px) = -9 px, а не -50. */
+  top: -9px;
   bottom: -50px;
-  left: 27.27%;
-  width: 59.34%;
+  /* правый край макетный (86.6 %), левый по просьбе заказчика вытянут на 18 px */
+  left: 24.6%;
+  width: 62%;
   background: var(--accent);
+  /* в макете радиус [100, 100, 0, 0]; 100 * 0.856 = 86 px, низ прямой */
+  border-radius: 86px 86px 0 0;
   z-index: -1;
 }
 .director-portrait > .director-photo {
@@ -370,8 +384,17 @@ html .price-list .muted {
   flex: 0 0 calc((100% - var(--bleed) - 2 * var(--card-gap)) / 3);
   min-width: 0;
 }
-.fidelity-track.is-dragging {
+/* Свободный рендж: пока ряд ведут колесом (пин #design) или ползунком рельса,
+   transform и позиция пилюли должны идти за вводом, а не догонять 650/260 ms —
+   тот же приём, что и при drag'е самого трека. */
+.fidelity-track.is-dragging,
+html.is-scrubbing .fidelity-track,
+html.is-steps-pinned .fidelity-track,
+html.is-scrubbing .steps-range__ctrl,
+html.is-steps-pinned .steps-range__ctrl {
   transition: none;
+}
+.fidelity-track.is-dragging {
   user-select: none;
 }
 .fidelity-track img,
@@ -905,13 +928,14 @@ html .price-list .muted {
   content: "";
   position: absolute;
   inset: 0;
-  /* правый край не уходит в прозрачность: по макету там остаётся 20 %
-     тёмно-синего, иначе фото на тёмном фоне сливается с секцией. */
+  /* правый край не уходит в прозрачность: по макету там остаётся тёмно-синий,
+     иначе фото на тёмном фоне сливается с секцией. 20 % оказалось мало —
+     поднимаем до 45 %, чтобы правая половина читалась как продолжение левой. */
   background: linear-gradient(
     90deg,
     #070b1f 0%,
     rgb(7 11 31 / 60%) 22%,
-    rgb(7 11 31 / 20%) 62%
+    rgb(7 11 31 / 45%) 62%
   );
 }
 .visit-banner h2 {
@@ -2096,6 +2120,18 @@ html #objects .heading-description > span:last-child {
   #objects .section-heading .heading-line--inset,
   #social .section-heading .heading-line--inset {
     margin-left: 0;
+  }
+}
+/* В #social («Вы можете найти / нас на всех соц сетях») вторая строка должна
+   оставаться со сдвигом — на 0 px она вставала в одну линию с первой.
+   Отступ — clamp по вьюпорту и только от 640 px: запас строки (доступно минус
+   текст) измерен в браузере
+   (доступно минус текст) — 124 px на 1919, 95 на 1512, минимум 59 на 1080;
+   2.4vw даёт 46/36/26 px при запасе 124/95/59 px. Ниже 640 px в макете строки
+   идут без сдвига, а там строка и так переносится — отступ только вредил. */
+@media (min-width: 640px) and (max-width: 1919px) {
+  #social .section-heading .heading-line--inset {
+    margin-left: clamp(18px, 2.4vw, 48px);
   }
 }
 /* ниже 1600 описание уходит под заголовок — иначе строке не хватает ширины */
@@ -3286,7 +3322,9 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 10px 0 0;
+  /* нижний отступ держит зазор до цены, когда свободной высоты нет (узкие
+     экраны) — дальше его заменяет auto-отступ цены */
+  margin: 10px 0 15px;
   padding: 0;
   list-style: none;
 }
@@ -3296,7 +3334,10 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   background: #f4f4f4;
 }
 .foundation-card__price {
-  margin: 15px 0 0;
+  /* Карточки в ряду одной высоты, а тексты у них разные — в макете (476:1119)
+     цена, сноска и кнопка сидят у дна. auto-отступ прижимает их вниз на любой
+     ширине, а при нехватке места зазор в 15 px держат чипсы. */
+  margin: auto 0 0;
   white-space: nowrap;
 }
 .foundation-card__note {
@@ -3646,6 +3687,11 @@ html .header-menu .header-contact > .phone[data-figma-text] {
    прогресса, а не выставляется вручную */
 .steps-range__ctrl {
   position: absolute;
+  /* input лежит выше (z-index: 2) и перекрывал пилюлю целиком — стрелки нельзя
+     было нажать указателем (работал только .click() из консоли). Поднимаем
+     пилюлю над ползунком: её кнопки кликабельны, а тянуть рельс можно в любой
+     точке линии вне пилюли */
+  z-index: 3;
   top: 0;
   left: calc(var(--steps-progress, 0.5) * (100% - 62px));
   display: flex;

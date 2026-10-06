@@ -8,6 +8,7 @@
       ...document.querySelectorAll(`[data-target="${track.id}"]`),
     ];
     let index = 0,
+      pos = 0, // дробная позиция ряда: рельс 491:667 работает свободным диапазоном
       size = 1,
       limit = 0,
       start = 0,
@@ -29,11 +30,13 @@
       );
       limit = Math.max(0, cards.length - shown);
       index = Math.min(index, limit);
+      pos = Math.max(0, Math.min(pos, limit));
       paint();
     }
     function paint() {
-      track.style.setProperty("--slide-x", `${-index * size + delta}px`);
+      track.style.setProperty("--slide-x", `${-pos * size + delta}px`);
       track.dataset.slideIndex = String(index);
+      track.dataset.slidePos = pos.toFixed(3);
       controls.forEach((button) => {
         button.disabled =
           Number(button.dataset.scroll) < 0 ? index === 0 : index === limit;
@@ -42,6 +45,7 @@
     function go(direction) {
       finishLoop?.();
       index = Math.max(0, Math.min(limit, index + direction));
+      pos = index;
       delta = 0;
       paint();
       track.dispatchEvent(new Event("carouselchange"));
@@ -73,7 +77,7 @@
       const distance = event.clientX - start;
       if (Math.abs(distance) > 7) suppressClick = true;
       delta =
-        (index === 0 && distance > 0) || (index === limit && distance < 0)
+        (pos <= 0 && distance > 0) || (pos >= limit && distance < 0)
           ? distance * 0.18
           : distance;
       paint();
@@ -86,12 +90,12 @@
         track.releasePointerCapture(pointer);
       const shift = delta;
       delta = 0;
-      if (
-        event.type === "pointerup" &&
-        Math.abs(shift) > Math.min(80, size * 0.18)
-      )
-        go(shift < 0 ? 1 : -1);
-      else paint();
+      /* Свободный рендж: ряд остаётся там, где его отпустили — к целому листу
+         не притягиваем. Состояние листа (стрелки, подпись) — по ближайшему. */
+      pos = Math.max(0, Math.min(limit, pos + shift / size));
+      index = Math.round(pos);
+      paint();
+      track.dispatchEvent(new Event("carouselchange"));
       pointer = null;
     }
     track.addEventListener("pointerup", release);
@@ -120,6 +124,22 @@
       goTo(to) {
         go(to - index);
       },
+      /** Дробная позиция ряда в листах — «свободный рендж» рельса. */
+      get position() {
+        return pos;
+      },
+      set position(value) {
+        finishLoop?.();
+        pos = Math.max(0, Math.min(limit, Number(value) || 0));
+        index = Math.round(pos);
+        delta = 0;
+        paint();
+        track.dispatchEvent(new Event("carouselchange"));
+      },
+      /** Сколько пикселей прокрутки стоит один лист (нужно пину #design). */
+      get step() {
+        return size;
+      },
       async advanceLoop() {
         finishLoop?.();
         const cards = visibleCards();
@@ -128,6 +148,7 @@
           track.style.transition = "none";
           for (let i = 0; i < count; i++) track.append(visibleCards()[0]);
           index = 0;
+          pos = 0;
           delta = 0;
           paint();
           void track.offsetWidth;
@@ -135,6 +156,7 @@
         }
         if (index) rotate(index);
         index = 1;
+        pos = 1;
         paint();
         await new Promise((resolve) => {
           let timer;
@@ -155,6 +177,7 @@
       reset() {
         finishLoop?.();
         index = 0;
+        pos = 0;
         delta = 0;
         measure();
         track.dispatchEvent(new Event("carouselchange"));
@@ -264,18 +287,55 @@
   const api = track.carousel;
   const sync = () => {
     const pages = Math.max(1, api.pages);
-    const page = Math.min(api.page, pages - 1);
-    input.max = String(pages - 1);
-    input.value = String(page);
+    const last = pages - 1;
+    const free = Math.max(0, Math.min(api.position, last));
+    input.max = String(last);
+    // «any» даёт плавное перетаскивание; шаг листают обработчиком клавиш ниже
+    input.step = pages > 1 ? "any" : "1";
+    input.value = free.toFixed(3);
     rail.hidden = pages < 2;
-    // жёлтая полоса и пилюля со стрелками идут по прогрессу листов
-    const done = pages > 1 ? (page + 1) / pages : 1;
+    // жёлтая полоса и пилюля со стрелками идут по свободному прогрессу ряда
+    const done = pages > 1 ? (free + 1) / pages : 1;
     rail.style.setProperty("--steps-progress", done.toFixed(4));
+    input.setAttribute(
+      "aria-valuetext",
+      `Шаг ${Math.round(free) + 1} из ${pages}`,
+    );
   };
-  input.addEventListener("input", () => api.goTo(Number(input.value)));
+  input.addEventListener("input", () => {
+    api.position = Number(input.value);
+  });
+  // Пока ползунок ведут мышью/пальцем, трек и пилюля идут без инерции перехода
+  input.addEventListener("pointerdown", () =>
+    document.documentElement.classList.add("is-scrubbing"),
+  );
+  window.addEventListener("pointerup", () =>
+    document.documentElement.classList.remove("is-scrubbing"),
+  );
+  window.addEventListener("pointercancel", () =>
+    document.documentElement.classList.remove("is-scrubbing"),
+  );
+  input.addEventListener("keydown", (event) => {
+    const step = {
+      ArrowRight: 1,
+      ArrowUp: 1,
+      ArrowLeft: -1,
+      ArrowDown: -1,
+    }[event.key];
+    if (step) {
+      event.preventDefault();
+      api.goTo(Math.round(api.position) + step);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      api.goTo(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      api.goTo(api.pages - 1);
+    }
+  });
   new MutationObserver(sync).observe(track, {
     attributes: true,
-    attributeFilter: ["data-slide-index"],
+    attributeFilter: ["data-slide-index", "data-slide-pos"],
   });
   window.addEventListener("resize", sync);
   document.fonts.ready.then(sync);
