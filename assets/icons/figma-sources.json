@@ -22,6 +22,9 @@
     "mortgage-arrow": "199:297",
     "quote-arrow": "85:9",
     "project-arrow": "I315:674;124:232;124:192",
-    "subscribe-arrow": "I315:568;240:370"
-  }
+    "subscribe-arrow": "I315:568;240:370",
+    "included-verify": "478:1271",
+    "included-add": "491:589"
+  },
+  "note": "included-* — vuesax/bold из официального набора (Figma-компоненты макета те же)"
 }
