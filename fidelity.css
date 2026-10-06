@@ -1920,6 +1920,16 @@ html h3[data-figma-text] {
   .footer-cta .button-label {
     white-space: nowrap;
   }
+
+  /* FAQ по блоку 315:799: карточки 825×106 с шагом 10 px, текст вопроса
+     начинается с x 143 (13 px внутреннего отступа вместо базовых 30). */
+  .faq-grid {
+    gap: 10px;
+  }
+  .faq-grid summary {
+    min-height: 106px;
+    padding-left: 13px;
+  }
 }
 @media (max-width: 1439.98px) {
   .footer-credit {

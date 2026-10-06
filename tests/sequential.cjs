@@ -79,20 +79,24 @@ const assert = require("node:assert/strict");
     await p.locator(".warning h3").evaluate((e) => e.clientHeight),
     30,
   );
-  for (const selector of [
-    "#projects .with-yellow-rule",
-    "#advantages .with-yellow-rule",
+  // Число строк подводок берётся из высоты узла макета: 478:1234 — 44 px
+  // (2 строки по 22), 315:770 — 66 px (3 строки по 22).
+  for (const [selector, lines] of [
+    ["#projects .with-yellow-rule", 2],
+    ["#advantages .with-yellow-rule", 3],
   ]) {
     assert.ok(
       await p
         .locator(selector)
         .evaluate(
-          (e) =>
+          (e, n) =>
             Math.abs(
-              e.clientHeight - 2 * parseFloat(getComputedStyle(e).lineHeight),
+              e.clientHeight -
+                n * parseFloat(getComputedStyle(e).lineHeight),
             ) < 2,
+          lines,
         ),
-      selector + " two lines",
+      selector + " " + lines + " lines",
     );
   }
   assert.equal(
@@ -109,7 +113,7 @@ const assert = require("node:assert/strict");
   );
   await browser.close();
   console.log(
-    "PASS: стенд второй страницы (фильтры, 0→1→2, поворот карусели), главной — пять подписей, одна строка warning, две строки описаний, тёмная подложка.",
+    "PASS: стенд второй страницы (фильтры, 0→1→2, поворот карусели), главной — пять подписей, одна строка warning, описания в 2 и 3 строки по высоте узлов макета, тёмная подложка.",
   );
 })().catch((e) => {
   console.error(e);
