@@ -551,8 +551,12 @@ html.img-fade .img-reveal {
 }
 
 /* ============================================================
-   Куки-плашка (макет 440:1632, панель 1663×167).
-   Поязается снизу, живёт над параллаксом, не блокирует контент.
+   Куки-плашка — кадр 440:1632 «Мы используем файлы cookie» 1663x167:
+   панель ширины контейнера, заливка #FFF, обводки в узле нет (strokes: []),
+   cornerRadius 25 — как у панелей секций (на PNG-экспорте дуга выглядит
+   короче, это сглаживание углов Figma); текст 40 px от левого края,
+   кнопка 289x107 у правого.
+   Появляется снизу, живёт над параллаксом, не блокирует контент.
    ============================================================ */
 .cookie-bar {
   position: fixed;
@@ -570,14 +574,17 @@ html.img-fade .img-reveal {
   pointer-events: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 20px;
+  /* В кадре и текст, и кнопка идут от верхнего края (28 px), а не
+     центрируются: кнопка 107 px стоит y28..135 при панели 167 px. */
+  align-items: start;
+  gap: 24px;
   max-width: var(--container);
+  /* 167 px кадра = 30 сверху + 107 кнопка + 30 снизу (замер по пикселям). */
+  min-height: 167px;
   margin-inline: auto;
-  padding: 22px 24px;
+  padding: 28px 32px 28px 40px;
   background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 15px;
+  border-radius: 25px;
   box-shadow: 0 18px 48px #070b1f26;
   opacity: 0;
   transform: translateY(14px);
@@ -589,83 +596,40 @@ html.cookie-shown .cookie-bar__inner {
   opacity: 1;
   transform: none;
 }
+/* Заголовок: по кадру инк 521x29 px при x41 (замер по пикселям экспорта
+   1x) — это шрифт 30 px в --font-heading, lh 44; больше ничего из
+   типографики узла 440:1632 не читается, поэтому значения взяты с
+   измерений, а не на глаз. */
 .cookie-bar__title {
-  font: 600 17px/1.3 var(--font-heading);
-  margin: 0 0 6px;
+  margin: 0 0 12px;
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.5625vw, 30px);
+  font-weight: 400;
+  line-height: 44px;
+  text-transform: uppercase;
 }
+/* Примечание: 17/22 #000 @ 40 % — шаг строк в экспорте 23 px, строки
+   87..101 и 110..123; инк 1-й строки 648 px, переносы кадра держит
+   max-width 680 px. */
 .cookie-bar__note {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--muted);
+  max-width: 680px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 17px;
+  line-height: 22px;
 }
-.cookie-bar__note a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: opacity 200ms ease;
-}
-.cookie-bar__note a:hover,
-.cookie-bar__note a:focus-visible {
-  opacity: 0.7;
-}
-.cookie-bar__actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+/* Кнопка — штатный компонент .button[data-motion-button] (полоса-иконка
+   60 px, r20); в кадре она единственная. Ширина 289 px из кадра: подписшь
+   прижата к левому краю (31 px), полоса — к правому (10 px), остальное —
+   свободный промежуток, поэтому min-width, а не паддинги. */
 .cookie-bar__accept {
-  --button-height: 46px;
-  min-width: 140px;
-}
-.cookie-bar__decline,
-.cookie-bar__close {
-  font: 500 14px/1 var(--font-body);
-  color: var(--ink);
-  background: none;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 16px;
-  cursor: pointer;
-  transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    opacity 200ms ease;
-}
-.cookie-bar__decline:hover {
-  background: #f3f3f3;
-}
-.cookie-bar__decline:focus-visible,
-.cookie-bar__close:focus-visible,
-.cookie-bar__accept:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-.cookie-bar__close {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: var(--ink);
-  border-color: var(--ink);
-}
-.cookie-bar__close .figma-icon {
-  width: 10px;
-  height: 10px;
-}
-.cookie-bar__close:hover {
-  background: #1d2133;
-  border-color: #1d2133;
+  min-width: 289px;
 }
 @media (max-width: 1024px) {
   .cookie-bar__inner {
     grid-template-columns: minmax(0, 1fr);
     gap: 14px;
-  }
-  .cookie-bar__actions {
-    grid-column: 1 / -1;
-    flex-wrap: wrap;
   }
 }
 @media (max-width: 560px) {
@@ -673,12 +637,11 @@ html.cookie-shown .cookie-bar__inner {
     padding-inline: 12px;
   }
   .cookie-bar__inner {
-    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
     padding: 18px;
   }
-  .cookie-bar__actions {
-    flex-direction: column-reverse;
-    align-items: stretch;
+  .cookie-bar__note {
+    max-width: none;
   }
   .cookie-bar__accept {
     width: 100%;
