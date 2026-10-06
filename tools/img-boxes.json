@@ -582,8 +582,8 @@
   "assets/figma-315-555.webp": {
     "box": {
       "mobile": [
-        75,
-        72
+        70,
+        85
       ],
       "tablet": [
         70,
@@ -596,26 +596,6 @@
       "desktop": [
         108,
         103
-      ]
-    }
-  },
-  "assets/figma-I315-526_169-206.webp": {
-    "box": {
-      "mobile": [
-        13,
-        13
-      ],
-      "tablet": [
-        13,
-        13
-      ],
-      "laptop": [
-        13,
-        13
-      ],
-      "desktop": [
-        13,
-        13
       ]
     }
   },

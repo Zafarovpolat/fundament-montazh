@@ -985,7 +985,7 @@ progress::-moz-progress-bar {
 .footer-main {
   display: flex;
   flex-direction: column;
-  padding-block: 45px 30px;
+  padding-block: 40px 12px;
   min-width: 0;
 }
 .footer-columns {
@@ -993,35 +993,51 @@ progress::-moz-progress-bar {
   grid-template-columns: 1fr 1fr;
   gap: 15%;
 }
+.footer-columns nav {
+  display: grid;
+  row-gap: 15px;
+  /* сетка колонки растягивала бы строки на всю высоту контактов */
+  align-content: start;
+}
 .footer-columns nav > a {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font: clamp(22px, 1.6vw, 30px)/1.3 var(--font-heading);
-  text-transform: uppercase;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+  min-height: 48px;
 }
-.footer-columns address > a,
-.footer-columns address > p:not(.eyebrow) {
-  font-size: clamp(21px, 1.6vw, 30px);
-  margin-top: 25px;
+.footer-columns nav > a .figma-icon {
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+.footer-columns address {
+  display: grid;
+  row-gap: 29px;
+  align-content: start;
+}
+.footer-contact {
+  display: grid;
+  row-gap: 5px;
+}
+.footer-phones {
+  display: grid;
+  row-gap: 15px;
+}
+.footer-columns address a,
+.footer-columns address p {
+  display: block;
   overflow-wrap: anywhere;
 }
-.footer-columns address > a {
-  display: block;
-  margin-top: 25px;
-}
 .footer-columns address small,
-.footer-columns address button {
+.footer-columns address .text-button {
   display: block;
-  margin-top: 6px;
   color: var(--muted);
 }
 .footer-legal {
   border-top: 1px solid #00000026;
-  margin-top: 65px;
-  padding-top: 20px;
+  margin-top: 35px;
+  padding-top: 15px;
   display: flex;
   justify-content: space-between;
   gap: 24px;
@@ -1054,7 +1070,8 @@ progress::-moz-progress-bar {
   margin-top: auto;
 }
 .site-footer .eyebrow {
-  margin-bottom: 20px;
+  /* 15 px сетки + 14 = макетные 29 px до первого ряда */
+  margin-bottom: 14px;
 }
 /* Dialogs use regular flow. */
 dialog {

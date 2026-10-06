@@ -1832,56 +1832,68 @@ html h3[data-figma-text] {
   height: 14px;
   object-fit: contain;
 }
-@media (min-width: 1800px) {
+/* Подвал по блоку 609:1066. Левая колонка — 1101 px (887 px из них занимают
+  две колонки по 330 px с макетным шагом 227 px), жёлтая панель 609:968
+  шириной 670 px дотянута до края экрана, картинка 609:973 539×263 прижата к
+  её правому нижнему углу. */
+@media (min-width: 1440px) {
   .footer-grid {
     grid-template-columns: minmax(0, 1101fr) minmax(0, 540fr);
     gap: 19px;
   }
   .footer-main {
-    padding: 46px 0 29px;
+    padding: 40px 0 0;
     min-height: 562px;
   }
   .footer-columns {
     padding-left: 3px;
-    grid-template-columns: 330px minmax(0, 1fr);
+    /* 609:941 — две колонки по 330 px с шагом 227 px */
+    grid-template-columns: 330px 330px;
     column-gap: 227px;
   }
-  .footer-columns .eyebrow {
-    margin-bottom: 29px;
+  .footer-columns nav {
+    row-gap: 15px;
+  }
+  .footer-columns nav > .eyebrow {
+    margin-bottom: 14px; /* 14 + 15 = макетные 29 px */
   }
   .footer-columns nav > a {
     min-height: 63px;
-    padding: 12px 0;
+    padding: 0 12px; /* 12 px до края ряда, как в рамке 609:945 */
     line-height: 38.04px;
   }
-  .footer-columns nav > a + a {
-    margin-top: 15px;
+  .footer-columns address {
+    row-gap: 29px; /* шаг трёх групп контактов в 609:957 */
   }
-  .footer-columns address > a {
-    margin-top: 0;
+  .footer-columns address > .eyebrow {
+    margin-bottom: 0;
   }
-  .footer-columns address > button {
-    margin-top: 5px;
+  /* 609:963 и 609:966 в макете шире колонки (372 и 498 px): их строки
+     выходят в промежуток до жёлтой панели, поэтому ширина берётся из
+     --text-width, а не из трека сетки. Почта всегда в одну строку. */
+  .footer-columns address .footer-contact > [data-figma-text="609:963"],
+  .footer-columns address .footer-contact > [data-figma-text="609:966"] {
+    width: var(--text-width);
+    max-width: none;
+    justify-self: start;
   }
-  .footer-columns address > p:not(.eyebrow) {
-    margin-top: 29px;
+  .footer-columns address .footer-contact > [data-figma-text="609:963"] {
+    white-space: nowrap;
   }
-  .footer-columns address > small {
-    margin-top: 5px;
-  }
+  /* 609:974: линия на 499 px, контент прижат к низу, до нижней кромки 12 px */
   .footer-legal {
-    margin-top: 86px;
-    padding-top: 20px;
+    margin-top: 35px;
+    padding: 14px 0 12px;
     display: grid;
     grid-template-columns: 432px 283px 138px;
     justify-content: space-between;
     align-items: end;
     gap: 0;
-    min-height: 56px;
+    min-height: 0;
   }
   .footer-legal > div {
     display: flex;
-    gap: 31px;
+    gap: 31px; /* 609:977 */
     flex-wrap: nowrap;
   }
   .footer-legal > div > button {
@@ -1891,22 +1903,8 @@ html h3[data-figma-text] {
     justify-self: end;
   }
   .footer-cta {
-    position: relative;
-    isolation: isolate;
-    background: none;
-    padding: 40px 38px 0;
     min-height: 562px;
-    gap: 35px;
-  }
-  .footer-cta::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: calc(-1 * max(0px, (100vw - 1660px)/2));
-    background: var(--accent);
+    gap: 25px; /* шаг txt-block 609:969 */
   }
   .footer-cta h2[data-figma-text] {
     width: 505px;
@@ -1917,21 +1915,17 @@ html h3[data-figma-text] {
     width: 353px;
     flex: none;
   }
-  .footer-house {
-    position: absolute;
-    left: 131px;
-    bottom: 0;
-    width: 539px;
-    max-width: none;
-    height: 263px;
-    object-fit: contain;
-    margin: 0;
+  /* 233 px подписи I609:972;169:273 — в фолбэк-шрифте строка на пару пикселей
+     шире, чем в макете, поэтому не переносим: до плашки со стрелкой 12 px. */
+  .footer-cta .button-label {
+    white-space: nowrap;
   }
 }
-@media (max-width: 1799px) {
+@media (max-width: 1439.98px) {
   .footer-credit {
     align-self: center;
   }
+}
 }
 .filters button:not([aria-pressed="true"]) {
   color: rgba(0, 0, 0, 0.4);
@@ -2629,7 +2623,8 @@ html .visit-kicker[data-figma-text] {
 }
 .footer-legal > div {
   align-items: center;
-  align-self: center;
+  /* ссылки правового блока прижаты к нижней кромке строки, как 609:977 */
+  align-self: end;
 }
 .footer-credit a {
   display: inline-flex;

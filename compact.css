@@ -508,14 +508,16 @@
   object-fit: contain;
   object-position: right bottom;
 }
-@media (min-width: 1800px) {
+/* 609:968 — жёлтая панель 670 px от края экрана, картинка 539×263
+   прижата к правому нижнему углу, отступ контента 38 px. */
+@media (min-width: 1440px) {
   .footer-cta {
     --footer-pad: 38px;
   }
   .footer-house {
     position: absolute;
-    width: 539px;
-    height: 263px;
+    width: 80.45%;
+    height: auto;
     right: 0;
     left: auto;
     bottom: 0;

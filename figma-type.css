@@ -1440,7 +1440,7 @@ html [data-figma-text="I315:449;199:353"][data-figma-text] {
   --text-width: 187px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:199"][data-figma-text] {
+html [data-figma-text="609:943"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.26;
@@ -1450,7 +1450,7 @@ html [data-figma-text="I315:526;169:199"][data-figma-text] {
   --text-width: 330px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:200"][data-figma-text] {
+html [data-figma-text="609:946"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
@@ -1460,7 +1460,7 @@ html [data-figma-text="I315:526;169:200"][data-figma-text] {
   --text-width: 191px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:209"][data-figma-text] {
+html [data-figma-text="609:949"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
@@ -1470,7 +1470,7 @@ html [data-figma-text="I315:526;169:209"][data-figma-text] {
   --text-width: 145px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:213"][data-figma-text] {
+html [data-figma-text="609:952"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
@@ -1480,7 +1480,7 @@ html [data-figma-text="I315:526;169:213"][data-figma-text] {
   --text-width: 144px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:217"][data-figma-text] {
+html [data-figma-text="609:955"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
@@ -1490,7 +1490,7 @@ html [data-figma-text="I315:526;169:217"][data-figma-text] {
   --text-width: 202px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:222"][data-figma-text] {
+html [data-figma-text="609:958"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.26;
@@ -1500,17 +1500,27 @@ html [data-figma-text="I315:526;169:222"][data-figma-text] {
   --text-width: 330px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:225"][data-figma-text] {
+html [data-figma-text="609:960"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 255px;
+  --text-width: 247px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:236"][data-figma-text] {
+html [data-figma-text="609:990"][data-figma-text] {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.268;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 225px;
+  color: rgba(0, 0, 0, 1);
+}
+html [data-figma-text="609:961"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.26;
@@ -1520,17 +1530,17 @@ html [data-figma-text="I315:526;169:236"][data-figma-text] {
   --text-width: 330px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:240"][data-figma-text] {
+html [data-figma-text="609:963"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
   font-weight: 400;
   letter-spacing: 0px;
-  text-transform: uppercase;
-  --text-width: 341px;
+  text-transform: none;
+  --text-width: 372px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:241"][data-figma-text] {
+html [data-figma-text="609:964"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.26;
@@ -1540,17 +1550,17 @@ html [data-figma-text="I315:526;169:241"][data-figma-text] {
   --text-width: 330px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:246"][data-figma-text] {
+html [data-figma-text="609:966"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;
   line-height: 1.268;
   font-weight: 400;
   letter-spacing: 0px;
-  text-transform: uppercase;
-  --text-width: 352px;
+  text-transform: none;
+  --text-width: 498px;
   color: rgba(0, 0, 0, 1);
 }
-html [data-figma-text="I315:526;169:247"][data-figma-text] {
+html [data-figma-text="609:967"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.26;
@@ -1560,7 +1570,7 @@ html [data-figma-text="I315:526;169:247"][data-figma-text] {
   --text-width: 330px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:253"][data-figma-text] {
+html [data-figma-text="609:976"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.26;
@@ -1570,7 +1580,7 @@ html [data-figma-text="I315:526;169:253"][data-figma-text] {
   --text-width: 432px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:255"][data-figma-text] {
+html [data-figma-text="609:978"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.26;
@@ -1580,7 +1590,7 @@ html [data-figma-text="I315:526;169:255"][data-figma-text] {
   --text-width: 50px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:256"][data-figma-text] {
+html [data-figma-text="609:979"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.26;
@@ -1590,7 +1600,7 @@ html [data-figma-text="I315:526;169:256"][data-figma-text] {
   --text-width: 202px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="I315:526;169:259"][data-figma-text] {
+html [data-figma-text="609:981"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.26;
@@ -1600,7 +1610,7 @@ html [data-figma-text="I315:526;169:259"][data-figma-text] {
   --text-width: 70px;
   color: rgba(151, 152, 155, 1);
 }
-html [data-figma-text="I315:526;169:267"][data-figma-text] {
+html [data-figma-text="609:971"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: clamp(32px, 2.34375vw, 45px);
   line-height: 1.268;
@@ -1610,7 +1620,7 @@ html [data-figma-text="I315:526;169:267"][data-figma-text] {
   --text-width: 505px;
   color: rgba(255, 255, 255, 1);
 }
-html [data-figma-text="I315:526;169:280;169:273"][data-figma-text] {
+html [data-figma-text="I609:972;169:273"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.714286;
