@@ -192,11 +192,25 @@ a.button:hover {
 }
 .footer-columns nav a > .figma-icon,
 .footer-columns nav a > span .figma-icon {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
+  color: rgba(0, 0, 0, 0.4);
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
 }
 .footer-columns nav a > span {
   align-self: center;
+}
+/* бордер нижней границы строки, а не text-decoration: в макете штрих
+   идёт по всей ширине строки 330 px, а не под буквами */
+.footer-columns nav a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer-columns nav a:hover > .figma-icon,
+.footer-columns nav a:hover > span .figma-icon {
+  color: #000;
+  transform: translate(2px, -2px);
 }
 .object-preview {
   position: absolute;

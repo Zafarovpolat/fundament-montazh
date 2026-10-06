@@ -842,9 +842,6 @@ progress::-moz-progress-bar {
   opacity: 0.32;
   border-radius: 12px;
 }
-.visit-banner > div {
-  max-width: 680px;
-}
 .visit-banner h2 {
   font-size: clamp(30px, 2.7vw, 50px);
   margin-bottom: 16px;

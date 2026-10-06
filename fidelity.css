@@ -156,6 +156,12 @@ dd[data-figma-text] {
 .price-list li > div {
   margin-bottom: 19px;
 }
+/* 476:966 — плашка 117×36: ширина по тексту + паддинги. max-width из
+   figma-type.css (--text-width 97px) считается от border-box и резал плашку,
+   поэтому для неё он снимается — текст 96 px + 2×10 паддинга = макетные 117. */
+html p.foundation-card__badge[data-figma-text] {
+  max-width: none;
+}
 html .price-list .muted {
   line-height: 24px;
   color: rgb(255 255 255 / 40%);
@@ -351,7 +357,7 @@ html .price-list .muted {
   overflow: visible;
   scroll-snap-type: none;
   padding: 0;
-  transform: translate3d(calc(var(--slide-x, 0px) + var(--pin-x, 0px)), 0, 0);
+  transform: translate3d(var(--slide-x, 0px), 0, 0);
   transition: transform 650ms cubic-bezier(0.22, 0.8, 0.25, 1);
   touch-action: pan-y;
   scrollbar-width: none;
@@ -879,7 +885,10 @@ html .price-list .muted {
   /* макет 315:792: строка прижата к нижнему краю панели (gap 46 px) */
   align-items: flex-end;
 }
-.visit-banner > div {
+/* 315:792/793: текстовый блок 637 px. Ограничение именно на копирайте —
+   раньше `.visit-banner > div` попадало и на `.parallax-surface`, из-за чего
+   фото в баннере сжималось до 637 px и панель выглядела пустой. */
+.visit-banner > .visit-copy {
   max-width: 637px;
 }
 /* макет 315:790: фото занимает правые 1171 px из 1660 (70.54 %), слева —
@@ -899,8 +908,8 @@ html .price-list .muted {
   background: linear-gradient(
     90deg,
     #070b1f 0%,
-    rgb(7 11 31 / 78%) 14%,
-    rgb(7 11 31 / 0%) 58%
+    rgb(7 11 31 / 60%) 22%,
+    rgb(7 11 31 / 0%) 62%
   );
 }
 .visit-banner h2 {
@@ -971,9 +980,19 @@ html .price-list .muted {
   height: 103px;
   border-radius: 15px;
 }
+.social-thumb::after {
+  /* 315:556 — под глифом тот же затемняющий слой, что в макете */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 11, 31, 0.45);
+}
 .social-thumb .figma-icon {
+  position: relative;
+  z-index: 1;
   width: 32px;
   height: 32px;
+  color: #fff;
 }
 .social-list h3 {
   margin-bottom: 8px;
@@ -2048,11 +2067,34 @@ html #objects .heading-description > span:first-child {
   color: #000;
 }
 html #objects .heading-description > span:last-child {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.3);
 }
-#projects .heading-line--inset,
-#objects .heading-line--inset {
-  margin-left: 136px;
+/* Отступ второй строки заголовка — 136 px из кадра (315:525, 315:544).
+   Держим его только ровно на макетной ширине: шрифт считается от вьюпорта
+   (3.125vw), а контейнер упирается в фиксированные боковые врезки, поэтому на
+   1512–1680 строка «которые мы построили» / «нас на всех соц сетях» разбивалась
+   на три строки. В #projects («Выберите тип фундамента / для вашего дома»)
+   вторая строка по просьбе заказчика всегда идёт от левого края. */
+#projects .section-heading .heading-line--inset {
+  margin-left: 0;
+}
+@media (max-width: 1919px) {
+  #objects .section-heading .heading-line--inset,
+  #social .section-heading .heading-line--inset {
+    margin-left: 0;
+  }
+}
+/* ниже 1600 описание уходит под заголовок — иначе строке не хватает ширины */
+@media (max-width: 1599px) {
+  #objects .section-heading {
+    display: block;
+  }
+  #objects .section-heading > div {
+    max-width: none;
+  }
+  #objects .heading-description {
+    margin-left: auto;
+  }
 }
 .filters {
   border: 0;
@@ -2126,10 +2168,6 @@ html .page-path .is-dark .path-label[data-figma-text] {
   }
 }
 @media (max-width: 1199px) {
-  #projects .heading-line--inset,
-  #objects .heading-line--inset {
-    margin-left: clamp(20px, 7vw, 80px);
-  }
   html #objects .heading-description {
     max-width: 100%;
     flex-shrink: 1;
@@ -2214,12 +2252,23 @@ html .page-path .is-dark .path-label[data-figma-text] {
   border-radius: 10px;
 }
 
-/* Active photo expands in its own position; neighbours shrink smoothly. */
+/* Активное фото растёт на своём месте. Размер меняется ТОЛЬКО через
+   transform: scale — сетка (а значит ширина колонок и высота секции)
+   переключается мгновенно, интерполируется только масштаб карточки. */
 .objects-gallery {
   --gallery-height: clamp(500px, 39.6354vw, 761px);
   height: var(--gallery-height);
   align-items: center;
-  transition: grid-template-columns 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+@keyframes object-card-grow {
+  /* 275/541 и 467/761 — размеры соседней карточки в той же сетке,
+     поэтому начало анимации совпадает с её исходной коробкой. */
+  from {
+    transform: scale(0.50832, 0.61367);
+  }
+  to {
+    transform: scale(1, 1);
+  }
 }
 .objects-gallery > .object-card {
   position: relative;
@@ -2231,11 +2280,15 @@ html .page-path .is-dark .path-label[data-figma-text] {
   aspect-ratio: auto;
   overflow: hidden;
   border-radius: 15px;
-  transition: height 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
   isolation: isolate;
 }
 .objects-gallery > .object-card.is-active {
   height: var(--gallery-height);
+  transform-origin: center;
+  animation: object-card-grow 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+html[data-motion="off"] .objects-gallery > .object-card.is-active {
+  animation: none;
 }
 .objects-gallery > .object-card > img,
 .objects-gallery > .object-card > svg {
@@ -2686,11 +2739,6 @@ html .visit-kicker[data-figma-text] {
     width: auto;
   }
 }
-html #objects .heading-description > span:first-child,
-html #objects .heading-description > span:last-child {
-  color: rgba(7, 11, 31, 0.65);
-}
-
 .faq-grid details[open] summary span {
   transform: none;
 }
@@ -3209,6 +3257,10 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   inset: 15px auto auto 15px;
   margin: 0;
   padding: 10px;
+  /* 476:966 — плашка 117×36: ширина по тексту + паддинги. Без этого
+     max-width: 97px из figma-type.css считается от border-box, и текст
+     вылезал за правый край золотой плашки. */
+  width: max-content;
   border-radius: 10px;
   background: #ffc924;
   white-space: nowrap;
@@ -3397,6 +3449,33 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   gap: 10px;
   align-items: center;
 }
+/* 478:1231: эйброу стоит не над заголовком, а в левом гуттере — точкой на
+   вертикальной линии пути (x21), текстом в 90 px (три строки с дефисом, как
+   в кадре). Отсчёт от `.container`, поэтому вычитаем его врезку. */
+#included .section-heading > div {
+  position: relative;
+}
+#included .eyebrow {
+  --edge: max(130px, var(--gutter));
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  left: calc(clamp(12px, 1.09375vw, 21px) - var(--edge));
+  /* 478:1231 = 109 px: точка 9 + зазор 10 + текст 90 (478:1233).
+     90 px — ширина именно текста, поэтому вся плашка 109 px и её правый
+     край приходится ровно в левый край заголовка (x130). */
+  width: 109px;
+  /* figma-type.css ограничивает любой [data-figma-text] шириной --text-width
+     (для 478:1233 это 90 px — ширина текста, а не плашки) — иначе строки
+     вылезают за коробку. */
+  max-width: none;
+  margin: 0;
+}
+@media (max-width: 1199px) {
+  #included .eyebrow {
+    --edge: var(--gutter);
+  }
+}
 #included .eyebrow::before,
 #design .eyebrow::before {
   content: "";
@@ -3417,6 +3496,14 @@ html .header-menu .header-contact > .phone[data-figma-text] {
    ниже 1200 — просто --gutter (см. @media в конце блока). */
 #design .section-heading {
   margin-bottom: clamp(28px, 2.60417vw, 50px);
+}
+@media (min-width: 1200px) {
+  /* подпись «Как мы работаем» уже стоит в рельсе слева от линии (тот же узел
+     315:354) — второй раз в гуттере её рисовать не нужно; ниже 1200 рельсы нет,
+     и эйброу возвращается в поток над заголовком, как в #social */
+  #design .eyebrow {
+    display: none;
+  }
 }
 #design .eyebrow {
   --edge: max(130px, var(--gutter));
@@ -3595,28 +3682,4 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   width: 1px;
   height: 17px;
   background: #070b1f26;
-}
-
-/* ── Пин «7 шагов» (315:324): ряд карточек прилипает к середине экрана, а
-   вертикальный скролл превращается в горизонтальный — ровно на длину
-   переполнения трека, и за это же время бегунок рельса доходит до конца.
-   Класс is-on навешивает steps-pin.js только от 1441 px и при включённых
-   анимациях: без JS и на мобильных разметка остаётся обычным рядом. */
-@media (min-width: 1441px) {
-  .steps-pin.is-on {
-    /* высоту задаёт скрипт: сцена + пробег + два отступа прилипания,
-       иначе у sticky не остаётся хода внутри родителя */
-    min-height: var(--pin-block-h, auto);
-  }
-  .steps-pin.is-on .steps-pin__stage {
-    position: sticky;
-    top: var(--pin-top, 0px);
-  }
-  .steps-pin.is-on .fidelity-track {
-    transition: none;
-    pointer-events: none;
-  }
-  .steps-pin.is-on .steps-range__ctrl {
-    transition: none;
-  }
 }

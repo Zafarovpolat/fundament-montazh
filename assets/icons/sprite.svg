@@ -9,7 +9,7 @@
 </symbol>
   <symbol id="i-arrow-right" viewBox="0 0 14 12" fill="none"><path xmlns:ns0="http://www.w3.org/2000/svg" d="M0.777778 5.96296H13.2222M8.24444 11.1481L13.2222 5.96296L8.24444 0.777778" stroke="#070B1F" stroke-width="1.55556" stroke-linecap="round" stroke-linejoin="round" />
 </symbol>
-  <symbol id="i-arrow-up-right" viewBox="0 0 12 12" fill="none"><path xmlns:ns0="http://www.w3.org/2000/svg" d="M1.6 10.4L10.4 1.6M10.4 1.6H4.3M10.4 1.6V7.7" stroke="#070B1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  <symbol id="i-arrow-up-right" viewBox="0 0 12 12" fill="none"><path xmlns:ns0="http://www.w3.org/2000/svg" d="M1.6 10.4L10.4 1.6M10.4 1.6H4.3M10.4 1.6V7.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 </symbol>
   <symbol id="i-benefit-dot" viewBox="0 0 17 17" fill="none"><circle xmlns:ns0="http://www.w3.org/2000/svg" cx="8.49979" cy="8.49997" r="3.64286" fill="#FFC924" />
 <circle xmlns:ns0="http://www.w3.org/2000/svg" cx="8.5" cy="8.5" r="8.5" fill="#FFC924" fill-opacity="0.4" />
@@ -37,6 +37,8 @@
   <symbol id="i-object-cursor" viewBox="0 0 72 72" fill="none"><path xmlns:ns0="http://www.w3.org/2000/svg" d="M35 71.9854C35.3322 71.9944 35.6656 72 36 72H35V71.9854ZM37 72H36C36.3344 72 36.6678 71.9944 37 71.9854V72ZM35 71.9854C15.5801 71.4557 0 55.5478 0 36C0 16.4522 15.5801 0.543315 35 0.0136719V71.9854ZM37 0.0136719C56.4199 0.543315 72 16.4522 72 36C72 55.5478 56.4199 71.4557 37 71.9854V0.0136719ZM37 0.0136719C36.6678 0.00461089 36.3344 0 36 0C35.6656 0 35.3322 0.00461089 35 0.0136719V0H37V0.0136719Z" fill="white" />
 <path xmlns:ns0="http://www.w3.org/2000/svg" d="M53 32L57 36L53 40" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 <path xmlns:ns0="http://www.w3.org/2000/svg" d="M19 32L15 36L19 40" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+</symbol>
+  <symbol id="i-play" viewBox="0 0 32 32" fill="none"><path xmlns:ns0="http://www.w3.org/2000/svg" d="M12.4 9.1 22.1 16l-9.7 6.9Z" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
 </symbol>
   <symbol id="i-project-arrow" viewBox="0 0 14 12" fill="none"><path xmlns:ns0="http://www.w3.org/2000/svg" d="M0.777778 5.96296H13.2222M8.24444 11.1481L13.2222 5.96296L8.24444 0.777778" stroke="#070B1F" stroke-width="1.55556" stroke-linecap="round" stroke-linejoin="round" />
 </symbol>

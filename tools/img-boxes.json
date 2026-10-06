@@ -1,642 +1,258 @@
 {
   "assets/figma-360-436.webp": {
     "box": {
-      "mobile": [
-        155,
-        29
-      ],
-      "tablet": [
-        185,
-        35
-      ],
-      "laptop": [
-        190,
-        36
-      ],
-      "desktop": [
-        293,
-        55
-      ]
+      "mobile": [155, 29],
+      "tablet": [185, 35],
+      "laptop": [190, 36],
+      "desktop": [293, 55]
     }
   },
   "assets/figma-360-462.webp": {
     "box": {
-      "mobile": [
-        390,
-        1363
-      ],
-      "tablet": [
-        768,
-        1181
-      ],
-      "laptop": [
-        1280,
-        1049
-      ],
-      "desktop": [
-        1920,
-        1007
-      ]
+      "mobile": [390, 1371],
+      "tablet": [768, 1181],
+      "laptop": [1280, 1049],
+      "desktop": [1920, 1007]
     }
   },
   "assets/figma-478-1228.webp": {
     "box": {
-      "mobile": [
-        354,
-        454
-      ],
-      "tablet": [
-        302,
-        387
-      ],
-      "laptop": [
-        393,
-        503
-      ],
-      "desktop": [
-        669,
-        858
-      ]
+      "mobile": [354, 454],
+      "tablet": [302, 387],
+      "laptop": [393, 503],
+      "desktop": [669, 858]
     }
   },
   "assets/figma-315-298.webp": {
     "box": {
-      "mobile": [
-        390,
-        1369
-      ],
-      "tablet": [
-        768,
-        1253
-      ],
-      "laptop": [
-        1280,
-        734
-      ],
-      "desktop": [
-        1920,
-        899
-      ]
+      "mobile": [390, 1405],
+      "tablet": [768, 1253],
+      "laptop": [1280, 752],
+      "desktop": [1920, 975]
     }
   },
   "assets/figma-597-1793.webp": {
     "box": {
-      "mobile": [
-        354,
-        493
-      ],
-      "tablet": [
-        420,
-        585
-      ],
-      "laptop": [
-        415,
-        578
-      ],
-      "desktop": [
-        679,
-        945
-      ]
+      "mobile": [354, 493],
+      "tablet": [420, 585],
+      "laptop": [415, 578],
+      "desktop": [679, 945]
     }
   },
   "assets/director-signature.png": {
     "box": {
-      "mobile": [
-        269,
-        64
-      ],
-      "tablet": [
-        319,
-        64
-      ],
-      "laptop": [
-        315,
-        64
-      ],
-      "desktop": [
-        354,
-        94
-      ]
+      "mobile": [269, 64],
+      "tablet": [319, 64],
+      "laptop": [315, 64],
+      "desktop": [354, 94]
     }
   },
   "assets/figma-476-965.webp": {
     "box": {
-      "mobile": [
-        330,
-        229
-      ],
-      "tablet": [
-        314,
-        218
-      ],
-      "laptop": [
-        472,
-        327
-      ],
-      "desktop": [
-        511,
-        354
-      ]
+      "mobile": [330, 229],
+      "tablet": [314, 218],
+      "laptop": [472, 327],
+      "desktop": [511, 354]
     }
   },
   "assets/figma-476-1092.webp": {
     "box": {
-      "mobile": [
-        330,
-        229
-      ],
-      "tablet": [
-        314,
-        218
-      ],
-      "laptop": [
-        472,
-        327
-      ],
-      "desktop": [
-        511,
-        354
-      ]
+      "mobile": [330, 229],
+      "tablet": [314, 218],
+      "laptop": [472, 327],
+      "desktop": [511, 354]
     }
   },
   "assets/figma-476-1122.webp": {
     "box": {
-      "mobile": [
-        330,
-        229
-      ],
-      "tablet": [
-        314,
-        218
-      ],
-      "laptop": [
-        472,
-        327
-      ],
-      "desktop": [
-        511,
-        354
-      ]
+      "mobile": [330, 229],
+      "tablet": [314, 218],
+      "laptop": [472, 327],
+      "desktop": [511, 354]
     }
   },
   "assets/figma-476-1148.webp": {
     "box": {
-      "mobile": [
-        330,
-        229
-      ],
-      "tablet": [
-        314,
-        218
-      ],
-      "laptop": [
-        472,
-        327
-      ],
-      "desktop": [
-        511,
-        354
-      ]
+      "mobile": [330, 229],
+      "tablet": [314, 218],
+      "laptop": [472, 327],
+      "desktop": [511, 354]
     }
   },
   "assets/figma-476-1174.webp": {
     "box": {
-      "mobile": [
-        330,
-        229
-      ],
-      "tablet": [
-        314,
-        218
-      ],
-      "laptop": [
-        472,
-        327
-      ],
-      "desktop": [
-        511,
-        354
-      ]
+      "mobile": [330, 229],
+      "tablet": [314, 218],
+      "laptop": [472, 327],
+      "desktop": [511, 354]
     }
   },
   "assets/figma-476-1200.webp": {
     "box": {
-      "mobile": [
-        330,
-        229
-      ],
-      "tablet": [
-        314,
-        218
-      ],
-      "laptop": [
-        472,
-        327
-      ],
-      "desktop": [
-        511,
-        354
-      ]
+      "mobile": [330, 229],
+      "tablet": [314, 218],
+      "laptop": [472, 327],
+      "desktop": [511, 354]
     }
   },
   "assets/figma-315-327.webp": {
     "box": {
-      "mobile": [
-        390,
-        761
-      ],
-      "tablet": [
-        768,
-        723
-      ],
-      "laptop": [
-        1280,
-        659
-      ],
-      "desktop": [
-        1920,
-        874
-      ]
+      "mobile": [390, 761],
+      "tablet": [768, 723],
+      "laptop": [1280, 659],
+      "desktop": [1920, 874]
     }
   },
-  "assets/figma-315-695.webp": {
+  "assets/figma-495-531.webp": {
     "box": {
-      "mobile": [
-        319,
-        430
-      ],
-      "tablet": [
-        115,
-        258
-      ],
-      "laptop": [
-        168,
-        283
-      ],
-      "desktop": [
-        275,
-        467
-      ]
+      "mobile": [319, 430],
+      "tablet": [115, 258],
+      "laptop": [168, 283],
+      "desktop": [275, 467]
     }
   },
-  "assets/figma-315-697.webp": {
+  "assets/figma-495-533.webp": {
     "box": {
-      "mobile": [
-        319,
-        430
-      ],
-      "tablet": [
-        115,
-        258
-      ],
-      "laptop": [
-        168,
-        283
-      ],
-      "desktop": [
-        275,
-        467
-      ]
+      "mobile": [319, 430],
+      "tablet": [115, 258],
+      "laptop": [168, 283],
+      "desktop": [275, 467]
     }
   },
-  "assets/figma-315-700.webp": {
+  "assets/figma-495-535.webp": {
     "box": {
-      "mobile": [
-        408,
-        551
-      ],
-      "tablet": [
-        289,
-        538
-      ],
-      "laptop": [
-        422,
-        590
-      ],
-      "desktop": [
-        693,
-        975
-      ]
+      "mobile": [408, 551],
+      "tablet": [289, 538],
+      "laptop": [422, 590],
+      "desktop": [693, 975]
     }
   },
-  "assets/figma-315-720.webp": {
+  "assets/figma-495-556.webp": {
     "box": {
-      "mobile": [
-        319,
-        430
-      ],
-      "tablet": [
-        115,
-        258
-      ],
-      "laptop": [
-        168,
-        283
-      ],
-      "desktop": [
-        275,
-        467
-      ]
+      "mobile": [319, 430],
+      "tablet": [115, 258],
+      "laptop": [168, 283],
+      "desktop": [275, 467]
     }
   },
-  "assets/figma-315-722.webp": {
+  "assets/figma-495-558.webp": {
     "box": {
-      "mobile": [
-        319,
-        430
-      ],
-      "tablet": [
-        115,
-        258
-      ],
-      "laptop": [
-        168,
-        283
-      ],
-      "desktop": [
-        275,
-        467
-      ]
+      "mobile": [319, 430],
+      "tablet": [115, 258],
+      "laptop": [168, 283],
+      "desktop": [275, 467]
     }
   },
   "assets/figma-315-748.webp": {
     "box": {
-      "mobile": [
-        186,
-        150
-      ],
-      "tablet": [
-        186,
-        180
-      ],
-      "laptop": [
-        186,
-        180
-      ],
-      "desktop": [
-        186,
-        236
-      ]
+      "mobile": [186, 150],
+      "tablet": [186, 180],
+      "laptop": [186, 180],
+      "desktop": [186, 236]
     }
   },
   "assets/figma-315-753.webp": {
     "box": {
-      "mobile": [
-        195,
-        150
-      ],
-      "tablet": [
-        195,
-        180
-      ],
-      "laptop": [
-        195,
-        180
-      ],
-      "desktop": [
-        199,
-        234
-      ]
+      "mobile": [195, 150],
+      "tablet": [195, 180],
+      "laptop": [195, 180],
+      "desktop": [199, 234]
     }
   },
   "assets/figma-315-758.webp": {
     "box": {
-      "mobile": [
-        195,
-        150
-      ],
-      "tablet": [
-        195,
-        180
-      ],
-      "laptop": [
-        195,
-        180
-      ],
-      "desktop": [
-        230,
-        223
-      ]
+      "mobile": [195, 150],
+      "tablet": [195, 180],
+      "laptop": [195, 180],
+      "desktop": [230, 223]
     }
   },
   "assets/figma-315-763.webp": {
     "box": {
-      "mobile": [
-        159,
-        150
-      ],
-      "tablet": [
-        159,
-        180
-      ],
-      "laptop": [
-        159,
-        180
-      ],
-      "desktop": [
-        159,
-        206
-      ]
+      "mobile": [159, 150],
+      "tablet": [159, 180],
+      "laptop": [159, 180],
+      "desktop": [159, 206]
     }
   },
   "assets/figma-315-359.webp": {
     "box": {
-      "mobile": [
-        390,
-        1098
-      ],
-      "tablet": [
-        768,
-        788
-      ],
-      "laptop": [
-        1280,
-        788
-      ],
-      "desktop": [
-        1920,
-        925
-      ]
+      "mobile": [390, 1098],
+      "tablet": [768, 788],
+      "laptop": [1280, 788],
+      "desktop": [1920, 925]
     }
   },
   "assets/gis-map.webp": {
     "box": {
-      "mobile": [
-        55,
-        81
-      ],
-      "tablet": [
-        55,
-        81
-      ],
-      "laptop": [
-        65,
-        96
-      ],
-      "desktop": [
-        65,
-        96
-      ]
+      "mobile": [55, 81],
+      "tablet": [55, 81],
+      "laptop": [65, 96],
+      "desktop": [65, 96]
     }
   },
   "assets/figma-I315-446_199-345.webp": {
     "box": {
-      "mobile": [
-        76,
-        76
-      ],
-      "tablet": [
-        76,
-        76
-      ],
-      "laptop": [
-        76,
-        76
-      ],
-      "desktop": [
-        98,
-        98
-      ]
+      "mobile": [76, 76],
+      "tablet": [76, 76],
+      "laptop": [76, 76],
+      "desktop": [98, 98]
     }
   },
   "assets/figma-I315-447_199-345.webp": {
     "box": {
-      "mobile": [
-        76,
-        76
-      ],
-      "tablet": [
-        76,
-        76
-      ],
-      "laptop": [
-        76,
-        76
-      ],
-      "desktop": [
-        98,
-        98
-      ]
+      "mobile": [76, 76],
+      "tablet": [76, 76],
+      "laptop": [76, 76],
+      "desktop": [98, 98]
     }
   },
   "assets/figma-I315-448_199-345.webp": {
     "box": {
-      "mobile": [
-        76,
-        76
-      ],
-      "tablet": [
-        76,
-        76
-      ],
-      "laptop": [
-        76,
-        76
-      ],
-      "desktop": [
-        98,
-        98
-      ]
+      "mobile": [76, 76],
+      "tablet": [76, 76],
+      "laptop": [76, 76],
+      "desktop": [98, 98]
     }
   },
   "assets/figma-I315-449_199-345.webp": {
     "box": {
-      "mobile": [
-        76,
-        76
-      ],
-      "tablet": [
-        76,
-        76
-      ],
-      "laptop": [
-        76,
-        76
-      ],
-      "desktop": [
-        98,
-        98
-      ]
+      "mobile": [76, 76],
+      "tablet": [76, 76],
+      "laptop": [76, 76],
+      "desktop": [98, 98]
     }
   },
   "assets/figma-315-791.webp": {
     "box": {
-      "mobile": [
-        354,
-        497
-      ],
-      "tablet": [
-        680,
-        375
-      ],
-      "laptop": [
-        680,
-        310
-      ],
-      "desktop": [
-        680,
-        395
-      ]
+      "mobile": [250, 497],
+      "tablet": [497, 375],
+      "laptop": [720, 310],
+      "desktop": [1171, 395]
     }
   },
   "assets/figma-315-555.webp": {
     "box": {
-      "mobile": [
-        70,
-        85
-      ],
-      "tablet": [
-        70,
-        85
-      ],
-      "laptop": [
-        70,
-        85
-      ],
-      "desktop": [
-        108,
-        103
-      ]
+      "mobile": [70, 85],
+      "tablet": [70, 85],
+      "laptop": [70, 85],
+      "desktop": [108, 103]
     }
   },
   "assets/figma-I315-526_169-260.webp": {
     "box": {
-      "mobile": [
-        58,
-        14
-      ],
-      "tablet": [
-        58,
-        14
-      ],
-      "laptop": [
-        58,
-        14
-      ],
-      "desktop": [
-        58,
-        14
-      ]
+      "mobile": [58, 14],
+      "tablet": [58, 14],
+      "laptop": [58, 14],
+      "desktop": [58, 14]
     }
   },
   "assets/figma-I315-526_169-289.webp": {
     "box": {
-      "mobile": [
-        390,
-        190
-      ],
-      "tablet": [
-        313,
-        153
-      ],
-      "laptop": [
-        473,
-        231
-      ],
-      "desktop": [
-        539,
-        263
-      ]
+      "mobile": [390, 190],
+      "tablet": [313, 153],
+      "laptop": [473, 231],
+      "desktop": [539, 263]
     }
   }
 }

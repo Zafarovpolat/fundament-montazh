@@ -521,7 +521,10 @@
     max-width: 539px;
     height: auto;
     align-self: flex-end;
-    margin: 13px calc(-1 * var(--footer-pad)) 0 auto;
+    /* margin-top: auto — картинка липнет к нижнему краю панели (609:973:
+       низ дома совпадает с низом футера), а не встает сразу под кнопкой:
+       иначе при другой высоте левой колонки она прыгала */
+    margin: auto calc(-1 * var(--footer-pad)) 0 auto;
   }
 }
 @media (max-width: 1440px) {
