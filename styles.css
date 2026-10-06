@@ -924,10 +924,37 @@ progress::-moz-progress-bar {
   align-items: center;
   gap: 20px;
 }
-.social-list img,
-.social-list svg {
+/* 315:555/315:556: подложка 82×78 с ракурсом 15 в макете — на узких
+   ширинах уменьшаем пропорционально; поверх фото затемнение 45 % и логотип */
+.social-thumb {
+  position: relative;
+  display: grid;
+  place-items: center;
   width: 82px;
+  height: 78px;
   border-radius: 8px;
+  overflow: hidden;
+  background: #070b1f;
+}
+.social-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.social-thumb::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: rgba(7, 11, 31, 0.45);
+}
+.social-thumb .figma-icon {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
 }
 .social-list h3 {
   font-size: 22px;
@@ -1177,9 +1204,9 @@ textarea {
     grid-column: 2;
     justify-self: start;
   }
-  .social-list img,
-  .social-list svg {
+  .social-thumb {
     width: 65px;
+    height: 62px;
   }
   .footer-columns {
     gap: 40px;
@@ -1621,9 +1648,9 @@ textarea {
   .social-list article > .button {
     grid-column: auto;
   }
-  .social-list img,
-  .social-list svg {
+  .social-thumb {
     width: 74px;
+    height: 71px;
   }
   .social-list h3 {
     font-size: 20px;
@@ -1722,9 +1749,9 @@ textarea {
     grid-column: 2;
     justify-self: stretch;
   }
-  .social-list img,
-  .social-list svg {
+  .social-thumb {
     width: 65px;
+    height: 62px;
   }
   .footer-columns {
     grid-template-columns: 1fr;

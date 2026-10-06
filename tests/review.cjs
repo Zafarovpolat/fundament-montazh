@@ -16,7 +16,7 @@ const assert = require("node:assert/strict");
     await p
       .locator("main .eyebrow")
       .evaluateAll((es) => es.map((e) => e.dataset.figmaText)),
-    ["478:1233", "315:354"],
+    ["478:1233", "315:354", "315:547"],
   );
   const label = p.locator(".price-panel .button-label"),
     button = p.locator(".price-panel>.button");

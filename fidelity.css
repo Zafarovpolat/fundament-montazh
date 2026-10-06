@@ -883,6 +883,22 @@ dd[data-figma-text] {
 #social {
   padding-bottom: 100px;
 }
+/* Эйброу «Директор-блогер» (315:545). В макете он нарисован в левом поле ровно
+   там же, где сайт показывает подпись рельсы с этим же текстом, поэтому на
+   широком экране строку берёт на себя рельса, а ниже 1200px эйброу возвращается
+   в поток над заголовком — тот же приём, что в секции «7 шагов». */
+#social .eyebrow {
+  position: static;
+  margin: 0 0 12px;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (min-width: 1200px) {
+  #social .eyebrow {
+    display: none;
+  }
+}
 .social-grid {
   grid-template-columns: minmax(0, 829fr) minmax(0, 699fr);
   gap: 132px;
@@ -903,17 +919,27 @@ dd[data-figma-text] {
   gap: 5px;
 }
 .social-list article {
-  grid-template-columns: 108px minmax(0, 1fr) 238px;
-  gap: 24px;
-  padding: 10px;
+  /* карточка 315:554 — 699x123: 10 + 108 + 24 + 266 + 42 + 229 + 20 */
+  grid-template-columns: 108px minmax(0, 1fr) 229px;
+  column-gap: 24px;
+  padding: 10px 20px 10px 10px;
   min-height: 123px;
 }
-.social-list img,
-.social-list svg {
+.social-list article > div {
+  max-width: 266px;
+  margin-right: 18px; /* 24 + 18 = макетные 42 px до кнопки */
+}
+.social-list article > .button {
+  width: 100%;
+}
+.social-thumb {
   width: 108px;
   height: 103px;
-  object-fit: contain;
-  border-radius: 10px;
+  border-radius: 15px;
+}
+.social-thumb .figma-icon {
+  width: 32px;
+  height: 32px;
 }
 .social-list h3 {
   margin-bottom: 8px;
@@ -1049,8 +1075,11 @@ html[data-motion="off"] .reveal {
     grid-template-columns: 80px minmax(0, 1fr) 210px;
     gap: 15px;
   }
-  .social-list img,
-  .social-list svg {
+  .social-list article > div {
+    max-width: none;
+    margin-right: 0;
+  }
+  .social-thumb {
     width: 80px;
     height: 90px;
   }
@@ -1161,10 +1190,9 @@ html[data-motion="off"] .reveal {
     grid-column: 2;
     justify-self: start;
   }
-  .social-list img,
-  .social-list svg {
+  .social-thumb {
     width: 65px;
-    height: auto;
+    height: 62px;
   }
 
   .featured-object figcaption {
@@ -1495,10 +1523,9 @@ html[data-motion="off"] .reveal {
     padding: 0;
     gap: 18px;
   }
-  .social-list img,
-  .social-list svg {
+  .social-thumb {
     width: 85px;
-    height: auto;
+    height: 81px;
   }
   .social-list article > .button {
     grid-column: auto;
@@ -1521,9 +1548,9 @@ html[data-motion="off"] .reveal {
     grid-column: 2;
     justify-self: stretch;
   }
-  .social-list img,
-  .social-list svg {
+  .social-thumb {
     width: 75px;
+    height: 72px;
   }
 
   .service-grid {
@@ -1591,19 +1618,6 @@ html dd[data-figma-text] {
 }
 .project-card > .button {
   margin-top: 25px;
-}
-@media (min-width: 1800px) {
-  .social-list article {
-    grid-template-columns: 132fr 304fr 248fr;
-    gap: 0;
-    padding: 10px 5px 10px 10px;
-  }
-  .social-list article > div {
-    max-width: 266px;
-  }
-  .social-list article > .button {
-    width: 100%;
-  }
 }
 @media (min-width: 1800px) {
   [data-figma-text="315:442"],

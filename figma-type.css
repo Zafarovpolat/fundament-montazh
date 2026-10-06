@@ -537,66 +537,7 @@ html [data-figma-text="315:567"][data-figma-text] {
   --text-width: 266px;
   color: rgba(0, 0, 0, 0.4);
 }
-html [data-figma-text="315:578"][data-figma-text] {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  line-height: 1.268;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  --text-width: 253px;
-  color: rgba(0, 0, 0, 1);
-}
-html [data-figma-text="315:579"][data-figma-text] {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.25;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: none;
-  --text-width: 253px;
-  color: rgba(0, 0, 0, 0.4);
-}
-html [data-figma-text="315:586"][data-figma-text] {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  line-height: 1.268;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  --text-width: 266px;
-  color: rgba(0, 0, 0, 1);
-}
-html [data-figma-text="315:587"][data-figma-text] {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.25;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: none;
-  --text-width: 266px;
-  color: rgba(0, 0, 0, 0.4);
-}
-html [data-figma-text="315:594"][data-figma-text] {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  line-height: 1.268;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  --text-width: 266px;
-  color: rgba(0, 0, 0, 1);
-}
-html [data-figma-text="315:595"][data-figma-text] {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.25;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: none;
-  --text-width: 266px;
-  color: rgba(0, 0, 0, 0.4);
-}
+
 html [data-figma-text="315:601"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 13px;
@@ -1679,7 +1620,7 @@ html [data-figma-text="I315:526;169:280;169:273"][data-figma-text] {
   --text-width: 233px;
   color: rgba(255, 255, 255, 1);
 }
-html [data-figma-text="I315:596;240:368"][data-figma-text] {
+html [data-figma-text="I315:568;240:368"][data-figma-text] {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.714286;
@@ -1689,6 +1630,7 @@ html [data-figma-text="I315:596;240:368"][data-figma-text] {
   --text-width: 112px;
   color: rgba(255, 255, 255, 1);
 }
+
 html [data-figma-text="I315:674;124:146"][data-figma-text] {
   font-family: var(--font-heading);
   font-size: 30px;

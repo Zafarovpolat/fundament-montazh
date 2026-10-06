@@ -583,78 +583,18 @@
     "box": {
       "mobile": [
         75,
-        96
+        72
       ],
       "tablet": [
-        65,
-        96
+        70,
+        85
       ],
       "laptop": [
-        80,
-        184
+        70,
+        85
       ],
       "desktop": [
-        132,
-        103
-      ]
-    }
-  },
-  "assets/figma-315-570.webp": {
-    "box": {
-      "mobile": [
-        75,
-        96
-      ],
-      "tablet": [
-        65,
-        96
-      ],
-      "laptop": [
-        80,
-        184
-      ],
-      "desktop": [
-        132,
-        103
-      ]
-    }
-  },
-  "assets/figma-315-582.webp": {
-    "box": {
-      "mobile": [
-        75,
-        76
-      ],
-      "tablet": [
-        65,
-        76
-      ],
-      "laptop": [
-        80,
-        184
-      ],
-      "desktop": [
-        132,
-        103
-      ]
-    }
-  },
-  "assets/figma-315-590.webp": {
-    "box": {
-      "mobile": [
-        75,
-        76
-      ],
-      "tablet": [
-        65,
-        76
-      ],
-      "laptop": [
-        80,
-        184
-      ],
-      "desktop": [
-        132,
+        108,
         103
       ]
     }
