@@ -863,6 +863,8 @@ progress::-moz-progress-bar {
   margin-block: 28px;
   font-size: 19px;
   line-height: 1.5;
+  /* в CoFo Sans есть настоящий курсив (cofo-sans-*-italic) */
+  font-style: italic;
 }
 
 .faq-grid {

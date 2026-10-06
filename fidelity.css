@@ -756,9 +756,9 @@ html .price-list .muted {
 }
 .quiz-options button[aria-pressed="true"] {
   background: #ffffff1a;
-  /* в макете у выбранной карточки только внутренняя тень, рамки нет —
-     прозрачную рамку оставляем, чтобы бокс не прыгал */
-  border-color: transparent;
+  /* у выбранной карточки — тонкий золотой бордер (плюс внутренняя тень);
+     у остальных тот же бордер, но прозрачный, чтобы бокс не прыгал */
+  border-color: var(--accent);
   box-shadow: inset 0 4px 75.5px 4px #ffc92466;
 }
 .quiz-progress {
@@ -905,11 +905,13 @@ html .price-list .muted {
   content: "";
   position: absolute;
   inset: 0;
+  /* правый край не уходит в прозрачность: по макету там остаётся 20 %
+     тёмно-синего, иначе фото на тёмном фоне сливается с секцией. */
   background: linear-gradient(
     90deg,
     #070b1f 0%,
     rgb(7 11 31 / 60%) 22%,
-    rgb(7 11 31 / 0%) 62%
+    rgb(7 11 31 / 20%) 62%
   );
 }
 .visit-banner h2 {
@@ -990,9 +992,9 @@ html .price-list .muted {
 .social-thumb .figma-icon {
   position: relative;
   z-index: 1;
-  width: 32px;
+  /* глиф из 315:557 — 33x32, цветные заливки лежат внутри svg */
+  width: 33px;
   height: 32px;
-  color: #fff;
 }
 .social-list h3 {
   margin-bottom: 8px;
@@ -1053,6 +1055,16 @@ html .price-list .muted {
   line-height: 20px;
   text-align: left;
   text-transform: none;
+}
+/* Подпись «Виды фундаментов» (315:641) в макете — 90x40, то есть две строки с
+   переносом длинного слова: «ВИДЫ ФУН-» / «ДАМЕНТОВ». Базовое
+   overflow-wrap: anywhere рвёт слово без дефиса, а мягкий дефис из разметки
+   при этом игнорируется. На этой подписи разрешаем словарный перенос по ru и
+   возвращаем обычный разрыв строки — строки влезают в 92px колонку рельса и не
+   задевают заголовок секции (он начинается с x=130). */
+.path-label[data-figma-text="315:641"] {
+  overflow-wrap: normal;
+  hyphens: auto;
 }
 .path-link.is-dark .path-label {
   color: #ffffff66;
@@ -2074,9 +2086,11 @@ html #objects .heading-description > span:last-child {
    (3.125vw), а контейнер упирается в фиксированные боковые врезки, поэтому на
    1512–1680 строка «которые мы построили» / «нас на всех соц сетях» разбивалась
    на три строки. В #projects («Выберите тип фундамента / для вашего дома»)
-   вторая строка по просьбе заказчика всегда идёт от левого края. */
+   вторая строка по просьбе заказчика липнет к правому краю колонки: отступ
+   снят, строка прижата text-align — коробку span тянет на всю ширину h2. */
 #projects .section-heading .heading-line--inset {
   margin-left: 0;
+  text-align: right;
 }
 @media (max-width: 1919px) {
   #objects .section-heading .heading-line--inset,
@@ -2252,23 +2266,16 @@ html .page-path .is-dark .path-label[data-figma-text] {
   border-radius: 10px;
 }
 
-/* Активное фото растёт на своём месте. Размер меняется ТОЛЬКО через
-   transform: scale — сетка (а значит ширина колонок и высота секции)
-   переключается мгновенно, интерполируется только масштаб карточки. */
+/* Активное фото растёт на своём месте, соседи уезжают плавно: листаем
+   колонки сетки (grid-template-columns) и высоту самой карточки — высота
+   секции при этом не меняется, она задана --gallery-height. Масштаб
+   (transform: scale) здесь не используется: он сбрасывался на предыдущем
+   слайде скачком и не двигал соседние карточки. */
 .objects-gallery {
   --gallery-height: clamp(500px, 39.6354vw, 761px);
   height: var(--gallery-height);
   align-items: center;
-}
-@keyframes object-card-grow {
-  /* 275/541 и 467/761 — размеры соседней карточки в той же сетке,
-     поэтому начало анимации совпадает с её исходной коробкой. */
-  from {
-    transform: scale(0.50832, 0.61367);
-  }
-  to {
-    transform: scale(1, 1);
-  }
+  transition: grid-template-columns 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
 }
 .objects-gallery > .object-card {
   position: relative;
@@ -2281,14 +2288,10 @@ html .page-path .is-dark .path-label[data-figma-text] {
   overflow: hidden;
   border-radius: 15px;
   isolation: isolate;
+  transition: height 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
 }
 .objects-gallery > .object-card.is-active {
   height: var(--gallery-height);
-  transform-origin: center;
-  animation: object-card-grow 850ms cubic-bezier(0.22, 0.8, 0.25, 1);
-}
-html[data-motion="off"] .objects-gallery > .object-card.is-active {
-  animation: none;
 }
 .objects-gallery > .object-card > img,
 .objects-gallery > .object-card > svg {
@@ -3647,10 +3650,12 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   left: calc(var(--steps-progress, 0.5) * (100% - 62px));
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   width: 62px;
   height: 32px;
-  padding: 0 10px;
+  /* 491:690: глифы 8x14 сидят на x9 и x45 от края пилюли 62 px,
+     поэтому поля 5 px + разнесение по краям, а не фиксированный gap. */
+  padding: 0 5px;
   border-radius: 10px;
   background: #fff;
   transition: left 260ms cubic-bezier(0.22, 0.8, 0.25, 1);
@@ -3668,8 +3673,8 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   transition: opacity 160ms ease;
 }
 .steps-range__btn .figma-icon {
-  width: 6px;
-  height: 12px;
+  width: 8px;
+  height: 14px;
 }
 .steps-range__btn:hover {
   opacity: 0.8;
