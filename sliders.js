@@ -305,6 +305,36 @@
   input.addEventListener("input", () => {
     api.position = Number(input.value);
   });
+  /* Пилюля-рукоятка 491:672: тянуть можно за любую её точку, ряд и прогресс
+     идут 1:1 за курсором. Ход считаем от той же ширины, что задаёт left пилюли
+     в CSS (100% - 62px), поэтому рукоятка не отстаёт и не «притягивается» к
+     целому листу на середине — фиксация только на краях, как у рельса. */
+  const handle = rail.querySelector(".steps-range__ctrl");
+  if (handle) {
+    let grabId = null;
+    let grabX = 0;
+    let grabPos = 0;
+    const travel = () => Math.max(1, rail.clientWidth - handle.offsetWidth);
+    handle.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      grabId = event.pointerId;
+      grabX = event.clientX;
+      grabPos = api.position;
+      handle.setPointerCapture(grabId);
+      document.documentElement.classList.add("is-scrubbing");
+    });
+    handle.addEventListener("pointermove", (event) => {
+      if (grabId !== event.pointerId) return;
+      api.position = grabPos + ((event.clientX - grabX) * api.pages) / travel();
+    });
+    const drop = (event) => {
+      if (grabId !== event.pointerId) return;
+      grabId = null;
+      document.documentElement.classList.remove("is-scrubbing");
+    };
+    handle.addEventListener("pointerup", drop);
+    handle.addEventListener("pointercancel", drop);
+  }
   // Пока ползунок ведут мышью/пальцем, трек и пилюля идут без инерции перехода
   input.addEventListener("pointerdown", () =>
     document.documentElement.classList.add("is-scrubbing"),

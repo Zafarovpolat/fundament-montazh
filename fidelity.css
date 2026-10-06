@@ -928,14 +928,14 @@ html.is-steps-pinned .steps-range__ctrl {
   content: "";
   position: absolute;
   inset: 0;
-  /* правый край не уходит в прозрачность: по макету там остаётся тёмно-синий,
-     иначе фото на тёмном фоне сливается с секцией. 20 % оказалось мало —
-     поднимаем до 45 %, чтобы правая половина читалась как продолжение левой. */
+  /* правый край не уходит в прозрачность: иначе фото на тёмном фоне сливается
+     с секцией. 20 % -> 45 % читалось всё ещё светлым, держим 68 % — правая
+     половина становится продолжением левого цвета, а не отдельной подложкой. */
   background: linear-gradient(
     90deg,
     #070b1f 0%,
     rgb(7 11 31 / 60%) 22%,
-    rgb(7 11 31 / 45%) 62%
+    rgb(7 11 31 / 68%) 62%
   );
 }
 .visit-banner h2 {
@@ -2020,6 +2020,23 @@ html h3[data-figma-text] {
     padding-left: 30px;
   }
 }
+/* Макетные 330 + 227 + 330 держат ширину, а жёлтая панель при сетке
+   .footer-grid (1101fr / 540fr + 19px) оставляет колонкам всё меньше места:
+   широкие строки контактов (372 и 498 px по --text-width, nowrap) наползали на
+   панель — на 1650 на +31 px, на 1620 на +51, на 1512 на +118, на 1441 на +162.
+   Ужимаем шаг колонок до 12vw и отдаём колонке адресов остаток её коробочки:
+   длинная строка переносится внутри колонки, а не лезет за край, и почта в
+   372 px в одну строку влезает даже на 1441 px. */
+@media (min-width: 1440px) and (max-width: 1700px) {
+  .footer-columns {
+    padding-left: 0;
+    column-gap: min(227px, 12vw);
+    grid-template-columns: 330px minmax(0, 1fr);
+  }
+  .footer-columns address .footer-contact > [data-figma-text="609:966"] {
+    width: min(var(--text-width), 100%);
+  }
+}
 @media (max-width: 1439.98px) {
   .footer-credit {
     align-self: center;
@@ -2120,6 +2137,21 @@ html #objects .heading-description > span:last-child {
   #objects .section-heading .heading-line--inset,
   #social .section-heading .heading-line--inset {
     margin-left: 0;
+  }
+}
+/* Ниже 1700 px макетный сдвиг второй строки (136 px) отъедает ширину, и строка
+   начинает переноситься, а запас до описания и так остаётся 30 px (= gap).
+   Отступ ужимаем пропорционально ширине: 1700 -> 116, 1620 -> 112, 1512 -> 104,
+   на 1440 подхватывает compact.css со своими 80 px — ступеньки не видно.
+   Полностью снять перенос отступом нельзя: по замеру (перебирали margin-left в
+   браузере) в #advantages строка держится одной линией максимум при отступе 1 px
+   на 1700 и не влезает ни при каком отступе на 1660 и ниже — там она переносится
+   и в макете, виноват кегль, а не сдвиг.
+   id-селекторы (#projects, #objects, #social, #included) специфичнее — их
+   перенос не трогаем. */
+@media (max-width: 1700px) {
+  .heading-line--inset {
+    margin-left: clamp(80px, 6.9vw, 116px);
   }
 }
 /* В #social («Вы можете найти / нас на всех соц сетях») вторая строка должна
@@ -3687,10 +3719,9 @@ html .header-menu .header-contact > .phone[data-figma-text] {
    прогресса, а не выставляется вручную */
 .steps-range__ctrl {
   position: absolute;
-  /* input лежит выше (z-index: 2) и перекрывал пилюлю целиком — стрелки нельзя
-     было нажать указателем (работал только .click() из консоли). Поднимаем
-     пилюлю над ползунком: её кнопки кликабельны, а тянуть рельс можно в любой
-     точке линии вне пилюли */
+  /* Пилюля лежит над input (у ползунка z-index: 2) и забирает указатель себе:
+     это рукоятка ряда — её тянут мышью или пальцем, листая перетаскиванием.
+     Стрелки внутри только показывают направление (pointer-events: none) */
   z-index: 3;
   top: 0;
   left: calc(var(--steps-progress, 0.5) * (100% - 62px));
@@ -3705,6 +3736,14 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   border-radius: 10px;
   background: #fff;
   transition: left 260ms cubic-bezier(0.22, 0.8, 0.25, 1);
+  cursor: grab;
+  /* вертикальный скролл страницы пальцем остаётся, горизонталь — наш drag */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+html.is-scrubbing .steps-range__ctrl {
+  cursor: grabbing;
 }
 .steps-range__btn {
   display: grid;
@@ -3715,15 +3754,15 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   border: 0;
   background: none;
   color: var(--ink);
-  cursor: pointer;
+  /* по замечанию стрелки не нажимаются: ряд листают перетаскиванием пилюли,
+     поэтому указатель проваливается сквозь кнопки на рукоятку, а курсор общий */
+  pointer-events: none;
+  cursor: inherit;
   transition: opacity 160ms ease;
 }
 .steps-range__btn .figma-icon {
   width: 8px;
   height: 14px;
-}
-.steps-range__btn:hover {
-  opacity: 0.8;
 }
 .steps-range__btn:disabled {
   opacity: 0.25;
