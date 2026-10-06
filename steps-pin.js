@@ -2,10 +2,10 @@
 /**
  * Пин секции «7 шагов» (#design, макет 315:324) со свободным диапазоном.
  *
- * Пока ряд карточек стоит в средней полосе экрана, страница замирает, а
- * вертикальный скролл двигает ряд — не по листам, а 1:1:
- * на сколько пикселей проехалось колесо, настолько и сдвинулся трек (шаг
- * = ширина карточки + gap, его отдаёт carousel.step). Рельс 491:667, жёлтая
+ * Пока ряд карточек подходит к средней полосе экрана, страница замирает, а
+ * вертикальный скролл двигает ряд в том же направлении. Чувствительность
+ * снижена до 65%, чтобы ряд не пролетал слишком быстро; шаг одного листа
+ * = ширина карточки + gap, его отдаёт carousel.step. Рельс 491:667, жёлтая
  * полоса и пилюля со стрелками наследуют эту же дробную позицию, поэтому
  * стрелки, перетаскивание ползунка, drag самого ряда и колесо — один и тот же
  * диапазон без притягивания к целому шагу.
@@ -14,7 +14,8 @@
  * страница; на обратном ходу симметрично. Пин не меняет высоту секции и не
  * добавляет обёрток в разметку; ловятся только wheel/touch, поэтому якорные
  * ссылки, programmatic scroll и тесты (там нет колеса) работают как раньше.
- * Выключен при data-motion="off" и при ширине ≤1441px.
+ * Работает от 761 px (включая компактный десктоп и планшет), выключен при
+ * data-motion="off" и на узких телефонах.
  */
 (() => {
   const section = document.getElementById("design");
@@ -36,7 +37,10 @@
   init();
 
   function init() {
-    const wide = window.matchMedia("(min-width: 1441px)");
+    const pinViewport = window.matchMedia("(min-width: 761px)");
+    // Скорость относительно физической прокрутки колеса/пальца. Меньше единицы
+    // означает, что для того же сдвига ряда нужно прокрутить страницу дальше.
+    const SCROLL_RATE = 0.65;
     const motionOn = () => document.documentElement.dataset.motion !== "off";
     // html { scroll-padding-top }: секция пристыкуется не к 0, а к этой метке,
     // поэтому «у кромки» мерим по ней, иначе пин не наступал бы после якорей.
@@ -50,7 +54,7 @@
     let anchor = null; // pageY, на котором держим страницу
     let touchY = null;
 
-    const enabled = () => wide.matches && motionOn() && span() > 0;
+    const enabled = () => pinViewport.matches && motionOn() && span() > 0;
     const pinned = () => anchor !== null;
 
     function hold() {
@@ -84,32 +88,60 @@
     }
 
     /**
-     * Вход: ряд с карточками стоит в средней полосе экрана — тогда колесо
-     * (и палец) двигает ряд, а не страницу. Раньше пин цеплялся только когда
-     * верх секции доехал ровно до кромки вьюпорта: если дойти до ряда руками,
-     * колесо прокручивало всю остальную страницу вместо ряда.
+     * Включаем пин, когда ряд входит в рабочую полосу. Если крупный шаг колеса
+     * пересёк границу этой полосы за один event, сначала сдвигаем страницу
+     * только до границы, затем отдаём остальную часть ввода карусели — ряд не
+     * проскакивает мимо точки захвата.
+     * @returns {number|null} оставшаяся дельта для ряда; null — пусть скроллит страница.
      */
-    function enter(dir) {
-      if (!enabled()) return false;
+    function enter(dy) {
+      if (!enabled()) return null;
+      const dir = dy > 0 ? 1 : -1;
+      if (dir > 0 ? atEnd() : atStart()) return null;
+
       const r = track.getBoundingClientRect();
       const vh = window.innerHeight;
-      if (r.top > vh * 0.78 || r.bottom < park() + vh * 0.22) return false;
-      if (dir > 0 ? atEnd() : atStart()) return false;
+      const upper = vh * 0.78;
+      const lower = park() + vh * 0.22;
+      let pageShift = 0;
+
+      if (r.top > upper) {
+        // Ряд ниже рабочей полосы: входим только если этот шаг колеса её
+        // достигнет, иначе оставляем естественный ход страницы.
+        if (dy <= 0 || r.top - dy > upper) return null;
+        pageShift = r.top - upper;
+      } else if (r.bottom < lower) {
+        // Симметрично при прокрутке вверх, когда ряд уже выше полосы.
+        if (dy >= 0 || r.bottom - dy < lower) return null;
+        pageShift = r.bottom - lower;
+      }
+
+      let remaining = dy;
+      if (pageShift) {
+        const maxY = Math.max(0, document.documentElement.scrollHeight - vh);
+        const targetY = Math.max(0, Math.min(maxY, window.scrollY + pageShift));
+        const actualShift = targetY - window.scrollY;
+        window.scrollTo({ top: targetY, behavior: "instant" });
+        remaining -= actualShift;
+      }
       hold();
-      return true;
+      return remaining;
     }
 
-    /** Превращает delta колеса в сдвиг ряда 1:1. true — событие съедено. */
+    /**
+     * Переводит 65% дельты колеса/пальца в сдвиг ряда. Даже когда событие
+     * доводит ряд до края, оно съедается целиком: иначе остаток огромного wheel
+     * event сразу прокручивал бы страницу на несколько экранов.
+     */
     function consume(dy) {
       const step = api.step || 1;
-      const next = Math.max(0, Math.min(span(), api.position + dy / step));
-      if (next <= 0.001 || next >= span() - 0.001) {
-        // До края доводим и отпускаем страницу: дальше скролл обычный.
-        api.position = next;
-        release();
-        return false;
-      }
+      const target = api.position + (dy * SCROLL_RATE) / step;
+      const next = Math.max(0, Math.min(span(), target));
       api.position = next;
+      if ((dy > 0 && next >= span() - 0.001) || (dy < 0 && next <= 0.001)) {
+        // Этот event уже съели; следующие свободно прокрутят страницу.
+        release();
+      }
       return true;
     }
 
@@ -123,8 +155,15 @@
             ? window.innerHeight
             : 1);
       if (!dy) return;
-      if (!pinned() && !enter(dy > 0 ? 1 : -1)) return;
-      if (pinned() && consume(dy)) event.preventDefault();
+      if (!pinned()) {
+        const remaining = enter(dy);
+        if (remaining === null) return;
+        event.preventDefault();
+        consume(remaining);
+        return;
+      }
+      event.preventDefault();
+      consume(dy);
     }
 
     function onTouchStart(event) {
@@ -138,8 +177,15 @@
       const dy = touchY - y;
       touchY = y;
       if (!dy) return;
-      if (!pinned() && !enter(dy > 0 ? 1 : -1)) return;
-      if (pinned() && consume(dy)) event.preventDefault();
+      if (!pinned()) {
+        const remaining = enter(dy);
+        if (remaining === null) return;
+        event.preventDefault();
+        consume(remaining);
+        return;
+      }
+      event.preventDefault();
+      consume(dy);
     }
 
     function onTouchEnd() {
@@ -151,7 +197,7 @@
     window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
     // Смена ширины: не держать страницу, если пин стал недоступен.
-    wide.addEventListener("change", () => {
+    pinViewport.addEventListener("change", () => {
       if (pinned() && !enabled()) release();
     });
   }

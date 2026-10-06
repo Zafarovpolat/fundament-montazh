@@ -827,3 +827,30 @@ html .featured-object h3[data-figma-text] {
     width: 100%;
   }
 }
+
+/* Уменьшенные отступы вторых строк заголовка при ширине до 1700 px.
+   Общая формула плавно опускает margin-left примерно с 68 px на 1700 до 21 px
+   на планшетной ширине; нативные исключения #projects и #objects уже равны 0.
+   В #advantages отступ снимается полностью по прямой просьбе заказчика. */
+@media (max-width: 1700px) {
+  .heading-line--inset {
+    margin-left: clamp(8px, calc(5vw - 17px), 68px);
+  }
+  #advantages .section-heading .heading-line--inset {
+    margin-left: 0;
+  }
+}
+/* У #included своё макетное значение; уменьшаем его до tablet breakpoint,
+   ниже уже остаётся существующий margin-left: 0. */
+@media (min-width: 1025px) and (max-width: 1700px) {
+  #included .heading-line--inset {
+    margin-left: clamp(8px, calc(5vw - 17px), 68px);
+  }
+}
+/* У #social свой сдвиг, чтобы вторая строка не схлопнулась с первой. Сохраняем
+   его, но снижаем пропорционально сильнее при ≤1700 px. */
+@media (min-width: 640px) and (max-width: 1700px) {
+  #social .section-heading .heading-line--inset {
+    margin-left: clamp(8px, calc(2vw - 7px), 27px);
+  }
+}
