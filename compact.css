@@ -237,42 +237,7 @@
   .quiz-options button svg {
     max-height: 100px;
   }
-  #process .section-heading {
-    margin-bottom: 45px;
-  }
-  .process-list {
-    min-height: 165px;
-  }
-  .process-range {
-    margin-top: 32px;
-  }
-  .mortgage-grid article {
-    padding: 28px;
-    min-height: 510px;
-    height: auto;
-  }
-  .mortgage-grid article:first-child > img,
-  .mortgage-grid article:first-child > svg {
-    width: 480px;
-    height: auto;
-    top: 240px;
-    left: -72px;
-  }
-  .mortgage-grid article:nth-child(2) > img,
-  .mortgage-grid article:nth-child(2) > svg {
-    width: 390px;
-    height: auto;
-    top: 215px;
-    left: auto;
-    right: -70px;
-  }
-  .mortgage-grid .tags {
-    gap: 7px;
-    margin-top: 18px;
-  }
-  .mortgage-grid .tags li {
-    padding: 8px 12px;
-  }
+
   .review-card {
     min-height: 410px;
     padding: 22px;
@@ -295,15 +260,7 @@
   .visit-kicker {
     margin-bottom: 12px;
   }
-  .video-grid {
-    gap: 24px;
-  }
-  .video-card {
-    min-height: 140px;
-  }
-  .subscriber-count {
-    margin-top: 30px;
-  }
+
   .social-grid {
     gap: 32px;
   }
@@ -464,32 +421,12 @@
     min-height: 150px;
     padding: 16px;
   }
-  .mortgage-grid article {
-    min-height: 480px;
-    padding: 24px;
-  }
-  .mortgage-grid article:first-child > img,
-  .mortgage-grid article:first-child > svg {
-    top: auto;
-    bottom: -15px;
-    left: -85px;
-  }
-  .mortgage-grid article:nth-child(2) > img,
-  .mortgage-grid article:nth-child(2) > svg {
-    top: auto;
-    bottom: -65px;
-    right: -100px;
-  }
+
   .visit-banner {
     padding: 24px;
     min-height: 0;
   }
-  .process-list {
-    min-height: 205px;
-  }
-  .video-card {
-    min-height: 0;
-  }
+
   .footer-cta {
     padding: 26px;
     min-height: 390px;
@@ -527,15 +464,6 @@
     min-height: 64px;
     padding: 16px 24px;
     border-radius: 16px;
-  }
-  .video-card {
-    height: auto;
-    min-height: 0;
-  }
-  .video-card > img,
-  .video-card > svg {
-    max-height: 160px;
-    object-fit: cover;
   }
 }
 @media (max-width: 760px) {

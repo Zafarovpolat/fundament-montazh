@@ -45,7 +45,7 @@ const expected = require("./figma-expectations.json").map((e) => ({
       );
     }
   }
-  assert.equal(await page.locator(".page-path a").count(), 10);
+  assert.equal(await page.locator(".page-path a").count(), 8);
   assert.equal(
     await page
       .locator(".warning")
@@ -83,15 +83,13 @@ const expected = require("./figma-expectations.json").map((e) => ({
   assert.equal(await gallery.getAttribute("data-active-object"), "3");
   await gallery.press("ArrowLeft");
   assert.equal(await gallery.getAttribute("data-active-object"), "2");
-  await page.locator(".process-range input").press("End");
-  assert.equal(await page.locator(".process-range input").inputValue(), "100");
   await page.locator('[data-action="reviews"]').click();
   assert.equal(await page.locator("dialog[open] form:visible").count(), 0);
   await page.keyboard.press("Escape");
   assert.deepEqual(errors, []);
   await browser.close();
   console.log(
-    `PASS: ${actual.length} Figma text metrics/colors with explicit review overrides, 10 source markers, rounded notice, 3 carousels, object gallery without form trigger, process range, 2GIS action, motion despite OS reduced-motion.`,
+    `PASS: ${actual.length} Figma text metrics/colors with explicit review overrides, 8 section markers, rounded notice, 3 carousels, object gallery without form trigger, 2GIS action, motion despite OS reduced-motion.`,
   );
 })().catch((e) => {
   console.error(e);

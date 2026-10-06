@@ -197,7 +197,7 @@
   // Reveal once. Content above the fold never starts hidden.
   const candidates = [
     ...document.querySelectorAll(
-      ".section-heading, .number-list, .warning, .stats-grid, .advantage-grid article, .mortgage-grid article, .visit-banner, .social-list article",
+      ".section-heading, .number-list, .warning, .stats-grid, .advantage-grid article, .visit-banner, .social-list article",
     ),
   ];
   let revealObserver;

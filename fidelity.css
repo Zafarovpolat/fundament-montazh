@@ -779,145 +779,7 @@ dd[data-figma-text] {
 #calculator .section-actions {
   margin-top: 30px;
 }
-/* Process rail exactly replaces the former card/border. */
-#process .section-heading {
-  margin-bottom: 80px;
-}
-.process-list li {
-  max-width: 228px;
-  padding: 0;
-  border: 0;
-}
-.process-list li::before {
-  content: none;
-}
-.process-number {
-  display: block;
-  margin-bottom: 10px;
-}
-.process-list h3 {
-  margin-bottom: 10px;
-}
-.process-range {
-  position: relative;
-  margin-top: 50px;
-  height: 32px;
-}
-.process-range::before,
-.process-range::after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #000;
-  pointer-events: none;
-  z-index: 1;
-}
-.process-range::before {
-  left: 0;
-}
-.process-range::after {
-  right: 0;
-}
-.process-range input {
-  position: relative;
-  z-index: 2;
-  appearance: none;
-  -webkit-appearance: none;
-  display: block;
-  border: 0;
-  border-radius: 0;
-  outline-offset: 8px;
-  background: transparent;
-  width: 100%;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  cursor: ew-resize;
-}
-.process-range input::-webkit-slider-runnable-track {
-  height: 2px;
-  background: #00000026;
-}
-.process-range input::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 62px;
-  height: 32px;
-  background: #fff url("assets/process-handle.webp") center/62px 32px no-repeat;
-  border: 0;
-  border-radius: 10px;
-  margin-top: -15px;
-}
-.process-range input::-moz-range-track {
-  height: 2px;
-  background: #00000026;
-}
-.process-range input::-moz-range-thumb {
-  width: 62px;
-  height: 32px;
-  background: #fff url("assets/process-handle.webp") center/62px 32px no-repeat;
-  border: 0;
-  border-radius: 10px;
-}
-/* Mortgage source cards and header CTA. */
-#mortgage .section-heading {
-  align-items: end;
-}
-.mortgage-grid {
-  gap: 10px;
-}
-.mortgage-grid article {
-  height: 625px;
-  min-height: 625px;
-  position: relative;
-  border-radius: 10px;
-  padding: 40px;
-  overflow: hidden;
-  display: block;
-}
-.mortgage-grid h3 {
-  max-width: 361px;
-  margin-bottom: 15px;
-}
-.mortgage-grid p {
-  max-width: 624px;
-}
-.tags {
-  gap: 9px;
-  margin-top: 23px;
-  position: relative;
-  z-index: 1;
-}
-.tags li {
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 15px;
-  line-height: 19px;
-}
-.mortgage-grid article > img,
-.mortgage-grid article > svg {
-  position: absolute;
-  max-width: none;
-  margin: 0;
-  object-fit: contain;
-}
-.mortgage-grid article:first-child > img,
-.mortgage-grid article:first-child > svg {
-  width: 580px;
-  height: 444px;
-  left: -82px;
-  top: 286px;
-}
-.mortgage-grid article:nth-child(2) > img,
-.mortgage-grid article:nth-child(2) > svg {
-  width: 465px;
-  height: 464px;
-  left: 431px;
-  top: 221px;
-}
+
 /* Reviews and source 2GIS block. */
 #reviews .section-heading {
   align-items: center;
@@ -1017,91 +879,7 @@ dd[data-figma-text] {
   text-transform: none;
   letter-spacing: 0;
 }
-/* Media and director-blogger source composition. */
-.video-grid {
-  grid-template-columns: minmax(0, 957fr) minmax(0, 680fr);
-  gap: 23px;
-  align-items: start;
-}
-.video-grid .section-heading {
-  margin-bottom: 30px;
-}
-.video-grid > div > p {
-  margin: 0;
-  max-width: min(100%, var(--text-width));
-}
-.video-grid > div > p + p {
-  margin-top: 15px;
-}
-.video-grid .director-quote {
-  padding: 0;
-  border: 0;
-  margin: 37px 0 0;
-  max-width: 733px;
-}
-.video-grid [data-figma-text="315:464"] {
-  margin-top: 18px;
-}
-.video-grid .subscriber-count {
-  margin-top: 49px !important;
-  display: flex;
-  gap: 32px;
-  align-items: center;
-  line-height: normal;
-  max-width: 574px;
-}
-.subscriber-number {
-  display: block;
-  flex: none;
-}
-.subscriber-labels {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.video-social-links {
-  display: flex;
-  gap: 30px;
-  margin-top: 5px;
-}
-.video-social-links button {
-  position: relative;
-}
-.video-social-links button + button::before {
-  content: "";
-  position: absolute;
-  left: -15px;
-  top: 2px;
-  height: 18px;
-  width: 1px;
-  background: #ffffff4d;
-}
-.video-list {
-  gap: 10px;
-  margin-top: 21px;
-}
-.video-card {
-  grid-template-columns: 243fr 414fr;
-  gap: 23px;
-  padding: 0;
-  border-radius: 10px;
-  height: 178px;
-}
-.video-card > img,
-.video-card > svg {
-  width: 100%;
-  height: 177px;
-  aspect-ratio: 243/177;
-  border-radius: 10px;
-  object-fit: cover;
-}
-.video-card > span {
-  padding: 0;
-  max-width: 302px;
-}
-.video-card small {
-  margin-top: 10px;
-}
+
 #social {
   padding-bottom: 100px;
 }
@@ -1263,11 +1041,7 @@ html[data-motion="off"] .reveal {
   .project-title > p {
     margin-top: 8px;
   }
-  .mortgage-grid article:nth-child(2) > img,
-  .mortgage-grid article:nth-child(2) > svg {
-    left: auto;
-    right: -71px;
-  }
+
   .social-grid {
     gap: 50px;
   }
@@ -1283,10 +1057,7 @@ html[data-motion="off"] .reveal {
   .social-list .button[data-motion-button] {
     font-size: 12px;
   }
-  .video-card {
-    grid-template-columns: 40% 1fr;
-    gap: 18px;
-  }
+
   .filters {
     flex-wrap: wrap;
     border-radius: 30px;
@@ -1377,28 +1148,7 @@ html[data-motion="off"] .reveal {
   .gis-copy {
     width: 200px;
   }
-  .mortgage-grid article {
-    padding: 30px;
-    height: 625px;
-  }
-  .mortgage-grid h3 {
-    font-size: 32px;
-    max-width: 100%;
-  }
-  .mortgage-grid p {
-    position: relative;
-    z-index: 1;
-  }
-  .mortgage-grid article:first-child > img,
-  .mortgage-grid article:first-child > svg {
-    left: -120px;
-    top: 340px;
-  }
-  .mortgage-grid article:nth-child(2) > img,
-  .mortgage-grid article:nth-child(2) > svg {
-    top: 290px;
-    right: -100px;
-  }
+
   .social-grid {
     grid-template-columns: 1fr 1fr;
     gap: 35px;
@@ -1416,39 +1166,7 @@ html[data-motion="off"] .reveal {
     width: 65px;
     height: auto;
   }
-  .video-grid {
-    gap: 35px;
-    grid-template-columns: 1.15fr 1fr;
-  }
-  .video-card {
-    grid-template-columns: 1fr;
-    height: auto;
-    padding: 10px;
-    gap: 10px;
-  }
-  .video-card > img,
-  .video-card > svg {
-    height: auto;
-    max-height: 260px;
-    object-fit: cover;
-  }
-  .video-card > span {
-    padding: 8px;
-    max-width: none;
-  }
-  .video-grid .subscriber-count {
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .subscriber-number {
-    font-size: 65px;
-  }
-  .subscriber-labels {
-    gap: 5px;
-  }
-  .video-social-links {
-    margin-top: 15px;
-  }
+
   .featured-object figcaption {
     left: 20px;
     right: 20px;
@@ -1708,39 +1426,11 @@ html[data-motion="off"] .reveal {
   .quiz-progress {
     margin-top: 30px;
   }
-  #process .section-heading {
-    margin-bottom: 40px;
-  }
-  .process-range {
-    margin-top: 35px;
-  }
+
   .section-heading--stacked > .button {
     margin-top: 25px;
   }
-  .mortgage-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .mortgage-grid article {
-    height: 625px;
-    padding: 30px;
-  }
-  .mortgage-grid article:first-child > img,
-  .mortgage-grid article:first-child > svg {
-    top: 286px;
-    left: -82px;
-  }
-  .mortgage-grid article:nth-child(2) > img,
-  .mortgage-grid article:nth-child(2) > svg {
-    top: 261px;
-    right: -71px;
-  }
-  .mortgage-grid h3 {
-    max-width: 361px;
-  }
-  .mortgage-grid p {
-    max-width: 624px;
-  }
+
   .gis-card {
     margin-top: 25px;
     width: 324px;
@@ -1789,44 +1479,7 @@ html[data-motion="off"] .reveal {
     padding: 30px 25px;
     min-height: 0;
   }
-  .video-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-  .video-grid .section-heading {
-    margin-bottom: 25px;
-  }
-  .video-grid .director-quote {
-    margin-top: 30px;
-  }
-  .video-grid .subscriber-count {
-    margin-top: 35px !important;
-  }
-  .subscriber-number {
-    font-size: 65px;
-  }
-  .video-list {
-    margin-top: 0;
-  }
-  .video-card {
-    grid-template-columns: 40% 1fr;
-    gap: 15px;
-    padding: 10px;
-  }
-  .video-card > img,
-  .video-card > svg {
-    max-height: none;
-    aspect-ratio: 243/177;
-  }
-  .video-card > span {
-    padding: 0;
-  }
-  .video-card strong {
-    font-size: 20px;
-  }
-  .video-card small {
-    font-size: 14px;
-  }
+
   .social-grid {
     grid-template-columns: 1fr;
     gap: 35px;
@@ -1872,36 +1525,11 @@ html[data-motion="off"] .reveal {
   .social-list svg {
     width: 75px;
   }
-  .video-card {
-    grid-template-columns: 1fr;
-  }
-  .video-card > img,
-  .video-card > svg {
-    width: 100%;
-    max-height: 260px;
-    object-fit: cover;
-  }
-  .video-card > span {
-    padding: 10px;
-  }
+
   .service-grid {
     grid-template-columns: 1fr;
   }
-  .mortgage-grid article {
-    padding: 25px;
-    min-height: 650px;
-    height: auto;
-  }
-  .mortgage-grid article:first-child > img,
-  .mortgage-grid article:first-child > svg {
-    top: auto;
-    bottom: -105px;
-  }
-  .mortgage-grid article:nth-child(2) > img,
-  .mortgage-grid article:nth-child(2) > svg {
-    top: auto;
-    bottom: -60px;
-  }
+
   .quiz-options {
     grid-template-columns: 1fr;
   }
@@ -1913,9 +1541,6 @@ html[data-motion="off"] .reveal {
   }
   .stats-grid dt {
     font-size: 44px;
-  }
-  .subscriber-number {
-    font-size: 52px;
   }
   .gis-card {
     padding: 15px;
@@ -2136,9 +1761,7 @@ html h3[data-figma-text] {
   #objects [data-action="visit"] {
     width: 420px;
   }
-  #mortgage .section-heading > .button {
-    width: 353px;
-  }
+
   #visit .button {
     width: 363px;
   }
@@ -2906,7 +2529,6 @@ html .dark .heading-description [data-figma-text] {
   color: rgba(255, 255, 255, 0.55);
 }
 #calculator .heading-description::before,
-#mortgage .heading-description::before,
 #reviews .heading-description::before {
   display: none;
   content: none;
@@ -2917,22 +2539,13 @@ html #calculator .heading-description[data-figma-text] {
   flex: 0 0 375px;
   padding-left: 0;
 }
-html #mortgage .heading-description[data-figma-text] {
-  max-width: 680px;
-  width: 100%;
-  padding-left: 0;
-}
+
 html #reviews .heading-description[data-figma-text] {
   max-width: 520px;
   width: 100%;
   padding-left: 0;
 }
-.mortgage-grid .tags li {
-  background: transparent;
-  border: 1px solid rgba(7, 11, 31, 0.25);
-  border-radius: 999px;
-  padding: 10px 15px;
-}
+
 .gis-card {
   transition:
     background-color 450ms ease,
@@ -3008,14 +2621,7 @@ html .visit-kicker[data-figma-text] {
   display: inline-flex;
   align-items: center;
 }
-.process-list {
-  min-height: 190px;
-}
-html #process .process-list:not([data-step="0"]) h3[data-figma-text],
-html #process .process-list:not([data-step="0"]) p[data-figma-text] {
-  max-width: 600px;
-  white-space: normal;
-}
+
 @media (max-width: 760px) {
   #faq .section-heading {
     flex-direction: column;
@@ -3024,24 +2630,12 @@ html #process .process-list:not([data-step="0"]) p[data-figma-text] {
   #faq .section-heading > .button {
     width: auto;
   }
-  .process-list {
-    min-height: 240px;
-  }
 }
 html #objects .heading-description > span:first-child,
 html #objects .heading-description > span:last-child {
   color: rgba(7, 11, 31, 0.65);
 }
-html #mortgage .heading-description[data-figma-text] {
-  max-width: 480px;
-  white-space: normal;
-}
-.process-list {
-  grid-template-columns: minmax(0, 1fr);
-}
-.process-list:not([data-step="0"]) li {
-  max-width: 600px;
-}
+
 .faq-grid details[open] summary span {
   transform: none;
 }

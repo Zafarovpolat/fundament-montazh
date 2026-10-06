@@ -443,59 +443,19 @@
     "box": {
       "mobile": [
         390,
-        990
+        1098
       ],
       "tablet": [
         768,
-        741
+        788
       ],
       "laptop": [
         1280,
-        749
+        788
       ],
       "desktop": [
         1920,
-        926
-      ]
-    }
-  },
-  "assets/figma-315-410.webp": {
-    "box": {
-      "mobile": [
-        480,
-        367
-      ],
-      "tablet": [
-        480,
-        367
-      ],
-      "laptop": [
-        480,
-        367
-      ],
-      "desktop": [
-        580,
-        444
-      ]
-    }
-  },
-  "assets/figma-315-423.webp": {
-    "box": {
-      "mobile": [
-        390,
-        0
-      ],
-      "tablet": [
-        390,
-        0
-      ],
-      "laptop": [
-        390,
-        0
-      ],
-      "desktop": [
-        465,
-        464
+        925
       ]
     }
   },
@@ -616,86 +576,6 @@
       "desktop": [
         680,
         395
-      ]
-    }
-  },
-  "assets/figma-315-456.webp": {
-    "box": {
-      "mobile": [
-        390,
-        1743
-      ],
-      "tablet": [
-        768,
-        1078
-      ],
-      "laptop": [
-        1280,
-        700
-      ],
-      "desktop": [
-        1920,
-        823
-      ]
-    }
-  },
-  "assets/figma-315-467.webp": {
-    "box": {
-      "mobile": [
-        334,
-        160
-      ],
-      "tablet": [
-        296,
-        160
-      ],
-      "laptop": [
-        165,
-        160
-      ],
-      "desktop": [
-        243,
-        177
-      ]
-    }
-  },
-  "assets/figma-315-483.webp": {
-    "box": {
-      "mobile": [
-        334,
-        160
-      ],
-      "tablet": [
-        296,
-        160
-      ],
-      "laptop": [
-        165,
-        160
-      ],
-      "desktop": [
-        243,
-        177
-      ]
-    }
-  },
-  "assets/figma-315-499.webp": {
-    "box": {
-      "mobile": [
-        334,
-        160
-      ],
-      "tablet": [
-        296,
-        160
-      ],
-      "laptop": [
-        165,
-        160
-      ],
-      "desktop": [
-        243,
-        177
       ]
     }
   },

@@ -45,7 +45,6 @@ function notify(message) {
 }
 const headings = {
   quote: "Рассчитать стоимость",
-  mortgage: "Условия ипотеки",
   visit: "Записаться на экскурсию",
   question: "Задать вопрос",
   project: "Проект «Уют» — 100 м²",
@@ -80,14 +79,6 @@ document.querySelectorAll("[data-action]").forEach((button) =>
       openDialog(
         button.textContent.trim(),
         "Юридический документ не приложен к макету. Его необходимо добавить до публикации рабочего сайта.",
-        true,
-      );
-      return;
-    }
-    if (action === "video") {
-      openDialog(
-        "Видео о строительстве",
-        "Ссылки на видеоролики не предоставлены. Их необходимо добавить перед публикацией.",
         true,
       );
       return;

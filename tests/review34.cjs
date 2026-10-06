@@ -19,7 +19,7 @@ const assert = require("node:assert/strict");
       .evaluate((e) => getComputedStyle(e).overflowX),
     "visible",
   );
-  for (const id of ["calculator", "mortgage", "reviews"]) {
+  for (const id of ["calculator", "reviews"]) {
     const d = p.locator(`#${id} .heading-description`);
     assert.equal(
       await d.evaluate((e) => getComputedStyle(e, "::before").content),
@@ -50,21 +50,6 @@ const assert = require("node:assert/strict");
       { timeout: 8000 },
     );
   }
-  const range = p.locator(".process-range input");
-  await range.scrollIntoViewIfNeeded();
-  await range.press("End");
-  await p.waitForFunction(
-    () => document.querySelector(".process-list").dataset.step === "5",
-  );
-  assert.ok(
-    (await p.locator(".process-list").innerText()).includes(
-      "Приёмка и новоселье".toUpperCase(),
-    ),
-  );
-  await range.press("Home");
-  await p.waitForFunction(
-    () => document.querySelector(".process-list").dataset.step === "0",
-  );
   assert.equal(
     await p.locator(".visit-kicker").innerText(),
     "ХОТИТЕ СНАЧАЛА УВИДЕТЬ НАШУ РАБОТУ?",
@@ -97,13 +82,6 @@ const assert = require("node:assert/strict");
     "rgb(255, 255, 255)",
   );
   assert.equal(
-    await p
-      .locator(".tags li")
-      .first()
-      .evaluate((e) => getComputedStyle(e).backgroundColor),
-    "rgba(0, 0, 0, 0)",
-  );
-  assert.equal(
     await p.locator(".footer-credit a").getAttribute("href"),
     "https://ruso.ru",
   );
@@ -123,7 +101,7 @@ const assert = require("node:assert/strict");
   assert.deepEqual(errors, []);
   await browser.close();
   console.log(
-    "PASS: bleed, consistent filter padding, two-line descriptions, both autoplays, six animated process steps, original visit kicker, FAQ placement/animation, tags/social cards, footer rail boundary and RUSO link.",
+    "PASS: bleed, consistent filter padding, two-line descriptions, both autoplays, original visit kicker, FAQ placement/animation, social cards, footer rail boundary and RUSO link.",
   );
 })().catch((e) => {
   console.error(e);
