@@ -514,14 +514,14 @@
   .footer-cta {
     --footer-pad: 38px;
   }
+  /* 609:973 — 539×263 в потоке: картинка идёт последним блоком панели
+     (13 px от кнопки, как в макете) и выезжает на правый край панели. */
   .footer-house {
-    position: absolute;
-    width: 80.45%;
+    width: 100%;
+    max-width: 539px;
     height: auto;
-    right: 0;
-    left: auto;
-    bottom: 0;
-    margin: 0;
+    align-self: flex-end;
+    margin: 13px calc(-1 * var(--footer-pad)) 0 auto;
   }
 }
 @media (max-width: 1440px) {

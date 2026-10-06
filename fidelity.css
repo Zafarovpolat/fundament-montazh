@@ -1902,9 +1902,15 @@ html h3[data-figma-text] {
   .footer-credit {
     justify-self: end;
   }
+  /* шаг панели: 25 px между заголовком и кнопкой (609:969), 13 px до
+     картинки (609:973) — считаем маргинами, чтобы gap их не суммировал. */
   .footer-cta {
     min-height: 562px;
-    gap: 25px; /* шаг txt-block 609:969 */
+    gap: 0;
+    padding-bottom: 0;
+  }
+  .footer-cta .button {
+    margin-top: 25px;
   }
   .footer-cta h2[data-figma-text] {
     width: 505px;
