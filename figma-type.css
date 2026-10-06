@@ -254,7 +254,7 @@ html [data-figma-text="315:361"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 957px;
+  --text-width: 1261px;
   color: rgba(255, 255, 255, 1);
 }
 html [data-figma-text="315:362"][data-figma-text] {
@@ -266,6 +266,17 @@ html [data-figma-text="315:362"][data-figma-text] {
   text-transform: none;
   --text-width: 375px;
   color: rgba(255, 255, 255, 0.6);
+}
+/* Вопрос текущего шага (495:580) и строка прогресса 315:368…371. */
+html [data-figma-text="495:580"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 30px;
+  line-height: 1.266667;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  --text-width: 674px;
+  color: rgba(255, 255, 255, 0.7);
 }
 html [data-figma-text="315:374"][data-figma-text] {
   font-family: var(--font-heading);
@@ -305,6 +316,33 @@ html [data-figma-text="315:380"][data-figma-text] {
   letter-spacing: 0px;
   text-transform: uppercase;
   --text-width: 255px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:368"][data-figma-text],
+html [data-figma-text="315:369"][data-figma-text],
+html [data-figma-text="315:370"][data-figma-text],
+html [data-figma-text="315:371"][data-figma-text] {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.222222;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-transform: none;
+}
+html [data-figma-text="315:368"][data-figma-text] {
+  --text-width: 10px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:369"][data-figma-text] {
+  --text-width: 6px;
+  color: rgba(255, 255, 255, 0.6);
+}
+html [data-figma-text="315:370"][data-figma-text] {
+  --text-width: 12px;
+  color: rgba(255, 255, 255, 1);
+}
+html [data-figma-text="315:371"][data-figma-text] {
+  --text-width: 38px;
   color: rgba(255, 255, 255, 1);
 }
 html [data-figma-text="315:382"][data-figma-text] {

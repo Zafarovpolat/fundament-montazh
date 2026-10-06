@@ -190,10 +190,10 @@ filters.forEach((button) =>
 // Four-question demo. No invented price or simulated server submission.
 const quizScreens = [
   [
-    "Газобетон (тепло, доступно)",
-    "Кирпич (надёжность, статус)",
-    "Клееный брус (натуральность, премиум)",
-    "Каркас (быстро, бюджетно)",
+    "Ленточный фундамент",
+    "Монолитная плита",
+    "Свайный фундамент",
+    "Не знаю — помогите выбрать",
   ],
   ["До 100 м²", "100–150 м²", "150–200 м²", "Более 200 м²"],
   ["Один этаж", "Два этажа", "С мансардой", "Нужна консультация"],
@@ -204,8 +204,9 @@ const quizScreens = [
     "Пока планирую",
   ],
 ];
-const quizTitles = [
-  "Узнайте стоимость вашего дома за 2 минуты",
+// Заголовок секции constant (315:361), вопрос — свой на каждом шаге (495:580).
+const quizQuestions = [
+  "Какой тип фундамента вас интересует?",
   "Какая площадь дома вам нужна?",
   "Сколько этажей вы планируете?",
   "У вас уже есть участок?",
@@ -239,8 +240,9 @@ function nextQuiz() {
     b.textContent = quizScreens[quizStep][i];
     b.setAttribute("aria-pressed", String(i === 0));
   });
-  document.querySelector("#quiz-title").textContent = quizTitles[quizStep];
-  document.querySelector("#quiz-step").textContent = `${quizStep + 1} / 4`;
+  document.querySelector("#quiz-question").textContent =
+    quizQuestions[quizStep];
+  document.querySelector("#quiz-step").textContent = String(quizStep + 1);
   document.querySelector("#quiz-percent").textContent =
     (quizStep + 1) * 25 + "%";
   document.querySelector("#quiz-progress").value = quizStep + 1;

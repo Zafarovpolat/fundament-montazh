@@ -1,5 +1,9 @@
 /* Adaptive typography: no page scaling; small source copy remains unchanged. */
 @media (min-width: 761px) and (max-width: 1440px) {
+  html [data-figma-text="495:580"][data-figma-text] {
+    font-size: clamp(22px, 2.34375vw, 30px);
+  }
+
   html [data-figma-text="315:301"][data-figma-text] {
     font-size: clamp(28px, 2.65625vw, 51px);
   }
@@ -173,6 +177,11 @@
   }
 }
 @media (max-width: 760px) {
+  html [data-figma-text="495:580"][data-figma-text] {
+    font-size: 22px;
+    line-height: 1.272727;
+  }
+
   html [data-figma-text="315:301"][data-figma-text] {
     font-size: 28px;
   }

@@ -2020,22 +2020,22 @@
           />
         </div>
         <div class="container">
-          <div class="section-heading section-heading--stacked">
-            <div>
-              <h2>
-                <span data-figma-text="315:361" id="quiz-title"
-                  >Узнайте стоимость вашего<br />
-                  дома за 2 минуты</span
-                >
-              </h2>
-              <p class="heading-description" data-figma-text="315:362">
-                Ответьте на 4 вопроса — пришлём точную смету и скидку 3% при
-                заказе в этом месяце
-              </p>
-            </div>
+          <div class="section-heading section-heading--quiz">
+            <h2>
+              <span data-figma-text="315:361" id="quiz-title"
+                >Рассчитайте стоимость<br />
+                фундамента за 2 минуты</span
+              >
+            </h2>
+            <p class="heading-description" data-figma-text="315:362">
+              Ответьте на 4 вопроса — пришлём смету и скидку 3% за онлайн-заявку
+            </p>
           </div>
+          <p class="quiz-question" data-figma-text="495:580" id="quiz-question">
+            Какой тип фундамента вас интересует?
+          </p>
           <div
-            aria-label="Выберите материал дома"
+            aria-labelledby="quiz-question"
             class="quiz-options"
             role="group"
           >
@@ -2045,28 +2045,28 @@
               data-quiz-option="0"
               type="button"
             >
-              Газобетон (тепло, доступно)</button
+              Ленточный фундамент</button
             ><button
               aria-pressed="false"
               data-figma-text="315:376"
               data-quiz-option="1"
               type="button"
             >
-              Кирпич (надёжность, статус)</button
+              Монолитная плита</button
             ><button
               aria-pressed="false"
               data-figma-text="315:378"
               data-quiz-option="2"
               type="button"
             >
-              Клееный брус (натуральность, премиум)</button
+              Свайный фундамент</button
             ><button
               aria-pressed="false"
               data-figma-text="315:380"
               data-quiz-option="3"
               type="button"
             >
-              Каркас (быстро, бюджетно)
+              Не знаю — помогите выбрать
             </button>
           </div>
           <div class="quiz-progress">
@@ -2077,8 +2077,11 @@
               value="1"
             ></progress>
             <div>
-              <span aria-live="polite" id="quiz-step">1 / 4</span
-              ><span id="quiz-percent">25%</span>
+              <span aria-live="polite" class="quiz-count"
+                ><span data-figma-text="315:368" id="quiz-step">1</span
+                ><span class="quiz-count-sep" data-figma-text="315:369">|</span
+                ><span data-figma-text="315:370">4</span></span
+              ><span data-figma-text="315:371" id="quiz-percent">25%</span>
             </div>
           </div>
           <div class="section-actions end">
