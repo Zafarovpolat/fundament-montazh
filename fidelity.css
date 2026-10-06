@@ -156,8 +156,9 @@ dd[data-figma-text] {
 .price-list li > div {
   margin-bottom: 19px;
 }
-.price-list .muted {
+html .price-list .muted {
   line-height: 24px;
+  color: rgb(255 255 255 / 40%);
 }
 .price-panel > .button {
   margin-top: 20px;
@@ -350,7 +351,7 @@ dd[data-figma-text] {
   overflow: visible;
   scroll-snap-type: none;
   padding: 0;
-  transform: translate3d(var(--slide-x, 0px), 0, 0);
+  transform: translate3d(calc(var(--slide-x, 0px) + var(--pin-x, 0px)), 0, 0);
   transition: transform 650ms cubic-bezier(0.22, 0.8, 0.25, 1);
   touch-action: pan-y;
   scrollbar-width: none;
@@ -513,13 +514,13 @@ dd[data-figma-text] {
   display: block;
   width: 100%;
   aspect-ratio: 275/467;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 .featured-object {
   width: 100%;
   aspect-ratio: 541/761;
   max-width: none;
-  border-radius: 15px;
+  border-radius: 10px;
   isolation: isolate;
 }
 .featured-object > img,
@@ -546,7 +547,7 @@ dd[data-figma-text] {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent 45%, #070b1f);
+  background: linear-gradient(180deg, transparent 41%, #070b1f 96%);
 }
 .featured-object figcaption {
   z-index: 1;
@@ -562,26 +563,32 @@ dd[data-figma-text] {
 }
 .object-meta {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
 }
-.object-meta li {
-  position: relative;
+/* разделитель между частями строки — линия 1x20 rgba(255,255,255,.15) */
+.object-meta > span + span {
+  padding-left: 10px;
+  border-left: 1px solid #ffffff26;
 }
-.object-meta li + li::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: 2px;
-  height: 20px;
-  width: 1px;
-  background: #ffffff26;
-}
-.featured-object .object-price {
-  margin-top: 22px;
+/* теги-квадраты 495:570: паддинг 10, радиус 10, подложка 20% белого */
+.object-tags {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.object-tags li {
+  padding: 10px;
+  border-radius: 10px;
+  background: #ffffff33;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.26;
 }
 .object-hover-cursor {
   position: absolute;
@@ -868,6 +875,33 @@ dd[data-figma-text] {
 .visit-banner {
   padding: 46px 40px 46px 35px;
   min-height: 306px;
+  border-radius: 25px;
+  /* макет 315:792: строка прижата к нижнему краю панели (gap 46 px) */
+  align-items: flex-end;
+}
+.visit-banner > div {
+  max-width: 637px;
+}
+/* макет 315:790: фото занимает правые 1171 px из 1660 (70.54 %), слева —
+   чистый тёмный фон панели; поверх фото — слой, тёмно-синий у левого края
+   и прозрачный к правому, чтобы кадр читался целиком */
+.visit-banner > .parallax-surface {
+  inset: 0 0 0 29.46%;
+  border-radius: 0 25px 25px 0;
+}
+.visit-banner > .parallax-surface .section-background {
+  opacity: 1;
+}
+.visit-banner > .parallax-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #070b1f 0%,
+    rgb(7 11 31 / 78%) 14%,
+    rgb(7 11 31 / 0%) 58%
+  );
 }
 .visit-banner h2 {
   margin-top: 10px;
@@ -900,8 +934,8 @@ dd[data-figma-text] {
   }
 }
 .social-grid {
-  grid-template-columns: minmax(0, 829fr) minmax(0, 699fr);
-  gap: 132px;
+  grid-template-columns: minmax(0, 908fr) minmax(0, 699fr);
+  gap: 53px;
 }
 .social-grid > div:first-child {
   padding-top: 8px;
@@ -1204,17 +1238,19 @@ html[data-motion="off"] .reveal {
     gap: 10px;
     font-size: 14px;
   }
-  .object-meta li + li::before {
-    display: none;
+  .object-meta > span + span {
+    border-left: 0;
+    padding-left: 0;
   }
   .featured-object h3 {
     font-size: 23px;
   }
-  .featured-object .object-price [data-figma-text] {
-    font-size: 24px;
+  .object-tags {
+    margin-top: 14px;
   }
-  .featured-object .object-price small[data-figma-text] {
+  .object-tags li {
     font-size: 14px;
+    padding: 7px 10px;
   }
 }
 @media (max-width: 760px) {
@@ -1411,12 +1447,6 @@ html[data-motion="off"] .reveal {
     gap: 15px;
   }
   .object-meta [data-figma-text] {
-    font-size: 14px;
-  }
-  .featured-object .object-price [data-figma-text] {
-    font-size: 27px;
-  }
-  .featured-object .object-price small[data-figma-text] {
     font-size: 14px;
   }
   .object-hover-cursor {
@@ -1644,7 +1674,6 @@ html dd[data-figma-text] {
   [data-figma-text="315:481"],
   [data-figma-text="315:657"],
   [data-figma-text="360:389"],
-  [data-figma-text="315:713"],
   [data-figma-text="315:437"],
   [data-figma-text="315:543"],
   [data-figma-text="315:382"],
@@ -1685,7 +1714,6 @@ html dd[data-figma-text] {
   [data-figma-text="315:422"],
   [data-figma-text="315:692"],
   [data-figma-text="315:839"],
-  [data-figma-text="315:712"],
   [data-figma-text="I315:676;124:232;124:190"],
   [data-figma-text="315:655"],
   [data-figma-text="I315:674;124:149"],
@@ -1934,14 +1962,13 @@ html h3[data-figma-text] {
   }
   .faq-grid summary {
     min-height: 106px;
-    padding-left: 13px;
+    padding-left: 30px;
   }
 }
 @media (max-width: 1439.98px) {
   .footer-credit {
     align-self: center;
   }
-}
 }
 .filters button:not([aria-pressed="true"]) {
   color: rgba(0, 0, 0, 0.4);
@@ -1978,6 +2005,10 @@ html .director-grid > div > p[data-figma-text],
 html .service-grid p[data-figma-text] {
   color: rgba(255, 255, 255, 0.6);
 }
+/* правка заказчика: абзац директора — чуть прозрачнее макета (в кадре 0.6) */
+html .director-grid > div > p[data-figma-text="315:303"] {
+  color: rgba(255, 255, 255, 0.5);
+}
 html .stats-grid dt[data-figma-text] {
   background: linear-gradient(
     180deg,
@@ -1992,8 +2023,7 @@ html .project-title small[data-figma-text],
 html .inline-list [data-figma-text] {
   color: rgba(0, 0, 0, 0.4);
 }
-html .object-meta [data-figma-text],
-html .object-price small[data-figma-text] {
+html .object-meta [data-figma-text] {
   color: rgba(255, 255, 255, 0.6);
 }
 .heading-description {
@@ -3181,6 +3211,7 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   padding: 10px;
   border-radius: 10px;
   background: #ffc924;
+  white-space: nowrap;
 }
 .foundation-card__body {
   display: flex;
@@ -3211,9 +3242,11 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 }
 .foundation-card__price {
   margin: 15px 0 0;
+  white-space: nowrap;
 }
 .foundation-card__note {
   margin: 5px 0 0;
+  white-space: nowrap;
 }
 .foundation-card .button {
   width: 297px;
@@ -3259,23 +3292,39 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   gap: 20px;
 }
 .included-panel {
+  display: flex;
+  flex-direction: column;
   padding: 0 40px 42px;
   border-radius: 25px;
   background: #fff;
 }
+/* «ушка» 478:1282 / 491:553: 338x90 и 344x90, скруглены только нижние
+   углы (0 0 20 20). Внутри — иконка макета (30x30 / 24x24), 10 px и
+   подпись; ширина своя по содержимому, переноса нет. */
 .included-panel__tab {
   display: flex;
   align-items: center;
-  min-width: 338px;
+  align-self: flex-start;
+  gap: 10px;
   height: 90px;
   margin: 0;
-  padding: 0 30px 0 70px;
+  padding: 0 30px;
+  border-radius: 0 0 20px 20px;
   background: #ffc924;
+  white-space: nowrap;
+}
+.included-panel__tab .figma-icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
 }
 .included-panel--extra .included-panel__tab {
-  min-width: 344px;
-  padding-left: 64px;
   background: var(--ink);
+}
+.included-panel--extra .included-panel__tab .figma-icon {
+  width: 24px;
+  height: 24px;
+  color: #fff;
 }
 .included-tiles {
   display: grid;
@@ -3292,11 +3341,16 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   /* Строка макета 112 px: 10 + 37.8 + 10 + 2*21.4 + 9.2 */
   min-height: 112px;
   padding: 10px 15px 9px;
+  border: 1px solid transparent;
   border-radius: 10px;
 }
 .included-tile.is-muted,
 .included-tile--price {
   background: #f4f4f4;
+}
+/* нечётные плитки строки макета — без заливки, с обводкой 1 px #F4F4F4 */
+.included-tiles > .included-tile:not(.is-muted):not(.included-tile--price) {
+  border-color: #f4f4f4;
 }
 .included-tile__num {
 }
@@ -3313,10 +3367,13 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 .included-tile__price {
 }
 .included-saving {
-  margin-top: 39px;
+  /* панель — колонка: блок прижат к нижнему краю, 39 px — минимум из макета */
+  margin-top: auto;
+  padding-top: 39px;
 }
 .included-saving__title {
   margin: 0;
+  white-space: nowrap;
 }
 .included-saving__text {
   max-width: 470px;
@@ -3332,14 +3389,8 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   --design-pad: clamp(32px, 2.60417vw, 50px);
   padding-block: var(--design-pad);
 }
-#design .steps-rail {
-  position: absolute;
-  top: 0;
-  left: clamp(12px, 1.09375vw, 21px);
-  width: 1px;
-  height: min(699px, 100%);
-  background: rgb(255 255 255 / 20%);
-}
+/* Линия 315:351 в макете лежит ровно на 1 px левее вертикальной линии
+   левого пути (.page-path .path-line, x 22) — второй слой не нужен. */
 #included .eyebrow,
 #design .eyebrow {
   display: flex;
@@ -3426,16 +3477,42 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   height: 32px;
   margin-top: clamp(28px, 3.69792vw, 71px);
 }
-.steps-range::after {
+/* линия 491:671 — 2 px, на концах точки 10 px: жёлтая слева, белая справа */
+.steps-range__line {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 20%);
+}
+.steps-range__line::before,
+.steps-range__line::after {
   content: "";
   position: absolute;
-  top: 11px;
-  right: 0;
+  top: -4px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
+}
+.steps-range__line::before {
+  left: 0;
+  background: var(--accent);
+}
+.steps-range__line::after {
+  right: 0;
   background: #fff;
-  pointer-events: none;
+}
+/* пройденная часть — 491:677, жёлтая полоса той же толщины */
+.steps-range__fill {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: calc(var(--steps-progress, 0.5) * 100%);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 .steps-range input {
   position: relative;
@@ -3455,7 +3532,7 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 .steps-range input::-webkit-slider-runnable-track,
 .steps-range input::-moz-range-track {
   height: 2px;
-  background: rgb(255 255 255 / 20%);
+  background: transparent;
 }
 .steps-range input::-webkit-slider-thumb {
   width: 10px;
@@ -3463,7 +3540,7 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   margin-top: -4px;
   border: 0;
   border-radius: 50%;
-  background: var(--accent);
+  background: transparent;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -3472,5 +3549,74 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   height: 10px;
   border: 0;
   border-radius: 50%;
-  background: var(--accent);
+  background: transparent;
+}
+/* бегунок-пилюля 491:672: 62x32, радиус 10, белая подложка, две стрелки
+   через разделитель; стоит на конце жёлтой полосы — позиция наследуется от
+   прогресса, а не выставляется вручную */
+.steps-range__ctrl {
+  position: absolute;
+  top: 0;
+  left: calc(var(--steps-progress, 0.5) * (100% - 62px));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 62px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: #fff;
+  transition: left 260ms cubic-bezier(0.22, 0.8, 0.25, 1);
+}
+.steps-range__btn {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 160ms ease;
+}
+.steps-range__btn .figma-icon {
+  width: 6px;
+  height: 12px;
+}
+.steps-range__btn:hover {
+  opacity: 0.8;
+}
+.steps-range__btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.steps-range__sep {
+  width: 1px;
+  height: 17px;
+  background: #070b1f26;
+}
+
+/* ── Пин «7 шагов» (315:324): ряд карточек прилипает к середине экрана, а
+   вертикальный скролл превращается в горизонтальный — ровно на длину
+   переполнения трека, и за это же время бегунок рельса доходит до конца.
+   Класс is-on навешивает steps-pin.js только от 1441 px и при включённых
+   анимациях: без JS и на мобильных разметка остаётся обычным рядом. */
+@media (min-width: 1441px) {
+  .steps-pin.is-on {
+    /* высоту задаёт скрипт: сцена + пробег + два отступа прилипания,
+       иначе у sticky не остаётся хода внутри родителя */
+    min-height: var(--pin-block-h, auto);
+  }
+  .steps-pin.is-on .steps-pin__stage {
+    position: sticky;
+    top: var(--pin-top, 0px);
+  }
+  .steps-pin.is-on .fidelity-track {
+    transition: none;
+    pointer-events: none;
+  }
+  .steps-pin.is-on .steps-range__ctrl {
+    transition: none;
+  }
 }

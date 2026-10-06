@@ -689,10 +689,6 @@ address {
 .featured-object figcaption > p {
   font-size: 14px;
 }
-.featured-object .object-price {
-  font-size: 26px;
-  margin-top: 15px;
-}
 .service-grid {
   counter-reset: services;
   display: grid;

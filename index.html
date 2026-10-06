@@ -196,6 +196,7 @@
     <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
     <link href="fidelity.css?v=3.6.4" rel="stylesheet" />
     <script defer="" src="sliders.js?v=3.6.4"></script>
+    <script defer="" src="steps-pin.js?v=3.6.4"></script>
     <script defer="" src="refinements.js?v=3.6.4"></script>
     <script defer="" src="header.js?v=3.6.4"></script>
     <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
@@ -354,33 +355,33 @@
           </li>
           <li>
             <a
-              aria-label="Каталог проектов"
+              aria-label="Виды фундаментов"
               class="path-link"
               data-marker-offset="30.5"
               data-section="projects"
               href="#projects"
               ><span aria-hidden="true" class="path-dot"></span
               ><span class="path-label" data-figma-text="315:641"
-                >Каталог<br />проектов</span
+                >Виды<br />фундаментов</span
               ></a
             >
           </li>
           <li>
             <a
-              aria-label="Готовые объекты"
+              aria-label="Наши объекты"
               class="path-link"
               data-marker-offset="15.5"
               data-section="objects"
               href="#objects"
               ><span aria-hidden="true" class="path-dot"></span
               ><span class="path-label" data-figma-text="315:686"
-                >Готовые<br />объекты</span
+                >Наши<br />объекты</span
               ></a
             >
           </li>
           <li>
             <a
-              aria-label="Готовые объекты"
+              aria-label="Как мы работаем"
               class="path-link"
               data-marker-offset="31.5"
               data-section="design"
@@ -429,7 +430,7 @@
               href="#faq"
               ><span aria-hidden="true" class="path-dot"></span
               ><span class="path-label" data-figma-text="315:802"
-                >Вопросы<br />и<br />ответы</span
+                >Вопросы<br />и ответы</span
               ></a
             >
           </li>
@@ -885,11 +886,11 @@
             <div>
               <h2>
                 <span class="heading-line" data-figma-text="315:645"
-                  >Готовые проекты</span
+                  >Выберите тип фундамента</span
                 ><span
                   class="heading-line heading-line--inset"
                   data-figma-text="315:646"
-                  >с ценами под ключ</span
+                  >для вашего дома</span
                 >
               </h2>
             </div>
@@ -897,7 +898,7 @@
               class="heading-description with-yellow-rule"
               data-figma-text="315:649"
             >
-              Любой проект можно адаптировать под ваш участок и пожелания.
+              Подберём оптимальный тип по геологии вашего участка и типу дома.
             </p>
           </div>
           <div class="foundation-cards" data-figma-grid="476:1119">
@@ -1323,8 +1324,18 @@
           </div>
           <div class="included-panels">
             <div class="included-panel included-panel--full">
-              <p class="included-panel__tab" data-figma-text="478:1284">
-                Включено в стоимость
+              <p class="included-panel__tab">
+                <svg
+                  class="figma-icon icon-sprite"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    href="assets/icons/sprite.svg#i-included-verify"
+                    xlink:href="assets/icons/sprite.svg#i-included-verify"
+                  />
+                </svg>
+                <span data-figma-text="478:1284">Включено в стоимость</span>
               </p>
               <ol class="included-tiles">
                 <li class="included-tile is-muted">
@@ -1402,12 +1413,22 @@
               </ol>
             </div>
             <div class="included-panel included-panel--extra">
-              <p class="included-panel__tab" data-figma-text="491:556">
-                По желанию, за доплату
+              <p class="included-panel__tab">
+                <svg
+                  class="figma-icon icon-sprite"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    href="assets/icons/sprite.svg#i-included-add"
+                    xlink:href="assets/icons/sprite.svg#i-included-add"
+                  />
+                </svg>
+                <span data-figma-text="491:556">По желанию, за доплату</span>
               </p>
               <ul class="included-tiles">
                 <li class="included-tile included-tile--price">
-                  <span class="included-tile__name" data-figma-text="476:1210"
+                  <span class="included-tile__name" data-figma-text="491:559"
                     >Гидроизоляция</span
                   >
                   <span class="included-tile__price" data-figma-text="491:560"
@@ -1487,7 +1508,6 @@
             width="1440"
           />
         </div>
-        <span aria-hidden="true" class="steps-rail"></span>
         <div class="container">
           <div class="section-heading">
             <div>
@@ -1518,77 +1538,122 @@
               ></span>
             </button>
           </div>
-          <div class="carousel-bleed">
-            <ol
-              class="steps-track fidelity-track"
-              data-carousel
-              id="steps-track"
-            >
-              <li class="step-card">
-                <p class="step-card__num" data-figma-text="315:332">01</p>
-                <h3 class="step-card__title" data-figma-text="315:334">
-                  Знакомство и консультация
-                </h3>
-                <p class="step-card__text" data-figma-text="315:335">
-                  Обсуждаем ваш участок, тип будущего дома, пожелания и
-                  ориентировочный бюджет. Бесплатно и без обязательств.
-                </p>
-              </li>
-              <li class="step-card">
-                <p class="step-card__num" data-figma-text="315:342">02</p>
-                <h3 class="step-card__title" data-figma-text="315:344">
-                  Изучаем участок и геологию
-                </h3>
-                <p class="step-card__text" data-figma-text="315:345">
-                  Выезжаем на участок, оцениваем рельеф и условия строительства.
-                  Берём пробы грунта — определяем состав, несущую способность и
-                  уровень грунтовых вод.
-                </p>
-              </li>
-              <li class="step-card">
-                <p class="step-card__num" data-figma-text="315:337">03</p>
-                <h3 class="step-card__title" data-figma-text="315:339">
-                  Проектируем фундамент
-                </h3>
-                <p class="step-card__text" data-figma-text="315:340">
-                  На основе геологии и параметров дома рассчитываем нагрузки.
-                  Проектируем фундамент по СНиП и ГОСТ. Все конструктивные
-                  решения принимаем до выхода на объект.
-                </p>
-              </li>
-              <li class="step-card">
-                <p class="step-card__num" data-figma-text="315:347">04</p>
-                <h3 class="step-card__title" data-figma-text="315:349">
-                  Смета и договор
-                </h3>
-                <p class="step-card__text" data-figma-text="315:350">
-                  Определяем объём работ и комплектацию. Фиксируем стоимость,
-                  сроки и гарантийные обязательства в договоре. Цена не меняется
-                  в процессе работ.
-                </p>
-              </li>
-              <li class="step-card">
-                <p class="step-card__num" data-figma-text="491:631">05</p>
-                <h3 class="step-card__title" data-figma-text="491:633">
-                  Подготовка и опалубка
-                </h3>
-                <p class="step-card__text" data-figma-text="491:634">
-                  Разбиваем оси, роем траншеи или котлован, трамбуем подушку из
-                  песка и щебня, устанавливаем опалубку строго по проекту.
-                  Ежедневные фото- и видеоотчёты с объекта.
-                </p>
-              </li>
-            </ol>
-          </div>
-          <div class="steps-range" data-steps-range="steps-track">
-            <input
-              aria-label="Переключение шагов работы"
-              max="1"
-              min="0"
-              step="1"
-              type="range"
-              value="0"
-            />
+          <div class="steps-pin" data-steps-pin>
+            <div class="steps-pin__stage">
+              <div class="carousel-bleed">
+                <ol
+                  class="steps-track fidelity-track"
+                  data-carousel
+                  id="steps-track"
+                >
+                  <li class="step-card">
+                    <p class="step-card__num" data-figma-text="315:332">01</p>
+                    <h3 class="step-card__title" data-figma-text="315:334">
+                      Знакомство и консультация
+                    </h3>
+                    <p class="step-card__text" data-figma-text="315:335">
+                      Обсуждаем ваш участок, тип будущего дома, пожелания и
+                      ориентировочный бюджет. Бесплатно и без обязательств.
+                    </p>
+                  </li>
+                  <li class="step-card">
+                    <p class="step-card__num" data-figma-text="315:342">02</p>
+                    <h3 class="step-card__title" data-figma-text="315:344">
+                      Изучаем участок и геологию
+                    </h3>
+                    <p class="step-card__text" data-figma-text="315:345">
+                      Выезжаем на участок, оцениваем рельеф и условия
+                      строительства. Берём пробы грунта — определяем состав,
+                      несущую способность и уровень грунтовых вод.
+                    </p>
+                  </li>
+                  <li class="step-card">
+                    <p class="step-card__num" data-figma-text="315:337">03</p>
+                    <h3 class="step-card__title" data-figma-text="315:339">
+                      Проектируем фундамент
+                    </h3>
+                    <p class="step-card__text" data-figma-text="315:340">
+                      На основе геологии и параметров дома рассчитываем
+                      нагрузки. Проектируем фундамент по СНиП и ГОСТ. Все
+                      конструктивные решения принимаем до выхода на объект.
+                    </p>
+                  </li>
+                  <li class="step-card">
+                    <p class="step-card__num" data-figma-text="315:347">04</p>
+                    <h3 class="step-card__title" data-figma-text="315:349">
+                      Смета и договор
+                    </h3>
+                    <p class="step-card__text" data-figma-text="315:350">
+                      Определяем объём работ и комплектацию. Фиксируем
+                      стоимость, сроки и гарантийные обязательства в договоре.
+                      Цена не меняется в процессе работ.
+                    </p>
+                  </li>
+                  <li class="step-card">
+                    <p class="step-card__num" data-figma-text="491:631">05</p>
+                    <h3 class="step-card__title" data-figma-text="491:633">
+                      Подготовка и опалубка
+                    </h3>
+                    <p class="step-card__text" data-figma-text="491:634">
+                      Разбиваем оси, роем траншеи или котлован, трамбуем подушку
+                      из песка и щебня, устанавливаем опалубку строго по
+                      проекту. Ежедневные фото- и видеоотчёты с объекта.
+                    </p>
+                  </li>
+                </ol>
+              </div>
+              <div class="steps-range" data-steps-range="steps-track">
+                <span aria-hidden="true" class="steps-range__line"></span>
+                <span aria-hidden="true" class="steps-range__fill"></span>
+                <input
+                  aria-label="Переключение шагов работы"
+                  max="1"
+                  min="0"
+                  step="1"
+                  type="range"
+                  value="0"
+                />
+                <span class="steps-range__ctrl">
+                  <button
+                    aria-label="Предыдущий шаг"
+                    class="steps-range__btn"
+                    data-scroll="-1"
+                    data-target="steps-track"
+                    type="button"
+                  >
+                    <svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-arrow-left"
+                        xlink:href="assets/icons/sprite.svg#i-arrow-left"
+                      />
+                    </svg>
+                  </button>
+                  <span aria-hidden="true" class="steps-range__sep"></span>
+                  <button
+                    aria-label="Следующий шаг"
+                    class="steps-range__btn"
+                    data-scroll="1"
+                    data-target="steps-track"
+                    type="button"
+                  >
+                    <svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-arrow-right"
+                        xlink:href="assets/icons/sprite.svg#i-arrow-right"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1598,19 +1663,19 @@
             <div>
               <h2>
                 <span class="heading-line" data-figma-text="315:689"
-                  >Дома, которые</span
+                  >Фундаменты,</span
                 ><span
                   class="heading-line heading-line--inset"
                   data-figma-text="315:690"
-                  >мы уже построили</span
+                  >которые мы построили</span
                 >
               </h2>
             </div>
             <p class="heading-description">
               <span class="" data-figma-text="315:692"
-                >Более 200 готовых объектов в Новосибирске и НСО </span
+                >Реальные объекты в Новосибирске и НСО.</span
               ><span class="" data-figma-text="315:693"
-                >Привезём на экскурсию.</span
+                >Привезём на экскурсию до подписания договора.</span
               >
             </p>
           </div>
@@ -1635,22 +1700,19 @@
                 data-demo-caption="true"
               >
                 <h3 class="" data-figma-text="315:704">
-                  Дом «Классик» 130 м² · Академгородок
+                  Ленточный фундамент 180 пм · Бердск
                 </h3>
                 <p class="object-meta">
-                  <span class="" data-figma-text="315:706">Газобетон</span>
-
-                  ·
-                  <span class="" data-figma-text="315:708"
-                    >5 мес. строительства</span
-                  >
-
-                  · <span class="" data-figma-text="315:710">2024 год</span>
+                  <span class="" data-figma-text="315:706"
+                    >Под газобетонный дом 130 м²</span
+                  ><span class="" data-figma-text="315:708">6 дней</span
+                  ><span class="" data-figma-text="315:710">2024 год</span>
                 </p>
-                <p class="object-price">
-                  <span class="" data-figma-text="315:712">2 800 000 ₽</span>
-                  <small class="" data-figma-text="315:713">под ключ</small>
-                </p>
+                <ul class="object-tags">
+                  <li>Ленточный</li>
+                  <li>Глубина 1.8м</li>
+                  <li>М300</li>
+                </ul>
               </figcaption>
             </figure>
             <figure class="featured-object object-card" data-object-index="1">
@@ -1667,22 +1729,19 @@
                 data-demo-caption="true"
               >
                 <h3 class="" data-figma-text="315:704">
-                  Дом «Классик» 130 м² · Академгородок
+                  Ленточный фундамент 180 пм · Бердск
                 </h3>
                 <p class="object-meta">
-                  <span class="" data-figma-text="315:706">Газобетон</span>
-
-                  ·
-                  <span class="" data-figma-text="315:708"
-                    >5 мес. строительства</span
-                  >
-
-                  · <span class="" data-figma-text="315:710">2024 год</span>
+                  <span class="" data-figma-text="315:706"
+                    >Под газобетонный дом 130 м²</span
+                  ><span class="" data-figma-text="315:708">6 дней</span
+                  ><span class="" data-figma-text="315:710">2024 год</span>
                 </p>
-                <p class="object-price">
-                  <span class="" data-figma-text="315:712">2 800 000 ₽</span>
-                  <small class="" data-figma-text="315:713">под ключ</small>
-                </p>
+                <ul class="object-tags">
+                  <li>Ленточный</li>
+                  <li>Глубина 1.8м</li>
+                  <li>М300</li>
+                </ul>
               </figcaption>
             </figure>
             <figure
@@ -1706,22 +1765,19 @@
               />
               <figcaption>
                 <h3 class="" data-figma-text="315:704">
-                  Дом «Классик» 130 м² · Академгородок
+                  Ленточный фундамент 180 пм · Бердск
                 </h3>
                 <p class="object-meta">
-                  <span class="" data-figma-text="315:706">Газобетон</span>
-
-                  ·
-                  <span class="" data-figma-text="315:708"
-                    >5 мес. строительства</span
-                  >
-
-                  · <span class="" data-figma-text="315:710">2024 год</span>
+                  <span class="" data-figma-text="315:706"
+                    >Под газобетонный дом 130 м²</span
+                  ><span class="" data-figma-text="315:708">6 дней</span
+                  ><span class="" data-figma-text="315:710">2024 год</span>
                 </p>
-                <p class="object-price">
-                  <span class="" data-figma-text="315:712">2 800 000 ₽</span>
-                  <small class="" data-figma-text="315:713">под ключ</small>
-                </p>
+                <ul class="object-tags">
+                  <li>Ленточный</li>
+                  <li>Глубина 1.8м</li>
+                  <li>М300</li>
+                </ul>
               </figcaption>
             </figure>
             <figure class="featured-object object-card" data-object-index="3">
@@ -1738,22 +1794,19 @@
                 data-demo-caption="true"
               >
                 <h3 class="" data-figma-text="315:704">
-                  Дом «Классик» 130 м² · Академгородок
+                  Ленточный фундамент 180 пм · Бердск
                 </h3>
                 <p class="object-meta">
-                  <span class="" data-figma-text="315:706">Газобетон</span>
-
-                  ·
-                  <span class="" data-figma-text="315:708"
-                    >5 мес. строительства</span
-                  >
-
-                  · <span class="" data-figma-text="315:710">2024 год</span>
+                  <span class="" data-figma-text="315:706"
+                    >Под газобетонный дом 130 м²</span
+                  ><span class="" data-figma-text="315:708">6 дней</span
+                  ><span class="" data-figma-text="315:710">2024 год</span>
                 </p>
-                <p class="object-price">
-                  <span class="" data-figma-text="315:712">2 800 000 ₽</span>
-                  <small class="" data-figma-text="315:713">под ключ</small>
-                </p>
+                <ul class="object-tags">
+                  <li>Ленточный</li>
+                  <li>Глубина 1.8м</li>
+                  <li>М300</li>
+                </ul>
               </figcaption>
             </figure>
             <figure class="featured-object object-card" data-object-index="4">
@@ -1770,22 +1823,19 @@
                 data-demo-caption="true"
               >
                 <h3 class="" data-figma-text="315:704">
-                  Дом «Классик» 130 м² · Академгородок
+                  Ленточный фундамент 180 пм · Бердск
                 </h3>
                 <p class="object-meta">
-                  <span class="" data-figma-text="315:706">Газобетон</span>
-
-                  ·
-                  <span class="" data-figma-text="315:708"
-                    >5 мес. строительства</span
-                  >
-
-                  · <span class="" data-figma-text="315:710">2024 год</span>
+                  <span class="" data-figma-text="315:706"
+                    >Под газобетонный дом 130 м²</span
+                  ><span class="" data-figma-text="315:708">6 дней</span
+                  ><span class="" data-figma-text="315:710">2024 год</span>
                 </p>
-                <p class="object-price">
-                  <span class="" data-figma-text="315:712">2 800 000 ₽</span>
-                  <small class="" data-figma-text="315:713">под ключ</small>
-                </p>
+                <ul class="object-tags">
+                  <li>Ленточный</li>
+                  <li>Глубина 1.8м</li>
+                  <li>М300</li>
+                </ul>
               </figcaption>
             </figure>
             <span aria-hidden="true" class="object-hover-cursor"
@@ -2377,7 +2427,8 @@
           <div class="faq-grid">
             <details>
               <summary data-figma-text="315:805">
-                Сколько стоит ленточный фундамент под ключ?<span aria-hidden="true"
+                Сколько стоит ленточный фундамент под ключ?<span
+                  aria-hidden="true"
                   ><svg
                     class="figma-icon icon-sprite"
                     aria-hidden="true"
@@ -2387,10 +2438,12 @@
                       href="assets/icons/sprite.svg#i-faq-plus"
                       xlink:href="assets/icons/sprite.svg#i-faq-plus"
                     /></svg
-                >
+                ></span>
               </summary>
               <p>
-                Итоговая стоимость зависит от проекта, участка и комплектации и фиксируется в договоре. При неизменных проекте и объёме работ согласованная стоимость остаётся прежней.
+                Итоговая стоимость зависит от проекта, участка и комплектации и
+                фиксируется в договоре. При неизменных проекте и объёме работ
+                согласованная стоимость остаётся прежней.
               </p>
             </details>
             <details>
@@ -2405,15 +2458,19 @@
                       href="assets/icons/sprite.svg#i-faq-plus"
                       xlink:href="assets/icons/sprite.svg#i-faq-plus"
                     /></svg
-                >
+                ></span>
               </summary>
               <p>
-                Геологическое изыскание — обязательный первый шаг. Без него невозможно правильно выбрать тип фундамента и рассчитать нагрузки. Если вам предлагают фундамент «без лишних бумаг» — это красный флаг.
+                Геологическое изыскание — обязательный первый шаг. Без него
+                невозможно правильно выбрать тип фундамента и рассчитать
+                нагрузки. Если вам предлагают фундамент «без лишних бумаг» — это
+                красный флаг.
               </p>
             </details>
             <details>
               <summary data-figma-text="315:813">
-                Какой фундамент лучше для газобетонного дома?<span aria-hidden="true"
+                Какой фундамент лучше для газобетонного дома?<span
+                  aria-hidden="true"
                   ><svg
                     class="figma-icon icon-sprite"
                     aria-hidden="true"
@@ -2423,10 +2480,12 @@
                       href="assets/icons/sprite.svg#i-faq-plus"
                       xlink:href="assets/icons/sprite.svg#i-faq-plus"
                     /></svg
-                >
+                ></span>
               </summary>
               <p>
-                Не принимаем конструктивные решения «по месту». Сначала геология, потом расчёт нагрузок и проект — и только потом выходим на стройплощадку.
+                Не принимаем конструктивные решения «по месту». Сначала
+                геология, потом расчёт нагрузок и проект — и только потом
+                выходим на стройплощадку.
               </p>
             </details>
             <details>
@@ -2441,10 +2500,12 @@
                       href="assets/icons/sprite.svg#i-faq-plus"
                       xlink:href="assets/icons/sprite.svg#i-faq-plus"
                     /></svg
-                >
+                ></span>
               </summary>
               <p>
-                Фундамент под ключ в Новосибирске — за 5–10 дней. До начала работ составляется график строительства, сроки закрепляются в договоре.
+                Фундамент под ключ в Новосибирске — за 5–10 дней. До начала
+                работ составляется график строительства, сроки закрепляются в
+                договоре.
               </p>
             </details>
             <details>
@@ -2459,10 +2520,11 @@
                       href="assets/icons/sprite.svg#i-faq-plus"
                       xlink:href="assets/icons/sprite.svg#i-faq-plus"
                     /></svg
-                >
+                ></span>
               </summary>
               <p>
-                Рассчитываем точные нагрузки — фундамент не просядет и не треснет. Гарантия 5 лет по договору.
+                Рассчитываем точные нагрузки — фундамент не просядет и не
+                треснет. Гарантия 5 лет по договору.
               </p>
             </details>
             <details>
@@ -2477,7 +2539,7 @@
                       href="assets/icons/sprite.svg#i-faq-plus"
                       xlink:href="assets/icons/sprite.svg#i-faq-plus"
                     /></svg
-                >
+                ></span>
               </summary>
               <p>
                 Условия ведения работ в зимний период уточняются у компании.

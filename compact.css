@@ -768,8 +768,11 @@ html .featured-object h3[data-figma-text] {
   .included-panel__tab,
   .included-panel--extra .included-panel__tab {
     min-width: 0;
-    height: 64px;
+    height: auto;
+    min-height: 64px;
+    padding-block: 12px;
     padding-inline: 20px;
+    white-space: normal;
   }
   .included-tiles {
     grid-template-columns: minmax(0, 1fr);

@@ -264,9 +264,13 @@
   const api = track.carousel;
   const sync = () => {
     const pages = Math.max(1, api.pages);
+    const page = Math.min(api.page, pages - 1);
     input.max = String(pages - 1);
-    input.value = String(Math.min(api.page, pages - 1));
+    input.value = String(page);
     rail.hidden = pages < 2;
+    // жёлтая полоса и пилюля со стрелками идут по прогрессу листов
+    const done = pages > 1 ? (page + 1) / pages : 1;
+    rail.style.setProperty("--steps-progress", done.toFixed(4));
   };
   input.addEventListener("input", () => api.goTo(Number(input.value)));
   new MutationObserver(sync).observe(track, {

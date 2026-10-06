@@ -68,7 +68,8 @@ const assert = require("node:assert/strict");
   for (const card of await p.locator(".object-card").all()) {
     assert.equal(await card.locator("figcaption h3").count(), 1);
     assert.equal(await card.locator("figcaption .object-meta").count(), 1);
-    assert.equal(await card.locator("figcaption .object-price").count(), 1);
+    assert.equal(await card.locator("figcaption .object-price").count(), 0);
+    assert.equal(await card.locator("figcaption .object-tags li").count(), 3);
   }
   await b.close();
   console.log(

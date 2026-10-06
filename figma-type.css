@@ -17,7 +17,7 @@ html [data-figma-text="315:303"][data-figma-text] {
   letter-spacing: 0px;
   text-transform: none;
   --text-width: 820px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
 }
 html [data-figma-text="315:304"][data-figma-text] {
   font-family: var(--font-body);
@@ -484,7 +484,7 @@ html [data-figma-text="315:544"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 693px;
+  --text-width: 772px;
   color: rgba(0, 0, 0, 1);
 }
 html [data-figma-text="315:547"][data-figma-text] {
@@ -565,7 +565,7 @@ html [data-figma-text="315:641"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 70px;
+  --text-width: 92px;
   color: rgba(0, 0, 0, 0.4);
 }
 html [data-figma-text="315:645"][data-figma-text] {
@@ -705,7 +705,7 @@ html [data-figma-text="315:689"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 505px;
+  --text-width: 459px;
   color: rgba(0, 0, 0, 1);
 }
 html [data-figma-text="315:690"][data-figma-text] {
@@ -715,7 +715,7 @@ html [data-figma-text="315:690"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 664px;
+  --text-width: 817px;
   color: rgba(0, 0, 0, 1);
 }
 html [data-figma-text="315:692"][data-figma-text] {
@@ -725,7 +725,7 @@ html [data-figma-text="315:692"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 577px;
+  --text-width: 471px;
   color: rgba(0, 0, 0, 1);
 }
 html [data-figma-text="315:693"][data-figma-text] {
@@ -735,7 +735,7 @@ html [data-figma-text="315:693"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 278px;
+  --text-width: 577px;
   color: rgba(0, 0, 0, 0.3);
 }
 html [data-figma-text="315:704"][data-figma-text] {
@@ -745,7 +745,7 @@ html [data-figma-text="315:704"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 386px;
+  --text-width: 444px;
   color: rgba(255, 255, 255, 1);
 }
 html [data-figma-text="315:706"][data-figma-text] {
@@ -755,7 +755,7 @@ html [data-figma-text="315:706"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
-  --text-width: 74px;
+  --text-width: 221px;
   color: rgba(255, 255, 255, 0.6);
 }
 html [data-figma-text="315:708"][data-figma-text] {
@@ -765,7 +765,7 @@ html [data-figma-text="315:708"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
-  --text-width: 156px;
+  --text-width: 53px;
   color: rgba(255, 255, 255, 0.6);
 }
 html [data-figma-text="315:710"][data-figma-text] {
@@ -776,26 +776,6 @@ html [data-figma-text="315:710"][data-figma-text] {
   letter-spacing: 0px;
   text-transform: none;
   --text-width: 68px;
-  color: rgba(255, 255, 255, 0.6);
-}
-html [data-figma-text="315:712"][data-figma-text] {
-  font-family: var(--font-heading);
-  font-size: 30px;
-  line-height: 1.268;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  --text-width: 168px;
-  color: rgba(255, 255, 255, 1);
-}
-html [data-figma-text="315:713"][data-figma-text] {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.26;
-  font-weight: 400;
-  letter-spacing: 0px;
-  text-transform: none;
-  --text-width: 67px;
   color: rgba(255, 255, 255, 0.6);
 }
 html [data-figma-text="315:726"][data-figma-text] {
@@ -1076,7 +1056,7 @@ html [data-figma-text="360:393"][data-figma-text] {
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: uppercase;
-  --text-width: 935px;
+  --text-width: 985px;
   color: rgba(255, 255, 255, 1);
 }
 html [data-figma-text="360:394"][data-figma-text] {
@@ -2661,14 +2641,14 @@ html [data-figma-text="491:556"][data-figma-text] {
   --text-width: 250px;
   color: rgba(255, 255, 255, 1);
 }
-html [data-figma-text="476:1210"][data-figma-text] {
+html [data-figma-text="491:559"][data-figma-text] {
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.2625;
+  font-size: 20px;
+  line-height: 1.1;
   font-weight: 400;
   letter-spacing: 0px;
   text-transform: none;
-  --text-width: 112px;
+  --text-width: 140px;
   color: rgba(0, 0, 0, 1);
 }
 html [data-figma-text="491:560"][data-figma-text] {
