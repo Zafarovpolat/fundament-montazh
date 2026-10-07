@@ -46,35 +46,23 @@
     const atStart = () => api.position <= 0.001;
     const atEnd = () => api.position >= span() - 0.001;
 
-    let anchor = null; // pageY, на котором держим страницу
+    let isPinned = false;
     let touchY = null;
 
     const enabled = () => pinViewport.matches && motionOn() && span() > 0;
-    const pinned = () => anchor !== null;
+    const pinned = () => isPinned;
 
-    function hold(pageY = window.scrollY) {
-      // Ставим режим мгновенной прокрутки до выравнивания #design. Иначе
-      // браузер мог продолжить smooth-scroll уже после захвата wheel-события.
+    function hold() {
+      // Переключаем root в мгновенный режим только при захвате; сам page scroll
+      // дальше останавливается preventDefault, без обратных scrollTo-подскоков.
+      isPinned = true;
       document.documentElement.classList.add("is-steps-pinned");
-      anchor = Math.round(pageY);
-      window.addEventListener("scroll", reassert, { passive: true });
     }
 
     function release() {
-      anchor = null;
+      if (!isPinned) return;
+      isPinned = false;
       document.documentElement.classList.remove("is-steps-pinned");
-      window.removeEventListener("scroll", reassert);
-    }
-
-    /**
-     * Пока рельс не дошёл до края, восстанавливаем закреплённую позицию даже
-     * после случайного inertial/programmatic сдвига. Навигационные клавиши и
-     * явные якорные ссылки освобождают пин отдельно.
-     */
-    function reassert() {
-      if (anchor !== null && window.scrollY !== anchor) {
-        window.scrollTo(0, anchor);
-      }
     }
 
     function onNavigationKey(event) {
@@ -151,10 +139,9 @@
           Math.min(maxY, window.scrollY + pageShift),
         );
         const actualShift = targetY - window.scrollY;
-        // Захватываем позицию до scrollTo: CSS root scroll-behavior уже станет
-        // auto, а небольшая коррекция промаха против направления wheel не
-        // вычитается из дельты, передаваемой карточкам.
-        hold(targetY);
+        // Захватываем событие до мгновенного выравнивания; коррекция промаха
+        // против направления wheel не вычитается из дельты карточек.
+        hold();
         window.scrollTo(0, targetY);
         if (actualShift * dy > 0) remaining -= actualShift;
       } else {

@@ -11,7 +11,7 @@ const assert = require("node:assert/strict");
   await page.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
   await page.evaluate(() => document.fonts.ready);
 
-  for (const width of [1441, 1440, 1281, 1280, 1201, 1200, 1051, 1050, 1025, 1024, 390, 241]) {
+  for (const width of [1441, 1440, 1281, 1280, 1201, 1200, 1051, 1050, 1025, 1024, 880, 879, 768, 390, 241]) {
     await page.setViewportSize({ width, height: width === 241 ? 460 : 900 });
     await page.evaluate(() => new Promise(requestAnimationFrame));
     const state = await page.evaluate(() => {
@@ -67,13 +67,38 @@ const assert = require("node:assert/strict");
           display: getComputedStyle(q(".menu-toggle")).display,
           icon: box(q(".menu-toggle svg")).toJSON(),
         },
+        footerLegal: {
+          display: getComputedStyle(q(".footer-legal")).display,
+          copy: box(
+            q('.footer-legal > [data-figma-text="609:976"][data-figma-text]'),
+          ).toJSON(),
+          links: box(q(".footer-legal > div")).toJSON(),
+          credit: box(q(".footer-legal > .footer-credit")).toJSON(),
+        },
         hero: {
+          badge: box(q(".hero-badge")).toJSON(),
+          badgeBackground: getComputedStyle(q(".hero-badge")).backgroundColor,
+          proofs: [...q(".hero-badge").querySelectorAll(".hero-proof-item")].map(
+            (proof) => box(proof).toJSON(),
+          ),
+          benefitsColumns: getComputedStyle(
+            q(".hero-benefits"),
+          ).gridTemplateColumns.trim().split(/\s+/).length,
+          firstBenefit: box(q(".hero-benefits li[data-figma-text]")).toJSON(),
+          benefitIcon: box(q(".hero-benefits .benefit-icon")).toJSON(),
+          copyButtonMinHeight: Number.parseFloat(
+            getComputedStyle(q(".hero-slide--copy .button[data-motion-button]")).minHeight,
+          ),
+          calculatorButtonMinHeight: Number.parseFloat(
+            getComputedStyle(q("#calculator .button[data-motion-button]")).minHeight,
+          ),
           pagerHidden: q(".hero-pagination").hidden,
           pagerTop: box(q(".hero-pagination")).top,
           pagerButtons: [...q(".hero-pagination").children].map((e) =>
             box(e).toJSON(),
           ),
           trackWidth: track.clientWidth,
+          trackRight: box(track).right,
           trackScrollWidth: track.scrollWidth,
           slideOrder: [...track.querySelectorAll("[data-hero-slide]")].map(
             (slide) => slide.dataset.heroSlide,
@@ -133,6 +158,42 @@ const assert = require("node:assert/strict");
       assert.equal(state.faqButton, "none");
     }
     if (width <= 1024) {
+      assert.equal(state.footerLegal.display, "grid");
+      assert.ok(
+        state.footerLegal.copy.y + state.footerLegal.copy.height <=
+          Math.min(state.footerLegal.links.y, state.footerLegal.credit.y) + 1,
+        "legal note should remain above links and credit",
+      );
+      assert.ok(
+        state.footerLegal.links.y < state.footerLegal.credit.y + state.footerLegal.credit.height &&
+          state.footerLegal.credit.y < state.footerLegal.links.y + state.footerLegal.links.height,
+        "legal links and footer credit should share the lower row",
+      );
+      assert.ok(state.hero.badge.width <= state.hero.trackWidth + 1);
+      assert.equal(state.hero.badgeBackground, "rgba(0, 0, 0, 0)");
+      assert.equal(state.hero.proofs.length, 3);
+      assert.ok(
+        state.hero.proofs.every((proof) => proof.right <= state.hero.trackRight + 1),
+        "hero proof chips should remain inside the carousel",
+      );
+      if (width > 280) {
+        assert.ok(
+          state.hero.proofs.every((proof) => proof.width < state.hero.trackWidth),
+          "the hero badge should use natural proof chips, not a stretched pill",
+        );
+      }
+      assert.ok(state.hero.copyButtonMinHeight >= 68);
+      assert.ok(
+        Math.abs(state.hero.benefitIcon.y - state.hero.firstBenefit.y) < 1,
+        "benefit icon should align with the first text line",
+      );
+      if (width >= 761) {
+        assert.ok(state.hero.calculatorButtonMinHeight >= 70);
+        assert.ok(state.hero.badge.width < state.hero.trackWidth);
+      }
+      if (width >= 880) {
+        assert.equal(state.hero.benefitsColumns, 4);
+      }
       assert.equal(state.hero.pagerHidden, false);
       assert.ok(state.hero.trackScrollWidth > state.hero.trackWidth);
       assert.ok(
@@ -161,9 +222,6 @@ const assert = require("node:assert/strict");
         Math.abs(state.hero.priceButton.x - state.hero.pricePanel.x) < 1,
         "price CTA should align to the left edge of its panel",
       );
-      if (width === 241) {
-        assert.ok(state.hero.pagerTop < 460, "241px: hero pager should peek into view");
-      }
     } else {
       assert.equal(state.hero.pagerHidden, true);
     }
@@ -173,6 +231,39 @@ const assert = require("node:assert/strict");
       assert.equal(state.menu.icon.width, 16);
       assert.equal(state.menu.icon.height, 12);
     }
+  }
+
+  // The close control in the opened mobile/tablet menu matches the burger slot.
+  for (const width of [1024, 768, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    const alignment = await page.evaluate(() => {
+      const menu = document.querySelector(".header-menu");
+      const toggle = document
+        .querySelector(".menu-toggle")
+        .getBoundingClientRect()
+        .toJSON();
+      if (!menu.open) menu.showModal();
+      const close = document
+        .querySelector(".menu-close")
+        .getBoundingClientRect()
+        .toJSON();
+      const result = {
+        toggle,
+        close,
+        gutter: Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--gutter"),
+        ),
+        menuPadding: Number.parseFloat(getComputedStyle(menu).paddingLeft),
+        gap: Number.parseFloat(getComputedStyle(menu).gap),
+      };
+      menu.close();
+      return result;
+    });
+    assert.ok(Math.abs(alignment.close.x - alignment.toggle.x) < 1);
+    assert.ok(Math.abs(alignment.close.y - alignment.toggle.y) < 1);
+    assert.ok(Math.abs(alignment.close.right - alignment.toggle.right) < 1);
+    assert.ok(Math.abs(alignment.menuPadding - alignment.gutter) < 1);
+    assert.ok(alignment.gap <= 20);
   }
 
   // The pager changes slides on demand, then advances automatically when idle.

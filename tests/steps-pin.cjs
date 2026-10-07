@@ -102,19 +102,24 @@ const assert = require("node:assert/strict");
   assert.ok(caughtOvershoot.position > 0);
   assert.equal(caughtOvershoot.scrollBehavior, "auto");
 
-  // Unexpected inertial/page drift during the pin must be corrected, not release it.
-  const pinnedY = await p.evaluate(() => {
-    const y = scrollY;
-    window.scrollTo(0, y + 40);
-    return y;
-  });
-  await p.waitForFunction((start) => Math.abs(scrollY - start) <= 1, pinnedY);
-  assert.equal(
-    await p.evaluate(() =>
-      document.documentElement.classList.contains("is-steps-pinned"),
-    ),
-    true,
-  );
+  // Repeated wheel input remains in the horizontal rail without page-scroll
+  // corrections that would jerk the viewport back to the anchor.
+  const steadyStart = await p.evaluate(() => ({
+    y: scrollY,
+    position: document.querySelector("#steps-track").carousel.position,
+  }));
+  for (let i = 0; i < 4; i++) {
+    await p.mouse.wheel(0, 50);
+    await p.waitForTimeout(30);
+  }
+  const steadyEnd = await p.evaluate(() => ({
+    y: scrollY,
+    position: document.querySelector("#steps-track").carousel.position,
+    pinned: document.documentElement.classList.contains("is-steps-pinned"),
+  }));
+  assert.equal(steadyEnd.pinned, true);
+  assert.ok(Math.abs(steadyEnd.y - steadyStart.y) <= 1);
+  assert.ok(steadyEnd.position > steadyStart.position);
 
   await b.close();
   console.log("PASS: #design pins at viewport center, scrolls the rail, and releases at its edge.");

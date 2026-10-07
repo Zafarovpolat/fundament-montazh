@@ -946,14 +946,6 @@ html .featured-object h3[data-figma-text] {
     font-size: 13px;
     line-height: 22px;
   }
-  html .project-card > .button[data-motion-button],
-  html .social-list .button[data-motion-button],
-  html #calculator .button[data-motion-button] {
-    --button-height: 66px;
-    --button-inset: 5px;
-    min-height: 66px;
-    padding: 12px calc(var(--icon-width) + 26px) 12px 20px;
-  }
   html .foundation-card .button[data-motion-button] {
     --button-height: 76px;
     --button-inset: 4px;
@@ -986,6 +978,16 @@ html .featured-object h3[data-figma-text] {
   #design .button[data-motion-button]:not(:disabled):hover .button-icon,
   #design .button[data-motion-button]:focus-visible .button-icon {
     width: calc(100% - var(--button-inset) - var(--button-inset));
+  }
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+  html .project-card > .button[data-motion-button],
+  html .social-list .button[data-motion-button],
+  html #calculator .button[data-motion-button] {
+    --button-height: 66px;
+    --button-inset: 5px;
+    min-height: 66px;
+    padding: 12px calc(var(--icon-width) + 26px) 12px 20px;
   }
 }
 @media (max-width: 760px) {
@@ -1671,31 +1673,30 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   }
   #hero .hero-badge[data-figma-text] {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     align-items: center;
-    width: 100%;
+    align-self: flex-start;
+    width: max-content;
     max-width: 100%;
-    overflow: hidden;
-    gap: 4px;
+    gap: 8px;
     margin-bottom: 24px;
-    padding: 4px 6px;
-    border-radius: 999px;
-    background: rgb(255 255 255 / 12%);
-    font-size: clamp(10px, 1vw, 12px);
-    line-height: 1.25;
-    white-space: nowrap;
-  }
-  #hero .hero-badge .hero-proof-separator {
-    display: inline;
-    flex: none;
-  }
-  #hero .hero-badge .hero-proof-item {
-    display: inline;
-    flex: none;
-    max-width: none;
     padding: 0;
     border-radius: 0;
     background: none;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: normal;
+  }
+  #hero .hero-badge .hero-proof-separator {
+    display: none;
+  }
+  #hero .hero-badge .hero-proof-item {
+    display: block;
+    flex: none;
+    max-width: 100%;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 12%);
     font-size: inherit;
     line-height: inherit;
     white-space: nowrap;
@@ -1718,32 +1719,6 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   #hero .button-row {
     gap: 3px;
     margin-top: 24px;
-  }
-  #hero .button[data-motion-button] {
-    --button-height: 48px;
-    --button-inset: 4px;
-    --icon-width: 40px;
-    min-height: 48px;
-    padding: 8px 54px 8px 14px;
-    border-radius: 12px;
-    font-size: 10px;
-    line-height: 1.2;
-  }
-  #hero .button[data-motion-button] .button-icon {
-    top: 4px;
-    right: 4px;
-    bottom: 4px;
-    width: 40px;
-    min-height: 0;
-    flex: 0 0 40px;
-    border-radius: 9px;
-  }
-  #hero .button[data-motion-button] .button-label {
-    width: auto;
-    max-width: 100%;
-    margin: 0;
-    font-size: 10px;
-    line-height: 1.2;
   }
   #hero .hero-grid {
     display: flex;
@@ -1863,6 +1838,9 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     font-size: clamp(9px, 1.25vw, 12px);
     line-height: 1.1;
   }
+  #hero .hero-benefits .benefit-icon {
+    top: 0;
+  }
   #hero .hero-benefits li::before {
     top: 4px;
     width: 6px;
@@ -1905,6 +1883,18 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   }
 }
 
+@media (max-width: 480px) {
+  #hero .hero-badge[data-figma-text] {
+    gap: 6px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  #hero .hero-badge .hero-proof-item {
+    padding: 4px 8px;
+    white-space: normal;
+  }
+}
+
 @media (max-width: 280px) {
   #hero .hero-slide--copy > .hero-benefits > li:nth-child(n + 4) {
     display: none;
@@ -1920,4 +1910,74 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
 
 html[data-motion="off"] #hero .hero-grid {
   scroll-behavior: auto;
+}
+
+@media (max-width: 1024px) {
+  /* Keep the site's container gutter on the full-screen menu and align its
+     close control to the same header action slot. */
+  html .header-menu {
+    --header-menu-action-size: 42px;
+    padding: 0 var(--gutter);
+  }
+  html .header-menu[open] {
+    gap: clamp(12px, 2vh, 20px);
+  }
+  html .header-menu-top {
+    min-height: 70px;
+  }
+  html .header-menu .menu-close {
+    width: var(--header-menu-action-size);
+    height: var(--header-menu-action-size);
+    border-radius: 12px;
+  }
+
+  html .footer-legal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 10px clamp(8px, 2vw, 18px);
+  }
+  html .footer-legal > [data-figma-text="609:976"][data-figma-text] {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  html .footer-legal > div {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+    align-self: center;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  html .footer-legal > .footer-credit {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: end;
+    margin: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  html .header-menu {
+    --header-menu-action-size: 40px;
+  }
+  html .header-menu-top {
+    min-height: 66px;
+  }
+}
+@media (max-width: 480px) {
+  html .header-menu {
+    --header-menu-action-size: 38px;
+  }
+  html .header-menu-top {
+    min-height: 62px;
+  }
+}
+
+@media (min-width: 880px) and (max-width: 1024px) {
+  #hero .hero-slide--copy > .hero-benefits {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

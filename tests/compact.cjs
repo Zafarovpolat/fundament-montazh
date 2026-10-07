@@ -265,8 +265,8 @@ const assert = require("node:assert/strict");
     assert.ok(m.gisIconWidth < desktop.gisIconWidth);
     assert.ok(m.reviewPortraitWidth < desktop.reviewPortraitWidth);
     if (width <= 1024) {
-      assert.ok(m.heroAction.height <= 56);
-      assert.ok(Math.abs(m.heroAction.height - m.priceAction.height) < 0.1);
+      assert.ok(m.heroAction.height >= 68);
+      assert.ok(m.priceAction.height >= 68);
     } else {
       assert.ok(
         Math.abs(m.heroAction.height - m.projectAction.height) < 0.1,
