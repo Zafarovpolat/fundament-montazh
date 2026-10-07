@@ -18,6 +18,42 @@ const assert = require("node:assert/strict");
           ),
         ).fontSize,
       ),
+      headerHeight: document
+        .querySelector(".header-inner")
+        .getBoundingClientRect().height,
+      sectionHeading: parseFloat(
+        getComputedStyle(
+          document.querySelector(
+            ".section-heading .heading-line[data-figma-text]",
+          ),
+        ).fontSize,
+      ),
+      foundationTitle: parseFloat(
+        getComputedStyle(document.querySelector(".foundation-card__title"))
+          .fontSize,
+      ),
+      foundationSuites: parseFloat(
+        getComputedStyle(document.querySelector(".foundation-card__suites"))
+          .fontSize,
+      ),
+      foundationPrice: parseFloat(
+        getComputedStyle(document.querySelector(".foundation-card__price"))
+          .fontSize,
+      ),
+      statValue: parseFloat(
+        getComputedStyle(document.querySelector(".stats-grid dt[data-figma-text]"))
+          .fontSize,
+      ),
+      stepNumber: parseFloat(
+        getComputedStyle(document.querySelector(".step-card__num[data-figma-text]"))
+          .fontSize,
+      ),
+      topbarText: (() => {
+        const e = document.querySelector(".topbar-inner p[data-figma-text]");
+        return e.getBoundingClientRect().width
+          ? parseFloat(getComputedStyle(e).fontSize)
+          : null;
+      })(),
       arrow: document
         .querySelector(".carousel-controls button")
         .getBoundingClientRect().width,
@@ -88,6 +124,16 @@ const assert = require("node:assert/strict");
     assert.ok(m.h1 < desktop.h1);
     assert.ok(m.button < desktop.button);
     assert.ok(m.buttonLabel < desktop.buttonLabel);
+    assert.ok(m.headerHeight < desktop.headerHeight);
+    assert.ok(m.sectionHeading < desktop.sectionHeading);
+    assert.ok(m.foundationTitle < desktop.foundationTitle);
+    assert.ok(m.foundationSuites < desktop.foundationSuites);
+    assert.ok(m.foundationPrice < desktop.foundationPrice);
+    assert.ok(m.statValue < desktop.statValue);
+    assert.ok(m.stepNumber < desktop.stepNumber);
+    if (m.topbarText !== null) {
+      assert.ok(m.topbarText < desktop.topbarText);
+    }
     assert.ok(m.arrow < desktop.arrow);
     await loadImage(p, ".director-photo");
     const portrait = await p.locator(".director-photo").evaluate((e) => {
