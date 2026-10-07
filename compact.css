@@ -854,3 +854,33 @@ html .featured-object h3[data-figma-text] {
     margin-left: clamp(8px, calc(2vw - 7px), 27px);
   }
 }
+
+/* Responsive cleanup requested for compact tablet/desktop layouts. */
+@media (min-width: 761px) and (max-width: 1440px) {
+  .objects-gallery {
+    /* Remain continuous with the full-size gallery above 1440 px. */
+    --gallery-height: clamp(500px, 39.6354vw, 571px);
+  }
+}
+@media (max-width: 1440px) {
+  .footer-legal > [data-figma-text="609:976"] br {
+    display: none;
+  }
+  .footer-credit {
+    align-self: end;
+  }
+  .social-list article {
+    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 12px;
+  }
+  .social-list article > .button {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+  }
+  .visit-banner.dark {
+    min-height: 0;
+  }
+}
