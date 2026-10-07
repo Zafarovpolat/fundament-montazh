@@ -3501,51 +3501,18 @@ html .header-menu .header-contact > .phone[data-figma-text] {
   --design-pad: clamp(32px, 2.60417vw, 50px);
   padding-block: var(--design-pad);
 }
-/* Линия 315:351 в макете лежит ровно на 1 px левее вертикальной линии
-   левого пути (.page-path .path-line, x 22) — второй слой не нужен. */
-#included .eyebrow,
+/* Подпись «Как мы работаем» имеет точку на вертикальном пути. */
 #design .eyebrow {
   display: flex;
   gap: 10px;
   align-items: center;
 }
-/* 478:1231: эйброу стоит не над заголовком, а в левом гуттере — точкой на
-   вертикальной линии пути (x21), текстом в 90 px (три строки с дефисом, как
-   в кадре). Отсчёт от `.container`, поэтому вычитаем его врезку. */
-#included .section-heading > div {
-  position: relative;
-}
-#included .eyebrow {
-  --edge: max(130px, var(--gutter));
-  position: absolute;
-  z-index: 2;
-  top: 14px;
-  left: calc(clamp(12px, 1.09375vw, 21px) - var(--edge));
-  /* 478:1231 = 109 px: точка 9 + зазор 10 + текст 90 (478:1233).
-     90 px — ширина именно текста, поэтому вся плашка 109 px и её правый
-     край приходится ровно в левый край заголовка (x130). */
-  width: 109px;
-  /* figma-type.css ограничивает любой [data-figma-text] шириной --text-width
-     (для 478:1233 это 90 px — ширина текста, а не плашки) — иначе строки
-     вылезают за коробку. */
-  max-width: none;
-  margin: 0;
-}
-@media (max-width: 1199px) {
-  #included .eyebrow {
-    --edge: var(--gutter);
-  }
-}
-#included .eyebrow::before,
 #design .eyebrow::before {
   content: "";
   flex: 0 0 9px;
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #000;
-}
-#design .eyebrow::before {
   background: #fff;
 }
 /* Эйброу (315:354) в макете стоит не над заголовком, а в левом гуттере:
@@ -3756,4 +3723,32 @@ html.is-scrubbing .steps-range__ctrl {
   width: 1px;
   height: 17px;
   background: #070b1f26;
+}
+
+.page-path .path-label.eyebrow {
+  margin: 0;
+}
+html .page-path .path-label.eyebrow[data-figma-text="478:1233"] {
+  font-size: clamp(11px, 0.82vw, 13px);
+  line-height: 1.53846;
+  color: rgba(0, 0, 0, 0.4);
+}
+.page-path::before,
+.page-path::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  width: 9px;
+  height: 2px;
+  border-radius: 999px;
+  background: #070b1f;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.page-path::before {
+  top: 0;
+}
+.page-path::after {
+  bottom: 0;
 }

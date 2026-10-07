@@ -274,7 +274,8 @@
         event.target.scrollIntoView({
           block: "nearest",
           inline: "nearest",
-          behavior: "instant",
+          behavior:
+            window.siteMotion?.enabled === false ? "instant" : "smooth",
         }),
       );
     }

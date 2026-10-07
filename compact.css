@@ -1407,3 +1407,126 @@ html .featured-object h3[data-figma-text] {
     text-align: left;
   }
 }
+
+/* Darker secondary copy in the project and included sections. */
+html #projects .heading-description.with-yellow-rule[data-figma-text],
+html #included .heading-description[data-figma-text] {
+  color: rgba(7, 11, 31, 0.82);
+}
+
+/* Thin, rounded scrollbars for the modal and full-screen navigation. */
+html .dialog-scroll,
+html .header-menu-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(7, 11, 31, 0.42) transparent;
+}
+html .header-menu-content {
+  scroll-behavior: smooth;
+}
+html .dialog-scroll::-webkit-scrollbar,
+html .header-menu-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html .dialog-scroll::-webkit-scrollbar-track,
+html .header-menu-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+html .dialog-scroll::-webkit-scrollbar-thumb,
+html .header-menu-content::-webkit-scrollbar-thumb {
+  min-height: 34px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: rgba(7, 11, 31, 0.42);
+  background-clip: padding-box;
+}
+html .dialog-scroll::-webkit-scrollbar-thumb:hover,
+html .header-menu-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(7, 11, 31, 0.68);
+}
+
+/* The wider artwork layout gives the advantages copy a 430 px ceiling. */
+@media (min-width: 1441px) {
+  html #advantages .heading-description.with-yellow-rule[data-figma-text] {
+    width: auto;
+    max-width: 430px;
+    flex-shrink: 1;
+  }
+}
+
+@media (max-width: 1440px) {
+  html dialog.request-dialog .dialog-scroll {
+    box-sizing: border-box;
+    max-height: var(--dialog-available);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scroll-padding-block: 18px;
+    padding: clamp(32px, 3vw, 42px) clamp(16px, 1.8vw, 26px)
+      clamp(20px, 1.95vw, 28px);
+  }
+  html dialog.request-dialog .dialog-close {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    box-shadow: none;
+  }
+  html dialog.request-dialog .dialog-close .figma-icon {
+    width: 11px;
+    height: 11px;
+  }
+  html dialog.request-dialog .dialog-scroll .eyebrow {
+    margin-bottom: clamp(10px, 1vw, 14px);
+    font-size: clamp(11px, 0.82vw, 12px);
+    line-height: 1.3;
+  }
+  html dialog.request-dialog .dialog-scroll h2 {
+    margin-bottom: 10px;
+    font-size: clamp(24px, 1.95vw, 28px);
+    line-height: 1.12;
+  }
+  html dialog.request-dialog .dialog-scroll > p:not(.eyebrow) {
+    margin-block: 0 12px;
+    font-size: clamp(14px, 1.02vw, 15px);
+    line-height: 1.4;
+  }
+  html dialog.request-dialog .dialog-scroll form {
+    gap: 12px;
+    margin-top: 16px;
+    padding: 3px;
+    margin-inline: -3px;
+  }
+  html dialog.request-dialog .dialog-scroll form > label:not(.consent) {
+    gap: 6px;
+    font-size: clamp(12px, 0.9vw, 14px);
+    line-height: 1.35;
+  }
+  html dialog.request-dialog .dialog-scroll form > label > input:not([type="checkbox"]),
+  html dialog.request-dialog .dialog-scroll form > label > textarea {
+    padding: 10px 12px;
+    font-size: inherit;
+    line-height: 1.4;
+  }
+  html dialog.request-dialog .dialog-scroll form > label > textarea {
+    min-height: 72px;
+  }
+  html dialog.request-dialog .dialog-scroll form > label.consent {
+    gap: 8px;
+    font-size: clamp(11px, 0.82vw, 12px);
+    line-height: 1.4;
+  }
+  html dialog.request-dialog .dialog-scroll .form-submit {
+    --button-height: 60px;
+    --button-inset: 6px;
+    --icon-width: 40px;
+    min-height: 60px;
+    padding: 12px 56px 12px 18px;
+    border-radius: 14px;
+    font-size: clamp(13px, 0.97vw, 14px);
+  }
+}
+
+html[data-motion="off"] .header-menu-content,
+html[data-motion="off"] dialog.request-dialog .dialog-scroll {
+  scroll-behavior: auto;
+}

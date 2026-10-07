@@ -45,7 +45,12 @@ const expected = require("./figma-expectations.json").map((e) => ({
       );
     }
   }
-  assert.equal(await page.locator(".page-path a").count(), 8);
+  assert.equal(await page.locator(".page-path a").count(), 9);
+  assert.equal(
+    await page.locator('.page-path [data-figma-text="478:1233"]').count(),
+    1,
+  );
+  assert.equal(await page.locator('#included .eyebrow').count(), 0);
   assert.equal(
     await page
       .locator(".warning")
@@ -89,7 +94,7 @@ const expected = require("./figma-expectations.json").map((e) => ({
   assert.deepEqual(errors, []);
   await browser.close();
   console.log(
-    `PASS: ${actual.length} Figma text metrics/colors with explicit review overrides, 8 section markers, rounded notice, 3 carousels, object gallery without form trigger, 2GIS action, motion despite OS reduced-motion.`,
+    `PASS: ${actual.length} Figma text metrics/colors with explicit review overrides, 9 section markers with one included eyebrow, rounded notice, 3 carousels, object gallery without form trigger, 2GIS action, motion despite OS reduced-motion.`,
   );
 })().catch((e) => {
   console.error(e);

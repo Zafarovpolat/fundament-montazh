@@ -61,8 +61,9 @@ const assert = require("node:assert/strict");
         ).fontSize,
       ),
       eyebrow: parseFloat(
-        getComputedStyle(document.querySelector("#included .eyebrow"))
-          .fontSize,
+        getComputedStyle(
+          document.querySelector('.page-path [data-figma-text="478:1233"]'),
+        ).fontSize,
       ),
       quizTitle: parseFloat(
         getComputedStyle(document.querySelector("#quiz-title")).fontSize,

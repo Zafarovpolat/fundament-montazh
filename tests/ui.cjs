@@ -21,6 +21,33 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   );
   assert.equal(await p.locator(".header-social button:visible").count(), 2);
   assert.equal(await p.locator(".topbar-divider:visible").count(), 2);
+  const desktopUi = await p.evaluate(() => {
+    const rail = document.querySelector(".page-path");
+    return {
+      startTick: getComputedStyle(rail, "::before").backgroundColor,
+      endTick: getComputedStyle(rail, "::after").backgroundColor,
+      advantagesMax: getComputedStyle(
+        document.querySelector(
+          "#advantages .heading-description.with-yellow-rule",
+        ),
+      ).maxWidth,
+      closeShadow: getComputedStyle(
+        document.querySelector(".dialog-close"),
+      ).boxShadow,
+      menuScrollbar: getComputedStyle(
+        document.querySelector(".header-menu-content"),
+      ).scrollbarWidth,
+      menuScroll: getComputedStyle(
+        document.querySelector(".header-menu-content"),
+      ).scrollBehavior,
+    };
+  });
+  assert.equal(desktopUi.startTick, "rgb(7, 11, 31)");
+  assert.equal(desktopUi.endTick, "rgb(7, 11, 31)");
+  assert.equal(desktopUi.advantagesMax, "430px");
+  assert.equal(desktopUi.closeShadow, "none");
+  assert.equal(desktopUi.menuScrollbar, "thin");
+  assert.equal(desktopUi.menuScroll, "smooth");
   await p.screenshot({ path: "tests/artifacts/ui-header.png" });
   const cta = p.locator("#hero .button--yellow");
   const icon = cta.locator(".button-icon");
@@ -73,6 +100,32 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   ]) {
     await p.setViewportSize(v);
     await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+    const compactDialog = await p.evaluate(() => ({
+      scrollBehavior: getComputedStyle(
+        document.querySelector(".dialog-scroll"),
+      ).scrollBehavior,
+      overflowY: getComputedStyle(
+        document.querySelector(".dialog-scroll"),
+      ).overflowY,
+      paddingTop: parseFloat(
+        getComputedStyle(document.querySelector(".dialog-scroll")).paddingTop,
+      ),
+      titleSize: parseFloat(
+        getComputedStyle(document.querySelector("#dialog-title")).fontSize,
+      ),
+      formGap: parseFloat(
+        getComputedStyle(document.querySelector("#contact-form")).rowGap,
+      ),
+      closeShadow: getComputedStyle(
+        document.querySelector(".dialog-close"),
+      ).boxShadow,
+    }));
+    assert.equal(compactDialog.overflowY, "auto");
+    assert.equal(compactDialog.scrollBehavior, "smooth");
+    assert.ok(compactDialog.paddingTop < 48);
+    assert.ok(compactDialog.titleSize < 30);
+    assert.ok(compactDialog.formGap < 16);
+    assert.equal(compactDialog.closeShadow, "none");
     await p.locator('#hero [data-action="quote"]').first().click();
     await p.locator("[name=name]").fill("Тест");
     await p.locator("[name=phone]").fill("+7 (999) 123-45-67");
@@ -120,6 +173,18 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   );
   await p.evaluate(() => window.siteMotion.setEnabled(false));
   assert.equal(await p.locator(".is-pending").count(), 0);
+  assert.equal(
+    await p
+      .locator(".header-menu-content")
+      .evaluate((e) => getComputedStyle(e).scrollBehavior),
+    "auto",
+  );
+  assert.equal(
+    await p
+      .locator(".dialog-scroll")
+      .evaluate((e) => getComputedStyle(e).scrollBehavior),
+    "auto",
+  );
   const transforms = await p
     .locator("[data-parallax]")
     .evaluateAll((es) => es.map((e) => getComputedStyle(e).transform));
