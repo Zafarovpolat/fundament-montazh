@@ -1411,7 +1411,7 @@ html .featured-object h3[data-figma-text] {
 /* Darker secondary copy in the project and included sections. */
 html #projects .heading-description.with-yellow-rule[data-figma-text],
 html #included .heading-description[data-figma-text] {
-  color: rgba(7, 11, 31, 0.82);
+  color: #000;
 }
 
 /* Thin, rounded scrollbars for the modal and full-screen navigation. */
@@ -1528,5 +1528,383 @@ html .header-menu-content::-webkit-scrollbar-thumb:hover {
 
 html[data-motion="off"] .header-menu-content,
 html[data-motion="off"] dialog.request-dialog .dialog-scroll {
+  scroll-behavior: auto;
+}
+
+
+/* Requested compact responsive refinements. */
+@media (max-width: 1440px) {
+  html dialog.request-dialog {
+    width: min(520px, calc(100% - 32px));
+    max-width: min(520px, calc(100% - 32px));
+  }
+
+  html .social-list article {
+    --social-thumb-size: clamp(56px, 6vw, 80px);
+    grid-template-columns: var(--social-thumb-size) minmax(0, 1fr) 58px;
+    grid-template-rows: auto;
+    align-items: center;
+    gap: clamp(10px, 1vw, 14px);
+    min-height: 0;
+    padding: 10px;
+  }
+  html .social-list article > .social-thumb {
+    grid-column: 1;
+    grid-row: 1;
+    width: var(--social-thumb-size);
+    height: var(--social-thumb-size);
+  }
+  html .social-list article > div {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+  }
+  html .social-list article > .button[data-motion-button] {
+    --button-height: 58px;
+    --button-inset: 5px;
+    --icon-width: 48px;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+    min-height: 58px;
+    padding: 0;
+    gap: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+  }
+  html .social-list article > .button .button-label {
+    display: none;
+  }
+  html .social-list article > .button .button-icon {
+    position: static;
+    width: 48px;
+    height: 48px;
+    min-height: 0;
+    flex: none;
+    border-radius: 8px;
+    transition: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  .header-inner > .menu-toggle {
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: #000;
+    color: #fff;
+  }
+  .header-inner > .menu-toggle .header-action-icon {
+    width: 16px;
+    height: 12px;
+    flex: none;
+  }
+
+  #design .button.button--yellow.button--soft-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  #design .eyebrow {
+    display: none;
+  }
+}
+
+@media (max-width: 1050px) {
+  #visit .visit-banner {
+    align-items: flex-start;
+    padding-left: 18px;
+  }
+  #faq .section-heading > .button {
+    display: none;
+  }
+}
+
+/* At desktop/tablet widths the wrappers flatten to preserve the original grid. */
+#hero .hero-slide--copy,
+#hero .hero-slide--price {
+  display: contents;
+}
+#hero .hero-slide--copy > .hero-copy {
+  grid-column: 1;
+  grid-row: 1;
+}
+#hero .hero-slide--copy > .hero-benefits {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+#hero .hero-slide--price > .price-panel {
+  grid-column: 2;
+  grid-row: 1;
+}
+.hero-pagination[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  #hero {
+    padding: 14px 0;
+  }
+  #hero .hero-slide--copy > .hero-copy {
+    padding-top: 8px;
+  }
+  #hero .hero-badge[data-figma-text] {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    gap: 4px;
+    margin-bottom: 24px;
+    padding: 4px 6px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 12%);
+    font-size: clamp(10px, 1vw, 12px);
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  #hero .hero-badge .hero-proof-separator {
+    display: inline;
+    flex: none;
+  }
+  #hero .hero-badge .hero-proof-item {
+    display: inline;
+    flex: none;
+    max-width: none;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: nowrap;
+  }
+  #hero h1[data-figma-text] {
+    max-width: 100%;
+    margin-bottom: 10px;
+    font-size: clamp(23px, 3.4vw, 36px);
+    line-height: 1.12;
+  }
+  #hero .hero-copy .lead {
+    max-width: none;
+    margin: 0;
+    font-size: clamp(9px, 1.3vw, 13px);
+    line-height: 1.25;
+  }
+  #hero .hero-copy .lead br {
+    display: none;
+  }
+  #hero .button-row {
+    gap: 3px;
+    margin-top: 24px;
+  }
+  #hero .button[data-motion-button] {
+    --button-height: 48px;
+    --button-inset: 4px;
+    --icon-width: 40px;
+    min-height: 48px;
+    padding: 8px 54px 8px 14px;
+    border-radius: 12px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  #hero .button[data-motion-button] .button-icon {
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    width: 40px;
+    min-height: 0;
+    flex: 0 0 40px;
+    border-radius: 9px;
+  }
+  #hero .button[data-motion-button] .button-label {
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  #hero .hero-grid {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #hero .hero-grid::-webkit-scrollbar {
+    display: none;
+  }
+  #hero .hero-slide {
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 100%;
+    max-width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  #hero .hero-slide--price {
+    order: 0;
+  }
+  #hero .hero-slide--copy {
+    order: 1;
+  }
+  #hero .hero-slide--copy > .hero-copy,
+  #hero .hero-slide--copy > .hero-benefits,
+  #hero .hero-slide--price > .price-panel {
+    grid-column: auto;
+    grid-row: auto;
+    min-width: 0;
+    width: 100%;
+  }
+  #hero .hero-slide--price .price-panel {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  #hero .hero-slide--price .panel-title {
+    order: 0;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 4px;
+    font-size: clamp(10px, 1.35vw, 14px);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  #hero .hero-slide--price .price-list {
+    order: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+  }
+  #hero .hero-slide--price .price-list > li {
+    width: auto;
+    min-width: 0;
+    min-height: 64px;
+    padding: 10px;
+  }
+  #hero .hero-slide--price .price-list > li > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+  #hero .hero-slide--price .price-list h3[data-figma-text] {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    font-size: clamp(10px, 1.3vw, 13px);
+    line-height: 1.2;
+  }
+  #hero .hero-slide--price .price-list li > div > p[data-figma-text] {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: clamp(10px, 1.3vw, 13px);
+    line-height: 1.2;
+  }
+  #hero .hero-slide--price .price-list .muted {
+    gap: 5px;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+  #hero .hero-slide--price .price-list .muted .figma-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
+  }
+  #hero .hero-slide--price .price-note {
+    order: 2;
+    margin-top: 10px;
+    font-size: 10px;
+    line-height: 1.25;
+    text-align: center;
+  }
+  #hero .hero-slide--price .price-panel > .button {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin: 12px 0 0;
+  }
+  #hero .hero-slide--copy > .hero-benefits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+  #hero .hero-benefits li[data-figma-text] {
+    padding-left: 12px;
+    font-size: clamp(9px, 1.25vw, 12px);
+    line-height: 1.1;
+  }
+  #hero .hero-benefits li::before {
+    top: 4px;
+    width: 6px;
+    height: 6px;
+    box-shadow: none;
+  }
+
+  nav.hero-pagination:not([hidden]) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: max-content;
+    min-height: 16px;
+    margin: 12px auto 0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgb(126 134 153 / 38%);
+  }
+  .hero-pagination button {
+    display: grid;
+    place-items: center;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 52%);
+    cursor: pointer;
+  }
+  .hero-pagination button[aria-current="true"] {
+    width: 14px;
+    background: #fff;
+  }
+  .hero-pagination button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 280px) {
+  #hero .hero-slide--copy > .hero-benefits > li:nth-child(n + 4) {
+    display: none;
+  }
+  nav.hero-pagination:not([hidden]) {
+    margin-top: 2px;
+  }
+  #geology .number-list li,
+  #director .stats-grid dd {
+    overflow-wrap: anywhere;
+  }
+}
+
+html[data-motion="off"] #hero .hero-grid {
   scroll-behavior: auto;
 }

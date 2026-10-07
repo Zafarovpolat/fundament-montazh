@@ -193,6 +193,7 @@
     <script defer="" src="app.js?v=3.6.4"></script>
     <link href="interactions.css?v=3.6.4" rel="stylesheet" />
     <script defer="" src="motion.js?v=3.6.4"></script>
+    <script defer="" src="hero-carousel.js?v=3.6.4"></script>
     <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
     <link href="fidelity.css?v=3.6.4" rel="stylesheet" />
     <script defer="" src="sliders.js?v=3.6.4"></script>
@@ -236,13 +237,15 @@
             aria-hidden="true"
             class="header-action-icon"
             fill="none"
-            viewbox="0 0 24 24"
+            height="12"
+            viewBox="0 0 16 12"
+            width="16"
           >
             <path
-              d="M4 6h16M4 12h16M4 18h16"
+              d="M1 1h14M1 6h14M1 11h14"
               stroke="currentColor"
               stroke-linecap="round"
-              stroke-width="1.8"
+              stroke-width="2"
             ></path>
           </svg>
         </button>
@@ -487,236 +490,273 @@
             fetchpriority="high"
           />
         </div>
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="hero-badge" data-figma-text="360:389">
-              <span class="hero-proof-item">10 лет строим фундаменты</span
-              ><span aria-hidden="true" class="hero-proof-separator"> · </span
-              ><span class="hero-proof-item">500+ объектов</span
-              ><span aria-hidden="true" class="hero-proof-separator"> · </span
-              ><span class="hero-proof-item"
-                >60 000+ подписчиков следят за нами</span
-              >
-            </p>
-            <h1 data-figma-text="360:393">
-              Фундамент под ключ<br />
-              в Новосибирске —<br />
-              за 5–10 дней
-            </h1>
-            <p class="lead" data-figma-text="360:394">
-              Ленточный, плита, свайный, столбчатый, цокольный этаж.<br />
-              Геология + расчёт нагрузок + проектирование + строительство.<br />
-              Фиксированная цена в договоре. Гарантия 5 лет.
-            </p>
-            <div class="button-row">
-              <button
-                class="button button--yellow"
-                data-action="quote"
-                data-motion-button=""
-                type="button"
-              >
-                <span class="button-label" data-figma-text="360:410"
-                  >Расчитать стоимость Фундамента</span
-                ><span aria-hidden="true" class="button-icon"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-quote-arrow"
-                      xlink:href="assets/icons/sprite.svg#i-quote-arrow"
-                    /></svg
-                ></span></button
-              ><a class="button" data-motion-button="" href="#foundation-prices"
-                ><span class="button-label" data-figma-text="I360:397;88:166"
-                  >Виды фундаменты и цены</span
-                ><span aria-hidden="true" class="button-icon"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-calculator"
-                      xlink:href="assets/icons/sprite.svg#i-calculator"
-                    /></svg></span
-              ></a>
-            </div>
-          </div>
-          <aside
-            aria-label="Ориентировочная стоимость"
-            class="price-panel"
-            id="foundation-prices"
+        <div class="container hero-grid" data-hero-carousel>
+          <div
+            class="hero-slide hero-slide--copy"
+            data-hero-slide="copy"
+            id="hero-copy-slide"
+            tabindex="-1"
           >
-            <h2 class="panel-title" data-figma-text="360:552">
-              Ориентировочная стоимость
-            </h2>
-            <ul class="price-list">
-              <li>
-                <div>
-                  <h3 data-figma-text="360:582">Ленточный фундамент</h3>
-                  <p data-figma-text="360:583">от 13 500 ₽/м³</p>
-                </div>
-                <span class="muted"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-clock"
-                      xlink:href="assets/icons/sprite.svg#i-clock"
-                    />
-                  </svg>
-                  5–7 дней</span
+            <div class="hero-copy">
+              <p class="hero-badge" data-figma-text="360:389">
+                <span class="hero-proof-item">10 лет строим фундаменты</span
+                ><span aria-hidden="true" class="hero-proof-separator"> · </span
+                ><span class="hero-proof-item">500+ объектов</span
+                ><span aria-hidden="true" class="hero-proof-separator"> · </span
+                ><span class="hero-proof-item"
+                  >60 000+ подписчиков следят за нами</span
                 >
-              </li>
-              <li>
-                <div>
-                  <h3 data-figma-text="360:566">Монолитная плита</h3>
-                  <p data-figma-text="360:567">от 485 000 ₽</p>
-                </div>
-                <span class="muted"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-clock"
-                      xlink:href="assets/icons/sprite.svg#i-clock"
-                    />
-                  </svg>
-                  7–10 дней</span
+              </p>
+              <h1 data-figma-text="360:393">
+                Фундамент под ключ<br />
+                в Новосибирске —<br />
+                за 5–10 дней
+              </h1>
+              <p class="lead" data-figma-text="360:394">
+                Ленточный, плита, свайный, столбчатый, цокольный этаж.<br />
+                Геология + расчёт нагрузок + проектирование + строительство.<br />
+                Фиксированная цена в договоре. Гарантия 5 лет.
+              </p>
+              <div class="button-row">
+                <button
+                  class="button button--yellow"
+                  data-action="quote"
+                  data-motion-button=""
+                  type="button"
                 >
-              </li>
-              <li>
-                <div>
-                  <h3 data-figma-text="360:582">Ленточный фундамент</h3>
-                  <p data-figma-text="360:583">от 13 500 ₽/м³</p>
-                </div>
-                <span class="muted"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-clock"
-                      xlink:href="assets/icons/sprite.svg#i-clock"
-                    />
-                  </svg>
-                  5–7 дней</span
-                >
-              </li>
-              <li>
-                <div>
-                  <h3 data-figma-text="360:582">Ленточный фундамент</h3>
-                  <p data-figma-text="360:583">от 13 500 ₽/м³</p>
-                </div>
-                <span class="muted"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-clock"
-                      xlink:href="assets/icons/sprite.svg#i-clock"
-                    />
-                  </svg>
-                  5–7 дней</span
-                >
-              </li>
-            </ul>
-            <button
-              class="button"
-              data-action="quote"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="360:604"
-                >Расчитать мой фундамент</span
-              ><span aria-hidden="true" class="button-icon"
-                ><svg
-                  class="figma-icon icon-sprite"
+                  <span class="button-label" data-figma-text="360:410"
+                    >Расчитать стоимость Фундамента</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-quote-arrow"
+                        xlink:href="assets/icons/sprite.svg#i-quote-arrow"
+                      /></svg
+                  ></span></button
+                ><a class="button" data-motion-button="" href="#foundation-prices"
+                  ><span class="button-label" data-figma-text="I360:397;88:166"
+                    >Виды фундаменты и цены</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-calculator"
+                        xlink:href="assets/icons/sprite.svg#i-calculator"
+                      /></svg></span
+                ></a>
+              </div>
+          </div>
+            <ul class="hero-benefits">
+              <li data-figma-text="375:372">
+                <svg
+                  class="benefit-icon icon-sprite"
                   aria-hidden="true"
                   focusable="false"
                 >
                   <use
-                    href="assets/icons/sprite.svg#i-arrow-light"
-                    xlink:href="assets/icons/sprite.svg#i-arrow-light"
+                    href="assets/icons/sprite.svg#i-benefit-dot"
+                    xlink:href="assets/icons/sprite.svg#i-benefit-dot"
                   /></svg
-              ></span>
-            </button>
-            <p class="price-note" data-figma-text="360:611">
-              Смета в день обращения · Бесплатно
-            </p>
-          </aside>
-          <ul class="hero-benefits">
-            <li data-figma-text="375:372">
-              <svg
-                class="benefit-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
+                >Геология — всегда, без исключений
+              </li>
+              <li data-figma-text="375:391">
+                <svg
+                  class="benefit-icon icon-sprite"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    href="assets/icons/sprite.svg#i-benefit-dot"
+                    xlink:href="assets/icons/sprite.svg#i-benefit-dot"
+                  /></svg
+                >Проект до начала работ
+              </li>
+              <li data-figma-text="375:396">
+                <svg
+                  class="benefit-icon icon-sprite"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    href="assets/icons/sprite.svg#i-benefit-dot"
+                    xlink:href="assets/icons/sprite.svg#i-benefit-dot"
+                  /></svg
+                >Фотоотчёт каждый день
+              </li>
+              <li data-figma-text="375:402">
+                <svg
+                  class="benefit-icon icon-sprite"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    href="assets/icons/sprite.svg#i-benefit-dot"
+                    xlink:href="assets/icons/sprite.svg#i-benefit-dot"
+                  /></svg
+                >Цена фиксирована в договоре
+              </li>
+              <li data-figma-text="375:408">
+                <svg
+                  class="benefit-icon icon-sprite"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use
+                    href="assets/icons/sprite.svg#i-benefit-dot"
+                    xlink:href="assets/icons/sprite.svg#i-benefit-dot"
+                  /></svg
+                >Гарантия 5 лет
+              </li>
+            </ul>
+          </div>
+          <div
+            class="hero-slide hero-slide--price"
+            data-hero-slide="price"
+            id="hero-price-slide"
+            tabindex="-1"
+          >
+            <aside
+              aria-label="Ориентировочная стоимость"
+              class="price-panel"
+              id="foundation-prices"
+            >
+              <h2 class="panel-title" data-figma-text="360:552">
+                Ориентировочная стоимость
+              </h2>
+              <ul class="price-list">
+                <li>
+                  <div>
+                    <h3 data-figma-text="360:582">Ленточный фундамент</h3>
+                    <p data-figma-text="360:583">от 13 500 ₽/м³</p>
+                  </div>
+                  <span class="muted"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-clock"
+                        xlink:href="assets/icons/sprite.svg#i-clock"
+                      />
+                    </svg>
+                    5–7 дней</span
+                  >
+                </li>
+                <li>
+                  <div>
+                    <h3 data-figma-text="360:566">Монолитная плита</h3>
+                    <p data-figma-text="360:567">от 485 000 ₽</p>
+                  </div>
+                  <span class="muted"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-clock"
+                        xlink:href="assets/icons/sprite.svg#i-clock"
+                      />
+                    </svg>
+                    7–10 дней</span
+                  >
+                </li>
+                <li>
+                  <div>
+                    <h3 data-figma-text="360:582">Ленточный фундамент</h3>
+                    <p data-figma-text="360:583">от 13 500 ₽/м³</p>
+                  </div>
+                  <span class="muted"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-clock"
+                        xlink:href="assets/icons/sprite.svg#i-clock"
+                      />
+                    </svg>
+                    5–7 дней</span
+                  >
+                </li>
+                <li>
+                  <div>
+                    <h3 data-figma-text="360:582">Ленточный фундамент</h3>
+                    <p data-figma-text="360:583">от 13 500 ₽/м³</p>
+                  </div>
+                  <span class="muted"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-clock"
+                        xlink:href="assets/icons/sprite.svg#i-clock"
+                      />
+                    </svg>
+                    5–7 дней</span
+                  >
+                </li>
+              </ul>
+              <button
+                class="button"
+                data-action="quote"
+                data-motion-button=""
+                type="button"
               >
-                <use
-                  href="assets/icons/sprite.svg#i-benefit-dot"
-                  xlink:href="assets/icons/sprite.svg#i-benefit-dot"
-                /></svg
-              >Геология — всегда, без исключений
-            </li>
-            <li data-figma-text="375:391">
-              <svg
-                class="benefit-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-benefit-dot"
-                  xlink:href="assets/icons/sprite.svg#i-benefit-dot"
-                /></svg
-              >Проект до начала работ
-            </li>
-            <li data-figma-text="375:396">
-              <svg
-                class="benefit-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-benefit-dot"
-                  xlink:href="assets/icons/sprite.svg#i-benefit-dot"
-                /></svg
-              >Фотоотчёт каждый день
-            </li>
-            <li data-figma-text="375:402">
-              <svg
-                class="benefit-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-benefit-dot"
-                  xlink:href="assets/icons/sprite.svg#i-benefit-dot"
-                /></svg
-              >Цена фиксирована в договоре
-            </li>
-            <li data-figma-text="375:408">
-              <svg
-                class="benefit-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-benefit-dot"
-                  xlink:href="assets/icons/sprite.svg#i-benefit-dot"
-                /></svg
-              >Гарантия 5 лет
-            </li>
-          </ul>
+                <span class="button-label" data-figma-text="360:604"
+                  >Расчитать мой фундамент</span
+                ><span aria-hidden="true" class="button-icon"
+                  ><svg
+                    class="figma-icon icon-sprite"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use
+                      href="assets/icons/sprite.svg#i-arrow-light"
+                      xlink:href="assets/icons/sprite.svg#i-arrow-light"
+                    /></svg
+                ></span>
+              </button>
+              <p class="price-note" data-figma-text="360:611">
+                Смета в день обращения · Бесплатно
+              </p>
+            </aside>
+          </div>
         </div>
+        <nav
+          aria-label="Переключить главный экран"
+          class="hero-pagination"
+          hidden=""
+        >
+          <button
+            aria-controls="hero-price-slide"
+            aria-current="true"
+            aria-label="Ориентировочная стоимость"
+            data-hero-target="price"
+            type="button"
+          >
+            <span aria-hidden="true"></span>
+          </button>
+          <button
+            aria-controls="hero-copy-slide"
+            aria-label="Описание и преимущества"
+            data-hero-target="copy"
+            type="button"
+          >
+            <span aria-hidden="true"></span>
+          </button>
+        </nav>
       </section>
       <section class="section" id="geology">
         <div class="container">
@@ -1860,7 +1900,7 @@
               type="button"
             >
               <span class="button-label" data-figma-text="315:726"
-                >Все объекты 200+ домов</span
+                >Все объекты на Youtube</span
               ><span aria-hidden="true" class="button-icon"
                 ><svg
                   class="figma-icon icon-sprite"
@@ -2614,6 +2654,7 @@
                   </p>
                 </div>
                 <button
+                  aria-label="Подписаться"
                   class="button button--dark"
                   data-action="social"
                   data-motion-button=""

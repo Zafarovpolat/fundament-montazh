@@ -5,9 +5,10 @@
   "description": "Responsive FundamentMontazh website based on Figma frame 315:160",
   "scripts": {
     "start": "python3 -m http.server 5173 --bind 0.0.0.0",
-    "test": "node --check app.js && node --check motion.js && node --check sliders.js && node --check steps-pin.js && node --check refinements.js && node --check header.js && node --check layout.js",
+    "test": "node --check app.js && node --check motion.js && node --check hero-carousel.js && node --check sliders.js && node --check steps-pin.js && node --check refinements.js && node --check header.js && node --check layout.js",
     "test:browser": "node tests/smoke.cjs",
     "test:ui": "node tests/ui.cjs",
+    "test:responsive": "node tests/responsive.cjs",
     "test:fidelity": "node tests/fidelity.cjs",
     "test:review": "node tests/review.cjs",
     "test:sequence": "node tests/sequential.cjs",

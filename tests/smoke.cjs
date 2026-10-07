@@ -87,7 +87,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     await page.locator(".menu-toggle").getAttribute("aria-expanded"),
     "false",
   );
-  await page.locator('#hero [data-action="quote"]').first().click();
+  await page.locator('#hero [data-action="quote"]').nth(1).click();
   assert.ok(await page.locator("#contact-dialog").evaluate((e) => e.open));
   await page.locator('[name="name"]').fill("Тест");
   await page.locator('[name="phone"]').fill("+7 (999) 123-45-67");

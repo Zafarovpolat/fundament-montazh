@@ -40,9 +40,20 @@ const assert = require("node:assert/strict");
           client: document.documentElement.clientWidth,
           scroll: document.documentElement.scrollWidth,
           edge: r(document.querySelector(".footer-cta")).right,
-          copyBottom: r(document.querySelector(".hero-copy")).bottom,
-          panelTop: r(document.querySelector(".price-panel")).top,
-          cards: cards.map((e) => ({ x: r(e).x, y: r(e).y })),
+          track: (() => {
+            const e = document.querySelector("#hero .hero-grid");
+            return {
+              clientWidth: e.clientWidth,
+              scrollWidth: e.scrollWidth,
+              copyX: r(document.querySelector(".hero-slide--copy")).x,
+              priceX: r(document.querySelector(".hero-slide--price")).x,
+            };
+          })(),
+          cards: cards.map((e) => ({
+            x: r(e).x,
+            y: r(e).y,
+            width: r(e).width,
+          })),
           prices: cards.map((e) => {
             const p = e.querySelector("div>p"),
               range = document.createRange();
@@ -71,11 +82,15 @@ const assert = require("node:assert/strict");
           `${width}: price ${JSON.stringify(p)}`,
         );
       if (width <= 1024) {
-        assert(m.panelTop >= m.copyBottom);
+        assert(m.track.scrollWidth > m.track.clientWidth);
         assert(
-          m.cards[0].y === m.cards[1].y &&
-            m.cards[2].y === m.cards[3].y &&
-            m.cards[2].y > m.cards[0].y,
+          Math.abs(Math.abs(m.track.copyX - m.track.priceX) - m.track.clientWidth) < 1,
+          `${width}: hero panels should occupy adjacent horizontal slides`,
+        );
+        assert(
+          m.cards.every((card) => Math.abs(card.width - m.cards[0].width) < 1) &&
+            m.cards.slice(1).every((card, i) => card.y > m.cards[i].y),
+          `${width}: price cards should remain in one column within their slide`,
         );
       }
     }

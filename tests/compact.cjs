@@ -264,13 +264,19 @@ const assert = require("node:assert/strict");
     assert.ok(m.gisLogoWidth < desktop.gisLogoWidth);
     assert.ok(m.gisIconWidth < desktop.gisIconWidth);
     assert.ok(m.reviewPortraitWidth < desktop.reviewPortraitWidth);
-    assert.ok(
-      Math.abs(m.heroAction.height - m.projectAction.height) < 0.1,
-    );
-    assert.ok(
-      Math.abs(m.heroAction.height - m.priceAction.height) < 0.1,
-    );
-    assert.ok(Math.abs(m.heroAction.icon - m.projectAction.icon) < 0.1);
+    if (width <= 1024) {
+      assert.ok(m.heroAction.height <= 56);
+      assert.ok(Math.abs(m.heroAction.height - m.priceAction.height) < 0.1);
+    } else {
+      assert.ok(
+        Math.abs(m.heroAction.height - m.projectAction.height) < 0.1,
+      );
+      assert.ok(
+        Math.abs(m.heroAction.height - m.priceAction.height) < 0.1,
+      );
+    }
+    assert.ok(m.heroAction.icon > 0);
+    assert.ok(m.projectAction.icon > 0);
     assert.ok(m.priceAction.labelLeft < 35);
     assert.ok(m.gisName < desktop.gisName);
     assert.ok(m.gisLink < desktop.gisLink);

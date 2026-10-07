@@ -126,7 +126,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     assert.ok(compactDialog.titleSize < 30);
     assert.ok(compactDialog.formGap < 16);
     assert.equal(compactDialog.closeShadow, "none");
-    await p.locator('#hero [data-action="quote"]').first().click();
+    await p.locator('#hero [data-action="quote"]').nth(1).click();
     await p.locator("[name=name]").fill("Тест");
     await p.locator("[name=phone]").fill("+7 (999) 123-45-67");
     await p
