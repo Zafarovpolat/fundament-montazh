@@ -36,10 +36,79 @@ const assert = require("node:assert/strict");
         getComputedStyle(document.querySelector(".foundation-card__suites"))
           .fontSize,
       ),
+      foundationDesc: parseFloat(
+        getComputedStyle(document.querySelector(".foundation-card__desc"))
+          .fontSize,
+      ),
       foundationPrice: parseFloat(
         getComputedStyle(document.querySelector(".foundation-card__price"))
           .fontSize,
       ),
+      foundationChip: parseFloat(
+        getComputedStyle(document.querySelector(".foundation-card__chips li"))
+          .fontSize,
+      ),
+      headingDescription: parseFloat(
+        getComputedStyle(
+          document.querySelector(".heading-description.with-yellow-rule"),
+        ).fontSize,
+      ),
+      headingDescriptionPlain: parseFloat(
+        getComputedStyle(
+          document.querySelector(
+            ".heading-description:not(.with-yellow-rule)",
+          ),
+        ).fontSize,
+      ),
+      quizQuestion: parseFloat(
+        getComputedStyle(document.querySelector(".quiz-question")).fontSize,
+      ),
+      gisName: parseFloat(
+        getComputedStyle(document.querySelector(".gis-name")).fontSize,
+      ),
+      gisLink: parseFloat(
+        getComputedStyle(document.querySelector(".gis-link")).fontSize,
+      ),
+      gisRating: parseFloat(
+        getComputedStyle(
+          document.querySelector(".gis-rating [data-figma-text]"),
+        ).fontSize,
+      ),
+      reviewQuote: parseFloat(
+        getComputedStyle(document.querySelector(".review-card blockquote"))
+          .fontSize,
+      ),
+      reviewName: parseFloat(
+        getComputedStyle(document.querySelector(".review-card h3")).fontSize,
+      ),
+      reviewMeta: parseFloat(
+        getComputedStyle(document.querySelector(".review-card figcaption p"))
+          .fontSize,
+      ),
+      faqQuestion: parseFloat(
+        getComputedStyle(
+          document.querySelector(".faq-grid summary[data-figma-text]"),
+        ).fontSize,
+      ),
+      socialCopy: parseFloat(
+        getComputedStyle(document.querySelector('[data-figma-text="315:549"]'))
+          .fontSize,
+      ),
+      directorQuote: parseFloat(
+        getComputedStyle(document.querySelector(".director-quote")).fontSize,
+      ),
+      footerAddress: parseFloat(
+        getComputedStyle(document.querySelector('[data-figma-text="609:966"]'))
+          .fontSize,
+      ),
+      footerEmail: parseFloat(
+        getComputedStyle(
+          document.querySelector('a[data-figma-text="609:963"]'),
+        ).fontSize,
+      ),
+      pagePathVisible:
+        getComputedStyle(document.querySelector(".page-path")).display !==
+        "none",
       statValue: parseFloat(
         getComputedStyle(document.querySelector(".stats-grid dt[data-figma-text]"))
           .fontSize,
@@ -128,7 +197,26 @@ const assert = require("node:assert/strict");
     assert.ok(m.sectionHeading < desktop.sectionHeading);
     assert.ok(m.foundationTitle < desktop.foundationTitle);
     assert.ok(m.foundationSuites < desktop.foundationSuites);
+    assert.ok(m.foundationDesc < desktop.foundationDesc);
     assert.ok(m.foundationPrice < desktop.foundationPrice);
+    assert.ok(m.foundationChip < desktop.foundationChip);
+    assert.ok(m.headingDescription < desktop.headingDescription);
+    assert.ok(
+      m.headingDescriptionPlain < desktop.headingDescriptionPlain,
+    );
+    assert.ok(m.quizQuestion < desktop.quizQuestion);
+    assert.ok(m.gisName < desktop.gisName);
+    assert.ok(m.gisLink < desktop.gisLink);
+    assert.ok(m.gisRating < desktop.gisRating);
+    assert.ok(m.reviewQuote < desktop.reviewQuote);
+    assert.ok(m.reviewName < desktop.reviewName);
+    assert.ok(m.reviewMeta < desktop.reviewMeta);
+    assert.ok(m.faqQuestion < desktop.faqQuestion);
+    assert.ok(m.socialCopy < desktop.socialCopy);
+    assert.ok(m.directorQuote < desktop.directorQuote);
+    assert.ok(m.footerAddress < desktop.footerAddress);
+    assert.ok(Math.abs(m.footerAddress - m.footerEmail) < 0.1);
+    assert.equal(m.pagePathVisible, width > 1280);
     assert.ok(m.statValue < desktop.statValue);
     assert.ok(m.stepNumber < desktop.stepNumber);
     if (m.topbarText !== null) {

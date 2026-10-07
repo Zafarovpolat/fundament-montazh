@@ -1261,3 +1261,83 @@ html .featured-object h3[data-figma-text] {
     height: 18px;
   }
 }
+
+/* Reduce the remaining copy-heavy blocks through 1440px. */
+@media (max-width: 1440px) {
+  html #projects .foundation-card__desc[data-figma-text] {
+    font-size: clamp(14px, 1.05vw, 15px);
+    line-height: 1.38;
+  }
+  html #projects .foundation-card__suites[data-figma-text] {
+    font-size: clamp(13px, 1vw, 14px);
+    line-height: 1.25;
+  }
+  html #projects .foundation-card__chips li,
+  html #projects .foundation-card__chips li [data-figma-text] {
+    font-size: clamp(13px, 1vw, 14px);
+    line-height: 1.3;
+  }
+  html #projects .foundation-card__price[data-figma-text] {
+    font-size: clamp(20px, 1.53vw, 22px);
+    line-height: 1.2;
+  }
+  html .heading-description,
+  html .heading-description[data-figma-text],
+  html .heading-description [data-figma-text] {
+    font-size: clamp(14px, 1.05vw, 15px);
+    line-height: 1.4;
+  }
+  html #calculator .quiz-question[data-figma-text] {
+    font-size: clamp(18px, 1.53vw, 22px);
+    line-height: 1.25;
+  }
+  html #reviews .gis-card {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  html #reviews .gis-card .gis-name[data-figma-text] {
+    font-size: clamp(14px, 1.04vw, 15px);
+    line-height: 1.25;
+  }
+  html #reviews .gis-card .gis-link[data-figma-text] {
+    font-size: clamp(13px, 0.97vw, 14px);
+    line-height: 1.3;
+  }
+  html #reviews .gis-card .gis-rating [data-figma-text] {
+    font-size: clamp(13px, 0.97vw, 14px);
+    line-height: 1.25;
+  }
+  html #reviews .review-card blockquote[data-figma-text] {
+    font-size: clamp(14px, 1.11vw, 16px);
+    line-height: 1.4;
+  }
+  html #reviews .review-card figcaption h3[data-figma-text] {
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.25;
+  }
+  html #reviews .review-card figcaption p[data-figma-text] {
+    font-size: clamp(13px, 0.97vw, 14px);
+    line-height: 1.35;
+  }
+  html .faq-grid summary[data-figma-text] {
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.3;
+  }
+  html #social [data-figma-text="315:549"][data-figma-text] {
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.35;
+  }
+  html #social .director-quote[data-figma-text] {
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.4;
+  }
+  html .footer-columns address .footer-contact > [data-figma-text="609:966"][data-figma-text] {
+    font-size: clamp(19px, 1.67vw, 24px);
+    line-height: 1.25;
+  }
+}
+@media (max-width: 1280px) {
+  .page-path {
+    display: none;
+  }
+}
