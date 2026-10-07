@@ -72,6 +72,36 @@ const assert = require("node:assert/strict");
   await p.waitForFunction((start) => scrollY > start, edgeScrollY);
   assert.ok((await p.evaluate(() => scrollY)) > edgeScrollY);
 
+  // A small momentum overshoot past the center still gets caught and centered;
+  // the page must use instant scrolling while the pin is active.
+  await p.evaluate(() => {
+    const section = document.querySelector("#design");
+    const carousel = document.querySelector("#steps-track").carousel;
+    carousel.position = 0;
+    const r = section.getBoundingClientRect();
+    const offset = r.top + r.height / 2 - innerHeight / 2;
+    window.scrollTo({ top: scrollY + offset + 12, behavior: "instant" });
+  });
+  await p.waitForFunction(() => {
+    const r = document.querySelector("#design").getBoundingClientRect();
+    return Math.abs(r.top + r.height / 2 - innerHeight / 2 + 12) < 2;
+  });
+  await p.mouse.wheel(0, 30);
+  await p.waitForFunction(() =>
+    document.documentElement.classList.contains("is-steps-pinned"),
+  );
+  const caughtOvershoot = await p.evaluate(() => {
+    const r = document.querySelector("#design").getBoundingClientRect();
+    return {
+      offset: r.top + r.height / 2 - innerHeight / 2,
+      position: document.querySelector("#steps-track").carousel.position,
+      scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
+    };
+  });
+  assert.ok(Math.abs(caughtOvershoot.offset) <= 2);
+  assert.ok(caughtOvershoot.position > 0);
+  assert.equal(caughtOvershoot.scrollBehavior, "auto");
+
   await b.close();
   console.log("PASS: #design pins at viewport center, scrolls the rail, and releases at its edge.");
 })().catch((e) => {

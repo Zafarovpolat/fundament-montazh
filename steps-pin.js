@@ -52,12 +52,11 @@
     const enabled = () => pinViewport.matches && motionOn() && span() > 0;
     const pinned = () => anchor !== null;
 
-    function hold() {
-      // Держим позицию, в которой колесо застало секцию, а не доводим её до
-      // нуля: snap назад конфликтовал бы с html { scroll-behavior: smooth } и
-      // собственный скролл сбрасывал бы пин на первом же кадре анимации.
-      anchor = Math.round(window.scrollY);
+    function hold(pageY = window.scrollY) {
+      // Ставим режим мгновенной прокрутки до выравнивания #design. Иначе
+      // браузер мог продолжить smooth-scroll уже после захвата wheel-события.
       document.documentElement.classList.add("is-steps-pinned");
+      anchor = Math.round(pageY);
       window.addEventListener("scroll", reassert, { passive: true });
     }
 
@@ -96,31 +95,41 @@
       const r = section.getBoundingClientRect();
       const centerOffset = r.top + r.height / 2 - window.innerHeight / 2;
       const tolerance = 4;
+      const overshootTolerance = 24;
       let pageShift = 0;
 
       if (Math.abs(centerOffset) > tolerance) {
         if (dy > 0) {
-          // При прокрутке вниз центр секции подходит к центру окна снизу.
-          if (centerOffset < 0 || centerOffset > dy) return null;
+          // Вниз: захватываем до точки пересечения, а также небольшой промах
+          // за центр от инерции/редких wheel-событий.
+          if (centerOffset < -overshootTolerance || centerOffset > dy) return null;
         } else {
-          // При прокрутке вверх симметрично: центр секции выше центра окна.
-          if (centerOffset > 0 || centerOffset < dy) return null;
+          // Вверх — симметрично; крупный промах не притягивает страницу назад.
+          if (centerOffset > overshootTolerance || centerOffset < dy) return null;
         }
         pageShift = centerOffset;
       }
 
       let remaining = dy;
       if (pageShift) {
-        const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const maxY = Math.max(
+          0,
+          document.documentElement.scrollHeight - window.innerHeight,
+        );
         const targetY = Math.max(
           0,
           Math.min(maxY, window.scrollY + pageShift),
         );
         const actualShift = targetY - window.scrollY;
-        window.scrollTo({ top: targetY, behavior: "instant" });
-        remaining -= actualShift;
+        // Захватываем позицию до scrollTo: CSS root scroll-behavior уже станет
+        // auto, а небольшая коррекция промаха против направления wheel не
+        // вычитается из дельты, передаваемой карточкам.
+        hold(targetY);
+        window.scrollTo(0, targetY);
+        if (actualShift * dy > 0) remaining -= actualShift;
+      } else {
+        hold();
       }
-      hold();
       return remaining;
     }
 

@@ -1567,15 +1567,17 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     --icon-width: 48px;
     grid-column: 3;
     grid-row: 1;
-    justify-self: end;
+    justify-self: center;
+    align-self: center;
     width: 58px;
     min-width: 58px;
     height: 58px;
     min-height: 58px;
     padding: 0;
     gap: 0;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
   }
   html .social-list article > .button .button-label {
@@ -1588,7 +1590,17 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     min-height: 0;
     flex: none;
     border-radius: 8px;
+    background: #070b1f;
+    color: #fff;
     transition: none;
+  }
+  html .social-list article > .button .button-icon .figma-icon {
+    filter: brightness(0) invert(1);
+  }
+  html .social-list article > .button[data-motion-button]:not(:disabled):hover .button-icon,
+  html .social-list article > .button[data-motion-button]:focus-visible .button-icon {
+    width: 48px;
+    background: #070b1f;
   }
 }
 
@@ -1779,7 +1791,7 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     order: 0;
     width: 100%;
     max-width: none;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
     font-size: clamp(10px, 1.35vw, 14px);
     line-height: 1.2;
     text-transform: uppercase;
@@ -1830,16 +1842,13 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     flex: none;
   }
   #hero .hero-slide--price .price-note {
-    order: 2;
-    margin-top: 10px;
-    font-size: 10px;
-    line-height: 1.25;
-    text-align: center;
+    display: none;
   }
   #hero .hero-slide--price .price-panel > .button {
     order: 3;
-    width: 100%;
-    max-width: 100%;
+    width: max-content;
+    max-width: calc(100% - 16px);
+    align-self: center;
     margin: 12px 0 0;
   }
   #hero .hero-slide--copy > .hero-benefits {
@@ -1863,27 +1872,29 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     width: max-content;
-    min-height: 16px;
+    min-height: 14px;
     margin: 12px auto 0;
-    padding: 4px 12px;
+    padding: 3px 8px;
     border-radius: 999px;
     background: rgb(126 134 153 / 38%);
   }
   .hero-pagination button {
     display: grid;
     place-items: center;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     padding: 0;
     border: 0;
-    border-radius: 999px;
+    border-radius: 50%;
     background: rgb(255 255 255 / 52%);
     cursor: pointer;
   }
   .hero-pagination button[aria-current="true"] {
-    width: 14px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
     background: #fff;
   }
   .hero-pagination button:focus-visible {

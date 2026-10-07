@@ -50,6 +50,10 @@ const assert = require("node:assert/strict");
           textColumn: getComputedStyle(article.querySelector(":scope > div"))
             .gridColumnStart,
           buttonBox: box(socialButton).toJSON(),
+          iconBox: box(socialButton.querySelector(".button-icon")).toJSON(),
+          iconBackground: getComputedStyle(
+            socialButton.querySelector(".button-icon"),
+          ).backgroundColor,
           articleBox: box(article).toJSON(),
         },
         designEyebrow: getComputedStyle(q("#design .eyebrow")).display,
@@ -66,8 +70,18 @@ const assert = require("node:assert/strict");
         hero: {
           pagerHidden: q(".hero-pagination").hidden,
           pagerTop: box(q(".hero-pagination")).top,
+          pagerButtons: [...q(".hero-pagination").children].map((e) =>
+            box(e).toJSON(),
+          ),
           trackWidth: track.clientWidth,
           trackScrollWidth: track.scrollWidth,
+          slideOrder: [...track.querySelectorAll("[data-hero-slide]")].map(
+            (slide) => slide.dataset.heroSlide,
+          ),
+          priceTitle: box(q(".price-panel .panel-title")).toJSON(),
+          firstPriceCard: box(q(".price-list > li")).toJSON(),
+          priceNoteDisplay: getComputedStyle(q(".price-note")).display,
+          priceButton: box(q(".price-panel > .button")).toJSON(),
           active: track.dataset.activeSlide || null,
           copyX: box(copySlide).x,
           priceX: box(priceSlide).x,
@@ -89,6 +103,14 @@ const assert = require("node:assert/strict");
       assert.ok(
         state.social.buttonBox.right <= state.social.articleBox.right + 1,
       );
+      assert.ok(
+        Math.abs(
+          state.social.iconBox.x + state.social.iconBox.width / 2 -
+            (state.social.buttonBox.x + state.social.buttonBox.width / 2),
+        ) < 1,
+        "social arrow should be centered inside its dark button",
+      );
+      assert.equal(state.social.iconBackground, "rgb(7, 11, 31)");
     } else {
       assert.ok(state.dialogWidth > 520);
     }
@@ -111,6 +133,22 @@ const assert = require("node:assert/strict");
         ) < 1,
       );
       assert.equal(state.hero.active, "price");
+      assert.deepEqual(state.hero.slideOrder, ["price", "copy"]);
+      assert.equal(state.hero.priceNoteDisplay, "none");
+      assert.ok(
+        state.hero.firstPriceCard.y -
+          (state.hero.priceTitle.y + state.hero.priceTitle.height) >=
+          10,
+        "price title needs breathing room before the cards",
+      );
+      assert.ok(
+        state.hero.pagerButtons.every(
+          (dot) =>
+            Math.abs(dot.width - dot.height) < 0.1 && dot.width <= 6.1,
+        ),
+        "both mobile pager states should be small circles",
+      );
+      assert.ok(state.hero.priceButton.width < state.hero.trackWidth);
       if (width === 241) {
         assert.ok(state.hero.pagerTop < 460, "241px: hero pager should peek into view");
       }

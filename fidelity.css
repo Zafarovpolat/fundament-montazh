@@ -384,6 +384,11 @@ html .price-list .muted {
   flex: 0 0 calc((100% - var(--bleed) - 2 * var(--card-gap)) / 3);
   min-width: 0;
 }
+/* Пин #design переводит программное выравнивание окна в мгновенное: обычный
+   html { scroll-behavior: smooth } иначе мог сдвинуть страницу после захвата. */
+html.is-steps-pinned {
+  scroll-behavior: auto !important;
+}
 /* Свободный рендж: пока ряд ведут колесом (пин #design) или ползунком рельса,
    transform и позиция пилюли должны идти за вводом, а не догонять 650/260 ms —
    тот же приём, что и при drag'е самого трека. */
