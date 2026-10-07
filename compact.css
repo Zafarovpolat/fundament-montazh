@@ -1583,12 +1583,14 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   html .social-list article > .button .button-label {
     display: none;
   }
-  html .social-list article > .button .button-icon {
+  html .social-list article > .button[data-motion-button] .button-icon {
     position: static;
     width: 48px;
-    height: 48px;
+    height: auto;
+    aspect-ratio: 1;
     min-height: 0;
     flex: none;
+    align-self: center;
     border-radius: 8px;
     background: #070b1f;
     color: #fff;
@@ -1749,7 +1751,7 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     align-items: stretch;
     gap: 0;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -1768,10 +1770,10 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
-  #hero .hero-slide--price {
+  #hero .hero-slide--copy {
     order: 0;
   }
-  #hero .hero-slide--copy {
+  #hero .hero-slide--price {
     order: 1;
   }
   #hero .hero-slide--copy > .hero-copy,
@@ -1848,7 +1850,7 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     order: 3;
     width: max-content;
     max-width: calc(100% - 16px);
-    align-self: center;
+    align-self: flex-start;
     margin: 12px 0 0;
   }
   #hero .hero-slide--copy > .hero-benefits {

@@ -78,6 +78,7 @@ const assert = require("node:assert/strict");
           slideOrder: [...track.querySelectorAll("[data-hero-slide]")].map(
             (slide) => slide.dataset.heroSlide,
           ),
+          pricePanel: box(q(".price-panel")).toJSON(),
           priceTitle: box(q(".price-panel .panel-title")).toJSON(),
           firstPriceCard: box(q(".price-list > li")).toJSON(),
           priceNoteDisplay: getComputedStyle(q(".price-note")).display,
@@ -110,6 +111,13 @@ const assert = require("node:assert/strict");
         ) < 1,
         "social arrow should be centered inside its dark button",
       );
+      assert.ok(
+        Math.abs(
+          state.social.iconBox.y + state.social.iconBox.height / 2 -
+            (state.social.buttonBox.y + state.social.buttonBox.height / 2),
+        ) < 1,
+        "social arrow panel should be vertically centered in the exact motion button",
+      );
       assert.equal(state.social.iconBackground, "rgb(7, 11, 31)");
     } else {
       assert.ok(state.dialogWidth > 520);
@@ -132,8 +140,8 @@ const assert = require("node:assert/strict");
           Math.abs(state.hero.copyX - state.hero.priceX) - state.hero.trackWidth,
         ) < 1,
       );
-      assert.equal(state.hero.active, "price");
-      assert.deepEqual(state.hero.slideOrder, ["price", "copy"]);
+      assert.equal(state.hero.active, "copy");
+      assert.deepEqual(state.hero.slideOrder, ["copy", "price"]);
       assert.equal(state.hero.priceNoteDisplay, "none");
       assert.ok(
         state.hero.firstPriceCard.y -
@@ -149,6 +157,10 @@ const assert = require("node:assert/strict");
         "both mobile pager states should be small circles",
       );
       assert.ok(state.hero.priceButton.width < state.hero.trackWidth);
+      assert.ok(
+        Math.abs(state.hero.priceButton.x - state.hero.pricePanel.x) < 1,
+        "price CTA should align to the left edge of its panel",
+      );
       if (width === 241) {
         assert.ok(state.hero.pagerTop < 460, "241px: hero pager should peek into view");
       }
@@ -184,6 +196,18 @@ const assert = require("node:assert/strict");
     () => document.querySelector("#hero .hero-grid").dataset.activeSlide === "price",
     null,
     { timeout: 7000 },
+  );
+  await page.waitForFunction(
+    () => document.querySelector("#hero .hero-grid").dataset.activeSlide === "copy",
+    null,
+    { timeout: 7000 },
+  );
+  assert.equal(
+    await page
+      .locator('.hero-pagination [aria-current="true"]')
+      .getAttribute("data-hero-target"),
+    "copy",
+    "autoplay should loop back to the first hero slide",
   );
   assert.deepEqual(errors, []);
   await browser.close();

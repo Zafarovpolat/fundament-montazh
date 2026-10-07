@@ -67,18 +67,45 @@
     }
 
     /**
-     * Держим позицию только пока это «наше» смещение (единицы пикселей):
-     * фокус, якорь или инерция пальца уводят страницу дальше — отпускаем,
-     * иначе секция заперла бы скролл намертво.
+     * Пока рельс не дошёл до края, восстанавливаем закреплённую позицию даже
+     * после случайного inertial/programmatic сдвига. Навигационные клавиши и
+     * явные якорные ссылки освобождают пин отдельно.
      */
     function reassert() {
-      if (anchor === null) return;
-      const drift = window.scrollY - anchor;
-      if (Math.abs(drift) <= 4) {
-        if (drift) window.scrollTo(0, anchor);
-      } else {
-        release();
+      if (anchor !== null && window.scrollY !== anchor) {
+        window.scrollTo(0, anchor);
       }
+    }
+
+    function onNavigationKey(event) {
+      if (!pinned()) return;
+      const scrollKeys = new Set([
+        "ArrowDown",
+        "ArrowUp",
+        "PageDown",
+        "PageUp",
+        "Home",
+        "End",
+        " ",
+        "Spacebar",
+      ]);
+      if (!scrollKeys.has(event.key)) return;
+      if (
+        event.target instanceof Element &&
+        event.target.closest("button,a,input,textarea,select,[contenteditable='true']")
+      ) {
+        return;
+      }
+      release();
+    }
+
+    function onAnchorClick(event) {
+      if (!pinned()) return;
+      const link = event.target.closest?.('a[href^="#"]');
+      if (!link) return;
+      const targetId = decodeURIComponent(link.hash.slice(1));
+      const target = document.getElementById(targetId);
+      if (target && !section.contains(target)) release();
     }
 
     /**
@@ -95,7 +122,10 @@
       const r = section.getBoundingClientRect();
       const centerOffset = r.top + r.height / 2 - window.innerHeight / 2;
       const tolerance = 4;
-      const overshootTolerance = 24;
+      const overshootTolerance = Math.min(
+        240,
+        Math.max(80, Math.abs(dy) * 1.5),
+      );
       let pageShift = 0;
 
       if (Math.abs(centerOffset) > tolerance) {
@@ -197,10 +227,24 @@
       touchY = null;
     }
 
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("wheel", onWheel, {
+      capture: true,
+      passive: false,
+    });
+    window.addEventListener("touchstart", onTouchStart, {
+      capture: true,
+      passive: true,
+    });
+    window.addEventListener("touchmove", onTouchMove, {
+      capture: true,
+      passive: false,
+    });
+    window.addEventListener("touchend", onTouchEnd, {
+      capture: true,
+      passive: true,
+    });
+    window.addEventListener("keydown", onNavigationKey, true);
+    document.addEventListener("click", onAnchorClick, true);
     // Смена ширины: не держать страницу, если пин стал недоступен.
     pinViewport.addEventListener("change", () => {
       if (pinned() && !enabled()) release();

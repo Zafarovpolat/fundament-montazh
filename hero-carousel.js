@@ -17,7 +17,7 @@
 
   const mobile = window.matchMedia("(max-width: 1024px)");
   const interval = 5000;
-  let activeKey = "price";
+  let activeKey = "copy";
   let timer = 0;
   let scrollTimer = 0;
   let inView = !("IntersectionObserver" in window);
@@ -115,7 +115,7 @@
 
     if (mobile.matches) {
       if (!wasMobile) {
-        activeKey = "price";
+        activeKey = "copy";
         track.scrollLeft = 0;
       }
       pager.hidden = false;

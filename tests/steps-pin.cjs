@@ -80,11 +80,11 @@ const assert = require("node:assert/strict");
     carousel.position = 0;
     const r = section.getBoundingClientRect();
     const offset = r.top + r.height / 2 - innerHeight / 2;
-    window.scrollTo({ top: scrollY + offset + 12, behavior: "instant" });
+    window.scrollTo({ top: scrollY + offset + 44, behavior: "instant" });
   });
   await p.waitForFunction(() => {
     const r = document.querySelector("#design").getBoundingClientRect();
-    return Math.abs(r.top + r.height / 2 - innerHeight / 2 + 12) < 2;
+    return Math.abs(r.top + r.height / 2 - innerHeight / 2 + 44) < 2;
   });
   await p.mouse.wheel(0, 30);
   await p.waitForFunction(() =>
@@ -101,6 +101,20 @@ const assert = require("node:assert/strict");
   assert.ok(Math.abs(caughtOvershoot.offset) <= 2);
   assert.ok(caughtOvershoot.position > 0);
   assert.equal(caughtOvershoot.scrollBehavior, "auto");
+
+  // Unexpected inertial/page drift during the pin must be corrected, not release it.
+  const pinnedY = await p.evaluate(() => {
+    const y = scrollY;
+    window.scrollTo(0, y + 40);
+    return y;
+  });
+  await p.waitForFunction((start) => Math.abs(scrollY - start) <= 1, pinnedY);
+  assert.equal(
+    await p.evaluate(() =>
+      document.documentElement.classList.contains("is-steps-pinned"),
+    ),
+    true,
+  );
 
   await b.close();
   console.log("PASS: #design pins at viewport center, scrolls the rail, and releases at its edge.");
