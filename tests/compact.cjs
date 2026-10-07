@@ -11,6 +11,13 @@ const assert = require("node:assert/strict");
       button: document
         .querySelector("#hero .button[data-motion-button]")
         .getBoundingClientRect().height,
+      buttonLabel: parseFloat(
+        getComputedStyle(
+          document.querySelector(
+            "#hero .button[data-motion-button] .button-label",
+          ),
+        ).fontSize,
+      ),
       arrow: document
         .querySelector(".carousel-controls button")
         .getBoundingClientRect().width,
@@ -80,6 +87,7 @@ const assert = require("node:assert/strict");
     const m = await metrics();
     assert.ok(m.h1 < desktop.h1);
     assert.ok(m.button < desktop.button);
+    assert.ok(m.buttonLabel < desktop.buttonLabel);
     assert.ok(m.arrow < desktop.arrow);
     await loadImage(p, ".director-photo");
     const portrait = await p.locator(".director-photo").evaluate((e) => {
@@ -106,13 +114,6 @@ const assert = require("node:assert/strict");
         .locator(".warning p")
         .evaluate((e) => parseFloat(getComputedStyle(e).fontSize)),
       17,
-    );
-    assert.equal(
-      await p
-        .locator("#hero .button-label")
-        .first()
-        .evaluate((e) => parseFloat(getComputedStyle(e).fontSize)),
-      14,
     );
   }
   await b.close();
