@@ -78,9 +78,18 @@ const assert = require("node:assert/strict");
         hero: {
           badge: box(q(".hero-badge")).toJSON(),
           badgeBackground: getComputedStyle(q(".hero-badge")).backgroundColor,
-          proofs: [...q(".hero-badge").querySelectorAll(".hero-proof-item")].map(
-            (proof) => box(proof).toJSON(),
+          badgeRadius: Number.parseFloat(
+            getComputedStyle(q(".hero-badge")).borderTopLeftRadius,
           ),
+          badgeClientWidth: q(".hero-badge").clientWidth,
+          badgeScrollWidth: q(".hero-badge").scrollWidth,
+          proofCount: q(".hero-badge").querySelectorAll(".hero-proof-item").length,
+          proofBackgrounds: [...q(".hero-badge").querySelectorAll(".hero-proof-item")].map(
+            (proof) => getComputedStyle(proof).backgroundColor,
+          ),
+          separatorDisplay: getComputedStyle(
+            q(".hero-badge .hero-proof-separator"),
+          ).display,
           benefitsColumns: getComputedStyle(
             q(".hero-benefits"),
           ).gridTemplateColumns.trim().split(/\s+/).length,
@@ -98,7 +107,6 @@ const assert = require("node:assert/strict");
             box(e).toJSON(),
           ),
           trackWidth: track.clientWidth,
-          trackRight: box(track).right,
           trackScrollWidth: track.scrollWidth,
           slideOrder: [...track.querySelectorAll("[data-hero-slide]")].map(
             (slide) => slide.dataset.heroSlide,
@@ -170,18 +178,18 @@ const assert = require("node:assert/strict");
         "legal links and footer credit should share the lower row",
       );
       assert.ok(state.hero.badge.width <= state.hero.trackWidth + 1);
-      assert.equal(state.hero.badgeBackground, "rgba(0, 0, 0, 0)");
-      assert.equal(state.hero.proofs.length, 3);
+      assert.notEqual(state.hero.badgeBackground, "rgba(0, 0, 0, 0)");
+      assert.ok(state.hero.badgeRadius >= 50);
+      assert.equal(state.hero.separatorDisplay, "inline");
+      assert.equal(state.hero.proofCount, 3);
       assert.ok(
-        state.hero.proofs.every((proof) => proof.right <= state.hero.trackRight + 1),
-        "hero proof chips should remain inside the carousel",
+        state.hero.proofBackgrounds.every((background) => background === "rgba(0, 0, 0, 0)"),
+        "proof text must remain inside one continuous badge, not separate pills",
       );
-      if (width > 280) {
-        assert.ok(
-          state.hero.proofs.every((proof) => proof.width < state.hero.trackWidth),
-          "the hero badge should use natural proof chips, not a stretched pill",
-        );
-      }
+      assert.ok(
+        state.hero.badgeScrollWidth <= state.hero.badgeClientWidth + 1,
+        "hero badge text should wrap inside the single pill without horizontal clipping",
+      );
       assert.ok(state.hero.copyButtonMinHeight >= 68);
       assert.ok(
         Math.abs(state.hero.benefitIcon.y - state.hero.firstBenefit.y) < 1,
