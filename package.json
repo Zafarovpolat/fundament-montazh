@@ -15,6 +15,7 @@
     "test:refinements": "node tests/review34.cjs",
     "test:header": "node tests/header.cjs",
     "test:compact": "node tests/compact.cjs",
+    "test:steps-pin": "node tests/steps-pin.cjs",
     "test:layout": "node tests/layout.cjs",
     "test:review362": "node tests/review362.cjs",
     "tools:measure-images": "node tools/measure-images.mjs",

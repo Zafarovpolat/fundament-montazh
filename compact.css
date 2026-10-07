@@ -1341,3 +1341,69 @@ html .featured-object h3[data-figma-text] {
     display: none;
   }
 }
+
+/* Compact text, card media and action controls requested for ≤1440px. */
+@media (max-width: 1440px) {
+  html .eyebrow[data-figma-text] {
+    font-size: clamp(11px, 0.84vw, 12px);
+    line-height: 1.25;
+  }
+  html #calculator #quiz-title[data-figma-text] {
+    font-size: clamp(24px, 2.22vw, 32px);
+    line-height: 1.2;
+  }
+  html #calculator .quiz-options {
+    gap: clamp(8px, 0.84vw, 12px);
+  }
+  html #calculator .quiz-options > button[data-figma-text] {
+    min-height: clamp(76px, 6.1vw, 88px);
+    padding: 12px clamp(12px, 1.11vw, 16px);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.25;
+  }
+  html #reviews .gis-card {
+    min-height: clamp(104px, 7.78vw, 112px);
+    gap: clamp(8px, 0.84vw, 12px);
+    padding: clamp(12px, 0.97vw, 14px);
+  }
+  html #reviews .gis-card .gis-logo {
+    width: clamp(46px, 3.75vw, 54px);
+    height: auto;
+  }
+  html #reviews .gis-card .gis-rating > svg {
+    width: clamp(16px, 1.25vw, 18px);
+    height: clamp(16px, 1.25vw, 18px);
+    flex: none;
+  }
+  html #reviews .gis-card .gis-rating {
+    gap: clamp(6px, 0.55vw, 8px);
+    margin-top: 7px;
+  }
+  html #reviews .review-card figcaption img,
+  html #reviews .review-card figcaption svg {
+    width: clamp(54px, 4.72vw, 68px);
+    height: clamp(54px, 4.72vw, 68px);
+  }
+  html #projects .foundation-card .button[data-motion-button] {
+    --button-inset: 7px;
+    --icon-width: 48px;
+  }
+  html #projects .foundation-card .button[data-motion-button] .button-icon {
+    width: 48px;
+    flex-basis: 48px;
+    border-radius: 11px;
+  }
+  html #projects .foundation-card .button[data-motion-button]:not(:disabled):hover .button-icon,
+  html #projects .foundation-card .button[data-motion-button]:focus-visible .button-icon {
+    width: calc(100% - var(--button-inset) - var(--button-inset));
+  }
+  html .price-panel > .button[data-motion-button] {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  html .price-panel > .button[data-motion-button] .button-label {
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+  }
+}

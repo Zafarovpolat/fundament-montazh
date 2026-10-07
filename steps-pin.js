@@ -2,8 +2,8 @@
 /**
  * Пин секции «7 шагов» (#design, макет 315:324) со свободным диапазоном.
  *
- * Пока ряд карточек подходит к средней полосе экрана, страница замирает, а
- * вертикальный скролл двигает ряд в том же направлении. Чувствительность
+ * Когда центр секции приходит к центру экрана, страница замирает, а
+ * вертикальный скролл двигает ряд карточек в том же направлении. Чувствительность
  * снижена до 65%, чтобы ряд не пролетал слишком быстро; шаг одного листа
  * = ширина карточки + gap, его отдаёт carousel.step. Рельс 491:667, жёлтая
  * полоса и пилюля со стрелками наследуют эту же дробную позицию, поэтому
@@ -42,11 +42,6 @@
     // означает, что для того же сдвига ряда нужно прокрутить страницу дальше.
     const SCROLL_RATE = 0.65;
     const motionOn = () => document.documentElement.dataset.motion !== "off";
-    // html { scroll-padding-top }: секция пристыкуется не к 0, а к этой метке,
-    // поэтому «у кромки» мерим по ней, иначе пин не наступал бы после якорей.
-    const park = () =>
-      parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) ||
-      0;
     const span = () => Math.max(0, api.pages - 1);
     const atStart = () => api.position <= 0.001;
     const atEnd = () => api.position >= span() - 0.001;
@@ -88,10 +83,9 @@
     }
 
     /**
-     * Включаем пин, когда ряд входит в рабочую полосу. Если крупный шаг колеса
-     * пересёк границу этой полосы за один event, сначала сдвигаем страницу
-     * только до границы, затем отдаём остальную часть ввода карусели — ряд не
-     * проскакивает мимо точки захвата.
+     * Включаем пин, когда центр секции #design пересекает центр окна. Если
+     * крупный wheel/touch event пересёк эту точку, сначала ровно центрируем
+     * секцию, затем передаём остаток ввода горизонтальному ряду.
      * @returns {number|null} оставшаяся дельта для ряда; null — пусть скроллит страница.
      */
     function enter(dy) {
@@ -99,27 +93,29 @@
       const dir = dy > 0 ? 1 : -1;
       if (dir > 0 ? atEnd() : atStart()) return null;
 
-      const r = track.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const upper = vh * 0.78;
-      const lower = park() + vh * 0.22;
+      const r = section.getBoundingClientRect();
+      const centerOffset = r.top + r.height / 2 - window.innerHeight / 2;
+      const tolerance = 4;
       let pageShift = 0;
 
-      if (r.top > upper) {
-        // Ряд ниже рабочей полосы: входим только если этот шаг колеса её
-        // достигнет, иначе оставляем естественный ход страницы.
-        if (dy <= 0 || r.top - dy > upper) return null;
-        pageShift = r.top - upper;
-      } else if (r.bottom < lower) {
-        // Симметрично при прокрутке вверх, когда ряд уже выше полосы.
-        if (dy >= 0 || r.bottom - dy < lower) return null;
-        pageShift = r.bottom - lower;
+      if (Math.abs(centerOffset) > tolerance) {
+        if (dy > 0) {
+          // При прокрутке вниз центр секции подходит к центру окна снизу.
+          if (centerOffset < 0 || centerOffset > dy) return null;
+        } else {
+          // При прокрутке вверх симметрично: центр секции выше центра окна.
+          if (centerOffset > 0 || centerOffset < dy) return null;
+        }
+        pageShift = centerOffset;
       }
 
       let remaining = dy;
       if (pageShift) {
-        const maxY = Math.max(0, document.documentElement.scrollHeight - vh);
-        const targetY = Math.max(0, Math.min(maxY, window.scrollY + pageShift));
+        const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const targetY = Math.max(
+          0,
+          Math.min(maxY, window.scrollY + pageShift),
+        );
         const actualShift = targetY - window.scrollY;
         window.scrollTo({ top: targetY, behavior: "instant" });
         remaining -= actualShift;

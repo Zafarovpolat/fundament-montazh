@@ -60,9 +60,59 @@ const assert = require("node:assert/strict");
           ),
         ).fontSize,
       ),
+      eyebrow: parseFloat(
+        getComputedStyle(document.querySelector("#included .eyebrow"))
+          .fontSize,
+      ),
+      quizTitle: parseFloat(
+        getComputedStyle(document.querySelector("#quiz-title")).fontSize,
+      ),
+      quizOptions: parseFloat(
+        getComputedStyle(document.querySelector(".quiz-options button"))
+          .fontSize,
+      ),
+      quizOptionHeight: document
+        .querySelector(".quiz-options button")
+        .getBoundingClientRect().height,
       quizQuestion: parseFloat(
         getComputedStyle(document.querySelector(".quiz-question")).fontSize,
       ),
+      gisPadding: parseFloat(
+        getComputedStyle(document.querySelector(".gis-card")).paddingLeft,
+      ),
+      gisLogoWidth: document
+        .querySelector(".gis-logo")
+        .getBoundingClientRect().width,
+      gisIconWidth: document
+        .querySelector(".gis-rating svg")
+        .getBoundingClientRect().width,
+      reviewPortraitWidth: document
+        .querySelector(".review-card figcaption img")
+        .getBoundingClientRect().width,
+      heroAction: (() => {
+        const e = document.querySelector("#hero .button[data-motion-button]");
+        return {
+          height: e.getBoundingClientRect().height,
+          icon: e.querySelector(".button-icon").getBoundingClientRect().width,
+        };
+      })(),
+      projectAction: (() => {
+        const e = document.querySelector(
+          "#projects .foundation-card .button[data-motion-button]",
+        );
+        return {
+          height: e.getBoundingClientRect().height,
+          icon: e.querySelector(".button-icon").getBoundingClientRect().width,
+        };
+      })(),
+      priceAction: (() => {
+        const e = document.querySelector(".price-panel > .button[data-motion-button]");
+        const label = e.querySelector(".button-label").getBoundingClientRect();
+        return {
+          height: e.getBoundingClientRect().height,
+          labelLeft: label.left - e.getBoundingClientRect().left,
+        };
+      })(),
       gisName: parseFloat(
         getComputedStyle(document.querySelector(".gis-name")).fontSize,
       ),
@@ -205,6 +255,22 @@ const assert = require("node:assert/strict");
       m.headingDescriptionPlain < desktop.headingDescriptionPlain,
     );
     assert.ok(m.quizQuestion < desktop.quizQuestion);
+    assert.ok(m.eyebrow < desktop.eyebrow);
+    assert.ok(m.quizTitle < desktop.quizTitle);
+    assert.ok(m.quizOptions < desktop.quizOptions);
+    assert.ok(m.quizOptionHeight < desktop.quizOptionHeight);
+    assert.ok(m.gisPadding < desktop.gisPadding);
+    assert.ok(m.gisLogoWidth < desktop.gisLogoWidth);
+    assert.ok(m.gisIconWidth < desktop.gisIconWidth);
+    assert.ok(m.reviewPortraitWidth < desktop.reviewPortraitWidth);
+    assert.ok(
+      Math.abs(m.heroAction.height - m.projectAction.height) < 0.1,
+    );
+    assert.ok(
+      Math.abs(m.heroAction.height - m.priceAction.height) < 0.1,
+    );
+    assert.ok(Math.abs(m.heroAction.icon - m.projectAction.icon) < 0.1);
+    assert.ok(m.priceAction.labelLeft < 35);
     assert.ok(m.gisName < desktop.gisName);
     assert.ok(m.gisLink < desktop.gisLink);
     assert.ok(m.gisRating < desktop.gisRating);
