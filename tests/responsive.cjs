@@ -300,10 +300,65 @@ const assert = require("node:assert/strict");
     "copy",
     "autoplay should loop back to the first hero slide",
   );
+  const cookiePage = await browser.newPage({
+    viewport: { width: 1920, height: 900 },
+  });
+  await cookiePage.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await cookiePage.evaluate(() => document.fonts.ready);
+  await cookiePage.evaluate(() => {
+    const banner = document.querySelector(".cookie-bar");
+    banner.hidden = false;
+    banner.querySelector(".cookie-bar__inner").style.transition = "none";
+    document.documentElement.classList.add("cookie-shown");
+  });
+  const cookieMetrics = async (width) => {
+    await cookiePage.setViewportSize({ width, height: 900 });
+    return cookiePage.evaluate(() => {
+      const q = (selector) => document.querySelector(selector);
+      const inner = q(".cookie-bar__inner");
+      const button = q(".cookie-bar__accept");
+      const title = q(".cookie-bar__title");
+      const note = q(".cookie-bar__note");
+      const innerStyle = getComputedStyle(inner);
+      const innerBox = inner.getBoundingClientRect();
+      const buttonBox = button.getBoundingClientRect();
+      return {
+        width: innerWidth,
+        pageWidth: document.documentElement.scrollWidth,
+        titleFont: parseFloat(getComputedStyle(title).fontSize),
+        noteFont: parseFloat(getComputedStyle(note).fontSize),
+        paddingTop: parseFloat(innerStyle.paddingTop),
+        paddingBottom: parseFloat(innerStyle.paddingBottom),
+        alignSelf: getComputedStyle(button).alignSelf,
+        textBottom: note.getBoundingClientRect().bottom,
+        buttonTop: buttonBox.top,
+        bottomGap:
+          innerBox.bottom -
+          buttonBox.bottom -
+          parseFloat(innerStyle.paddingBottom),
+      };
+    });
+  };
+  const cookieDesktop = await cookieMetrics(1920);
+  const cookieTabletDesktop = await cookieMetrics(1440);
+  assert.ok(cookieTabletDesktop.titleFont < cookieDesktop.titleFont);
+  assert.ok(cookieTabletDesktop.noteFont < cookieDesktop.noteFont);
+  assert.ok(cookieTabletDesktop.paddingTop < cookieDesktop.paddingTop);
+  for (const width of [1440, 1024, 768, 390]) {
+    const metrics = width === 1440 ? cookieTabletDesktop : await cookieMetrics(width);
+    assert.equal(metrics.pageWidth, width, `${width}px: cookie bar causes page overflow`);
+    assert.equal(metrics.alignSelf, "end", `${width}px: consent button should sit at the bottom`);
+    assert.ok(Math.abs(metrics.bottomGap) < 1, `${width}px: consent button bottom padding`);
+    if (width <= 1024) {
+      assert.ok(metrics.buttonTop >= metrics.textBottom, `${width}px: button follows cookie text`);
+    }
+  }
+  await cookiePage.close();
+
   assert.deepEqual(errors, []);
   await browser.close();
   console.log(
-    "PASS: requested breakpoints, text/color, dialog, social row, visit/FAQ, burger and the keyboard-operable autoplay hero carousel.",
+    "PASS: responsive layout, cookie button anchoring, menu alignment, and keyboard-operable hero carousel.",
   );
 })().catch((error) => {
   console.error(error);

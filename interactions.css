@@ -625,6 +625,31 @@ html.cookie-shown .cookie-bar__inner {
    свободный промежуток, поэтому min-width, а не паддинги. */
 .cookie-bar__accept {
   min-width: 289px;
+  align-self: end;
+}
+@media (max-width: 1440px) {
+  .cookie-bar {
+    padding-bottom:
+      calc(clamp(8px, 1vw, 14px) + env(safe-area-inset-bottom, 0px));
+  }
+  .cookie-bar__inner {
+    min-height: 0;
+    gap: clamp(12px, 1.5vw, 22px);
+    padding: clamp(18px, 1.8vw, 26px) clamp(18px, 2vw, 28px);
+    border-radius: clamp(16px, 1.6vw, 24px);
+  }
+  .cookie-bar__title {
+    margin-bottom: clamp(6px, 0.65vw, 10px);
+    font-size: clamp(18px, 1.65vw, 24px);
+    line-height: 1.2;
+  }
+  .cookie-bar__note {
+    font-size: clamp(14px, 1.12vw, 16px);
+    line-height: 1.4;
+  }
+  .cookie-bar__accept {
+    min-width: clamp(180px, 20vw, 250px);
+  }
 }
 @media (max-width: 1024px) {
   .cookie-bar__inner {
