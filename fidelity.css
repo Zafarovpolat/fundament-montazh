@@ -1313,7 +1313,7 @@ html[data-motion="off"] .reveal {
     padding: 7px 10px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .section {
     padding-top: 60px;
   }
@@ -1687,7 +1687,7 @@ html[data-motion="off"] .reveal {
     gap: 24px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .hero-benefits {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
@@ -2399,7 +2399,7 @@ html .featured-object h3[data-figma-text] {
 .featured-object .object-meta > span {
   display: inline;
 }
-@media (max-width: 1199px) and (min-width: 761px) {
+@media (max-width: 1199px) and (min-width: 769px) {
   .featured-object figcaption {
     left: 15px;
     right: 15px;
@@ -2411,7 +2411,7 @@ html .featured-object h3[data-figma-text] {
     font-size: 13px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .objects-gallery {
     display: flex;
     height: 480px;
@@ -2454,7 +2454,7 @@ html .featured-object h3[data-figma-text] {
     font-size: 18px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   html .featured-object h3[data-figma-text] {
     font-size: 22px;
   }
@@ -2790,7 +2790,7 @@ html .visit-kicker[data-figma-text] {
   align-items: center;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   #faq .section-heading {
     flex-direction: column;
     align-items: flex-start;

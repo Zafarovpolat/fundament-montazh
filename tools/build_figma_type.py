@@ -137,10 +137,10 @@ print(
 if big_ids:
     ct = Path("compact-type.css")
     text = ct.read_text(encoding="utf-8")
-    cut = text.index("@media (max-width: 760px) {")
+    cut = text.index("@media (max-width: 768px) {")
     pos = text.rindex("\n}\n", 0, cut)
     text = text[:pos] + "\n" + "\n".join(TABLET.format(n) for n in big_ids) + text[pos:]
-    cut = text.index("@media (max-width: 760px) {")
+    cut = text.index("@media (max-width: 768px) {")
     pos = text.rindex("\n}\n", cut)
     text = text[:pos] + "\n" + "\n".join(MOBILE.format(n) for n in big_ids) + text[pos:]
     ct.write_text(text, encoding="utf-8")

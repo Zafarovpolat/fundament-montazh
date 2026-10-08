@@ -324,7 +324,7 @@
     max-width: 100%;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .section,
   .compact {
     padding-top: 48px;
@@ -467,7 +467,7 @@
     border-radius: 16px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .quiz-options button {
     min-height: 100px;
     padding: 16px;
@@ -536,7 +536,7 @@
     padding-top: 30px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .footer-cta {
     --footer-pad: 26px;
     padding-top: 26px;
@@ -700,7 +700,7 @@ html .featured-object h3[data-figma-text] {
     padding-top: 60px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .service-grid li:nth-child(even) {
     padding-top: 36px;
   }
@@ -725,7 +725,7 @@ html .featured-object h3[data-figma-text] {
     width: 100%;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .foundation-cards {
     grid-template-columns: minmax(0, 1fr);
     gap: 14px;
@@ -767,7 +767,7 @@ html .featured-object h3[data-figma-text] {
     margin-left: 0;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .included-panel {
     padding: 0 20px 24px;
   }
@@ -816,7 +816,7 @@ html .featured-object h3[data-figma-text] {
     --card-gap: 24px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .step-card,
   .steps-track .step-card:nth-child(1),
   .steps-track .step-card:nth-child(2),
@@ -856,7 +856,7 @@ html .featured-object h3[data-figma-text] {
 }
 
 /* Responsive cleanup requested for compact tablet/desktop layouts. */
-@media (min-width: 761px) and (max-width: 1440px) {
+@media (min-width: 769px) and (max-width: 1440px) {
   .objects-gallery {
     /* Remain continuous with the full-size gallery above 1440 px. */
     --gallery-height: clamp(500px, 39.6354vw, 571px);
@@ -924,7 +924,7 @@ html .featured-object h3[data-figma-text] {
 
 /* Compact only the animated label-plus-icon actions; the icon still expands
    on hover/focus using the same inset and transition behavior. */
-@media (min-width: 761px) and (max-width: 1440px) {
+@media (min-width: 769px) and (max-width: 1440px) {
   html .button[data-motion-button] {
     --button-height: 76px;
     --button-inset: 7px;
@@ -990,7 +990,7 @@ html .featured-object h3[data-figma-text] {
     padding: 12px calc(var(--icon-width) + 26px) 12px 20px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   html .button[data-motion-button] {
     --button-height: 68px;
     --button-inset: 7px;
@@ -1063,7 +1063,7 @@ html .featured-object h3[data-figma-text] {
 
 /* Loosen the add-on item names and take a little horizontal bulk out of the
    included-cost panels/tabs without changing the surrounding section layout. */
-@media (min-width: 721px) and (max-width: 1440px) {
+@media (min-width: 769px) and (max-width: 1440px) {
   #included .included-panel {
     padding-right: 30px;
     padding-left: 30px;
@@ -1078,7 +1078,7 @@ html .featured-object h3[data-figma-text] {
     font-size: 17px;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   #included .included-panel {
     padding-right: 16px;
     padding-left: 16px;
@@ -1221,7 +1221,7 @@ html .featured-object h3[data-figma-text] {
     min-width: 0;
   }
 }
-@media (min-width: 761px) and (max-width: 1280px) {
+@media (min-width: 769px) and (max-width: 1280px) {
   .header-inner {
     --header-action-size: 42px;
     min-height: 70px;
@@ -1234,7 +1234,7 @@ html .featured-object h3[data-figma-text] {
     min-width: 0;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .header-inner {
     --header-action-size: 40px;
     min-height: 66px;
@@ -1820,9 +1820,17 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   #hero .hero-slide--price .price-panel > .button {
     order: 3;
     width: max-content;
-    max-width: calc(100% - 16px);
+    max-width: none;
+    min-width: 0;
     align-self: flex-start;
     margin: 12px 0 0;
+    padding-right: calc(var(--icon-width) + 26px);
+  }
+  #hero .hero-slide--price .price-panel > .button .button-label {
+    flex: 0 0 auto;
+    width: max-content;
+    max-width: none;
+    white-space: nowrap;
   }
   #hero .hero-slide--copy > .hero-benefits {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1950,7 +1958,7 @@ html[data-motion="off"] #hero .hero-grid {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   html .header-menu {
     --header-menu-action-size: 40px;
   }
@@ -1970,5 +1978,2365 @@ html[data-motion="off"] #hero .hero-grid {
 @media (min-width: 880px) and (max-width: 1024px) {
   #hero .hero-slide--copy > .hero-benefits {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Final mobile cascade corrections for Figma frame 597:663.
+   Text remains content-led; only the designed slider thumb uses positioning. */
+.foundation-progress {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: max(20px, calc((100vw - 335px) / 2));
+  }
+
+  .container {
+    max-width: 335px;
+  }
+
+  #hero .hero-grid {
+    width: 100%;
+    max-width: 335px;
+    margin-inline: auto;
+  }
+
+  html #hero .hero-badge[data-figma-text] {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: normal;
+  }
+
+  html #hero .hero-badge .hero-proof-separator {
+    display: inline;
+  }
+
+  html #hero .hero-badge .hero-proof-item {
+    display: inline;
+    max-width: none;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: normal;
+  }
+
+  html .header-inner > .menu-toggle .header-action-icon {
+    width: 16px;
+    height: 12px;
+  }
+
+  html .header-menu {
+    --header-menu-action-size: 55px;
+    padding: 18px var(--gutter) 0;
+  }
+
+  html .header-menu-top {
+    min-height: 55px;
+  }
+
+  .footer-grid {
+    width: min(100%, 375px);
+    max-width: 375px;
+    margin-inline: auto;
+  }
+
+  #projects {
+    padding-bottom: 0;
+  }
+
+  #projects .foundation-progress {
+    --foundation-thumb-x: 89px;
+    --foundation-fill-width: 98px;
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 335px;
+    min-height: 27.35px;
+    margin: 20px auto 0;
+    isolation: isolate;
+  }
+
+  #projects .foundation-progress__line,
+  #projects .foundation-progress__fill {
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+
+  #projects .foundation-progress__line {
+    inset-inline: 0;
+    background: rgb(7 11 31 / 18%);
+  }
+
+  #projects .foundation-progress__fill {
+    left: 0;
+    width: var(--foundation-fill-width);
+    background: #e9ad08;
+  }
+
+  #projects .foundation-progress__thumb {
+    position: absolute;
+    top: 0;
+    left: var(--foundation-thumb-x);
+    display: grid;
+    grid-template-columns: 12px 1px 12px;
+    align-items: center;
+    justify-items: center;
+    column-gap: 6px;
+    width: 53px;
+    min-height: 27.35px;
+    padding-inline: 8px;
+    border-radius: 9px;
+    background: #f5b71b;
+  }
+
+  #projects .foundation-progress__thumb .figma-icon {
+    width: 5.13px;
+    height: 10.26px;
+  }
+
+  #projects .foundation-progress__divider {
+    width: 1px;
+    height: 9.4px;
+    background: rgb(7 11 31 / 20%);
+  }
+
+  #projects .foundation-progress input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  #projects .foundation-progress:focus-within .foundation-progress__thumb {
+    outline: 2px solid #101323;
+    outline-offset: 2px;
+  }
+
+  html #director .stats-grid dt[data-figma-text] {
+    font-size: 42px;
+    line-height: 53.256px;
+    white-space: nowrap;
+  }
+
+  html #director .stats-grid > div:nth-child(3) dd[data-figma-text] {
+    width: min(100%, 113px);
+    max-width: 113px;
+  }
+
+  html #director .stats-grid > div:nth-child(4) dd[data-figma-text] {
+    width: min(100%, 139px);
+    max-width: 139px;
+  }
+
+  html #projects .section-heading h2 [data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #projects .foundation-card__title[data-figma-text] {
+    font-size: 18px;
+    line-height: 22.824px;
+  }
+
+  html #projects .foundation-card__desc[data-figma-text] {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  html #projects .foundation-card__suites[data-figma-text] {
+    font-size: 14px;
+    line-height: 17.752px;
+  }
+
+  html #projects .foundation-card__price[data-figma-text] {
+    font-size: 21.643px;
+    line-height: 27.444px;
+  }
+
+  html #projects .foundation-card__note[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+
+  html #projects .foundation-card .button-label[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+
+  #included {
+    margin-top: 48px;
+    padding: 0;
+  }
+
+  html #included .section-heading h2 [data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #included .included-panel__tab {
+    max-width: 100%;
+    padding-inline: 20px;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+
+  html #included .included-panel__tab > span[data-figma-text] {
+    min-width: 0;
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 30px;
+    white-space: normal;
+  }
+
+  html #included .included-tile__text[data-figma-text] {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #included .included-panel--full {
+    padding-bottom: 7px;
+  }
+
+  #included .included-saving {
+    padding-bottom: 7.2px;
+  }
+
+  #design {
+    margin-top: 50px;
+  }
+
+  html #design .step-card__num[data-figma-text] {
+    font-size: 40px;
+    line-height: 50.72px;
+  }
+
+  html #design .step-card__title[data-figma-text] {
+    font-size: 21.0859px;
+    line-height: 26.7369px;
+  }
+
+  html #design .step-card__text[data-figma-text] {
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+
+  #design .steps-range {
+    margin-top: 34px;
+  }
+
+  html #objects .section-heading h2 [data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #objects .section-actions > .button .button-label[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+
+  html #advantages .section-heading h2 .heading-line[data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #advantages .section-heading h2 .heading-line--inset[data-figma-text] {
+    margin-top: 4px;
+    font-size: 27.016px;
+    line-height: 34.236px;
+  }
+
+  html #advantages .advantage-controls {
+    height: auto;
+    min-height: 0;
+  }
+
+  html #advantages .advantage-controls > button {
+    width: 26.5px;
+    height: auto;
+    min-width: 26.5px;
+    min-height: 27.35px;
+    aspect-ratio: 1;
+    padding: 8px;
+  }
+
+  html #calculator .quiz-question[data-figma-text] {
+    font-size: 16px;
+    line-height: 20.16px;
+    margin-bottom: 10px;
+  }
+
+  html #calculator .quiz-options {
+    gap: 4px;
+  }
+
+  html #calculator .quiz-options > button[data-figma-text] {
+    min-height: 78px;
+    padding: 15px;
+    font-size: 13px;
+    line-height: 16.484px;
+  }
+
+  html #calculator .quiz-progress {
+    margin-top: 20px;
+  }
+
+  html #calculator .quiz-progress > div {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  html #calculator .section-actions > .button[data-motion-button] {
+    width: auto;
+    max-width: 100%;
+    min-height: 0;
+    padding: 29.94px 114px 29.94px 20px;
+    font-size: 13px;
+    line-height: 17.315px;
+    white-space: nowrap;
+  }
+
+  html #calculator .section-actions > .button .button-label[data-figma-text] {
+    font-size: 13px;
+    line-height: 17.315px;
+    white-space: nowrap;
+  }
+
+  html #calculator .section-actions > .button .button-icon {
+    top: 7.2px;
+    right: 7px;
+    bottom: 7.2px;
+    width: 43.3px;
+    min-height: 0;
+    flex-basis: 43.3px;
+  }
+
+  html #reviews .section-heading h2[data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #reviews .heading-description[data-figma-text] {
+    width: min(100%, 313px);
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+
+  html #reviews .review-card blockquote[data-figma-text] {
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+
+  #reviews .review-card {
+    gap: 17px;
+  }
+
+  html #reviews .review-card figcaption img,
+  html #reviews .review-card figcaption svg {
+    width: 79px;
+    height: 79px;
+  }
+
+  #reviews .reviews-controls {
+    width: max-content;
+    justify-content: center;
+    gap: 4px;
+    margin: 15px auto 0;
+  }
+
+  #reviews .reviews-controls > button {
+    width: auto;
+    height: auto;
+    min-width: 66px;
+    min-height: 66px;
+    aspect-ratio: 1;
+    flex: 0 0 auto;
+  }
+
+  #visit .visit-banner {
+    width: calc(100% + 32px);
+    gap: 0;
+    margin-inline: -16px;
+  }
+
+  html #visit .visit-kicker[data-figma-text] {
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+
+  html #visit .visit-copy h2[data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #visit .visit-copy > p:not(.visit-kicker)[data-figma-text] {
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+
+  html #visit .visit-banner > .button .button-label[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+
+  html #faq .section-heading .heading-line[data-figma-text="315:838"] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #faq .section-heading .heading-line--inset[data-figma-text="315:839"] {
+    font-size: 27.016px;
+    line-height: 34.256px;
+    letter-spacing: -0.35px;
+  }
+
+  html #faq .section-heading > .button .button-label[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+
+  html #faq .faq-grid summary[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.484px;
+  }
+
+  #social {
+    margin-top: 36px;
+  }
+
+  html #social .section-heading h2 .heading-line[data-figma-text] {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+
+  html #social .social-grid > div > p[data-figma-text="315:549"] {
+    width: min(100%, 325px);
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+
+  html #social .director-quote[data-figma-text] {
+    font-size: 15px;
+    line-height: 16.725px;
+  }
+
+  #contacts.site-footer {
+    margin-top: 50px;
+  }
+
+  html #contacts .footer-columns .eyebrow[data-figma-text] {
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+
+  html #contacts .footer-columns .footer-contact a[data-figma-text="609:960"],
+  html #contacts .footer-columns .footer-contact a[data-figma-text="609:990"],
+  html #contacts .footer-columns .footer-contact a[data-figma-text="609:963"],
+  html #contacts .footer-columns .footer-contact p[data-figma-text="609:966"] {
+    font-size: 22px;
+    line-height: 27.896px;
+  }
+
+  html #contacts .footer-columns .footer-contact small[data-figma-text],
+  html #contacts .footer-columns .footer-contact .text-button[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+
+  html #contacts .footer-columns nav .eyebrow[data-figma-text] {
+    margin-bottom: 10px;
+  }
+
+  html #contacts .footer-columns nav > a[data-figma-text] {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    margin: 0 0 10px;
+    padding: 0;
+    font-size: 20px;
+    line-height: 25.36px;
+  }
+
+  html #contacts .footer-columns nav > a[data-figma-text]:last-child {
+    margin-bottom: 0;
+  }
+
+  #contacts .footer-grid {
+    width: min(100%, 375px);
+    max-width: 375px;
+  }
+
+  #contacts .footer-cta {
+    width: 100%;
+    max-width: 375px;
+    margin: 20px 0 0;
+    gap: 0;
+  }
+
+  html #contacts .footer-cta h2[data-figma-text] {
+    font-size: 25px;
+    line-height: 31.7px;
+  }
+
+  html #contacts .footer-cta > .button[data-motion-button] {
+    width: max-content;
+    max-width: min(100%, 268px);
+    min-height: 0;
+    padding: 29.31px 74px 29.31px 21px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+
+  html #contacts .footer-cta > .button .button-label[data-figma-text] {
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+
+  html #contacts .footer-house {
+    width: min(415px, calc(100% + 80px));
+    margin-right: -201px;
+  }
+
+  html #contacts .footer-legal {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto;
+    gap: 10px 0;
+  }
+
+  html #contacts .footer-legal > p:first-child {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+
+  html #contacts .footer-legal > div {
+    display: flex;
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    flex-direction: column;
+    align-self: stretch;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  html #contacts .footer-legal > div > button[data-figma-text="609:978"],
+  html #contacts .footer-legal > div > button[data-figma-text="609:979"] {
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+
+  html #contacts .footer-legal > .footer-credit {
+    grid-column: 2;
+    grid-row: 3;
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+
+  html #contacts .footer-legal > .footer-credit img {
+    width: 54px;
+    height: 13px;
+  }
+}
+
+/* Mobile art-direction for the Foundation page (Figma 597:663).
+   Keep the desktop/tablet cascade above 768px intact; dimensions below are
+   content-led and use caps/aspect ratios rather than card heights. */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  .header-inner {
+    --header-action-size: 55px;
+    min-height: 0;
+    gap: 10px;
+    padding: 18px 0 9px;
+  }
+  .header-inner > .brand {
+    flex: 0 1 246px;
+    min-width: 0;
+    max-width: calc(100% - 65px);
+  }
+  .header-inner > .menu-toggle {
+    flex: none;
+    width: auto;
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 1;
+    padding: 18.5px;
+    border-radius: 12px;
+  }
+  .header-inner > .menu-toggle .header-action-icon {
+    width: 18px;
+    height: 18px;
+  }
+  html .header-menu {
+    --header-menu-action-size: 55px;
+  }
+
+  #hero {
+    overflow: hidden;
+    padding: 43px 0 20px;
+  }
+  #hero .hero-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+  }
+  #hero .hero-grid::-webkit-scrollbar {
+    display: none;
+  }
+  #hero .hero-slide {
+    display: flex;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+  #hero .hero-slide--copy {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #hero .hero-slide--copy > .hero-copy {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+  }
+  #hero .hero-badge[data-figma-text] {
+    display: block;
+    width: max-content;
+    max-width: none;
+    margin: 0 0 23px;
+    padding: 10px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 12%);
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #hero .hero-proof-item {
+    display: inline;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    white-space: inherit;
+  }
+  #hero .hero-proof-separator {
+    display: inline;
+  }
+  html #hero h1[data-figma-text] {
+    max-width: 100%;
+    margin: 0 0 15px;
+    font-size: 35px;
+    line-height: 44.38px;
+  }
+  #hero h1 br:first-of-type {
+    display: none;
+  }
+  #hero h1 br:nth-of-type(2) {
+    display: block;
+  }
+  #hero .hero-copy .lead {
+    max-width: 100%;
+    margin: 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #hero .hero-copy .lead br {
+    display: none;
+  }
+  #hero .hero-copy .button-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    margin-top: 34px;
+  }
+  #hero .button-row > .button {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 75px;
+    padding: 29.31px 74px 29.31px 20px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #hero .button-row > .button .button-label {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  #hero .button-row > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
+  }
+  #hero .hero-slide--copy > .hero-benefits {
+    display: flex;
+    flex: none;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: 23px 0 0;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+  }
+  #hero .hero-slide--copy > .hero-benefits::-webkit-scrollbar {
+    display: none;
+  }
+  #hero .hero-benefits li {
+    position: relative;
+    flex: 0 0 auto;
+    min-width: 0;
+    padding: 0 0 0 32px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 17.64px;
+    scroll-snap-align: start;
+  }
+  #hero .hero-benefits li:nth-child(1) { max-width: 159px; }
+  #hero .hero-benefits li:nth-child(2) { max-width: 124px; }
+  #hero .hero-benefits li:nth-child(3) { max-width: 143px; }
+  #hero .hero-benefits li:nth-child(4) { max-width: 199px; }
+  #hero .hero-benefits li:nth-child(5) { max-width: 121px; }
+  #hero .hero-benefits .benefit-icon {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 11px;
+    height: 11px;
+    flex: none;
+  }
+  #hero .hero-benefits li::before {
+    content: none;
+  }
+  #hero .hero-slide--price {
+    align-items: flex-start;
+  }
+  #hero .hero-slide--price .price-panel {
+    width: 100%;
+    max-width: 100%;
+  }
+  #hero .hero-pagination:not([hidden]) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: max-content;
+    min-height: 24px;
+    margin: 23px auto 0;
+    padding: 9px 13px;
+  }
+  #hero .hero-pagination button {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    padding: 0;
+  }
+
+  #geology {
+    margin: 0;
+    padding: 30px 0 0;
+  }
+  #geology .geology-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  #geology .geology-grid > div {
+    min-width: 0;
+  }
+  #geology .section-heading {
+    display: block;
+    margin: 0 0 15px;
+  }
+  html #geology h2[data-figma-text] {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #geology .geology-grid > div > p {
+    max-width: 100%;
+    margin: 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #geology .number-list {
+    display: grid;
+    gap: 15px;
+    width: min(100%, 319px);
+    max-width: 100%;
+    margin: 30px 0 0;
+  }
+  #geology .number-list li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    align-items: start;
+    gap: 10px;
+    min-height: 0;
+    padding-block: 2px;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #geology .number-list li::before {
+    width: 24px;
+    height: 25px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #geology .warning {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 26px;
+    padding: 15px;
+    border: 0;
+    border-radius: 12px;
+  }
+  #geology .warning h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 7px;
+    font-size: 18px;
+    line-height: 30px;
+  }
+  #geology .warning h3 .figma-icon {
+    width: 24px;
+    height: 24px;
+    flex: none;
+  }
+  #geology .warning p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #geology .geology-image {
+    display: block;
+    width: min(100%, 326px);
+    max-width: 100%;
+    max-height: none;
+    margin: 15px auto 0;
+    aspect-ratio: 1340 / 1718;
+    object-fit: cover;
+  }
+
+  #director {
+    margin-top: 50px;
+    padding: 20px 0 0;
+  }
+  #director .director-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 33px;
+    align-items: start;
+  }
+  #director .director-grid > div {
+    min-width: 0;
+    min-height: 0;
+  }
+  #director .section-heading {
+    display: block;
+    margin: 0 0 5px;
+  }
+  html #director h2[data-figma-text] {
+    max-width: 100%;
+    font-size: 35px;
+    line-height: 44.38px;
+  }
+  #director .director-grid > div > p[data-figma-text="315:303"] {
+    max-width: 100%;
+    margin: 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #director .director-grid > div > p[data-figma-text="315:304"] {
+    max-width: 100%;
+    margin: 5px 0 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #director .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px 39px;
+    max-width: 100%;
+    margin: 25px 0 0;
+  }
+  #director .stats-grid dt {
+    font-size: 42px;
+    line-height: 53.26px;
+  }
+  #director .stats-grid dd {
+    max-width: 100%;
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  .director-actions {
+    display: none;
+  }
+  #director .director-portrait {
+    width: min(calc(100% + 6px), 341px);
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 341 / 430;
+    justify-self: center;
+    align-self: start;
+    margin: 0;
+    overflow: hidden;
+  }
+  #director .director-portrait::before {
+    top: 25px;
+    bottom: 0;
+    left: 23%;
+    width: 64%;
+    border-radius: 55px 55px 0 0;
+  }
+  #director .director-portrait > .director-photo {
+    top: 0;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+  #director .director-portrait::after {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  #director .director-portrait figcaption {
+    left: 8%;
+    right: auto;
+    bottom: 8%;
+    width: 82.7%;
+    max-width: none;
+  }
+  #director .director-portrait figcaption > p:last-child {
+    max-width: 100%;
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 17px;
+  }
+
+  #projects {
+    margin-top: 20px;
+    padding: 30px 0 20.6px;
+  }
+  #projects .section-heading {
+    display: block;
+    margin: 0 0 22px;
+  }
+  #projects .section-heading > div {
+    min-width: 0;
+  }
+  #projects h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #projects .heading-line {
+    display: block;
+    margin: 0;
+  }
+  #projects .heading-line--inset {
+    margin-left: 0;
+  }
+  #projects .heading-description.with-yellow-rule {
+    width: min(100%, 273px);
+    max-width: 100%;
+    margin: 20px 0 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #projects .foundation-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 5px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+  }
+  #projects .foundation-cards::-webkit-scrollbar {
+    display: none;
+  }
+  #projects .foundation-card {
+    flex: 0 0 100%;
+    width: auto;
+    max-width: 335px;
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+    border-radius: 15px;
+    scroll-snap-align: start;
+  }
+  #projects .foundation-card__media {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 315 / 218;
+    border-radius: 10px;
+  }
+  #projects .foundation-card__badge {
+    inset: 10px auto auto 10px;
+    padding: 8px;
+  }
+  #projects .foundation-card__body {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 315px;
+    margin-top: 12px;
+  }
+  #projects .foundation-card__title {
+    width: min(100%, 286px);
+    max-width: 100%;
+    margin: 0;
+    font-size: 18px;
+    line-height: 22.82px;
+  }
+  #projects .foundation-card__desc {
+    width: min(100%, 286px);
+    max-width: 100%;
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  #projects .foundation-card__suites {
+    width: min(100%, 276px);
+    max-width: 100%;
+    margin: 15px 0 0;
+    font-size: 14px;
+    line-height: 17.75px;
+  }
+  #projects .foundation-card__chips {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 3px;
+    width: min(100%, 276px);
+    max-width: 100%;
+    margin: 10px 0 0;
+    overflow: hidden;
+  }
+  #projects .foundation-card__chips li {
+    flex: 0 0 auto;
+    padding: 6.8px 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #projects .foundation-card__price {
+    width: min(100%, 286px);
+    max-width: 100%;
+    margin: 15px 0 0;
+    font-size: 22px;
+    line-height: 27.44px;
+  }
+  #projects .foundation-card__note {
+    width: min(100%, 286px);
+    max-width: 100%;
+    margin: 5px 0 0;
+    font-size: 12.6px;
+    line-height: 16px;
+    white-space: normal;
+  }
+  #projects .foundation-card .button {
+    width: 100%;
+    max-width: 100%;
+    min-height: 75px;
+    margin: 15px 0 0;
+    padding: 29.31px 74px 29.31px 6px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #projects .foundation-card .button-label {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  #projects .foundation-card .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
+  }
+
+  #included {
+    margin: 0;
+    padding: 30px 0;
+  }
+  #included .section-heading {
+    display: block;
+    margin: 0 0 20px;
+  }
+  #included .section-heading > div {
+    min-width: 0;
+  }
+  #included h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #included .heading-line--inset {
+    margin-left: 0;
+  }
+  #included .heading-description {
+    max-width: 100%;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #included .included-panels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+  #included .included-panel {
+    min-width: 0;
+    padding: 0 5px 9px;
+    border-radius: 15px;
+  }
+  #included .included-panel__tab,
+  #included .included-panel--extra .included-panel__tab {
+    align-self: flex-start;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 10.5px 15px;
+    gap: 10px;
+    border-radius: 0 0 15px 15px;
+    font-size: 12px;
+    line-height: 30px;
+    white-space: nowrap;
+  }
+  #included .included-panel__tab > .figma-icon {
+    width: 24px;
+    height: 24px;
+    flex: none;
+  }
+  #included .included-panel__tab > span[data-figma-text] {
+    font-size: 12px;
+    line-height: 30px;
+  }
+  #included .included-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    margin: 16px 0 0;
+  }
+  #included .included-tile {
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  #included .included-tile__num {
+    font-size: 20px;
+    line-height: 25.2px;
+  }
+  #included .included-tile__text {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  #included .included-panel--extra {
+    padding-bottom: 21px;
+  }
+  #included .included-panel--extra .included-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px 8px;
+    margin-top: 22px;
+  }
+  #included .included-tile--price {
+    justify-content: space-between;
+    min-height: 89px;
+    padding: 15px;
+  }
+  #included .included-tile__name {
+    font-size: 15px;
+    line-height: 15px;
+  }
+  #included .included-tile__price {
+    margin-top: 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #included .included-saving {
+    width: calc(100% - 22px);
+    max-width: 100%;
+    margin: 15px 7px 0 15px;
+    padding: 0;
+  }
+  #included .included-saving__title {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  #included .included-saving__text {
+    max-width: 100%;
+    margin: 5px 0 0;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  #design {
+    margin-top: 20px;
+    padding: 32px 0 35px;
+  }
+  #design .container {
+    min-width: 0;
+  }
+  #design .section-heading {
+    display: block;
+    margin: 0 0 45px;
+  }
+  html #design .section-heading h2[data-figma-text] {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #design .carousel-bleed {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  #design .steps-track {
+    --card-gap: 15px;
+    width: min(100%, 334px);
+    max-width: 100%;
+    align-items: flex-start;
+    overflow: visible;
+  }
+  #design .steps-track .step-card,
+  #design .steps-track .step-card:nth-child(1),
+  #design .steps-track .step-card:nth-child(2),
+  #design .steps-track .step-card:nth-child(4),
+  #design .steps-track .step-card:nth-child(even) {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+  }
+  #design .step-card__num {
+    font-size: 40px;
+    line-height: 50.72px;
+  }
+  #design .step-card__title {
+    margin-top: 10px;
+    font-size: 21.09px;
+    line-height: 26.74px;
+  }
+  #design .step-card__text {
+    margin-top: 5px;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #design .steps-range {
+    width: min(100%, 334px);
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 20px 0 0;
+    padding-block: 13.7px;
+  }
+  #design .steps-range__line,
+  #design .steps-range__fill {
+    top: calc(50% - 1px);
+  }
+  #design .steps-range input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #design .steps-range__ctrl {
+    width: 53px;
+    height: 100%;
+    left: calc(var(--steps-progress, 0.5) * (100% - 53px));
+    padding-inline: 4px;
+    border-radius: 9px;
+  }
+  #design .steps-range__btn {
+    width: 16px;
+    height: 100%;
+  }
+  #design .steps-range__btn .figma-icon {
+    width: 5px;
+    height: 10px;
+  }
+  #design .steps-range__sep {
+    height: 9.4px;
+  }
+
+  #objects {
+    margin-top: 20px;
+    padding: 30px 0 0;
+  }
+  #objects .section-heading {
+    display: block;
+    margin: 0 0 33px;
+  }
+  #objects h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #objects .heading-line {
+    display: block;
+    margin: 0;
+  }
+  #objects .heading-line--inset {
+    margin-left: 130px;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #objects .heading-description {
+    display: block;
+    width: min(100%, 295px);
+    max-width: 100%;
+    margin: 20px 0 0;
+    text-align: left;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #objects .heading-description > span {
+    display: block;
+  }
+  #objects .objects-gallery {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: calc(100% + 2 * var(--gutter));
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    margin-inline: calc(-1 * var(--gutter));
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    touch-action: pan-x;
+  }
+  #objects .objects-gallery::-webkit-scrollbar {
+    display: none;
+  }
+  #objects .objects-gallery > .object-card {
+    flex: 0 0 min(64.8vw, 243px);
+    width: auto;
+    max-width: 243px;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 243 / 322;
+    scroll-snap-align: center;
+  }
+  #objects .objects-gallery > .object-card.is-active {
+    flex-basis: min(calc(100vw - 67px), 308px);
+    max-width: 308px;
+    height: auto;
+    aspect-ratio: 308 / 408;
+  }
+  #objects .featured-object > img,
+  #objects .featured-object > svg {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #objects .featured-object figcaption {
+    right: 12px;
+    bottom: 15px;
+    left: 15px;
+  }
+  #objects .featured-object h3[data-figma-text] {
+    margin: 0 0 7px;
+    font-size: 22px;
+    line-height: 27.9px;
+  }
+  #objects .object-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #objects .object-meta > span + span {
+    padding-left: 0;
+    border-left: 0;
+  }
+  #objects .object-tags {
+    gap: 4px;
+    margin-top: 10px;
+  }
+  #objects .object-tags li {
+    padding: 5px 7px;
+    border-radius: 7px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  #objects .object-hover-cursor {
+    display: none;
+  }
+  #objects .section-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  #objects .section-actions > .button {
+    width: 100%;
+    max-width: 100%;
+    min-height: 75px;
+    padding: 29.31px 74px 29.31px 20px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #objects .section-actions > .button-label {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  #objects .section-actions > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
+  }
+
+  #advantages {
+    margin-top: 20px;
+    padding: 30px 0 0;
+  }
+  #advantages .section-heading {
+    display: block;
+    margin: 0 0 20px;
+  }
+  #advantages .section-heading > div {
+    min-width: 0;
+  }
+  #advantages .section-heading h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #advantages .heading-line {
+    display: block;
+    margin: 0;
+  }
+  #advantages .heading-line--inset {
+    margin-left: 0;
+    font-size: 27.02px;
+    line-height: 34.26px;
+  }
+  #advantages .heading-description {
+    width: min(100%, 335px);
+    max-width: 100%;
+    margin: 20px 0 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #advantages .carousel-bleed {
+    width: calc(100% + var(--gutter));
+    max-width: none;
+    overflow: hidden;
+  }
+  #advantages .advantage-grid {
+    --card-gap: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 5px;
+    width: max-content;
+    min-width: 0;
+    overflow: visible;
+    scroll-snap-type: x mandatory;
+  }
+  #advantages .advantage-grid article {
+    flex: 0 0 min(222px, calc(100vw - 40px));
+    width: min(222px, calc(100vw - 40px));
+    max-width: 222px;
+    min-height: 0;
+    padding: 10px 12px 17px;
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  #advantages .advantage-grid article > img,
+  #advantages .advantage-grid article > svg {
+    flex: none;
+    width: min(100%, 127px);
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 127 / 161;
+    object-fit: contain;
+    object-position: left top;
+    margin: 0 0 12px;
+  }
+  #advantages .advantage-grid article[data-advantage-art="2"] > img,
+  #advantages .advantage-grid article[data-advantage-art="2"] > svg {
+    width: min(100%, 127px);
+    aspect-ratio: 127 / 161;
+  }
+  #advantages .advantage-grid article[data-advantage-art="3"] > img,
+  #advantages .advantage-grid article[data-advantage-art="3"] > svg {
+    width: min(100%, 127px);
+    aspect-ratio: 127 / 161;
+  }
+  #advantages .advantage-grid article[data-advantage-art="4"] > img,
+  #advantages .advantage-grid article[data-advantage-art="4"] > svg {
+    width: min(100%, 127px);
+    aspect-ratio: 127 / 161;
+  }
+  #advantages .advantage-copy {
+    margin-top: auto;
+  }
+  #advantages .advantage-copy h3 {
+    margin: 0 0 5px;
+    font-size: 15px;
+    line-height: 19.02px;
+  }
+  #advantages .advantage-copy p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #advantages .advantage-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    width: min(100%, 335px);
+    margin: 17px 0 0;
+    padding: 0;
+  }
+  #advantages .advantage-controls > button {
+    width: 26.5px;
+    min-width: 0;
+    min-height: 27.4px;
+    padding: 8px 8px;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+  }
+  #advantages .advantage-controls > button:first-child {
+    border-radius: 9px 0 0 9px;
+  }
+  #advantages .advantage-controls > button:last-child {
+    border-radius: 0 9px 9px 0;
+  }
+  #advantages .advantage-controls > button .figma-icon {
+    width: 5px;
+    height: 10px;
+  }
+  #advantages .advantage-controls > button + button {
+    border-left: 1px solid rgb(7 11 31 / 15%);
+  }
+
+  #calculator {
+    margin-top: 50px;
+    padding: 21px 0 26px;
+  }
+  #calculator .section-heading--quiz {
+    display: block;
+    margin: 0;
+  }
+  html #calculator #quiz-title[data-figma-text] {
+    display: block;
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #calculator .section-heading--quiz .heading-description {
+    width: min(100%, 302px);
+    max-width: 100%;
+    margin: 15px 0 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #calculator .quiz-question {
+    width: min(100%, 226px);
+    max-width: 100%;
+    margin: 18px 0 31px;
+    font-size: 16px;
+    line-height: 20.16px;
+  }
+  #calculator .quiz-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  #calculator .quiz-options > button {
+    min-width: 0;
+    min-height: 64px;
+    padding: 15px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 16.48px;
+    text-align: left;
+  }
+  #calculator .quiz-progress {
+    margin-top: 25px;
+  }
+  #calculator .quiz-progress progress {
+    height: 2px;
+  }
+  #calculator .quiz-progress > div {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #calculator .section-actions {
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+  #calculator .section-actions > .button {
+    width: auto;
+    max-width: 100%;
+    min-height: 77.2px;
+    padding: 30px 72px 30px 20px;
+    font-size: 13px;
+    line-height: 17.3px;
+    white-space: nowrap;
+  }
+  #calculator .section-actions > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+  }
+
+  #reviews {
+    margin-top: 20px;
+    padding: 30px 0 20px;
+  }
+  #reviews .section-heading--stacked {
+    display: block;
+    margin: 0;
+  }
+  #reviews .section-heading--stacked > div {
+    min-width: 0;
+  }
+  #reviews .section-heading h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #reviews .section-heading h2 br {
+    display: block;
+  }
+  #reviews .section-heading .heading-description {
+    width: min(100%, 313px);
+    max-width: 100%;
+    margin: 10px 0 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #reviews .gis-card {
+    width: min(100%, 324px);
+    max-width: 100%;
+    min-height: 104px;
+    margin: 29px 0 0;
+    padding: 12px;
+    gap: 12px;
+  }
+  #reviews .gis-card .gis-logo {
+    width: 51px;
+    height: 76px;
+    flex: none;
+  }
+  #reviews .gis-name {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  #reviews .gis-link {
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #reviews .gis-rating {
+    gap: 5px;
+    margin-top: 5px;
+  }
+  #reviews .gis-rating > .figma-icon {
+    width: 16px;
+    height: 16px;
+  }
+  #reviews .carousel-bleed {
+    width: calc(100% + var(--gutter));
+    max-width: none;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+  #reviews #review-track {
+    width: 100%;
+    min-width: 0;
+    gap: 5px;
+  }
+  #reviews .review-card {
+    flex: 0 0 min(100%, 336px);
+    width: auto;
+    max-width: 336px;
+    min-height: 0;
+    padding: 15px;
+    gap: 14px;
+    border-radius: 12px;
+  }
+  #reviews .review-card blockquote {
+    margin: 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #reviews .review-card figcaption {
+    padding-top: 0;
+    gap: 13px;
+  }
+  #reviews .review-card figcaption img,
+  #reviews .review-card figcaption svg {
+    width: 79px;
+    height: 79px;
+  }
+  #reviews .review-card figcaption h3 {
+    font-size: 16px;
+    line-height: 20.29px;
+  }
+  #reviews .review-card figcaption p {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  #reviews .reviews-controls {
+    margin-top: 20px;
+  }
+
+  #visit {
+    margin: 0;
+    padding: 30px 0 20px;
+  }
+  #visit .visit-banner {
+    width: calc(100% + 2 * var(--gutter));
+    max-width: none;
+    min-height: 0;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 20px 16px 18px;
+    border-radius: 15px;
+  }
+  #visit .visit-copy {
+    width: min(100%, 319px);
+    max-width: 100%;
+    margin: 0;
+  }
+  #visit .visit-kicker {
+    margin: 0 0 10px;
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+  #visit .visit-copy h2 {
+    width: min(100%, 302px);
+    max-width: 100%;
+    margin: 0 0 10px;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #visit .visit-copy > p:not(.visit-kicker) {
+    width: min(100%, 319px);
+    max-width: 100%;
+    margin: 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #visit .visit-banner > .button {
+    width: 100%;
+    max-width: 100%;
+    min-height: 75px;
+    margin-top: 25px;
+    padding: 29.31px 74px 29.31px 20px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #visit .visit-banner > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
+  }
+
+  #faq {
+    margin: 0;
+    padding: 30px 0 0;
+  }
+  #faq .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  #faq .section-heading {
+    display: contents;
+    margin: 0;
+  }
+  #faq .section-heading > div {
+    grid-row: 1;
+    min-width: 0;
+    margin-bottom: 20px;
+  }
+  #faq .section-heading h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #faq .section-heading .heading-line {
+    display: block;
+    margin: 0;
+  }
+  #faq .section-heading .heading-line--inset {
+    margin-left: 58px;
+    font-size: 27.02px;
+    line-height: 34.26px;
+  }
+  html #faq .section-heading > .button {
+    display: inline-flex;
+    grid-row: 3;
+    justify-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-height: 75px;
+    margin: 20px 0 0;
+    padding: 29.31px 74px 29.31px 20px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #faq .section-heading > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
+  }
+  #faq .faq-grid {
+    display: flex;
+    grid-row: 2;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    margin: 0;
+  }
+  #faq .faq-grid details {
+    flex: none;
+    border-radius: 12px;
+  }
+  #faq .faq-grid summary {
+    min-height: 0;
+    gap: 12px;
+    padding: 15px 16px 15px 17px;
+    font-size: 13px;
+    line-height: 16.48px;
+  }
+  #faq .faq-grid summary > span {
+    width: 53px;
+    min-width: 53px;
+    min-height: 53px;
+    flex: 0 0 53px;
+    border-radius: 10px;
+  }
+  #faq .faq-grid summary > span .figma-icon {
+    width: 18px;
+    height: 18px;
+  }
+  #faq .faq-grid details > p {
+    padding: 0 17px 15px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  #social {
+    margin-top: 50px;
+    padding: 0 0 0;
+  }
+  #social .social-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  #social .social-grid > div {
+    min-width: 0;
+  }
+  #social .social-grid .eyebrow {
+    display: none;
+  }
+  #social .section-heading {
+    display: block;
+    margin: 0;
+  }
+  #social .section-heading h2 {
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+  #social .heading-line {
+    display: block;
+    margin: 0;
+  }
+  #social .heading-line--inset {
+    margin-left: 0;
+  }
+  #social .social-grid > div > p[data-figma-text="315:549"] {
+    width: min(100%, 336px);
+    max-width: 100%;
+    margin: 16px 0 0;
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  #social .director-quote {
+    width: min(100%, 318px);
+    max-width: 100%;
+    margin: 15px 0 0;
+    padding-left: 15px;
+    font-size: 15px;
+    line-height: 16.725px;
+  }
+  #social .social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+  #social .social-list article {
+    display: grid;
+    grid-template-columns: min(26.27vw, 88px) minmax(0, 1fr) min(16.42vw, 55px);
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+  #social .social-thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  #social .social-list h3 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    line-height: 22.82px;
+  }
+  #social .social-list p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  #social .social-list article > .button {
+    justify-self: stretch;
+    align-self: stretch;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 1;
+    padding: 0;
+  }
+  #social .social-list article > .button .button-label {
+    display: none;
+  }
+  #social .social-list article > .button .button-icon {
+    inset: 0;
+    width: 100%;
+    min-height: 0;
+    border-radius: 10px;
+  }
+
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+  .footer-main {
+    display: contents;
+    padding: 0;
+  }
+  .footer-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    order: 1;
+    width: min(100%, 330px);
+    max-width: 100%;
+    margin: 24px auto 0;
+  }
+  .footer-columns address {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    order: 1;
+    min-width: 0;
+    padding: 0;
+  }
+  .footer-columns nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    order: 2;
+    min-width: 0;
+  }
+  .footer-columns .eyebrow {
+    margin: 0;
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+  .footer-columns address .eyebrow {
+    margin-bottom: 0;
+  }
+  .footer-columns nav .eyebrow {
+    margin-bottom: 22px;
+  }
+  .footer-columns .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0;
+    min-width: 0;
+  }
+  .footer-columns .footer-phones {
+    display: grid;
+    gap: 10px;
+  }
+  .footer-columns .footer-contact a,
+  .footer-columns .footer-contact p {
+    max-width: 100%;
+    margin: 0;
+    font-size: 22px;
+    line-height: 27.9px;
+  }
+  .footer-columns .footer-contact small,
+  .footer-columns .footer-contact .text-button {
+    margin: 0;
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  .footer-columns nav > a {
+    display: block;
+    min-height: 0;
+    margin: 0 0 35px;
+    padding: 0;
+    font-size: 20px;
+    line-height: 25.36px;
+  }
+  .footer-columns nav > a:last-child {
+    margin-bottom: 12px;
+  }
+  .footer-columns nav > a > span {
+    display: none;
+  }
+  .footer-cta {
+    --footer-pad: 20px;
+    order: 2;
+    width: calc(100% + 2 * var(--gutter));
+    min-height: 0;
+    margin: 20px calc(-1 * var(--gutter)) 0;
+    padding: 15px 20px 0;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  .footer-cta h2 {
+    width: min(100%, 281px);
+    max-width: 100%;
+    margin: 0 0 20px;
+    font-size: 25px;
+    line-height: 31.7px;
+  }
+  .footer-cta > .button {
+    align-self: flex-start;
+    width: min(100%, 268px);
+    max-width: 100%;
+    min-height: 75px;
+    padding: 29.31px 74px 29.31px 21px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  .footer-cta > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
+  }
+  .footer-house {
+    width: min(415px, calc(100% + 40px));
+    max-width: none;
+    height: auto;
+    align-self: flex-end;
+    margin: -69px -20px -17px 0;
+  }
+  .footer-legal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    order: 3;
+    width: min(100%, 335px);
+    max-width: 100%;
+    margin: 20px auto 24px;
+    padding: 10px 0 0;
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+  .footer-legal > [data-figma-text="609:976"] {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  html:root {
+    --gutter: max(20px, calc((100vw - 335px) / 2));
+  }
+
+  html #design {
+    margin-top: 7px;
+  }
+
+  html #design .steps-range {
+    margin-top: -3px;
+  }
+
+  html #objects {
+    margin-top: 50px;
+    padding-top: 0;
+  }
+
+  html #advantages {
+    margin-top: 17px;
+  }
+
+  html #advantages .section-heading {
+    margin-bottom: 20px;
+  }
+
+  html #advantages .advantage-grid {
+    padding-bottom: 17.35px;
+  }
+
+  html #advantages .advantage-grid > article:nth-child(n + 3) {
+    display: none;
+  }
+
+  html #advantages .advantage-grid > article[data-advantage-art="1"] {
+    padding-right: 29px;
+  }
+
+  html #advantages .advantage-grid > article[data-advantage-art="1"] .advantage-copy,
+  html #advantages .advantage-grid > article[data-advantage-art="2"] .advantage-copy {
+    margin-top: 0;
+  }
+
+  html #advantages .advantage-grid > article[data-advantage-art="2"] {
+    padding-top: 12px;
+    padding-bottom: 36px;
+  }
+
+  html #advantages .advantage-grid > article[data-advantage-art="2"] > img,
+  html #advantages .advantage-grid > article[data-advantage-art="2"] > svg {
+    width: min(100%, 130px);
+    aspect-ratio: 130 / 153;
+    margin-bottom: 18px;
+  }
+
+  html #advantages .advantage-grid > article[data-advantage-art="2"] .advantage-copy {
+    margin-right: -12px;
+  }
+
+  html #advantages .advantage-controls {
+    margin-top: 0;
+  }
+
+  html #reviews {
+    margin-top: 30px;
+    padding: 0;
+  }
+
+  html #reviews .gis-card {
+    min-height: 0;
+    margin-top: 10px;
+    padding: 19px 12px;
+  }
+
+  html #reviews .carousel-bleed {
+    margin-top: 13px;
+  }
+
+  html #reviews .review-card {
+    gap: 17px;
+    padding-right: 12px;
+  }
+
+  html #reviews .review-card:nth-child(n + 3) {
+    display: none;
+  }
+
+  html #reviews .reviews-controls {
+    margin: 15px auto 0;
+  }
+
+  html #visit {
+    margin-top: 50px;
+    padding: 0 0 50px;
+  }
+
+  html #visit .visit-banner {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    padding: 20px 16px 17px;
+  }
+
+  html #visit .visit-kicker[data-figma-text] {
+    font-size: 12px;
+    line-height: 15.12px;
+  }
+
+  html #visit .visit-banner > .button {
+    min-height: 0;
+    padding-top: 29.31px;
+    padding-bottom: 29.31px;
+  }
+
+  html #faq {
+    padding-top: 0;
+  }
+
+  html #social {
+    padding: 0 0 3px;
+  }
+}
+
+@media (max-width: 280px) {
+  #director .stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+
+  html #hero .hero-slide--price .price-panel > .button {
+    padding: 12px 25px 12px 4px;
+  }
+
+  html #hero .hero-slide--price .price-panel > .button .button-icon {
+    top: 7px;
+    right: 3px;
+    bottom: 7px;
+    width: 20px;
+    border-radius: 8px;
+  }
+
+  html #hero .hero-slide--price .price-panel > .button .button-icon .figma-icon {
+    width: 12px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #director .director-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 25px;
+  }
+  #director .director-actions > .button {
+    width: 100%;
+    max-width: 100%;
+    min-height: 75px;
+    padding: 29.31px 74px 29.31px 24px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  #director .director-actions > .button .button-label {
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  #director .director-actions > .button .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    min-height: 0;
+    flex-basis: 56px;
+    border-radius: 17px;
   }
 }

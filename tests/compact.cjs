@@ -311,22 +311,35 @@ const { foundationUrl } = require("./site-url.cjs");
         sectionBottom: parent.bottom,
       };
     });
-    assert.equal(portrait.fit, "contain");
-    assert.ok(Math.abs(portrait.ratio - portrait.natural) < 0.002);
+    if (width <= 768) {
+      // Mobile Figma 597:663 clips the portrait to its 341 × 430 frame.
+      assert.equal(portrait.fit, "cover");
+      assert.ok(Math.abs(portrait.ratio - 341 / 430) < 0.002);
+    } else {
+      assert.equal(portrait.fit, "contain");
+      assert.ok(Math.abs(portrait.ratio - portrait.natural) < 0.002);
+    }
     assert.ok(
       portrait.top >= portrait.sectionTop - 1 &&
         portrait.bottom <= portrait.sectionBottom + 1,
     );
-    assert.equal(
-      await p
-        .locator(".warning p")
-        .evaluate((e) => parseFloat(getComputedStyle(e).fontSize)),
-      17,
-    );
+    const warningTypography = await p.locator(".warning p").evaluate((e) => {
+      const style = getComputedStyle(e);
+      return {
+        fontSize: parseFloat(style.fontSize),
+        lineHeight: parseFloat(style.lineHeight),
+      };
+    });
+    if (width <= 768) {
+      assert.equal(warningTypography.fontSize, 14);
+      assert.ok(Math.abs(warningTypography.lineHeight - 17.64) < 0.02);
+    } else {
+      assert.equal(warningTypography.fontSize, 17);
+    }
   }
   await b.close();
   console.log(
-    "PASS: topbar <=1024 hidden; compact typography/buttons/arrows at 1440 and below; small copy unchanged; full portrait at 8 widths; verified Phi fallback in actual browser glyph rendering.",
+    "PASS: topbar <=1024 hidden; compact typography/buttons/arrows at 1440 and below; Figma-sized warning and portrait at mobile widths; verified Phi fallback in actual browser glyph rendering.",
   );
 })().catch((e) => {
   console.error(e);
