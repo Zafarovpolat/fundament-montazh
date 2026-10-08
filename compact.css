@@ -1823,6 +1823,7 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     max-width: calc(100% - 16px);
     align-self: flex-start;
     margin: 12px 0 0;
+    padding-right: 0;
   }
   #hero .hero-slide--copy > .hero-benefits {
     grid-template-columns: repeat(3, minmax(0, 1fr));
