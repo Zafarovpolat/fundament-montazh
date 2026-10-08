@@ -1819,12 +1819,12 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   }
   #hero .hero-slide--price .price-panel > .button {
     order: 3;
-    width: 100%;
-    max-width: 100%;
+    width: max-content;
+    max-width: none;
     min-width: 0;
-    align-self: stretch;
+    align-self: flex-start;
     margin: 12px 0 0;
-    padding-right: 0;
+    padding-right: calc(var(--icon-width) + 26px);
   }
   #hero .hero-slide--price .price-panel > .button .button-label {
     flex: 0 0 auto;
