@@ -467,7 +467,7 @@
 .home-page .home-project-card {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(310px, 0.92fr);
-  flex: 0 0 min(100%, 1050px);
+  flex: 0 0 min(1050px, calc(100vw - 2 * var(--gutter)));
   min-height: 470px;
   overflow: hidden;
   border-radius: 20px;
@@ -1307,6 +1307,41 @@
   }
 }
 
+@media (max-width: 880px) {
+  .home-page .home-director__layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .home-page .home-director__portrait {
+    width: min(100%, 420px);
+    min-height: 500px;
+    justify-self: center;
+  }
+  .home-page .home-director__portrait img {
+    min-height: 500px;
+  }
+  .home-page .home-director__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-page .home-director__actions .button {
+    width: 100%;
+    min-width: 0;
+    min-height: 68px;
+    padding-inline: 12px;
+  }
+  .home-page .home-project-filters {
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--home-gutter));
+    padding-inline: var(--home-gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .home-page .home-project-filters button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 760px) {
   .home-page .topbar {
     display: none;
@@ -2093,6 +2128,37 @@
   }
   .home-page .page-path {
     display: none !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 760px) {
+  .home-page .home-hero h1 {
+    max-width: none;
+    font-size: clamp(36px, 6.8vw, 43px);
+  }
+  .home-page .home-hero__lead {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .home-page .home-project-card {
+    flex-basis: min(500px, calc(100vw - 2 * var(--gutter)));
+  }
+  .home-page .home-project-card > img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+  .home-page .home-review-card {
+    flex-basis: min(500px, calc(100vw - 2 * var(--gutter)));
+  }
+  .home-page #objects .objects-gallery > .object-card,
+  .home-page #objects .objects-gallery > .object-card.is-active {
+    flex-basis: min(420px, calc(100vw - 2 * var(--gutter) - 27px));
+    width: min(420px, calc(100vw - 2 * var(--gutter) - 27px));
+  }
+  .home-page .home-director__portrait {
+    width: min(100%, 420px);
   }
 }
 

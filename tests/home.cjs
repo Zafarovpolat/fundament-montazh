@@ -16,7 +16,9 @@ const { homeUrl } = require("./site-url.cjs");
       failed.push(`${response.status()} ${response.url()}`);
   });
 
-  const widths = [320, 375, 390, 480, 640, 768, 1024, 1280, 1440, 1920, 2560];
+  const widths = [
+    320, 375, 390, 480, 540, 640, 768, 880, 1024, 1200, 1280, 1440, 1600, 1920, 2560,
+  ];
   for (const width of widths) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(homeUrl, { waitUntil: "networkidle" });
@@ -30,8 +32,30 @@ const { homeUrl } = require("./site-url.cjs");
       sectionIds: [...document.querySelectorAll("main > section")].map(
         (section) => section.id,
       ),
+      project: (() => {
+        const viewport = document.querySelector(".home-project-viewport");
+        const card = document.querySelector(".home-project-card:not([hidden])");
+        if (!viewport || !card) return null;
+        const viewportRect = viewport.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        return {
+          left: cardRect.left,
+          right: cardRect.right,
+          viewportLeft: viewportRect.left,
+          viewportRight: viewportRect.right,
+        };
+      })(),
     }));
     assert.equal(metrics.scrollWidth, width, `Homepage overflow at ${width}px`);
+    assert.ok(metrics.project, `Project card missing at ${width}px`);
+    assert.ok(
+      metrics.project.left >= metrics.project.viewportLeft - 1,
+      `Project card starts outside its viewport at ${width}px`,
+    );
+    assert.ok(
+      metrics.project.right <= metrics.project.viewportRight + 1,
+      `Project card is clipped at ${width}px (card right ${metrics.project.right}, viewport right ${metrics.project.viewportRight})`,
+    );
     assert.equal(metrics.h1, 1, "Homepage must have one H1");
     assert.equal(metrics.page, "home");
     assert.equal(metrics.sectionIds.length, 17);
@@ -104,7 +128,7 @@ const { homeUrl } = require("./site-url.cjs");
   assert.deepEqual(failed, []);
   await browser.close();
   console.log(
-    "PASS: homepage routing, 11 responsive widths, no horizontal overflow, 17 sections, local images, mobile navigation, technology tabs, project empty state, video information and quiz.",
+    "PASS: homepage routing, 15 responsive widths (including all 8 requested), no horizontal overflow or clipped project card, 17 sections, local images, mobile navigation, technology tabs, project empty state, video information and quiz.",
   );
 })().catch((error) => {
   console.error(error);
