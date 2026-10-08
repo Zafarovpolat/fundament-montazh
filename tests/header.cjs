@@ -1,11 +1,12 @@
 const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 (async () => {
   const browser = await chromium.launch();
   const p = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   const errors = [];
   p.on("pageerror", (e) => errors.push(e.message));
-  await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await p.goto(foundationUrl);
   await p.evaluate(() => document.fonts.ready);
   for (const width of [
     1920, 1551, 1550, 1441, 1440, 1281, 1280, 1024, 769, 768, 390, 320,

@@ -1,5 +1,6 @@
 const { engine: chromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 
 (async () => {
   const browser = await chromium.launch();
@@ -8,7 +9,7 @@ const assert = require("node:assert/strict");
   });
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await page.goto(foundationUrl);
   await page.evaluate(() => document.fonts.ready);
 
   for (const width of [1441, 1440, 1281, 1280, 1201, 1200, 1051, 1050, 1025, 1024, 880, 879, 768, 390, 241]) {
@@ -311,7 +312,7 @@ const assert = require("node:assert/strict");
   const cookiePage = await browser.newPage({
     viewport: { width: 1920, height: 900 },
   });
-  await cookiePage.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await cookiePage.goto(foundationUrl);
   await cookiePage.evaluate(() => document.fonts.ready);
   await cookiePage.evaluate(() => {
     const banner = document.querySelector(".cookie-bar");

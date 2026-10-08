@@ -14,13 +14,14 @@
 
 ## Кратко о проекте
 
-`fundament-montazh` — статический сайт компании «ФундаментМонтаж», собранный на обычных HTML, CSS и JavaScript. Фреймворка и runtime-зависимостей нет; для локального запуска используется Python static server. Проект содержит главную страницу, юридические страницы, форму/диалог, квиз, карусели, адаптивные состояния и переиспользуемую секцию проектов.
+`fundament-montazh` — статический сайт компании «ФундаментМонтаж», собранный на обычных HTML, CSS и JavaScript. Фреймворка и runtime-зависимостей нет; для локального запуска используется Python static server. Маршруты: `/` — главная по Figma `1:2`/`540:662`; `/foundation.html` — сохранённая страница «Фундамент» по Figma `315:160`/`597:663`. На странице есть юридические документы, форма/диалог, квизы, карусели и адаптивные состояния.
 
 ### Основные места в коде
 
-- `index.html` — основная разметка и контент; `privacy.html`, `personal-data.html` — юридические страницы.
-- CSS: `styles.css`, `interactions.css`, `figma-type.css`, `fidelity.css`, `compact.css`, `compact-type.css`, `fonts.css`, `legal.css`.
-- JS: `app.js`, `header.js`, `hero-carousel.js`, `sliders.js`, `motion.js`, `steps-pin.js`, `layout.js`, `refinements.js`, `consent.js`.
+- `index.html` — главная; `home.css` и `home.js` — её изолированные адаптивные стили и вкладки.
+- `foundation.html` — сохранённая страница «Фундамент»; `privacy.html`, `personal-data.html` — юридические страницы.
+- CSS: общие `styles.css`, `interactions.css`, `figma-type.css`, `fidelity.css`, `compact.css`, `compact-type.css`, `fonts.css`, `legal.css`; изменения общих таблиц стилей проверяй на обоих маршрутах.
+- JS: `app.js`, `header.js`, `hero-carousel.js`, `sliders.js`, `motion.js`, `steps-pin.js`, `layout.js`, `refinements.js`, `consent.js`; взаимодействия главной также использует `home.js`.
 - `sections/projects.html` и `sections/projects.css` — извлечённый фрагмент «Готовые проекты». Порядок каскада важен: см. `sections/README.md`; не подключай самодостаточную копию `projects.css` поверх общих стилей, если задача этого не требует.
 - `assets/` — изображения, шрифты и иконки; `assets/icons/figma-sources.json` документирует источники иконок.
 - `design/figma-reference/` — очищенные JSON-снимки Figma; `tests/` и `tools/` — проверки и генераторы.
@@ -67,7 +68,7 @@
 
 ### Известное несоответствие в документации
 
-Начальная строка старого корневого `README.md` называет кадр `315:160` «Главная». По текущей проверенной карте Figma node `315:160` называется **«Фундамент»** и является второй страницей; мобильное соответствие — `597:663`. Старые разделы README также содержат историческую фразу, что мобильный макет не предоставлялся; мобильные JSON-снимки теперь есть. Для новых задач используй актуальную карту `design/figma-reference/README.md` и тексты/ID узлов. При отдельной задаче по документации можно аккуратно исправить устаревшие формулировки, не переписывая остальную историю.
+Node `315:160` называется **«Фундамент»** и относится к странице `/foundation.html`; её мобильное соответствие — `597:663`. Главная использует desktop node `1:2` и mobile node `540:662`. Корневой `README.md` теперь перечисляет маршруты, но его исторические разделы 3.6.x в основном описывают страницу «Фундамент», а не текущую главную. Для новых задач используй карту `design/figma-reference/README.md` и тексты/ID нужного узла.
 
 ## История и принятые решения
 
@@ -88,6 +89,7 @@
 
 - Локальный сервер: `npm run start` (Python на `0.0.0.0:5173`) или `python3 -m http.server 5173 --bind 0.0.0.0`.
 - `npm test` — **только синтаксические проверки JS**, не полный браузерный набор.
+- `npm run test:home` проверяет главную; `npm run test:browser` и прежние дополнительные регрессионные наборы адресуют сохранённую страницу «Фундамент» через `tests/site-url.cjs`.
 - Браузерный smoke: `npm run test:browser`; дополнительные регрессионные наборы: `npm run test:ui`, `test:responsive`, `test:fidelity`, `test:review`, `test:sequence`, `test:path`, `test:refinements`, `test:header`, `test:compact`, `test:steps-pin`, `test:layout`, `test:review362` (через `npm run <имя>`).
 - `npm run test:firefox` / `npm run test:webkit` прогоняют синтаксис и smoke в соответствующем движке. Браузерные тесты требуют установленных Playwright browser binaries.
 - Выбирай тесты по затронутому поведению. Например, для horizontal pin — `test:steps-pin`, `test:layout` и нужный responsive/browser test; для consent — UI/responsive/browser. Не запускай все наборы автоматически, если изменение документационное.

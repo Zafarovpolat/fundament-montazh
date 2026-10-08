@@ -1,5 +1,6 @@
 const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 const fs = require("node:fs");
 fs.mkdirSync("tests/artifacts", { recursive: true });
 (async () => {
@@ -7,7 +8,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
   const errors = [];
   p.on("pageerror", (e) => errors.push(e.message));
-  await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await p.goto(foundationUrl);
   await p.evaluate(() => document.fonts.ready);
   await p.locator("img").evaluateAll((es) =>
     Promise.all(
@@ -99,7 +100,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     { width: 390, height: 640 },
   ]) {
     await p.setViewportSize(v);
-    await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+    await p.goto(foundationUrl);
     const compactDialog = await p.evaluate(() => ({
       scrollBehavior: getComputedStyle(
         document.querySelector(".dialog-scroll"),
@@ -158,7 +159,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     await p.keyboard.press("Escape");
   }
   await p.emulateMedia({ reducedMotion: "reduce" });
-  await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await p.goto(foundationUrl);
   assert.equal(await p.evaluate(() => window.siteMotion.enabled), true);
   assert.equal(
     await p.evaluate(() => document.documentElement.dataset.motion),

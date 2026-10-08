@@ -1,5 +1,6 @@
 const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 const overrides = require("./review-overrides.json");
 const expected = require("./figma-expectations.json").map((e) => ({
   ...e,
@@ -13,7 +14,7 @@ const expected = require("./figma-expectations.json").map((e) => ({
   });
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await page.goto(foundationUrl);
   await page.evaluate(() => document.fonts.ready);
   assert.equal(await page.evaluate(() => siteMotion.enabled), true);
   const actual = await page.locator("[data-figma-text]").evaluateAll((es) =>

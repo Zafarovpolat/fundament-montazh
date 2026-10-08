@@ -107,6 +107,14 @@ document.querySelectorAll("[data-action]").forEach((button) =>
       );
       return;
     }
+    if (action === "video") {
+      openDialog(
+        "Видео о строительстве",
+        "Ссылка на видеоролик в макете не указана. Когда появится подтверждённый адрес, видео можно будет открыть здесь.",
+        true,
+      );
+      return;
+    }
     openDialog(
       headings[action] || "Связаться с нами",
       action === "object"
@@ -179,7 +187,8 @@ filters.forEach((button) =>
   }),
 );
 // Four-question demo. No invented price or simulated server submission.
-const quizScreens = [
+const isHomePage = document.body.dataset.page === "home";
+const foundationQuizScreens = [
   [
     "Ленточный фундамент",
     "Монолитная плита",
@@ -195,13 +204,37 @@ const quizScreens = [
     "Пока планирую",
   ],
 ];
-// Заголовок секции constant (315:361), вопрос — свой на каждом шаге (495:580).
-const quizQuestions = [
+const homeQuizScreens = [
+  [
+    "Кирпич (надёжность, статус)",
+    "Газобетон (тепло, доступно)",
+    "Клеёный брус (натуральность, премиум)",
+    "Каркас (быстро, бюджетно)",
+  ],
+  ["До 100 м²", "100–150 м²", "150–200 м²", "200+ м²"],
+  ["Один этаж", "Два этажа", "С мансардой", "Нужна консультация"],
+  [
+    "Участок уже есть",
+    "Подбираю участок",
+    "Нужна помощь с участком",
+    "Пока планирую",
+  ],
+];
+const quizScreens = isHomePage ? homeQuizScreens : foundationQuizScreens;
+// Вопросы квиза соответствуют странице; сами ответы не конвертируются в цену.
+const foundationQuizQuestions = [
   "Какой тип фундамента вас интересует?",
   "Какая площадь дома вам нужна?",
   "Сколько этажей вы планируете?",
   "У вас уже есть участок?",
 ];
+const homeQuizQuestions = [
+  "Какую технологию строительства вы рассматриваете?",
+  "Какая площадь дома вам нужна?",
+  "Сколько этажей вы планируете?",
+  "У вас уже есть участок?",
+];
+const quizQuestions = isHomePage ? homeQuizQuestions : foundationQuizQuestions;
 let quizStep = 0,
   quizSelected = 0;
 const quizAnswers = [];

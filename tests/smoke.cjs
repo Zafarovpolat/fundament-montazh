@@ -11,7 +11,8 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   page.on("response", (r) => {
     if (r.status() >= 400) failed.push(r.url());
   });
-  const base = process.env.TEST_URL || "http://127.0.0.1:5173";
+  const { foundationUrl } = require("./site-url.cjs");
+  const base = foundationUrl;
   // 960/640px also cover the layout viewport of a 1920px window at 200/300% zoom.
   const widths = [
     320, 375, 390, 480, 640, 768, 960, 1024, 1100, 1280, 1440, 1920, 2560, 3840,

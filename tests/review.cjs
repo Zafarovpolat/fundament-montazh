@@ -1,5 +1,6 @@
 const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 (async () => {
   const b = await chromium.launch();
   const p = await b.newPage({
@@ -8,7 +9,7 @@ const assert = require("node:assert/strict");
   });
   const errors = [];
   p.on("pageerror", (e) => errors.push(e.message));
-  await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await p.goto(foundationUrl);
   await p.evaluate(() => document.fonts.ready);
   // В новой ревизии макета «эйброу» с точкой вернулся в секции «Что входит»
   // (узел 478:1233) и вернётся в «7 шагов»; в остальных секциях его нет.

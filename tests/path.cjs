@@ -1,9 +1,10 @@
 const { engine: chromium, isChromium } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 (async () => {
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1440, height: 1000 } });
-  await p.goto(process.env.TEST_URL || "http://127.0.0.1:5173");
+  await p.goto(foundationUrl);
   await p.evaluate(() => document.fonts.ready);
   await p.waitForFunction(
     () => document.querySelector(".page-path").dataset.progress,

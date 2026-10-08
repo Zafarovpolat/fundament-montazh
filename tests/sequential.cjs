@@ -5,11 +5,8 @@ const assert = require("node:assert/strict");
   const p = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   // Карусель проектов вынесена со второй ревизии главной страницы
   // (sections/projects.html) — проверяем её на стенде второй страницы.
-  const base = (process.env.TEST_URL || "http://127.0.0.1:5173").replace(
-    /\/$/,
-    "",
-  );
-  await p.goto(`${base}/tests/fixtures/projects-page2.html`);
+  const { foundationUrl, routeUrl } = require("./site-url.cjs");
+  await p.goto(routeUrl("tests/fixtures/projects-page2.html"));
   await p.evaluate(() => document.fonts.ready);
   await p.locator('[data-filter="5"]').click();
   assert.equal(await p.locator("[data-project]:visible").count(), 0);
@@ -72,8 +69,8 @@ const assert = require("node:assert/strict");
     await p.locator('.project-picture[data-active-photo="1"]').count(),
     1,
   );
-  // Дальше — проверки главной страницы, на неё и возвращаемся.
-  await p.goto(base);
+  // После fixture — регрессионные проверки сохранённой страницы «Фундамент».
+  await p.goto(foundationUrl);
   assert.equal(await p.locator(".object-card figcaption").count(), 5);
   assert.equal(
     await p.locator(".warning h3").evaluate((e) => e.clientHeight),
@@ -113,7 +110,7 @@ const assert = require("node:assert/strict");
   );
   await browser.close();
   console.log(
-    "PASS: стенд второй страницы (фильтры, 0→1→2, поворот карусели), главной — пять подписей, одна строка warning, описания в 2 и 3 строки по высоте узлов макета, тёмная подложка.",
+    "PASS: fixture фильтров/карусели и сохранённая страница «Фундамент» — подписи, предупреждение, строки описаний и тёмная подложка.",
   );
 })().catch((e) => {
   console.error(e);

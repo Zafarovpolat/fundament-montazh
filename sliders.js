@@ -375,8 +375,9 @@
 /** One sequential clock: current project's photos, next project, repeat. */
 (() => {
   const track = document.querySelector("#project-track");
-  if (!track) return; // на главной карточки — статичная сетка, карусели нет
+  if (!track) return; // Нет проектного трека — нечего инициализировать.
   const pictures = [...track.querySelectorAll(".project-picture")];
+  if (!pictures.length) return; // В простой карточке нет сменяемых фотографий.
   let current = null,
     visible = false,
     paused = false,

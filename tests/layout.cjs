@@ -1,11 +1,12 @@
 const { engine: chromium, isChromium, settle } = require("./browser.cjs");
 const assert = require("node:assert/strict");
+const { foundationUrl } = require("./site-url.cjs");
 (async () => {
   const browser = await chromium.launch({
     ignoreDefaultArgs: ["--hide-scrollbars"],
   });
   const page = await browser.newPage();
-  await page.goto("http://127.0.0.1:5173");
+  await page.goto(foundationUrl);
   await page.evaluate(() => document.fonts.ready);
   for (const stable of [false, true]) {
     await page.evaluate(
