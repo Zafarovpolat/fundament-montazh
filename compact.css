@@ -1819,11 +1819,18 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
   }
   #hero .hero-slide--price .price-panel > .button {
     order: 3;
-    width: max-content;
-    max-width: calc(100% - 16px);
-    align-self: flex-start;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    align-self: stretch;
     margin: 12px 0 0;
     padding-right: 0;
+  }
+  #hero .hero-slide--price .price-panel > .button .button-label {
+    flex: 0 0 auto;
+    width: max-content;
+    max-width: none;
+    white-space: nowrap;
   }
   #hero .hero-slide--copy > .hero-benefits {
     grid-template-columns: repeat(3, minmax(0, 1fr));
