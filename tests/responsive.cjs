@@ -163,7 +163,8 @@ const assert = require("node:assert/strict");
     }
     if (width <= 1050) {
       assert.ok(state.visitOffset <= 24, `${width}px: visit copy has an oversized left gutter`);
-      assert.equal(state.faqButton, "none");
+      if (width >= 769) assert.equal(state.faqButton, "none");
+      else assert.notEqual(state.faqButton, "none");
     }
     if (width <= 1024) {
       assert.equal(state.footerLegal.display, "grid");
@@ -195,7 +196,7 @@ const assert = require("node:assert/strict");
         Math.abs(state.hero.benefitIcon.y - state.hero.firstBenefit.y) < 1,
         "benefit icon should align with the first text line",
       );
-      if (width >= 761) {
+      if (width >= 769) {
         assert.ok(state.hero.calculatorButtonMinHeight >= 70);
         assert.ok(state.hero.badge.width < state.hero.trackWidth);
       }
@@ -258,9 +259,9 @@ const assert = require("node:assert/strict");
       const result = {
         toggle,
         close,
-        gutter: Number.parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue("--gutter"),
-        ),
+        gutter: document
+          .querySelector(".header-inner")
+          .getBoundingClientRect().left,
         menuPadding: Number.parseFloat(getComputedStyle(menu).paddingLeft),
         gap: Number.parseFloat(getComputedStyle(menu).gap),
       };

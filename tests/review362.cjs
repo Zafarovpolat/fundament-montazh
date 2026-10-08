@@ -80,7 +80,12 @@ const assert = require("node:assert/strict");
         "full image column",
       ),
     );
-    if (width <= 1440) assert(data.indent > 0, "even stagger");
+    if (width <= 768) {
+      // Mobile Figma 597:663 aligns all seven-step cards on the same start line.
+      assert(Math.abs(data.indent) < 0.1, "mobile steps aligned");
+    } else if (width <= 1440) {
+      assert(data.indent > 0, "even stagger");
+    }
     if (width <= 1024) assert(Math.abs(data.left) < 1, "left CTA");
   }
   await p
@@ -88,7 +93,7 @@ const assert = require("node:assert/strict");
     .screenshot({ path: "/home/user/reference/social362-320.png" });
   await b.close();
   console.log(
-    "PASS: cursor hover/leave + resize regression, unclipped labels, wrapped object headings, full-width social images, even-item stagger, left CTA at 8 widths.",
+    "PASS: cursor hover/leave + resize regression, unclipped labels, wrapped object headings, full-width social images, tablet stagger/mobile-aligned steps, left CTA at 8 widths.",
   );
 })().catch((e) => {
   console.error(e);

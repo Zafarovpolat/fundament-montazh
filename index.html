@@ -903,6 +903,47 @@
                   </dd>
                 </div>
               </dl>
+              <div class="director-actions">
+                <button
+                  class="button button--yellow"
+                  data-action="quote"
+                  data-motion-button=""
+                  type="button"
+                >
+                  <span class="button-label"
+                    >Получить консультацию по фундаменту</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-project-arrow"
+                        xlink:href="assets/icons/sprite.svg#i-project-arrow"
+                      /></svg
+                  ></span>
+                </button>
+                <button
+                  class="button"
+                  data-action="question"
+                  data-motion-button=""
+                  type="button"
+                >
+                  <span class="button-label">Написать директору</span
+                  ><span aria-hidden="true" class="button-icon"
+                    ><svg
+                      class="figma-icon icon-sprite"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <use
+                        href="assets/icons/sprite.svg#i-project-arrow"
+                        xlink:href="assets/icons/sprite.svg#i-project-arrow"
+                      /></svg
+                  ></span>
+                </button>
+              </div>
             </div>
             <figure class="director-portrait">
               <img
@@ -1347,6 +1388,20 @@
                 </button>
               </div>
             </article>
+          </div>
+          <div class="foundation-progress" data-foundation-progress>
+            <span aria-hidden="true" class="foundation-progress__line"></span>
+            <span aria-hidden="true" class="foundation-progress__fill"></span>
+            <span aria-hidden="true" class="foundation-progress__thumb">
+              <svg class="figma-icon icon-sprite" focusable="false">
+                <use href="assets/icons/sprite.svg#i-chevron-left" xlink:href="assets/icons/sprite.svg#i-chevron-left"></use>
+              </svg>
+              <span class="foundation-progress__divider"></span>
+              <svg class="figma-icon icon-sprite" focusable="false">
+                <use href="assets/icons/sprite.svg#i-chevron-right" xlink:href="assets/icons/sprite.svg#i-chevron-right"></use>
+              </svg>
+            </span>
+            <input aria-label="Положение в списке видов фундаментов" max="100" min="0" step="any" type="range" value="31.56" />
           </div>
         </div>
       </section>

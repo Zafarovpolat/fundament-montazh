@@ -1360,7 +1360,7 @@ textarea {
     flex-basis: 40px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   :root {
     --gutter: 22px;
     --section-space: 60px;

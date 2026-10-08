@@ -206,6 +206,17 @@
     start = 0,
     drag = false,
     pointer = null;
+  function centerActiveCard() {
+    if (innerWidth > 768) return;
+    const card = cards[active];
+    if (!card) return;
+    const left =
+      card.offsetLeft + card.offsetWidth / 2 - gallery.clientWidth / 2;
+    gallery.scrollLeft = Math.max(
+      0,
+      Math.min(gallery.scrollWidth - gallery.clientWidth, left),
+    );
+  }
   function activate(index) {
     active = (index + cards.length) % cards.length;
     cards.forEach((card, i) =>
@@ -215,6 +226,7 @@
       .map((_, i) => (i === active ? "1.9673fr" : "1fr"))
       .join(" ");
     gallery.dataset.activeObject = String(active);
+    if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
   }
   activate(2);
   cards.forEach((card, i) => {
@@ -243,9 +255,16 @@
     cursor.style.transform = "translate3d(0,0,0)";
   }
   gallery.addEventListener("pointerleave", resetCursor);
-  new ResizeObserver(resetCursor).observe(gallery);
+  new ResizeObserver(() => {
+    resetCursor();
+    centerActiveCard();
+  }).observe(gallery);
+  window.addEventListener("resize", () => {
+    if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
+    else gallery.scrollLeft = 0;
+  });
   gallery.addEventListener("pointerdown", (e) => {
-    if (e.button !== 0 || innerWidth <= 760) return;
+    if (e.button !== 0 || innerWidth <= 768) return;
     start = e.clientX;
     pointer = e.pointerId;
     drag = true;
@@ -267,12 +286,6 @@
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       e.preventDefault();
       activate(active + (e.key === "ArrowRight" ? 1 : -1));
-      if (innerWidth <= 760)
-        cards[active].scrollIntoView({
-          block: "nearest",
-          inline: "center",
-          behavior: "smooth",
-        });
     }
   });
 })();
@@ -468,4 +481,44 @@
   ).observe(track);
   choose(track.carousel.currentCard()?.querySelector(".project-picture"));
   schedule();
+})();
+
+/** Mobile progress control for the foundation-card carousel. */
+(() => {
+  const track = document.querySelector("#projects .foundation-cards");
+  const rail = document.querySelector("[data-foundation-progress]");
+  const input = rail?.querySelector('input[type="range"]');
+  const thumb = rail?.querySelector(".foundation-progress__thumb");
+  if (!track || !rail || !input || !thumb) return;
+
+  function paint(value) {
+    const progress = Math.max(0, Math.min(100, Number(value) || 0)) / 100;
+    const travel = Math.max(0, rail.clientWidth - thumb.offsetWidth);
+    const x = travel * progress;
+    rail.style.setProperty("--foundation-thumb-x", `${x}px`);
+    rail.style.setProperty("--foundation-fill-width", `${x + 9}px`);
+  }
+
+  function syncFromScroll() {
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+    const progress = maxScroll ? (track.scrollLeft / maxScroll) * 100 : 0;
+    input.value = progress.toFixed(2);
+    paint(progress);
+  }
+
+  input.addEventListener("input", () => {
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+    const progress = Math.max(0, Math.min(100, Number(input.value) || 0));
+    paint(progress);
+    track.scrollTo({
+      left: (maxScroll * progress) / 100,
+      behavior: "smooth",
+    });
+  });
+  track.addEventListener("scroll", syncFromScroll, { passive: true });
+  new ResizeObserver(() => {
+    if (track.scrollLeft > 0) syncFromScroll();
+    else paint(input.value);
+  }).observe(rail);
+  paint(input.value);
 })();

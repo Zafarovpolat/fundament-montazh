@@ -26,8 +26,16 @@ const assert = require("node:assert/strict");
           const edge = de
             .querySelector(".footer-cta")
             .getBoundingClientRect().right;
+          const footerGridRight = de
+            .querySelector(".footer-grid")
+            .getBoundingClientRect().right;
+          // The compact layout is centered to the 375px mobile Figma frame;
+          // its CTA aligns to that frame, while wider layouts bleed to viewport.
+          const expectedEdge = matchMedia("(max-width: 768px)").matches
+            ? footerGridRight
+            : de.clientWidth;
           return (
-            Math.abs(edge - de.clientWidth) < 1 &&
+            Math.abs(edge - expectedEdge) < 1 &&
             de.scrollWidth <= de.clientWidth + 1
           );
         }))
@@ -40,6 +48,9 @@ const assert = require("node:assert/strict");
           client: document.documentElement.clientWidth,
           scroll: document.documentElement.scrollWidth,
           edge: r(document.querySelector(".footer-cta")).right,
+          expectedEdge: matchMedia("(max-width: 768px)").matches
+            ? r(document.querySelector(".footer-grid")).right
+            : document.documentElement.clientWidth,
           track: (() => {
             const e = document.querySelector("#hero .hero-grid");
             return {
@@ -75,7 +86,10 @@ const assert = require("node:assert/strict");
         m.scroll <= m.client + 1,
         `${width}: overflow ${JSON.stringify(m)}`,
       );
-      assert(Math.abs(m.edge - m.client) < 1, `${width}: footer edge`);
+      assert(
+        Math.abs(m.edge - m.expectedEdge) < 1,
+        `${width}: footer frame edge`,
+      );
       for (const p of m.prices)
         assert(
           p.visible && p.text && p.left >= p.cardLeft && p.right <= p.cardRight,
