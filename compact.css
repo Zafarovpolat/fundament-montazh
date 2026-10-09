@@ -4571,6 +4571,11 @@ html[data-motion="off"] #hero .hero-grid {
     filter: brightness(0) invert(1);
   }
 
+  /* Clip the shifted house at the viewport edge without stopping its vertical overlap. */
+  html body:not(.home-page) #contacts {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
   /* Main footer content stays on the grid; only the yellow CTA breaks out. */
   html body:not(.home-page) #contacts .footer-cta {
     --footer-pad: 20px;
@@ -4592,7 +4597,7 @@ html[data-motion="off"] #hero .hero-grid {
     max-width: none;
     height: auto;
     align-self: flex-end;
-    margin: -40px 0 0 -20px;
+    margin: -40px -200px 0 0px;
   }
   html body:not(.home-page) #contacts .footer-legal > div {
     align-items: flex-start;
@@ -4606,4 +4611,52 @@ html[data-motion="off"] #hero .hero-grid {
 }
 html body:not(.home-page) #advantages .advantage-progress[hidden] {
   display: none !important;
+}
+
+/* Keep the desktop director actions in one aligned row with both arrows legible. */
+@media (min-width: 1025px) {
+  html body:not(.home-page) #director .director-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 32px 0 0;
+  }
+  html body:not(.home-page) #director .director-actions > .button {
+    flex: 1 1 0;
+    align-self: center;
+    min-width: 0;
+    min-height: 82px;
+    margin: 0;
+  }
+}
+html body:not(.home-page) #director .director-actions > .button:not(.button--yellow) .button-icon .figma-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Explicit text-width and contrast refinements requested for these headings. */
+html #reviews .heading-description[data-figma-text] {
+  max-width: 400px;
+  color: #00000066;
+}
+html #included .heading-description[data-figma-text] {
+  max-width: 324px;
+}
+html #advantages .heading-description.with-yellow-rule[data-figma-text] {
+  width: 400px;
+  max-width: 100%;
+  color: #000;
+}
+
+/* Force price-list titles to wrap at word boundaries into two lines. */
+html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
+  max-width: min-content;
+  overflow-wrap: normal;
+}
+@media (max-width: 1024px) {
+  html body:not(.home-page) #hero .hero-slide--price .price-list h3[data-figma-text] {
+    max-width: min-content;
+    overflow-wrap: normal;
+  }
 }

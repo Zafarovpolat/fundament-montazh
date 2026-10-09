@@ -20,7 +20,10 @@ const { foundationUrl } = require("./site-url.cjs");
       .evaluate((e) => getComputedStyle(e).overflowX),
     "visible",
   );
-  for (const id of ["calculator", "reviews"]) {
+  for (const [id, expectedLines] of [
+    ["calculator", 2],
+    ["reviews", 3],
+  ]) {
     const d = p.locator(`#${id} .heading-description`);
     assert.equal(
       await d.evaluate((e) => getComputedStyle(e, "::before").content),
@@ -28,28 +31,149 @@ const { foundationUrl } = require("./site-url.cjs");
     );
     assert.ok(
       await d.evaluate(
-        (e) =>
+        (e, lines) =>
           Math.abs(
-            e.clientHeight / parseFloat(getComputedStyle(e).lineHeight) - 2,
+            e.clientHeight / parseFloat(getComputedStyle(e).lineHeight) - lines,
           ) < 0.1,
+        expectedLines,
       ),
-      id + " two lines",
+      `${id} ${expectedLines} lines`,
     );
   }
+  const overrides = await p.evaluate(() => {
+    const q = (selector) => document.querySelector(selector);
+    const actions = q("#director .director-actions");
+    const buttons = [...actions.querySelectorAll(":scope > .button")];
+    const lines = (element) => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      return range.getClientRects().length;
+    };
+    return {
+      reviewsMaxWidth: getComputedStyle(
+        q("#reviews .heading-description[data-figma-text]")
+      ).maxWidth,
+      reviewsColor: getComputedStyle(
+        q("#reviews .heading-description[data-figma-text]")
+      ).color,
+      includedMaxWidth: getComputedStyle(
+        q("#included .heading-description")
+      ).maxWidth,
+      advantagesWidth: getComputedStyle(
+        q("#advantages .heading-description.with-yellow-rule[data-figma-text]")
+      ).width,
+      advantagesColor: getComputedStyle(
+        q("#advantages .heading-description.with-yellow-rule[data-figma-text]")
+      ).color,
+      priceTitleLines: [
+        ...document.querySelectorAll(
+          '#hero .hero-slide--price .price-list h3[data-figma-text="360:582"]',
+        ),
+      ].map(lines),
+      actionDisplay: getComputedStyle(actions).display,
+      actionDirection: getComputedStyle(actions).flexDirection,
+      actionWrap: getComputedStyle(actions).flexWrap,
+      actionAlign: getComputedStyle(actions).alignItems,
+      actionRects: buttons.map((button) => {
+        const rect = button.getBoundingClientRect();
+        const icon = button.querySelector(".button-icon .figma-icon");
+        const iconRect = icon.getBoundingClientRect();
+        return {
+          left: rect.left,
+          right: rect.right,
+          top: rect.top,
+          bottom: rect.bottom,
+          iconWidth: iconRect.width,
+          iconHeight: iconRect.height,
+          iconOpacity: getComputedStyle(icon).opacity,
+          iconFilter: getComputedStyle(icon).filter,
+        };
+      }),
+    };
+  });
+  assert.equal(overrides.reviewsMaxWidth, "400px");
+  assert.equal(overrides.reviewsColor, "rgba(0, 0, 0, 0.4)");
+  assert.equal(overrides.includedMaxWidth, "324px");
+  assert.equal(overrides.advantagesWidth, "400px");
+  assert.equal(overrides.advantagesColor, "rgb(0, 0, 0)");
+  assert(
+    overrides.priceTitleLines.length > 0 &&
+      overrides.priceTitleLines.every((lineCount) => lineCount === 2),
+    "desktop price-list titles wrap onto two lines",
+  );
+  assert.equal(overrides.actionDisplay, "flex");
+  assert.equal(overrides.actionDirection, "row");
+  assert.equal(overrides.actionWrap, "nowrap");
+  assert.equal(overrides.actionAlign, "center");
+  assert.equal(overrides.actionRects.length, 2);
+  assert(overrides.actionRects[0].right <= overrides.actionRects[1].left + 1);
+  assert(
+    Math.abs(
+      (overrides.actionRects[0].top + overrides.actionRects[0].bottom) / 2 -
+        (overrides.actionRects[1].top + overrides.actionRects[1].bottom) / 2,
+    ) < 1,
+    "director buttons share a vertical center",
+  );
+  assert(
+    overrides.actionRects.every(
+      ({ iconWidth, iconHeight, iconOpacity }) =>
+        iconWidth > 0 && iconHeight > 0 && iconOpacity !== "0",
+    ),
+    "both director arrows are visible",
+  );
+  assert(overrides.actionRects[1].iconFilter.includes("invert(1)"));
+
   for (const id of ["advantage-track", "review-track"]) {
     const track = p.locator("#" + id);
     await track.scrollIntoViewIfNeeded();
     await p.mouse.move(0, 0);
-    const first = await track
-      .locator(":scope > *")
-      .first()
-      .evaluate((e) => e.querySelector("img").src);
+    const first = await track.evaluate(
+      (element) => element.carousel.currentCard().querySelector("img").src,
+    );
+    await p.waitForTimeout(id === "advantage-track" ? 3600 : 5400);
+    assert.equal(
+      await track.evaluate(
+        (element) => element.carousel.currentCard().querySelector("img").src,
+      ),
+      first,
+      `${id} remains stationary until user input`,
+    );
+
+    await p.locator(`[data-target="${id}"][data-scroll="1"]`).click();
     await p.waitForFunction(
       ({ id, first }) =>
-        document.querySelector("#" + id + " > * img").src !== first,
+        document
+          .querySelector("#" + id)
+          .carousel.currentCard()
+          .querySelector("img").src !== first,
       { id, first },
-      { timeout: 8000 },
     );
+    await p.locator(`[data-target="${id}"][data-scroll="-1"]`).click();
+    await p.waitForFunction(
+      ({ id, first }) => {
+        const element = document.querySelector("#" + id);
+        return (
+          element.dataset.slideIndex === "0" &&
+          element.carousel.currentCard().querySelector("img").src === first
+        );
+      },
+      { id, first },
+    );
+
+    if (id === "review-track") {
+      const last = await track.evaluate(
+        (element) => element.lastElementChild.querySelector("img").src,
+      );
+      await p.locator(`[data-target="${id}"][data-scroll="-1"]`).click();
+      await p.waitForFunction(
+        (last) =>
+          document
+            .querySelector("#review-track")
+            .carousel.currentCard()
+            .querySelector("img").src === last,
+        last,
+      );
+    }
   }
   assert.equal(
     await p.locator(".visit-kicker").innerText(),
@@ -102,7 +226,7 @@ const { foundationUrl } = require("./site-url.cjs");
   assert.deepEqual(errors, []);
   await browser.close();
   console.log(
-    "PASS: bleed, consistent filter padding, two-line descriptions, both autoplays, original visit kicker, FAQ placement/animation, social cards, footer rail boundary and RUSO link.",
+    "PASS: heading overrides, manual/stationary carousels, director actions, original visit kicker, FAQ placement/animation, social cards, footer rail boundary and RUSO link.",
   );
 })().catch((e) => {
   console.error(e);

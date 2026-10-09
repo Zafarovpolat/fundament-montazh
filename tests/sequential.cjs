@@ -19,13 +19,39 @@ const assert = require("node:assert/strict");
   const track = p.locator("#project-track");
   await track.scrollIntoViewIfNeeded();
   await p.mouse.move(0, 0);
-  await p.waitForFunction(
-    () =>
-      document.querySelector("#project-track .project-picture").dataset
-        .activePhoto === "1",
-    null,
-    { timeout: 8000 },
+  assert.equal(
+    await p.locator('.project-picture[data-active-photo="0"]').count(),
+    4,
   );
+  const currentProject = await p.evaluate(
+    () =>
+      document
+        .querySelector("#project-track")
+        .carousel.currentCard()
+        .querySelector("h3").dataset.figmaText,
+  );
+  await p.waitForTimeout(2300);
+  assert.equal(
+    await p.evaluate(
+      () =>
+        document
+          .querySelector("#project-track")
+          .carousel.currentCard()
+          .querySelector("h3").dataset.figmaText,
+    ),
+    currentProject,
+    "the project carousel does not advance without input",
+  );
+  assert.equal(
+    await p.locator("#project-track").getAttribute("data-autoplay-project"),
+    null,
+  );
+
+  const firstPhoto = track
+    .locator(".project-picture")
+    .first()
+    .locator('[data-photo-index="1"]');
+  await firstPhoto.click();
   assert.equal(
     await p.locator('.project-picture[data-active-photo="1"]').count(),
     1,
@@ -34,40 +60,44 @@ const assert = require("node:assert/strict");
     await p.locator('.project-picture[data-active-photo="0"]').count(),
     3,
   );
-  await p.waitForFunction(
-    () =>
-      document.querySelector("#project-track .project-picture").dataset
-        .activePhoto === "2",
-    null,
-    { timeout: 8000 },
-  );
-  await p.waitForFunction(
-    (id) =>
-      document.querySelector("#project-track").dataset.autoplayProject === id,
-    ids[1],
-    { timeout: 8000 },
-  );
+  await track
+    .locator(".project-picture")
+    .first()
+    .locator('[data-photo-index="2"]')
+    .click();
   assert.equal(
-    await p
-      .locator("#project-track .project-card h3")
-      .first()
-      .getAttribute("data-figma-text"),
-    ids[1],
-  );
-  assert.equal(
-    await p.locator('.project-picture[data-active-photo="0"]').count(),
-    4,
-  );
-  await p.waitForFunction(
-    () =>
-      document.querySelector("#project-track .project-picture").dataset
-        .activePhoto === "1",
-    null,
-    { timeout: 8000 },
-  );
-  assert.equal(
-    await p.locator('.project-picture[data-active-photo="1"]').count(),
+    await p.locator('.project-picture[data-active-photo="2"]').count(),
     1,
+  );
+  await p.waitForTimeout(2100);
+  assert.equal(
+    await p.locator('.project-picture[data-active-photo="2"]').count(),
+    1,
+    "project photos remain on the manually selected frame",
+  );
+
+  await p.locator('[data-target="project-track"][data-scroll="1"]').click();
+  assert.equal(
+    await p.evaluate(
+      () =>
+        document
+          .querySelector("#project-track")
+          .carousel.currentCard()
+          .querySelector("h3").dataset.figmaText,
+    ),
+    ids[1],
+  );
+  await p.locator('[data-target="project-track"][data-scroll="-1"]').click();
+  assert.equal(
+    await p.evaluate(
+      () =>
+        document
+          .querySelector("#project-track")
+          .carousel.currentCard()
+          .querySelector("h3").dataset.figmaText,
+    ),
+    ids[0],
+    "project arrows still navigate on demand",
   );
   // После fixture — регрессионные проверки сохранённой страницы «Фундамент».
   await p.goto(foundationUrl);
@@ -77,10 +107,10 @@ const assert = require("node:assert/strict");
     30,
   );
   // Число строк подводок берётся из высоты узла макета: 478:1234 — 44 px
-  // (2 строки по 22), 315:770 — 66 px (3 строки по 22).
+  // (2 строки по 22), 315:770 — 88 px (4 строки при ширине 400 px).
   for (const [selector, lines] of [
     ["#projects .with-yellow-rule", 2],
-    ["#advantages .with-yellow-rule", 3],
+    ["#advantages .with-yellow-rule", 4],
   ]) {
     assert.ok(
       await p

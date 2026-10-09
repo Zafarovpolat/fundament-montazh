@@ -20,6 +20,8 @@
       suppressClick = false;
     let pointer = null;
     let finishLoop = null;
+    const loops = track.matches(".card-track.fidelity-track");
+    const originalOrder = [...track.children];
     const visibleCards = () =>
       [...track.children].filter(
         (card) =>
@@ -46,11 +48,80 @@
       track.dataset.slidePos = pos.toFixed(3);
       controls.forEach((button) => {
         button.disabled =
-          Number(button.dataset.scroll) < 0 ? index === 0 : index === limit;
+          !(loops && limit > 0) &&
+          (Number(button.dataset.scroll) < 0 ? index === 0 : index === limit);
+      });
+    }
+    function rotate(direction, count) {
+      track.style.transition = "none";
+      for (let i = 0; i < count; i++) {
+        const cards = visibleCards();
+        if (direction > 0) track.append(cards[0]);
+        else track.prepend(cards[cards.length - 1]);
+      }
+      index = 0;
+      pos = 0;
+      delta = 0;
+      paint();
+      void track.offsetWidth;
+      track.style.removeProperty("transition");
+    }
+    function loop(direction) {
+      finishLoop?.();
+      const cards = visibleCards();
+      if (!loops || cards.length < 2 || limit < 1) return;
+
+      if (direction > 0) {
+        if (index) rotate(1, index);
+        index = 1;
+        pos = 1;
+        delta = 0;
+        paint();
+        return new Promise((resolve) => {
+          let timer;
+          finishLoop = () => {
+            clearTimeout(timer);
+            rotate(1, 1);
+            finishLoop = null;
+            track.dispatchEvent(new Event("carouselchange"));
+            resolve();
+          };
+          timer = setTimeout(() => finishLoop?.(), 700);
+        });
+      }
+
+      track.style.transition = "none";
+      track.prepend(cards[cards.length - 1]);
+      index = 1;
+      pos = 1;
+      delta = 0;
+      paint();
+      void track.offsetWidth;
+      track.style.removeProperty("transition");
+      index = 0;
+      pos = 0;
+      paint();
+      return new Promise((resolve) => {
+        let timer;
+        finishLoop = () => {
+          clearTimeout(timer);
+          finishLoop = null;
+          track.dispatchEvent(new Event("carouselchange"));
+          resolve();
+        };
+        timer = setTimeout(() => finishLoop?.(), 700);
       });
     }
     function go(direction) {
       finishLoop?.();
+      if (loops && limit > 0 && direction < 0 && index === 0) {
+        loop(-1);
+        return;
+      }
+      if (loops && limit > 0 && direction > 0 && index === limit) {
+        loop(1);
+        return;
+      }
       index = Math.max(0, Math.min(limit, index + direction));
       pos = index;
       delta = 0;
@@ -147,34 +218,11 @@
       get step() {
         return size;
       },
-      async advanceLoop() {
-        finishLoop?.();
-        const cards = visibleCards();
-        if (cards.length < 2) return;
-        function rotate(count) {
-          track.style.transition = "none";
-          for (let i = 0; i < count; i++) track.append(visibleCards()[0]);
-          index = 0;
-          pos = 0;
-          delta = 0;
-          paint();
-          void track.offsetWidth;
-          track.style.removeProperty("transition");
-        }
-        if (index) rotate(index);
-        index = 1;
-        pos = 1;
-        paint();
-        await new Promise((resolve) => {
-          let timer;
-          finishLoop = () => {
-            clearTimeout(timer);
-            rotate(1);
-            finishLoop = null;
-            resolve();
-          };
-          timer = setTimeout(() => finishLoop?.(), 700);
-        });
+      advanceLoop() {
+        return loop(1);
+      },
+      retreatLoop() {
+        return loop(-1);
       },
       currentCard() {
         return visibleCards()[index] || visibleCards()[0];
@@ -183,6 +231,7 @@
     controllers.set(track.id, {
       reset() {
         finishLoop?.();
+        if (loops) originalOrder.forEach((card) => track.append(card));
         index = 0;
         pos = 0;
         delta = 0;
@@ -307,7 +356,6 @@
   const reducedMotionQuery = matchMedia("(prefers-reduced-motion: reduce)");
   const isMobile = () => mobileQuery.matches;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-  const autoplayDelay = 4800;
   let active = 2;
   let start = 0;
   let drag = false;
@@ -315,54 +363,7 @@
   let touchStartLeft = 0;
   let pointerDown = false;
   let suppressClickUntil = 0;
-  let visible = false;
-  let userPaused = false;
-  let autoplayTimer = 0;
-  let resumeTimer = 0;
   let scrollTimer = 0;
-
-  function stopAutoplay() {
-    clearTimeout(autoplayTimer);
-    autoplayTimer = 0;
-  }
-  function canAutoplay() {
-    return (
-      isMobile() &&
-      visible &&
-      !userPaused &&
-      !document.hidden &&
-      !reducedMotionQuery.matches &&
-      !gallery.matches(":focus-within")
-    );
-  }
-  function scheduleAutoplay() {
-    stopAutoplay();
-    if (!canAutoplay()) return;
-    autoplayTimer = window.setTimeout(() => {
-      autoplayTimer = 0;
-      if (!canAutoplay()) return;
-      activate(active + 1, { behavior: "smooth" });
-      scheduleAutoplay();
-    }, autoplayDelay);
-  }
-  function holdAutoplay() {
-    if (!isMobile()) return;
-    userPaused = true;
-    clearTimeout(resumeTimer);
-    stopAutoplay();
-  }
-  function resumeAutoplay() {
-    if (!isMobile()) return;
-    clearTimeout(resumeTimer);
-    resumeTimer = window.setTimeout(() => {
-      userPaused = false;
-      scheduleAutoplay();
-    }, 1200);
-  }
-  function pauseAfterTap() {
-    holdAutoplay();
-    resumeAutoplay();
-  }
 
   function centerActiveCard(behavior = "instant") {
     if (!isMobile()) return;
@@ -433,7 +434,6 @@
   }
 
   activate(2, { behavior: "instant" });
-  scheduleAutoplay();
   cards.forEach((card, i) => {
     card.addEventListener("pointerenter", (event) => {
       if (event.pointerType !== "touch" && !drag && !isMobile()) activate(i);
@@ -443,10 +443,7 @@
         event.preventDefault();
         return;
       }
-      if (!drag) {
-        if (isMobile()) pauseAfterTap();
-        activate(i);
-      }
+      if (!drag) activate(i);
     });
   });
   gallery.addEventListener("pointermove", (event) => {
@@ -466,7 +463,6 @@
     if (isMobile()) {
       pointerDown = true;
       touchStartLeft = gallery.scrollLeft;
-      holdAutoplay();
       return;
     }
     if (event.button !== 0) return;
@@ -491,7 +487,6 @@
     pointerDown = false;
     if (Math.abs(gallery.scrollLeft - touchStartLeft) > 8)
       suppressClickUntil = Date.now() + 350;
-    resumeAutoplay();
     settleAfterScroll();
   }
   gallery.addEventListener("pointerup", releaseDesktop);
@@ -501,23 +496,9 @@
   gallery.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
-      if (isMobile()) pauseAfterTap();
       activate(active + (event.key === "ArrowRight" ? 1 : -1));
     }
   });
-  gallery.addEventListener("focusin", holdAutoplay);
-  gallery.addEventListener("focusout", resumeAutoplay);
-  document.addEventListener("visibilitychange", scheduleAutoplay);
-  reducedMotionQuery.addEventListener?.("change", scheduleAutoplay);
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(
-      (entries) => {
-        visible = Boolean(entries[0]?.isIntersecting);
-        scheduleAutoplay();
-      },
-      { threshold: 0.15 },
-    ).observe(gallery);
-  } else visible = true;
   new ResizeObserver(() => {
     resetCursor();
     if (isMobile()) requestAnimationFrame(() => centerActiveCard("instant"));
@@ -526,9 +507,7 @@
     resetCursor();
     if (isMobile()) {
       requestAnimationFrame(() => centerActiveCard("instant"));
-      scheduleAutoplay();
     } else {
-      stopAutoplay();
       gallery.scrollLeft = 0;
       activate(active, { center: false });
     }
@@ -632,103 +611,36 @@
   sync();
 })();
 
-/** One sequential clock: current project's photos, next project, repeat. */
+/** Project photos change only through their explicit pagination buttons. */
 (() => {
   const track = document.querySelector("#project-track");
-  if (!track) return; // Нет проектного трека — нечего инициализировать.
+  if (!track) return;
   const pictures = [...track.querySelectorAll(".project-picture")];
-  if (!pictures.length) return; // В простой карточке нет сменяемых фотографий.
-  let current = null,
-    visible = false,
-    paused = false,
-    busy = false,
-    timer = null;
-  const frames = (p) => [...p.querySelectorAll(".project-frame")];
-  function photo(p, index) {
-    p.dataset.activePhoto = String(index);
-    frames(p).forEach((f, i) => f.classList.toggle("is-active", i === index));
-    p.querySelectorAll("[data-photo-index]").forEach((b, i) =>
-      b.setAttribute("aria-pressed", String(i === index)),
+  if (!pictures.length) return;
+  const frames = (picture) => [...picture.querySelectorAll(".project-frame")];
+
+  function photo(picture, index) {
+    picture.dataset.activePhoto = String(index);
+    frames(picture).forEach((frame, frameIndex) =>
+      frame.classList.toggle("is-active", frameIndex === index),
+    );
+    picture.querySelectorAll("[data-photo-index]").forEach((button, buttonIndex) =>
+      button.setAttribute("aria-pressed", String(buttonIndex === index)),
     );
   }
-  function choose(p) {
-    current = p;
-    pictures.forEach((other) => {
-      photo(other, 0);
-      other
-        .closest(".project-card")
-        .classList.toggle("is-autoplay-project", other === p);
-    });
-    track.dataset.autoplayProject = p
-      ? p.closest(".project-card").querySelector("h3")?.dataset.figmaText || ""
-      : "";
+
+  function resetPhotos() {
+    pictures.forEach((picture) => photo(picture, 0));
   }
-  function schedule() {
-    clearTimeout(timer);
-    timer = setTimeout(step, 1800);
-  }
-  async function step() {
-    if (
-      !visible ||
-      paused ||
-      document.hidden ||
-      window.siteMotion?.enabled === false ||
-      busy
-    ) {
-      schedule();
-      return;
-    }
-    if (!current || current.closest(".project-card").hidden)
-      choose(track.carousel.currentCard()?.querySelector(".project-picture"));
-    if (!current) {
-      schedule();
-      return;
-    }
-    const index = Number(current.dataset.activePhoto);
-    if (index < frames(current).length - 1) photo(current, index + 1);
-    else {
-      busy = true;
-      await track.carousel.advanceLoop();
-      choose(track.carousel.currentCard()?.querySelector(".project-picture"));
-      busy = false;
-    }
-    schedule();
-  }
-  pictures.forEach((p) =>
-    p.querySelectorAll("[data-photo-index]").forEach((b) =>
-      b.addEventListener("click", () => {
-        choose(p);
-        photo(p, Number(b.dataset.photoIndex));
-        schedule();
+
+  pictures.forEach((picture) =>
+    picture.querySelectorAll("[data-photo-index]").forEach((button) =>
+      button.addEventListener("click", () => {
+        photo(picture, Number(button.dataset.photoIndex));
       }),
     ),
   );
-  track.addEventListener("carouselchange", () => {
-    choose(track.carousel.currentCard()?.querySelector(".project-picture"));
-    schedule();
-  });
-  // Hover does not stall the sequence; pause only during dragging or keyboard focus.
-  track.addEventListener("pointerdown", () => (paused = true));
-  window.addEventListener("pointerup", () => {
-    paused = false;
-  });
-  window.addEventListener("pointercancel", () => {
-    paused = false;
-  });
-  track.addEventListener("focusin", (e) => {
-    if (e.target.matches(":focus-visible")) paused = true;
-  });
-  track.addEventListener("focusout", () => {
-    paused = false;
-  });
-  new IntersectionObserver(
-    (entries) => {
-      visible = entries[0].isIntersecting;
-    },
-    { threshold: 0.1 },
-  ).observe(track);
-  choose(track.carousel.currentCard()?.querySelector(".project-picture"));
-  schedule();
+  resetPhotos();
 })();
 
 /** Mobile progress control for the foundation-card carousel. */

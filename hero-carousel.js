@@ -16,28 +16,11 @@
   if (slides.length < 2 || dots.length !== slides.length) return;
 
   const mobile = window.matchMedia("(max-width: 1024px)");
-  const interval = 5000;
   let activeKey = "copy";
-  let timer = 0;
   let scrollTimer = 0;
-  let inView = !("IntersectionObserver" in window);
-  let pointerOver = false;
   let wasMobile = false;
 
-  const stopAutoplay = () => {
-    window.clearTimeout(timer);
-    timer = 0;
-  };
-
   const motionEnabled = () => window.siteMotion?.enabled !== false;
-
-  const canAutoplay = () =>
-    mobile.matches &&
-    motionEnabled() &&
-    inView &&
-    !document.hidden &&
-    !pointerOver &&
-    !hero.contains(document.activeElement);
 
   const visualSlides = () =>
     [...slides].sort((a, b) => {
@@ -46,7 +29,7 @@
       return orderA - orderB || slides.indexOf(a) - slides.indexOf(b);
     });
 
-  const setActive = (key, { scroll = true, schedule = true } = {}) => {
+  const setActive = (key, { scroll = true } = {}) => {
     const nextSlide = slidesByKey.get(key);
     if (!nextSlide) return;
 
@@ -95,24 +78,9 @@
       if (moveFocus) nextSlide.focus({ preventScroll: true });
     }
 
-    if (schedule) scheduleAutoplay();
   };
 
-  function scheduleAutoplay() {
-    stopAutoplay();
-    if (!canAutoplay()) return;
-    timer = window.setTimeout(() => {
-      const order = visualSlides().map((slide) => slide.dataset.heroSlide);
-      const index = order.indexOf(activeKey);
-      const nextKey = order[(index + 1 + order.length) % order.length];
-      setActive(nextKey, { scroll: true, schedule: false });
-      scheduleAutoplay();
-    }, interval);
-  }
-
   const syncMode = () => {
-    stopAutoplay();
-
     if (mobile.matches) {
       if (!wasMobile) {
         activeKey = "copy";
@@ -121,7 +89,7 @@
       pager.hidden = false;
       track.setAttribute("role", "region");
       track.setAttribute("aria-label", "Главный экран сайта");
-      setActive(activeKey, { scroll: false, schedule: false });
+      setActive(activeKey, { scroll: false });
     } else {
       pager.hidden = true;
       track.removeAttribute("role");
@@ -138,7 +106,6 @@
     }
 
     wasMobile = mobile.matches;
-    scheduleAutoplay();
   };
 
   const closestSlideToTrackCenter = () => {
@@ -169,10 +136,7 @@
       if (!mobile.matches) return;
       window.clearTimeout(scrollTimer);
       scrollTimer = window.setTimeout(() => {
-        setActive(closestSlideToTrackCenter(), {
-          scroll: false,
-          schedule: true,
-        });
+        setActive(closestSlideToTrackCenter(), { scroll: false });
       }, 120);
     },
     { passive: true },
@@ -198,42 +162,8 @@
     setActive(nextKey);
   });
 
-  hero.addEventListener("pointerenter", (event) => {
-    if (event.pointerType !== "touch") {
-      pointerOver = true;
-      stopAutoplay();
-    }
-  });
-  hero.addEventListener("pointerleave", (event) => {
-    if (event.pointerType !== "touch") {
-      pointerOver = false;
-      scheduleAutoplay();
-    }
-  });
-  hero.addEventListener("focusin", stopAutoplay);
-  hero.addEventListener("focusout", () => {
-    window.setTimeout(scheduleAutoplay, 0);
-  });
-  document.addEventListener("visibilitychange", scheduleAutoplay);
   mobile.addEventListener?.("change", syncMode);
   if (!mobile.addEventListener) mobile.addListener(syncMode);
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        inView = entry.isIntersecting && entry.intersectionRatio >= 0.12;
-        scheduleAutoplay();
-      },
-      { threshold: [0, 0.12] },
-    );
-    observer.observe(hero);
-  }
-
-  const motionObserver = new MutationObserver(scheduleAutoplay);
-  motionObserver.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-motion"],
-  });
 
   syncMode();
 })();

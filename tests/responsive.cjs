@@ -18,6 +18,11 @@ const { foundationUrl } = require("./site-url.cjs");
     const state = await page.evaluate(() => {
       const q = (selector) => document.querySelector(selector);
       const box = (element) => element.getBoundingClientRect();
+      const lines = (element) => {
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        return range.getClientRects().length;
+      };
       const descriptionColor = (selector) =>
         getComputedStyle(q(selector)).color;
       const article = q(".social-list article");
@@ -150,6 +155,11 @@ const { foundationUrl } = require("./site-url.cjs");
           firstPriceCard: box(q(".price-list > li")).toJSON(),
           priceNoteDisplay: getComputedStyle(q(".price-note")).display,
           priceButton: box(q(".price-panel > .button")).toJSON(),
+          priceHeadingLines: [
+            ...document.querySelectorAll(
+              "#hero .hero-slide--price .price-list h3[data-figma-text]",
+            ),
+          ].map(lines),
           active: track.dataset.activeSlide || null,
           copyX: box(copySlide).x,
           priceX: box(priceSlide).x,
@@ -158,6 +168,13 @@ const { foundationUrl } = require("./site-url.cjs");
     });
 
     assert.equal(state.pageWidth, width, `${width}px: document overflow`);
+    if (width <= 1024) {
+      assert(
+        state.hero.priceHeadingLines.length > 0 &&
+          state.hero.priceHeadingLines.every((lineCount) => lineCount === 2),
+        `${width}px: all hero price titles stay on two lines`,
+      );
+    }
     assert.equal(state.projectColor, "rgb(0, 0, 0)");
     assert.equal(state.includedColor, "rgb(0, 0, 0)");
     assert.equal(state.objectButton, "Все объекты на Youtube");
@@ -348,39 +365,32 @@ const { foundationUrl } = require("./site-url.cjs");
     assert.ok(alignment.gap <= 20);
   }
 
-  // The pager changes slides on demand, then advances automatically when idle.
+  // The hero stays on the selected slide until a visitor uses the pager.
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.locator('[data-hero-target="copy"]').click();
   await page.waitForFunction(
     () => document.querySelector("#hero .hero-grid").dataset.activeSlide === "copy",
   );
+  await page.waitForTimeout(5500);
+  assert.equal(
+    await page.locator("#hero .hero-grid").getAttribute("data-active-slide"),
+    "copy",
+    "the hero carousel does not advance automatically",
+  );
   assert.equal(
     await page
       .locator('.hero-pagination [aria-current="true"]')
       .getAttribute("data-hero-target"),
     "copy",
   );
-  await page
-    .locator('[data-hero-target="copy"]')
-    .evaluate((button) => button.blur());
-  await page.mouse.move(1, 1);
+  await page.locator('[data-hero-target="price"]').click();
   await page.waitForFunction(
     () => document.querySelector("#hero .hero-grid").dataset.activeSlide === "price",
-    null,
-    { timeout: 7000 },
   );
+  await page.locator('[data-hero-target="copy"]').click();
   await page.waitForFunction(
     () => document.querySelector("#hero .hero-grid").dataset.activeSlide === "copy",
-    null,
-    { timeout: 7000 },
-  );
-  assert.equal(
-    await page
-      .locator('.hero-pagination [aria-current="true"]')
-      .getAttribute("data-hero-target"),
-    "copy",
-    "autoplay should loop back to the first hero slide",
   );
   const cookiePage = await browser.newPage({
     viewport: { width: 1920, height: 900 },
