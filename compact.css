@@ -4352,3 +4352,241 @@ html[data-motion="off"] #hero .hero-grid {
     border-radius: 17px;
   }
 }
+
+/* Foundation mobile refinements — scoped away from the separate home page. */
+@media (max-width: 768px) {
+  /* The proof badge is one uninterrupted pill, clipped at the copy slide edge. */
+  html body:not(.home-page) #hero .hero-slide--copy {
+    overflow: clip;
+  }
+  html body:not(.home-page) #hero .hero-slide--price {
+    min-width: 0;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-panel {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .panel-title {
+    margin: 0 0 14px;
+    font-size: 18px;
+    line-height: 22.82px;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list {
+    gap: 8px;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list > li {
+    min-height: 0;
+    padding: 13px 14px;
+    border-radius: 12px;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list > li > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 4px 8px;
+    margin: 0 0 7px;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list h3[data-figma-text] {
+    min-width: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list li > div > p[data-figma-text] {
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    font-size: 14px;
+    line-height: 17.64px;
+    white-space: nowrap;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list .muted {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-list .muted .figma-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-panel > .button {
+    width: max-content;
+    max-width: 100%;
+    margin: 14px 0 0;
+  }
+  html body:not(.home-page) #hero .hero-slide--price .price-panel > .button .button-label {
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  /* Keep the 335 px card and 20 px inset; let the track itself reach screen edges. */
+  html body:not(.home-page) #projects .foundation-cards {
+    width: calc(100% + 2 * var(--gutter));
+    max-width: none;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    box-sizing: border-box;
+    scroll-snap-type: none;
+    scroll-behavior: auto !important;
+  }
+  html body:not(.home-page) #projects .foundation-card {
+    flex: 0 0 335px;
+    width: 335px;
+    max-width: 335px;
+    scroll-snap-align: none;
+  }
+  html body:not(.home-page) #projects .foundation-progress__fill {
+    background: transparent;
+  }
+  html body:not(.home-page) #projects .foundation-progress input {
+    touch-action: none;
+  }
+
+  /* Mobile swipe state and autoplay are handled by sliders.js. */
+  html body:not(.home-page) #objects .objects-gallery {
+    --object-active-width: min(calc(100vw - 67px), 308px);
+    --object-edge: max(var(--gutter), calc((100vw - var(--object-active-width)) / 2));
+    padding-inline: var(--object-edge);
+    box-sizing: border-box;
+    scroll-behavior: auto;
+    scroll-padding-inline: var(--object-edge);
+  }
+  html body:not(.home-page) #objects .section-actions > .button:nth-child(2) {
+    height: auto;
+    min-height: 75px;
+    padding: 20px 74px 20px 20px;
+    white-space: normal;
+  }
+  html body:not(.home-page) #objects .section-actions > .button:nth-child(2) .button-label {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  /* Advantages: replace the two small arrows with the same range rail pattern. */
+  html body:not(.home-page) #advantages .advantage-controls {
+    display: none;
+  }
+  html body:not(.home-page) #advantages .advantage-progress {
+    position: relative;
+    display: block;
+    width: min(100%, 335px);
+    height: 27.35px;
+    margin: 0 auto;
+    isolation: isolate;
+  }
+  html body:not(.home-page) #advantages .advantage-progress__line {
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+    background: rgb(7 11 31 / 18%);
+  }
+  html body:not(.home-page) #advantages .advantage-progress__thumb {
+    position: absolute;
+    top: 0;
+    left: var(--advantage-thumb-x, 0px);
+    display: grid;
+    grid-template-columns: 12px 1px 12px;
+    align-items: center;
+    justify-items: center;
+    column-gap: 6px;
+    width: 53px;
+    height: 27.35px;
+    padding-inline: 8px;
+    border-radius: 9px;
+    background: #f5b71b;
+  }
+  html body:not(.home-page) #advantages .advantage-progress__thumb .figma-icon {
+    width: 5.13px;
+    height: 10.26px;
+  }
+  html body:not(.home-page) #advantages .advantage-progress__divider {
+    width: 1px;
+    height: 9.4px;
+    background: rgb(7 11 31 / 20%);
+  }
+  html body:not(.home-page) #advantages .advantage-progress input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: none;
+  }
+  html body:not(.home-page) #advantages .advantage-progress:focus-within .advantage-progress__thumb {
+    outline: 2px solid #101323;
+    outline-offset: 2px;
+  }
+
+  /* FAQ icon glyphs are quieter; the last question spans the full card width. */
+  html body:not(.home-page) #faq .faq-grid summary > span .figma-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.62;
+  }
+  html body:not(.home-page) #faq .faq-grid details:last-child {
+    width: 100%;
+    max-width: none;
+    align-self: stretch;
+  }
+  html body:not(.home-page) #faq .faq-grid summary[data-figma-text="315:825"] {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    align-self: stretch;
+  }
+
+  /* The second director action wraps; keep its sprite arrow legible on the dark tile. */
+  html body:not(.home-page) #director .director-actions > .button {
+    height: auto;
+    min-height: 75px;
+    padding: 20px 74px 20px 24px;
+    white-space: normal;
+  }
+  html body:not(.home-page) #director .director-actions > .button .button-label {
+    max-width: 100%;
+    white-space: normal;
+  }
+  html body:not(.home-page) #director .director-actions > .button:not(.button--yellow) .button-icon .figma-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  /* Main footer content stays on the grid; only the yellow CTA breaks out. */
+  html body:not(.home-page) #contacts .footer-cta {
+    --footer-pad: 20px;
+    width: 100%;
+    max-width: 375px;
+    margin: 20px 0 0;
+    padding: 15px 20px 0;
+    gap: 0;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  html body:not(.home-page) #contacts .footer-house {
+    width: min(415px, calc(100% + 40px));
+    max-width: none;
+    height: auto;
+    align-self: flex-end;
+    margin: -69px -20px 0 0;
+  }
+  html body:not(.home-page) #contacts .footer-legal > div {
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 769px) {
+  html body:not(.home-page) #advantages .advantage-progress {
+    display: none;
+  }
+}
+html body:not(.home-page) #advantages .advantage-progress[hidden] {
+  display: none !important;
+}

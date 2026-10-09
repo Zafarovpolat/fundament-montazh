@@ -10,6 +10,7 @@
     "test:browser": "node tests/smoke.cjs",
     "test:ui": "node tests/ui.cjs",
     "test:responsive": "node tests/responsive.cjs",
+    "test:mobile-foundation": "node tests/foundation-mobile.cjs",
     "test:fidelity": "node tests/fidelity.cjs",
     "test:review": "node tests/review.cjs",
     "test:sequence": "node tests/sequential.cjs",

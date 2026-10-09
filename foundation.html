@@ -127,12 +127,12 @@
     <script defer="" src="hero-carousel.js?v=3.6.4"></script>
     <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
     <link href="fidelity.css?v=3.6.4" rel="stylesheet" />
-    <script defer="" src="sliders.js?v=3.6.4"></script>
+    <script defer="" src="sliders.js?v=3.6.5"></script>
     <script defer="" src="steps-pin.js?v=3.6.4"></script>
-    <script defer="" src="refinements.js?v=3.6.4"></script>
+    <script defer="" src="refinements.js?v=3.6.5"></script>
     <script defer="" src="header.js?v=3.6.4"></script>
     <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
-    <link href="compact.css?v=3.6.4" rel="stylesheet" />
+    <link href="compact.css?v=3.6.5" rel="stylesheet" />
     <script defer="" src="layout.js?v=3.6.4"></script>
   </head>
   <body>
@@ -2059,6 +2059,27 @@
                 />
               </svg>
             </button>
+          </div>
+          <div class="advantage-progress" data-advantage-progress>
+            <span aria-hidden="true" class="advantage-progress__line"></span>
+            <span aria-hidden="true" class="advantage-progress__thumb">
+              <svg class="figma-icon icon-sprite" focusable="false">
+                <use href="assets/icons/sprite.svg#i-chevron-left" xlink:href="assets/icons/sprite.svg#i-chevron-left"></use>
+              </svg>
+              <span class="advantage-progress__divider"></span>
+              <svg class="figma-icon icon-sprite" focusable="false">
+                <use href="assets/icons/sprite.svg#i-chevron-right" xlink:href="assets/icons/sprite.svg#i-chevron-right"></use>
+              </svg>
+            </span>
+            <input
+              aria-controls="advantage-track"
+              aria-label="Положение в карусели преимуществ"
+              max="100"
+              min="0"
+              step="any"
+              type="range"
+              value="0"
+            />
           </div>
         </div>
       </section>

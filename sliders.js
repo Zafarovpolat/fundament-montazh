@@ -2,6 +2,9 @@
 /** Source-sized carousels. The viewport gutter remains visible; no native scrollbar. */
 (() => {
   const controllers = new Map();
+  const hasFoundationCards = Boolean(
+    document.querySelector("#projects .foundation-cards"),
+  );
   document.querySelectorAll("[data-carousel]").forEach((track) => {
     const content = track.closest(".container");
     const controls = [
@@ -18,7 +21,11 @@
     let pointer = null;
     let finishLoop = null;
     const visibleCards = () =>
-      [...track.children].filter((card) => !card.hidden);
+      [...track.children].filter(
+        (card) =>
+          !card.hidden &&
+          (!hasFoundationCards || getComputedStyle(card).display !== "none"),
+      );
     function measure() {
       const cards = visibleCards();
       if (!cards.length) return;
@@ -201,93 +208,333 @@
   const gallery = document.querySelector(".objects-gallery");
   if (!gallery) return; // галереи объектов нет на всех страницах сайта
   const cards = [...gallery.querySelectorAll(":scope > .object-card")];
+  if (!cards.length) return;
   const cursor = gallery.querySelector(".object-hover-cursor");
-  let active = 2,
-    start = 0,
-    drag = false,
-    pointer = null;
-  function centerActiveCard() {
-    if (innerWidth > 768) return;
+  const isFoundationGallery = Boolean(
+    document.querySelector("#projects .foundation-cards"),
+  );
+
+  // Keep the independent home-page gallery's existing behavior untouched.
+  if (!isFoundationGallery) {
+    let active = 2,
+      start = 0,
+      drag = false,
+      pointer = null;
+    function centerActiveCard() {
+      if (innerWidth > 768) return;
+      const card = cards[active];
+      if (!card) return;
+      const left =
+        card.offsetLeft + card.offsetWidth / 2 - gallery.clientWidth / 2;
+      gallery.scrollLeft = Math.max(
+        0,
+        Math.min(gallery.scrollWidth - gallery.clientWidth, left),
+      );
+    }
+    function activate(index) {
+      active = (index + cards.length) % cards.length;
+      cards.forEach((card, i) =>
+        card.classList.toggle("is-active", i === active),
+      );
+      gallery.style.gridTemplateColumns = cards
+        .map((_, i) => (i === active ? "1.9673fr" : "1fr"))
+        .join(" ");
+      gallery.dataset.activeObject = String(active);
+      if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
+    }
+    activate(2);
+    cards.forEach((card, i) => {
+      card.addEventListener("pointerenter", (e) => {
+        if (e.pointerType !== "touch" && !drag) activate(i);
+      });
+      card.addEventListener("click", () => {
+        if (!drag) activate(i);
+      });
+    });
+    gallery.addEventListener("pointermove", (e) => {
+      if (e.pointerType === "touch" || !cursor) return;
+      const r = gallery.getBoundingClientRect();
+      const x = Math.max(0, Math.min(r.width - 72, e.clientX - r.left - 36));
+      const y = Math.max(0, Math.min(r.height - 72, e.clientY - r.top - 36));
+      cursor.style.transform = `translate3d(${x}px,${y}px,0)`;
+      gallery.classList.toggle(
+        "has-pointer",
+        Boolean(e.target.closest(".object-card")),
+      );
+    });
+    function resetCursor() {
+      gallery.classList.remove("has-pointer");
+      if (cursor) cursor.style.transform = "translate3d(0,0,0)";
+    }
+    gallery.addEventListener("pointerleave", resetCursor);
+    new ResizeObserver(() => {
+      resetCursor();
+      centerActiveCard();
+    }).observe(gallery);
+    window.addEventListener("resize", () => {
+      if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
+      else gallery.scrollLeft = 0;
+    });
+    gallery.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0 || innerWidth <= 768) return;
+      start = e.clientX;
+      pointer = e.pointerId;
+      drag = true;
+      gallery.setPointerCapture(pointer);
+    });
+    function release(e) {
+      if (!drag || e.pointerId !== pointer) return;
+      const dx = e.clientX - start;
+      drag = false;
+      if (gallery.hasPointerCapture(pointer))
+        gallery.releasePointerCapture(pointer);
+      if (e.type === "pointerup" && Math.abs(dx) > 45)
+        activate(active + (dx < 0 ? 1 : -1));
+      pointer = null;
+    }
+    gallery.addEventListener("pointerup", release);
+    gallery.addEventListener("pointercancel", release);
+    gallery.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        e.preventDefault();
+        activate(active + (e.key === "ArrowRight" ? 1 : -1));
+      }
+    });
+    return;
+  }
+
+  const mobileQuery = matchMedia("(max-width: 768px)");
+  const reducedMotionQuery = matchMedia("(prefers-reduced-motion: reduce)");
+  const isMobile = () => mobileQuery.matches;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const autoplayDelay = 4800;
+  let active = 2;
+  let start = 0;
+  let drag = false;
+  let pointer = null;
+  let touchStartLeft = 0;
+  let pointerDown = false;
+  let suppressClickUntil = 0;
+  let visible = false;
+  let userPaused = false;
+  let autoplayTimer = 0;
+  let resumeTimer = 0;
+  let scrollTimer = 0;
+
+  function stopAutoplay() {
+    clearTimeout(autoplayTimer);
+    autoplayTimer = 0;
+  }
+  function canAutoplay() {
+    return (
+      isMobile() &&
+      visible &&
+      !userPaused &&
+      !document.hidden &&
+      !reducedMotionQuery.matches &&
+      !gallery.matches(":focus-within")
+    );
+  }
+  function scheduleAutoplay() {
+    stopAutoplay();
+    if (!canAutoplay()) return;
+    autoplayTimer = window.setTimeout(() => {
+      autoplayTimer = 0;
+      if (!canAutoplay()) return;
+      activate(active + 1, { behavior: "smooth" });
+      scheduleAutoplay();
+    }, autoplayDelay);
+  }
+  function holdAutoplay() {
+    if (!isMobile()) return;
+    userPaused = true;
+    clearTimeout(resumeTimer);
+    stopAutoplay();
+  }
+  function resumeAutoplay() {
+    if (!isMobile()) return;
+    clearTimeout(resumeTimer);
+    resumeTimer = window.setTimeout(() => {
+      userPaused = false;
+      scheduleAutoplay();
+    }, 1200);
+  }
+  function pauseAfterTap() {
+    holdAutoplay();
+    resumeAutoplay();
+  }
+
+  function centerActiveCard(behavior = "instant") {
+    if (!isMobile()) return;
     const card = cards[active];
     if (!card) return;
-    const left =
-      card.offsetLeft + card.offsetWidth / 2 - gallery.clientWidth / 2;
-    gallery.scrollLeft = Math.max(
+    const galleryRect = gallery.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const center =
+      galleryRect.left + gallery.clientLeft + gallery.clientWidth / 2;
+    const offset = cardRect.left + cardRect.width / 2 - center;
+    const target = clamp(
+      gallery.scrollLeft + offset,
       0,
-      Math.min(gallery.scrollWidth - gallery.clientWidth, left),
+      Math.max(0, gallery.scrollWidth - gallery.clientWidth),
     );
+    if (Math.abs(target - gallery.scrollLeft) < 0.5) return;
+    if (behavior === "smooth" && !reducedMotionQuery.matches)
+      gallery.scrollTo({ left: target, behavior: "smooth" });
+    else gallery.scrollLeft = target;
   }
-  function activate(index) {
+
+  function activate(index, { center = true, behavior = "smooth" } = {}) {
     active = (index + cards.length) % cards.length;
-    cards.forEach((card, i) =>
-      card.classList.toggle("is-active", i === active),
-    );
-    gallery.style.gridTemplateColumns = cards
-      .map((_, i) => (i === active ? "1.9673fr" : "1fr"))
-      .join(" ");
+    cards.forEach((card, i) => card.classList.toggle("is-active", i === active));
+    if (isMobile()) gallery.style.removeProperty("grid-template-columns");
+    else
+      gallery.style.gridTemplateColumns = cards
+        .map((_, i) => (i === active ? "1.9673fr" : "1fr"))
+        .join(" ");
     gallery.dataset.activeObject = String(active);
-    if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
+    if (isMobile() && center)
+      requestAnimationFrame(() => centerActiveCard(behavior));
   }
-  activate(2);
-  cards.forEach((card, i) => {
-    card.addEventListener("pointerenter", (e) => {
-      if (e.pointerType !== "touch" && !drag) activate(i);
+
+  function nearestCardIndex() {
+    const galleryRect = gallery.getBoundingClientRect();
+    const center =
+      galleryRect.left + gallery.clientLeft + gallery.clientWidth / 2;
+    let nearest = 0;
+    let distance = Infinity;
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const nextDistance = Math.abs(rect.left + rect.width / 2 - center);
+      if (nextDistance < distance) {
+        nearest = index;
+        distance = nextDistance;
+      }
     });
-    card.addEventListener("click", () => {
-      if (!drag) activate(i);
+    return nearest;
+  }
+
+  function settleAfterScroll() {
+    clearTimeout(scrollTimer);
+    if (!isMobile()) return;
+    scrollTimer = window.setTimeout(() => {
+      if (!isMobile() || pointerDown) return;
+      const nearest = nearestCardIndex();
+      if (nearest !== active)
+        activate(nearest, {
+          behavior: reducedMotionQuery.matches ? "instant" : "smooth",
+        });
+    }, 170);
+  }
+
+  function resetCursor() {
+    gallery.classList.remove("has-pointer");
+    if (cursor) cursor.style.transform = "translate3d(0,0,0)";
+  }
+
+  activate(2, { behavior: "instant" });
+  scheduleAutoplay();
+  cards.forEach((card, i) => {
+    card.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "touch" && !drag && !isMobile()) activate(i);
+    });
+    card.addEventListener("click", (event) => {
+      if (Date.now() < suppressClickUntil) {
+        event.preventDefault();
+        return;
+      }
+      if (!drag) {
+        if (isMobile()) pauseAfterTap();
+        activate(i);
+      }
     });
   });
-  gallery.addEventListener("pointermove", (e) => {
-    if (e.pointerType === "touch") return;
-    const r = gallery.getBoundingClientRect();
-    const x = Math.max(0, Math.min(r.width - 72, e.clientX - r.left - 36));
-    const y = Math.max(0, Math.min(r.height - 72, e.clientY - r.top - 36));
+  gallery.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch" || isMobile() || !cursor) return;
+    const rect = gallery.getBoundingClientRect();
+    const x = Math.max(0, Math.min(rect.width - 72, event.clientX - rect.left - 36));
+    const y = Math.max(0, Math.min(rect.height - 72, event.clientY - rect.top - 36));
     cursor.style.transform = `translate3d(${x}px,${y}px,0)`;
     gallery.classList.toggle(
       "has-pointer",
-      Boolean(e.target.closest(".object-card")),
+      Boolean(event.target.closest(".object-card")),
     );
   });
-  // An invisible translated cursor still contributes to scrollable overflow.
-  // Clear stale desktop coordinates both on leave and when the gallery shrinks.
-  function resetCursor() {
-    gallery.classList.remove("has-pointer");
-    cursor.style.transform = "translate3d(0,0,0)";
-  }
   gallery.addEventListener("pointerleave", resetCursor);
-  new ResizeObserver(() => {
-    resetCursor();
-    centerActiveCard();
-  }).observe(gallery);
-  window.addEventListener("resize", () => {
-    if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
-    else gallery.scrollLeft = 0;
-  });
-  gallery.addEventListener("pointerdown", (e) => {
-    if (e.button !== 0 || innerWidth <= 768) return;
-    start = e.clientX;
-    pointer = e.pointerId;
+  gallery.addEventListener("scroll", settleAfterScroll, { passive: true });
+  gallery.addEventListener("pointerdown", (event) => {
+    if (isMobile()) {
+      pointerDown = true;
+      touchStartLeft = gallery.scrollLeft;
+      holdAutoplay();
+      return;
+    }
+    if (event.button !== 0) return;
+    start = event.clientX;
+    pointer = event.pointerId;
     drag = true;
     gallery.setPointerCapture(pointer);
   });
-  function release(e) {
-    if (!drag || e.pointerId !== pointer) return;
-    const dx = e.clientX - start;
+  function releaseDesktop(event) {
+    if (!drag || event.pointerId !== pointer) return;
+    const dx = event.clientX - start;
     drag = false;
     if (gallery.hasPointerCapture(pointer))
       gallery.releasePointerCapture(pointer);
-    if (e.type === "pointerup" && Math.abs(dx) > 45)
+    if (event.type === "pointerup" && Math.abs(dx) > 45)
       activate(active + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 7) suppressClickUntil = Date.now() + 350;
     pointer = null;
   }
-  gallery.addEventListener("pointerup", release);
-  gallery.addEventListener("pointercancel", release);
-  gallery.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-      e.preventDefault();
-      activate(active + (e.key === "ArrowRight" ? 1 : -1));
+  function releaseMobilePointer() {
+    if (!pointerDown) return;
+    pointerDown = false;
+    if (Math.abs(gallery.scrollLeft - touchStartLeft) > 8)
+      suppressClickUntil = Date.now() + 350;
+    resumeAutoplay();
+    settleAfterScroll();
+  }
+  gallery.addEventListener("pointerup", releaseDesktop);
+  gallery.addEventListener("pointercancel", releaseDesktop);
+  window.addEventListener("pointerup", releaseMobilePointer);
+  window.addEventListener("pointercancel", releaseMobilePointer);
+  gallery.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      if (isMobile()) pauseAfterTap();
+      activate(active + (event.key === "ArrowRight" ? 1 : -1));
     }
   });
+  gallery.addEventListener("focusin", holdAutoplay);
+  gallery.addEventListener("focusout", resumeAutoplay);
+  document.addEventListener("visibilitychange", scheduleAutoplay);
+  reducedMotionQuery.addEventListener?.("change", scheduleAutoplay);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (entries) => {
+        visible = Boolean(entries[0]?.isIntersecting);
+        scheduleAutoplay();
+      },
+      { threshold: 0.15 },
+    ).observe(gallery);
+  } else visible = true;
+  new ResizeObserver(() => {
+    resetCursor();
+    if (isMobile()) requestAnimationFrame(() => centerActiveCard("instant"));
+  }).observe(gallery);
+  function onResize() {
+    resetCursor();
+    if (isMobile()) {
+      requestAnimationFrame(() => centerActiveCard("instant"));
+      scheduleAutoplay();
+    } else {
+      stopAutoplay();
+      gallery.scrollLeft = 0;
+      activate(active, { center: false });
+    }
+  }
+  window.addEventListener("resize", onResize);
+  mobileQuery.addEventListener?.("change", onResize);
 })();
 
 /** Рельс под рядом шагов (491:667): range листает трек и наоборот. */
@@ -511,10 +758,7 @@
     const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
     const progress = Math.max(0, Math.min(100, Number(input.value) || 0));
     paint(progress);
-    track.scrollTo({
-      left: (maxScroll * progress) / 100,
-      behavior: "smooth",
-    });
+    track.scrollLeft = (maxScroll * progress) / 100;
   });
   track.addEventListener("scroll", syncFromScroll, { passive: true });
   new ResizeObserver(() => {
@@ -522,4 +766,56 @@
     else paint(input.value);
   }).observe(rail);
   paint(input.value);
+})();
+
+
+/** Mobile range control for the advantages carousel. */
+(() => {
+  const rail = document.querySelector("[data-advantage-progress]");
+  const track = document.getElementById("advantage-track");
+  const input = rail?.querySelector('input[type="range"]');
+  const thumb = rail?.querySelector(".advantage-progress__thumb");
+  if (!rail || !track?.carousel || !input || !thumb) return;
+  const api = track.carousel;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+  function paint() {
+    const pages = Math.max(1, api.pages);
+    const last = pages - 1;
+    const position = clamp(api.position, 0, last);
+    input.max = String(last);
+    input.step = last > 0 ? "any" : "1";
+    input.value = position.toFixed(3);
+    input.disabled = last < 1;
+    input.setAttribute(
+      "aria-valuetext",
+      `Преимущество ${Math.round(position) + 1} из ${pages}`,
+    );
+    const travel = Math.max(0, rail.clientWidth - thumb.offsetWidth);
+    const x = last > 0 ? (travel * position) / last : 0;
+    rail.style.setProperty("--advantage-thumb-x", `${x}px`);
+    rail.hidden = last < 1;
+  }
+
+  let scrubbing = false;
+  function stopScrubbing() {
+    if (!scrubbing) return;
+    scrubbing = false;
+    document.documentElement.classList.remove("is-scrubbing");
+  }
+  input.addEventListener("pointerdown", () => {
+    scrubbing = true;
+    document.documentElement.classList.add("is-scrubbing");
+  });
+  window.addEventListener("pointerup", stopScrubbing);
+  window.addEventListener("pointercancel", stopScrubbing);
+  input.addEventListener("blur", stopScrubbing);
+  input.addEventListener("input", () => {
+    api.position = Number(input.value);
+    paint();
+  });
+  track.addEventListener("carouselchange", paint);
+  new ResizeObserver(paint).observe(rail);
+  document.fonts.ready.then(paint);
+  paint();
 })();

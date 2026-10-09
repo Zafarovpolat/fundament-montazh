@@ -24,7 +24,12 @@ for (const id of ["advantage-track", "review-track"]) {
       )
         return;
       busy = true;
-      await track.carousel.advanceLoop();
+      const loop = track.carousel.advanceLoop();
+      if (id === "advantage-track")
+        track.dispatchEvent(new Event("carouselchange"));
+      await loop;
+      if (id === "advantage-track")
+        track.dispatchEvent(new Event("carouselchange"));
       busy = false;
     },
     id === "advantage-track" ? 3200 : 5000,
