@@ -12,7 +12,7 @@ const { foundationUrl } = require("./site-url.cjs");
   await page.goto(foundationUrl);
   await page.evaluate(() => document.fonts.ready);
 
-  for (const width of [1441, 1440, 1281, 1280, 1201, 1200, 1051, 1050, 1025, 1024, 880, 879, 768, 390, 241]) {
+  for (const width of [1441, 1440, 1281, 1280, 1201, 1200, 1051, 1050, 1025, 1024, 880, 879, 768, 390, 375, 241]) {
     await page.setViewportSize({ width, height: width === 241 ? 460 : 900 });
     await page.evaluate(() => new Promise(requestAnimationFrame));
     const state = await page.evaluate(() => {
@@ -32,6 +32,20 @@ const { foundationUrl } = require("./site-url.cjs");
       const track = q("#hero .hero-grid");
       const copySlide = q(".hero-slide--copy");
       const priceSlide = q(".hero-slide--price");
+      const badge = q("#hero .hero-badge");
+      const copyHeading = q("#hero .hero-slide--copy h1");
+      const copyLead = q("#hero .hero-slide--copy .lead");
+      const copyButton = q("#hero .hero-slide--copy .button-row > .button:first-child");
+      const copyButtonLabel = copyButton.querySelector(".button-label");
+      const firstBenefit = q("#hero .hero-benefits li[data-figma-text]");
+      const firstBenefitTextNode = [...firstBenefit.childNodes].find(
+        (node) =>
+          node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0,
+      );
+      const firstBenefitTextRange = document.createRange();
+      if (firstBenefitTextNode) firstBenefitTextRange.selectNode(firstBenefitTextNode);
+      const firstBenefitTextRect = firstBenefitTextRange.getClientRects()[0];
+      const heroBackground = q("#hero > .parallax-surface");
       return {
         width: innerWidth,
         pageWidth: document.documentElement.scrollWidth,
@@ -77,25 +91,44 @@ const { foundationUrl } = require("./site-url.cjs");
           credit: box(q(".footer-legal > .footer-credit")).toJSON(),
         },
         hero: {
-          badge: box(q(".hero-badge")).toJSON(),
-          badgeBackground: getComputedStyle(q(".hero-badge")).backgroundColor,
+          background: box(heroBackground).toJSON(),
+          backgroundPosition: getComputedStyle(heroBackground).position,
+          badge: box(badge).toJSON(),
+          badgeWhiteSpace: getComputedStyle(badge).whiteSpace,
+          badgeBackground: getComputedStyle(badge).backgroundColor,
           badgeRadius: Number.parseFloat(
-            getComputedStyle(q(".hero-badge")).borderTopLeftRadius,
+            getComputedStyle(badge).borderTopLeftRadius,
           ),
-          badgeClientWidth: q(".hero-badge").clientWidth,
-          badgeScrollWidth: q(".hero-badge").scrollWidth,
-          proofCount: q(".hero-badge").querySelectorAll(".hero-proof-item").length,
-          proofBackgrounds: [...q(".hero-badge").querySelectorAll(".hero-proof-item")].map(
+          badgeClientWidth: badge.clientWidth,
+          badgeScrollWidth: badge.scrollWidth,
+          proofCount: badge.querySelectorAll(".hero-proof-item").length,
+          proofBackgrounds: [...badge.querySelectorAll(".hero-proof-item")].map(
             (proof) => getComputedStyle(proof).backgroundColor,
           ),
           separatorDisplay: getComputedStyle(
-            q(".hero-badge .hero-proof-separator"),
+            badge.querySelector(".hero-proof-separator"),
           ).display,
+          heading: box(copyHeading).toJSON(),
+          lead: box(copyLead).toJSON(),
           benefitsColumns: getComputedStyle(
             q(".hero-benefits"),
           ).gridTemplateColumns.trim().split(/\s+/).length,
-          firstBenefit: box(q(".hero-benefits li[data-figma-text]")).toJSON(),
+          firstBenefit: box(firstBenefit).toJSON(),
+          firstBenefitStyle: {
+            fontSize: Number.parseFloat(getComputedStyle(firstBenefit).fontSize),
+            lineHeight: Number.parseFloat(getComputedStyle(firstBenefit).lineHeight),
+            paddingLeft: Number.parseFloat(getComputedStyle(firstBenefit).paddingLeft),
+          },
+          firstBenefitTextX: firstBenefitTextRect?.left ?? null,
           benefitIcon: box(q(".hero-benefits .benefit-icon")).toJSON(),
+          copyButton: box(copyButton).toJSON(),
+          copyButtonLabel: {
+            box: box(copyButtonLabel).toJSON(),
+            whiteSpace: getComputedStyle(copyButtonLabel).whiteSpace,
+            lineHeight: Number.parseFloat(getComputedStyle(copyButtonLabel).lineHeight),
+            scrollWidth: copyButtonLabel.scrollWidth,
+            clientWidth: copyButtonLabel.clientWidth,
+          },
           copyButtonMinHeight: Number.parseFloat(
             getComputedStyle(q(".hero-slide--copy .button[data-motion-button]")).minHeight,
           ),
@@ -179,7 +212,6 @@ const { foundationUrl } = require("./site-url.cjs");
           state.footerLegal.credit.y < state.footerLegal.links.y + state.footerLegal.links.height,
         "legal links and footer credit should share the lower row",
       );
-      assert.ok(state.hero.badge.width <= state.hero.trackWidth + 1);
       assert.notEqual(state.hero.badgeBackground, "rgba(0, 0, 0, 0)");
       assert.ok(state.hero.badgeRadius >= 50);
       assert.equal(state.hero.separatorDisplay, "inline");
@@ -190,13 +222,52 @@ const { foundationUrl } = require("./site-url.cjs");
       );
       assert.ok(
         state.hero.badgeScrollWidth <= state.hero.badgeClientWidth + 1,
-        "hero badge text should wrap inside the single pill without horizontal clipping",
+        "badge text must remain inside one shared pill without horizontal clipping",
       );
       assert.ok(state.hero.copyButtonMinHeight >= 68);
-      assert.ok(
-        Math.abs(state.hero.benefitIcon.y - state.hero.firstBenefit.y) < 1,
-        "benefit icon should align with the first text line",
-      );
+      if (width <= 768) {
+        assert.equal(state.hero.badgeWhiteSpace, "nowrap");
+        assert.ok(state.hero.badge.width > state.hero.trackWidth);
+        assert.equal(state.hero.backgroundPosition, "absolute");
+        assert.ok(state.hero.background.y <= state.hero.copyButton.y + 1);
+        assert.ok(state.hero.background.bottom >= state.hero.copyButton.bottom - 1);
+        assert.equal(state.hero.copyButtonLabel.whiteSpace, "normal");
+        assert.ok(
+          state.hero.copyButtonLabel.scrollWidth <= state.hero.copyButtonLabel.clientWidth + 1,
+          "primary mobile CTA text must wrap instead of clipping",
+        );
+        assert.equal(state.hero.firstBenefitStyle.fontSize, 14);
+        assert.ok(Math.abs(state.hero.firstBenefitStyle.lineHeight - 17.64) < 0.1);
+        assert.equal(state.hero.firstBenefitStyle.paddingLeft, 32);
+        assert.ok(Math.abs(state.hero.firstBenefitTextX - state.hero.firstBenefit.x - 32) < 1);
+        assert.equal(state.hero.benefitIcon.width, 17);
+        assert.ok(
+          Math.abs(
+            state.hero.benefitIcon.y + state.hero.benefitIcon.height / 2 -
+              (state.hero.firstBenefit.y + state.hero.firstBenefit.height / 2),
+          ) < 1,
+          "Figma's 17px benefit marker should be centered beside its two-line copy",
+        );
+        if (width === 375) {
+          // Figma's 597:663 frame includes a 44px iOS status bar; the browser viewport does not.
+          assert.ok(Math.abs(state.hero.badge.y - 125) < 2);
+          assert.ok(Math.abs(state.hero.badge.height - 38) < 2);
+          assert.ok(Math.abs(state.hero.heading.y - 186) < 3);
+          assert.ok(Math.abs(state.hero.lead.y - 377) < 4);
+          assert.ok(Math.abs(state.hero.copyButton.y - 487) < 4);
+          assert.ok(Math.abs(state.hero.copyButton.height - 75) < 1);
+          assert.ok(Math.abs(state.hero.copyButtonLabel.box.height - 32.76) < 1);
+          assert.ok(Math.abs(state.hero.firstBenefit.y - 665) < 4);
+          assert.ok(Math.abs(state.hero.firstBenefit.height - 36) < 2);
+          assert.ok(Math.abs(state.hero.pagerTop - 724) < 3);
+        }
+      } else {
+        assert.ok(state.hero.badge.width <= state.hero.trackWidth + 1);
+        assert.ok(
+          Math.abs(state.hero.benefitIcon.y - state.hero.firstBenefit.y) < 1,
+          "tablet benefit icon should align with the first text line",
+        );
+      }
       if (width >= 769) {
         assert.ok(state.hero.calculatorButtonMinHeight >= 70);
         assert.ok(state.hero.badge.width < state.hero.trackWidth);
@@ -223,7 +294,8 @@ const { foundationUrl } = require("./site-url.cjs");
       assert.ok(
         state.hero.pagerButtons.every(
           (dot) =>
-            Math.abs(dot.width - dot.height) < 0.1 && dot.width <= 6.1,
+            Math.abs(dot.width - dot.height) < 0.1 &&
+            dot.width <= (width <= 768 ? 5.1 : 6.1),
         ),
         "both mobile pager states should be small circles",
       );

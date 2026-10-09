@@ -2630,29 +2630,31 @@ html[data-motion="off"] #hero .hero-grid {
     min-width: 0;
     padding: 0;
   }
-  #hero .hero-badge[data-figma-text] {
+  /* Keep the proof as one content-sized line; the hero clips its tail, not the page. */
+  html #hero .hero-badge[data-figma-text] {
     display: block;
     width: max-content;
     max-width: none;
     margin: 0 0 23px;
-    padding: 10px;
+    padding: 11px 10px;
     border-radius: 999px;
     background: rgb(255 255 255 / 12%);
     font-size: 13px;
     line-height: 16.38px;
     white-space: nowrap;
   }
-  #hero .hero-proof-item {
+  html #hero .hero-badge .hero-proof-item {
     display: inline;
     max-width: none;
     padding: 0;
     border: 0;
     border-radius: 0;
     background: transparent;
-    white-space: inherit;
+    white-space: nowrap;
   }
-  #hero .hero-proof-separator {
+  html #hero .hero-badge .hero-proof-separator {
     display: inline;
+    white-space: nowrap;
   }
   html #hero h1[data-figma-text] {
     max-width: 100%;
@@ -2693,9 +2695,18 @@ html[data-motion="off"] #hero .hero-grid {
     line-height: 16.38px;
     white-space: nowrap;
   }
+  /* The mobile Figma CTA uses a two-line label inside its 75px action. */
+  #hero .button-row > .button:first-child {
+    padding: 21px 71px 21px 21px;
+  }
   #hero .button-row > .button .button-label {
     font-size: 13px;
     line-height: 16.38px;
+    font-weight: 500;
+    letter-spacing: 0.52px;
+  }
+  #hero .button-row > .button:first-child .button-label {
+    white-space: normal;
   }
   #hero .button-row > .button .button-icon {
     top: 5px;
@@ -2724,7 +2735,7 @@ html[data-motion="off"] #hero .hero-grid {
   #hero .hero-slide--copy > .hero-benefits::-webkit-scrollbar {
     display: none;
   }
-  #hero .hero-benefits li {
+  html #hero .hero-benefits li[data-figma-text] {
     position: relative;
     flex: 0 0 auto;
     min-width: 0;
@@ -2739,12 +2750,13 @@ html[data-motion="off"] #hero .hero-grid {
   #hero .hero-benefits li:nth-child(3) { max-width: 143px; }
   #hero .hero-benefits li:nth-child(4) { max-width: 199px; }
   #hero .hero-benefits li:nth-child(5) { max-width: 121px; }
-  #hero .hero-benefits .benefit-icon {
+  html #hero .hero-benefits li[data-figma-text] .benefit-icon {
     position: absolute;
-    top: 0;
-    left: 10px;
-    width: 11px;
-    height: 11px;
+    top: 50%;
+    left: 0;
+    width: 17px;
+    height: 17px;
+    transform: translateY(-50%);
     flex: none;
   }
   #hero .hero-benefits li::before {
@@ -2761,17 +2773,17 @@ html[data-motion="off"] #hero .hero-grid {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 7px;
     width: max-content;
     min-height: 24px;
     margin: 23px auto 0;
-    padding: 9px 13px;
+    padding: 9px 15px;
   }
   #hero .hero-pagination button {
-    width: 6px;
-    height: 6px;
-    min-width: 6px;
-    min-height: 6px;
+    width: 5px;
+    height: 5px;
+    min-width: 5px;
+    min-height: 5px;
     padding: 0;
   }
 
