@@ -4440,8 +4440,20 @@ html[data-motion="off"] #hero .hero-grid {
     max-width: 335px;
     scroll-snap-align: none;
   }
+  html body:not(.home-page) #projects .foundation-card .button[data-motion-button] {
+    padding-left: 20px;
+  }
   html body:not(.home-page) #projects .foundation-progress__fill {
     background: transparent;
+  }
+  html body:not(.home-page) #projects .foundation-progress__thumb {
+    grid-template-columns: 14px 1px 14px;
+    column-gap: 4px;
+    background: #fff;
+  }
+  html body:not(.home-page) #projects .foundation-progress__thumb .figma-icon {
+    width: 7px;
+    height: 14px;
   }
   html body:not(.home-page) #projects .foundation-progress input {
     touch-action: none;
@@ -4567,15 +4579,20 @@ html[data-motion="off"] #hero .hero-grid {
     margin: 20px 0 0;
     padding: 15px 20px 0;
     gap: 0;
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: visible;
+  }
+  html body:not(.home-page) #contacts .footer-cta > .button {
+    position: relative;
+    z-index: 2;
   }
   html body:not(.home-page) #contacts .footer-house {
+    position: relative;
+    z-index: 0;
     width: min(415px, calc(100% + 40px));
     max-width: none;
     height: auto;
     align-self: flex-end;
-    margin: -69px -20px 0 0;
+    margin: -40px 0 0 -20px;
   }
   html body:not(.home-page) #contacts .footer-legal > div {
     align-items: flex-start;

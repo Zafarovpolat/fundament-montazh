@@ -83,6 +83,20 @@ const { foundationUrl } = require("./site-url.cjs");
         projectSnap: getComputedStyle(track).scrollSnapType,
         projectScrollBehavior: getComputedStyle(track).scrollBehavior,
         projectFill: getComputedStyle(progressFill).backgroundColor,
+        projectButtonPaddingLeft: getComputedStyle(
+          document.querySelector("#projects .foundation-card .button[data-motion-button]"),
+        ).paddingLeft,
+        projectProgressThumb: {
+          background: getComputedStyle(
+            document.querySelector("#projects .foundation-progress__thumb"),
+          ).backgroundColor,
+          arrowWidth: document.querySelector(
+            "#projects .foundation-progress__thumb .figma-icon",
+          ).getBoundingClientRect().width,
+          arrowHeight: document.querySelector(
+            "#projects .foundation-progress__thumb .figma-icon",
+          ).getBoundingClientRect().height,
+        },
         projectMaxScroll: track.scrollWidth - track.clientWidth,
         directorFirstLines: lines(
           document.querySelector(
@@ -117,7 +131,12 @@ const { foundationUrl } = require("./site-url.cjs");
         faqSummary: rect(finalQuestion),
         faqDetails: rect(finalQuestion.closest("details")),
         footerCta: rect(footerCta),
+        footerButton: rect(footerCta.querySelector(".button")),
         footerHouse: rect(footerHouse),
+        footerHouseZIndex: getComputedStyle(footerHouse).zIndex,
+        footerButtonZIndex: getComputedStyle(
+          footerCta.querySelector(".button"),
+        ).zIndex,
         footerLegalAlign: getComputedStyle(
           document.querySelector("#contacts .footer-legal > div"),
         ).alignItems,
@@ -142,6 +161,10 @@ const { foundationUrl } = require("./site-url.cjs");
     assert.equal(initial.projectSnap, "none");
     assert.equal(initial.projectScrollBehavior, "auto");
     assert.equal(initial.projectFill, "rgba(0, 0, 0, 0)");
+    assert.equal(initial.projectButtonPaddingLeft, "20px");
+    assert.equal(initial.projectProgressThumb.background, "rgb(255, 255, 255)");
+    assert.equal(initial.projectProgressThumb.arrowWidth, 7);
+    assert.equal(initial.projectProgressThumb.arrowHeight, 14);
     assert.equal(initial.directorFirstLines, 2);
     assert(initial.directorSecondArrowFilter.includes("invert(1)"));
     assert.equal(initial.objectActiveIndex, 2);
@@ -157,9 +180,16 @@ const { foundationUrl } = require("./site-url.cjs");
     assert.equal(initial.faqDetails.width, 335);
     assert.equal(initial.footerCta.x, 0);
     assert.equal(initial.footerCta.width, 375);
-    assert(initial.footerHouse.x >= initial.footerCta.x - 0.5);
-    assert(initial.footerHouse.right <= initial.footerCta.right + 0.5);
+    assert.equal(initial.footerCta.height >= 300, true);
+    assert(Math.abs(initial.footerHouse.x - initial.footerCta.x + 20) < 0.5);
+    assert(initial.footerHouse.right < initial.footerCta.right);
     assert(initial.footerHouse.bottom <= initial.footerCta.bottom + 0.5);
+    assert(
+      initial.footerHouse.y < initial.footerButton.bottom &&
+        initial.footerHouse.bottom > initial.footerButton.y,
+    );
+    assert.equal(initial.footerHouseZIndex, "0");
+    assert.equal(initial.footerButtonZIndex, "2");
     assert.equal(initial.footerLegalAlign, "flex-start");
     assert(initial.footerColumns.x >= 0 && initial.footerColumns.right <= 375);
     assert(initial.footerLegal.x >= 0 && initial.footerLegal.right <= 375);
