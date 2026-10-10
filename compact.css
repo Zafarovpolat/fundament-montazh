@@ -4641,12 +4641,75 @@ html #reviews .heading-description[data-figma-text] {
   color: #00000066;
 }
 html #included .heading-description[data-figma-text] {
-  max-width: 324px;
+  max-width: 374px;
+}
+html #projects .heading-description.with-yellow-rule[data-figma-text] {
+  width: 323px;
+  max-width: 100%;
 }
 html #advantages .heading-description.with-yellow-rule[data-figma-text] {
-  width: 400px;
+  width: 430px;
   max-width: 100%;
   color: #000;
+}
+
+/* Lower the director portrait on desktop without changing tablet/mobile layouts. */
+@media (min-width: 1025px) {
+  html body:not(.home-page) #director .director-portrait {
+    margin-top: 100px;
+  }
+}
+
+/* The visible arrow thumb sits above the transparent range input. */
+html body:not(.home-page) #advantages .advantage-progress__thumb {
+  background: #fff;
+  color: #070b1f;
+}
+
+/* Full-bleed footer CTA; keep the footer's content gutter with its main column. */
+@media (max-width: 768px) {
+  html body:not(.home-page) #contacts .footer-grid {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+  html body:not(.home-page) #contacts .footer-main {
+    --footer-main-inline-padding: var(--gutter);
+    padding-inline: var(--footer-main-inline-padding);
+  }
+  /* footer-main is flattened for mobile ordering, so its children use the same inset. */
+  html body:not(.home-page) #contacts .footer-columns {
+    width: min(
+      calc(
+        100% - var(--footer-main-inline-padding) - var(--footer-main-inline-padding)
+      ),
+      330px
+    );
+    max-width: 100%;
+  }
+  html body:not(.home-page) #contacts .footer-legal {
+    width: min(
+      calc(
+        100% - var(--footer-main-inline-padding) - var(--footer-main-inline-padding)
+      ),
+      335px
+    );
+    max-width: 100%;
+  }
+  html body:not(.home-page) #contacts .footer-cta {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+  html body:not(.home-page) #contacts .footer-cta > .button {
+    white-space: normal;
+  }
+  html body:not(.home-page) #contacts .footer-cta > .button .button-label {
+    width: 173px;
+    max-width: 173px;
+    white-space: normal;
+  }
 }
 
 /* Force price-list titles to wrap at word boundaries into two lines. */

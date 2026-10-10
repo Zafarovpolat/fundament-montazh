@@ -4,6 +4,7 @@ const dialog = document.querySelector("#contact-dialog");
 const title = document.querySelector("#dialog-title");
 const description = document.querySelector("#dialog-description");
 const form = document.querySelector("#contact-form");
+const phoneInput = form.querySelector('input[name="phone"]');
 const info = document.querySelector("#info-content");
 const status = document.querySelector(".form-status");
 let lastFocus;
@@ -125,6 +126,59 @@ document.querySelectorAll("[data-action]").forEach((button) =>
     );
   }),
 );
+function formatRussianPhone(value) {
+  let digits = value.replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits[0] === "8") digits = `7${digits.slice(1)}`;
+  else if (digits[0] !== "7") digits = `7${digits}`;
+  digits = digits.slice(0, 11);
+
+  const local = digits.slice(1);
+  let formatted = "+7";
+  if (local.length) formatted += ` (${local.slice(0, 3)}`;
+  if (local.length >= 3) formatted += ")";
+  if (local.length > 3) formatted += ` ${local.slice(3, 6)}`;
+  if (local.length > 6) formatted += `-${local.slice(6, 8)}`;
+  if (local.length > 8) formatted += `-${local.slice(8, 10)}`;
+  return formatted;
+}
+
+function phoneCaretForDigitCount(value, count) {
+  if (count <= 0) return value.length ? Math.min(2, value.length) : 0;
+  let seen = 0;
+  for (let index = 0; index < value.length; index++) {
+    if (/\d/.test(value[index]) && ++seen >= count) return index + 1;
+  }
+  return value.length;
+}
+
+function applyPhoneMask(input) {
+  const previous = input.value;
+  const selection = input.selectionStart ?? previous.length;
+  const digitsBefore = (previous.slice(0, selection).match(/\d/g) || []).length;
+  const digitsTotal = (previous.match(/\d/g) || []).length;
+  const hasCountryPrefix = /^\s*(?:\+|7|8)/.test(previous);
+  const caretDigits = Math.min(
+    11,
+    digitsBefore + (digitsTotal && !hasCountryPrefix ? 1 : 0),
+  );
+  input.value = formatRussianPhone(previous);
+  const caret = phoneCaretForDigitCount(input.value, caretDigits);
+  input.setSelectionRange(caret, caret);
+}
+
+phoneInput.addEventListener("beforeinput", (event) => {
+  if (event.isComposing || event.inputType.startsWith("delete") || !event.data)
+    return;
+  if (/[^\d+()\s-]/u.test(event.data)) event.preventDefault();
+});
+phoneInput.addEventListener("paste", (event) => {
+  const pasted = event.clipboardData?.getData("text") || "";
+  if (/[^\d+()\s-]/u.test(pasted)) event.preventDefault();
+});
+phoneInput.addEventListener("input", () => applyPhoneMask(phoneInput));
+if (phoneInput.value) applyPhoneMask(phoneInput);
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!form.reportValidity()) return;

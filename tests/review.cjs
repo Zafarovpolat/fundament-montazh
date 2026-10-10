@@ -107,9 +107,11 @@ const { foundationUrl } = require("./site-url.cjs");
       .evaluate((e) => e.scrollWidth <= e.parentElement.clientWidth + 1),
     "Full title must not be clipped",
   );
-  const dr = await p.locator("#director").boundingBox(),
-    photo = await p.locator(".director-photo").boundingBox();
-  assert.ok(photo.y < dr.y - 50);
+  const dr = await p.locator("#director").boundingBox();
+  const portrait = p.locator("#director .director-portrait");
+  const photo = await p.locator(".director-photo").boundingBox();
+  assert.equal(await portrait.evaluate((e) => getComputedStyle(e).marginTop), "100px");
+  assert.ok(photo.y < dr.y, "portrait still protrudes slightly above the section");
   assert.deepEqual(errors, []);
   await b.close();
   console.log(

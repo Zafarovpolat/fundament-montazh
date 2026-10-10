@@ -107,10 +107,10 @@ const assert = require("node:assert/strict");
     30,
   );
   // Число строк подводок берётся из высоты узла макета: 478:1234 — 44 px
-  // (2 строки по 22), 315:770 — 88 px (4 строки при ширине 400 px).
+  // (2 строки по 22), 315:770 — 66 px (3 строки при ширине 430 px).
   for (const [selector, lines] of [
     ["#projects .with-yellow-rule", 2],
-    ["#advantages .with-yellow-rule", 4],
+    ["#advantages .with-yellow-rule", 3],
   ]) {
     assert.ok(
       await p

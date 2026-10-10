@@ -59,12 +59,18 @@ const { foundationUrl } = require("./site-url.cjs");
       includedMaxWidth: getComputedStyle(
         q("#included .heading-description")
       ).maxWidth,
+      projectsWidth: getComputedStyle(
+        q("#projects .heading-description.with-yellow-rule[data-figma-text]")
+      ).width,
       advantagesWidth: getComputedStyle(
         q("#advantages .heading-description.with-yellow-rule[data-figma-text]")
       ).width,
       advantagesColor: getComputedStyle(
         q("#advantages .heading-description.with-yellow-rule[data-figma-text]")
       ).color,
+      directorPortraitMarginTop: getComputedStyle(
+        q("#director .director-portrait")
+      ).marginTop,
       priceTitleLines: [
         ...document.querySelectorAll(
           '#hero .hero-slide--price .price-list h3[data-figma-text="360:582"]',
@@ -93,9 +99,11 @@ const { foundationUrl } = require("./site-url.cjs");
   });
   assert.equal(overrides.reviewsMaxWidth, "400px");
   assert.equal(overrides.reviewsColor, "rgba(0, 0, 0, 0.4)");
-  assert.equal(overrides.includedMaxWidth, "324px");
-  assert.equal(overrides.advantagesWidth, "400px");
+  assert.equal(overrides.includedMaxWidth, "374px");
+  assert.equal(overrides.projectsWidth, "323px");
+  assert.equal(overrides.advantagesWidth, "430px");
   assert.equal(overrides.advantagesColor, "rgb(0, 0, 0)");
+  assert.equal(overrides.directorPortraitMarginTop, "100px");
   assert(
     overrides.priceTitleLines.length > 0 &&
       overrides.priceTitleLines.every((lineCount) => lineCount === 2),

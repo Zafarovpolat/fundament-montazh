@@ -27,11 +27,11 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
     return {
       startTick: getComputedStyle(rail, "::before").backgroundColor,
       endTick: getComputedStyle(rail, "::after").backgroundColor,
-      advantagesMax: getComputedStyle(
+      advantagesWidth: getComputedStyle(
         document.querySelector(
           "#advantages .heading-description.with-yellow-rule",
         ),
-      ).maxWidth,
+      ).width,
       closeShadow: getComputedStyle(
         document.querySelector(".dialog-close"),
       ).boxShadow,
@@ -45,7 +45,7 @@ fs.mkdirSync("tests/artifacts", { recursive: true });
   });
   assert.equal(desktopUi.startTick, "rgb(7, 11, 31)");
   assert.equal(desktopUi.endTick, "rgb(7, 11, 31)");
-  assert.equal(desktopUi.advantagesMax, "430px");
+  assert.equal(desktopUi.advantagesWidth, "430px");
   assert.equal(desktopUi.closeShadow, "none");
   assert.equal(desktopUi.menuScrollbar, "thin");
   assert.equal(desktopUi.menuScroll, "smooth");
