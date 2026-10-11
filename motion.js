@@ -38,11 +38,9 @@
     }
   });
   const main = document.querySelector("main");
-  // The left path rail exists only on some pages (e.g. the foundation page).
   const rail = document.querySelector(".page-path");
-  const hasRail = Boolean(rail);
-  const fill = hasRail ? rail.querySelector(".path-progress") : null;
-  const links = hasRail ? [...rail.querySelectorAll(".path-link")] : [];
+  const fill = rail.querySelector(".path-progress");
+  const links = [...rail.querySelectorAll(".path-link")];
   const sections = links.map((link) =>
     document.getElementById(link.dataset.section),
   );
@@ -64,10 +62,6 @@
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   function measurePath() {
-    if (!hasRail) {
-      measurePending = false;
-      return;
-    }
     const y = window.scrollY;
     const mainTop = main.getBoundingClientRect().top + y;
     const first = sections[0].getBoundingClientRect();
@@ -130,10 +124,8 @@
       ? railStart + railHeight
       : window.scrollY + viewport * 0.42;
     const progress = clamp((point - railStart) / railHeight, 0, 1);
-    if (hasRail) {
-      fill.style.clipPath = `inset(0 0 ${100 - progress * 100}% 0)`;
-      rail.dataset.progress = progress.toFixed(4);
-    }
+    fill.style.clipPath = `inset(0 0 ${100 - progress * 100}% 0)`;
+    rail.dataset.progress = progress.toFixed(4);
     let active = -1;
     anchors.forEach((anchor, index) => {
       if (anchor <= point) active = index;

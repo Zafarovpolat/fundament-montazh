@@ -335,2086 +335,324 @@
       </div>
     </header>
     <main class="home-main" id="main">
-      <section aria-labelledby="home-title" class="home-hero fig-hero" id="hero">
-        <div aria-hidden="true" class="fig-hero__bg"><img alt="" src="assets/figma-360-462@960.webp" /></div>
-        <div class="fig-hero__inner">
-          <div class="fig-hero__copy">
-            <p class="fig-hero__eyebrow">10 лет строим дома · 200+ сданных объектов · 60 000+ подписчиков следят за нами</p>
-            <h1 class="fig-hero__title" id="home-title">Строим дома,<br />за которые отвечаем своим именем</h1>
-            <p class="fig-hero__lead">Проектируем и строим частные дома под ключ в Новосибирске и области.<br />Фиксируем стоимость в договоре. Показываем каждый этап строительства публично.</p>
-            <div class="fig-hero__actions">
-              <a class="button button--yellow" href="#calculator"><span class="button-label">Расчитать стоимость дома</span></a>
-              <a class="button" href="#projects"><span class="button-label">Смотреть проекты и цены</span></a>
-            </div>
-            <ul class="fig-hero__stats">
-              <li><strong>10 лет</strong><span>в строительстве</span></li>
-              <li><strong>200+</strong><span>построенных домов</span></li>
-              <li><strong>60 000+</strong><span>подписчиков в соц. сетях</span></li>
-              <li><strong>5&nbsp;лет</strong><span>честной гарантии</span></li>
-            </ul>
+      <nav aria-label="Путь по разделам страницы" class="page-path" hidden>
+        <div aria-hidden="true" class="path-line"><span class="path-progress"></span></div>
+        <ol>
+          <li><a aria-label="Материалы" class="path-link" data-section="materials" href="#materials"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Материалы</span></a></li>
+          <li><a aria-label="Проекты" class="path-link" data-section="projects" href="#projects"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Проекты</span></a></li>
+          <li><a aria-label="Объекты" class="path-link" data-section="objects" href="#objects"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Объекты</span></a></li>
+          <li><a aria-label="Как строим" class="path-link" data-section="steps" href="#steps"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Как строим</span></a></li>
+          <li><a aria-label="Отзывы" class="path-link" data-section="reviews" href="#reviews"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Отзывы</span></a></li>
+          <li><a aria-label="Контакты" class="path-link" data-section="contacts" href="#contacts"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Контакты</span></a></li>
+        </ol>
+      </nav>
+
+      <section aria-labelledby="home-title" class="home-hero" id="hero">
+        <img alt="" class="home-hero__image" fetchpriority="high" height="822" src="assets/figma-315-298.webp" width="1920" />
+        <div class="home-hero__shade" aria-hidden="true"></div>
+        <div class="container home-hero__content">
+          <ul aria-label="О компании" class="home-hero__proof">
+            <li><strong>10 лет</strong><span>строим дома</span></li>
+            <li><strong>200+</strong><span>сданных объектов</span></li>
+            <li><strong>60 000+</strong><span>подписчиков следят за нами</span></li>
+          </ul>
+          <h1 id="home-title">Строим дома,<br />за которые отвечаем своим именем</h1>
+          <p class="home-hero__lead">Проектируем и строим частные дома под ключ в Новосибирске и области. Фиксируем стоимость в договоре. Показываем каждый этап строительства публично.</p>
+          <div class="home-hero__actions">
+            <button class="button button--yellow" data-action="quote" data-motion-button type="button">
+              <span class="button-label">Рассчитать стоимость дома</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-quote-arrow" xlink:href="assets/icons/sprite.svg#i-quote-arrow"></use></svg></span>
+            </button>
+            <a class="button home-button--light" data-motion-button href="#projects">
+              <span class="button-label">Смотреть проекты и цены</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-light" xlink:href="assets/icons/sprite.svg#i-arrow-light"></use></svg></span>
+            </a>
           </div>
-          <figure class="fig-hero__video">
-            <img alt="" src="assets/figma-495-531.webp" />
-            <div class="fig-hero__controller" aria-hidden="true"><span>1x</span></div>
+        </div>
+      </section>
+
+      <a aria-label="Перейти к видео о строительстве" class="home-video-band" href="#social-proof">
+        <img alt="" decoding="async" height="334" loading="lazy" src="assets/figma-315-791.webp" width="1280" />
+        <span aria-hidden="true" class="home-video-band__play"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-play" xlink:href="assets/icons/sprite.svg#i-play"></use></svg></span>
+        <span class="home-video-band__label">Показываем строительство изнутри</span>
+      </a>
+
+      <section aria-labelledby="safety-title" class="home-section home-safety" id="safety">
+        <div class="container">
+          <div class="home-heading">
+            <h2 id="safety-title">Как мы защищаем ваш бюджет и сроки</h2>
+            <p>Мы заранее прорабатываем все ключевые этапы строительства: от проекта и сметы до сроков и порядка работ. Это позволяет ещё до начала строительства понимать объём работ, бюджет и последовательность этапов — без неожиданных решений в процессе.</p>
+          </div>
+          <div class="home-safety__cards">
+            <article class="home-safety-card">
+              <span aria-hidden="true" class="home-safety-card__mark">01</span>
+              <div><h3>Смета фиксируется до начала работ</h3><p>Любые изменения возможны только по вашему согласованию.</p></div>
+            </article>
+            <article class="home-safety-card">
+              <span aria-hidden="true" class="home-safety-card__mark">02</span>
+              <div><h3>Сроки строительства прописываются в договоре</h3><p>Любые изменения возможны только по вашему согласованию.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="home-process-title" class="home-section home-process home-dark" id="process">
+        <div class="container">
+          <div class="home-heading home-heading--dark">
+            <h2 id="home-process-title">Один договор. Одна смета.<br />Один ответственный.</h2>
+            <p>Ведём строительство под ключ от геологии и проекта до чистовой отделки.</p>
+          </div>
+          <ol class="home-milestones">
+            <li class="home-milestone">
+              <img alt="Геодезический прибор для измерений на участке" decoding="async" height="857" loading="lazy" src="assets/figma-478-1228.webp" width="669" />
+              <div class="home-milestone__copy"><span class="home-milestone__number">01</span><h3>Геология и проектирование</h3><p>Изучаем участок, проектируем дом под грунты, архитектуру и ваш бюджет.</p></div>
+            </li>
+            <li class="home-milestone">
+              <img alt="Монолитная железобетонная плита на строительной площадке" decoding="async" height="517" loading="lazy" src="assets/figma-476-965.webp" width="1022" />
+              <div class="home-milestone__copy"><span class="home-milestone__number">02</span><h3>Фундамент</h3><p>Рассчитываем конструкцию фундамента и строим по проекту.</p></div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section aria-labelledby="materials-title" class="home-section home-materials" id="materials">
+        <div class="container">
+          <div class="home-heading">
+            <h2 id="materials-title">Подберём технологию строительства под ваш дом</h2>
+            <p>Ведём строительство под ключ от геологии и проекта до чистовой отделки.</p>
+          </div>
+          <div aria-label="Технология строительства дома" class="home-tech-tabs" role="tablist">
+            <button aria-controls="home-tech-panel" aria-selected="true" class="home-tech-tab" data-home-tech="gas" id="tech-tab-gas" role="tab" tabindex="0" type="button">Газобетон</button>
+            <button aria-controls="home-tech-panel" aria-selected="false" class="home-tech-tab" data-home-tech="brick" id="tech-tab-brick" role="tab" tabindex="-1" type="button">Кирпич</button>
+            <button aria-controls="home-tech-panel" aria-selected="false" class="home-tech-tab" data-home-tech="timber" id="tech-tab-timber" role="tab" tabindex="-1" type="button">Клеёный брус</button>
+            <button aria-controls="home-tech-panel" aria-selected="false" class="home-tech-tab" data-home-tech="frame" id="tech-tab-frame" role="tab" tabindex="-1" type="button">Каркас</button>
+          </div>
+          <article aria-labelledby="home-tech-title" class="home-tech-panel" id="home-tech-panel" role="tabpanel" tabindex="0">
+            <div class="home-tech-panel__image"><img alt="Современный частный дом" decoding="async" height="822" loading="lazy" src="assets/figma-315-298.webp" width="1920" /></div>
+            <div class="home-tech-panel__content">
+              <p class="eyebrow">Технология строительства</p>
+              <h3 id="home-tech-title">Газобетон</h3>
+              <p>Любые изменения возможны только по вашему согласованию.</p>
+              <dl class="home-tech-facts" id="home-tech-facts"><div><dt>Стоимость</dt><dd id="home-tech-price">от 21 000 ₽/м²</dd></div><div><dt>Срок</dt><dd id="home-tech-duration">4–5 месяцев</dd></div></dl>
+              <button class="button button--dark" data-action="quote" data-motion-button type="button"><span class="button-label">Выбрать</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-dark" xlink:href="assets/icons/sprite.svg#i-arrow-dark"></use></svg></span></button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="director-home-title" class="home-section home-director home-dark" id="director-home">
+        <div class="container home-director__layout">
+          <div class="home-director__copy">
+            <p class="eyebrow">Руководитель «ФундаментМонтаж»</p>
+            <h2 id="director-home-title">За качество каждого дома я отвечаю своим именем</h2>
+            <p>Я — Павел Ремизов, руководитель «ФундаментМонтаж» и инженер-строитель с высшим образованием (СГУПС, Новосибирск). Я публично рассказываю о технологиях строительства и показываю нашу работу аудитории более 60 000 человек. Поэтому всё, чему я учу в своих социальных сетях, становится стандартом работы моей компании.</p>
+            <dl class="home-director__stats">
+              <div><dt>10 лет</dt><dd>в строительстве — каждый этап знаю лично</dd></div>
+              <div><dt>200+</dt><dd>реализованных объектов под моим контролем</dd></div>
+              <div><dt>60 000+</dt><dd>подписчиков следят за нашей работой</dd></div>
+              <div><dt>5 лет</dt><dd>честной гарантии — фиксируем в договоре</dd></div>
+            </dl>
+            <div class="home-director__actions">
+              <button class="button button--yellow" data-action="quote" data-motion-button type="button"><span class="button-label">Получить консультацию по строительству</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-quote-arrow" xlink:href="assets/icons/sprite.svg#i-quote-arrow"></use></svg></span></button>
+              <button class="button home-button--outline" data-action="question" data-motion-button type="button"><span class="button-label">Написать директору</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-question-arrow" xlink:href="assets/icons/sprite.svg#i-question-arrow"></use></svg></span></button>
+            </div>
+          </div>
+          <figure class="home-director__portrait">
+            <img alt="Павел Ремизов, руководитель «ФундаментМонтаж»" decoding="async" height="1448" loading="lazy" src="assets/figma-597-1793.webp" width="1040" />
+            <figcaption><strong>Павел Ремизов</strong><span>Руководитель «ФундаментМонтаж» · инженер-строитель</span></figcaption>
           </figure>
         </div>
       </section>
-      <section class="section" id="advantages-2">
+
+      <section aria-labelledby="projects-title" class="home-section home-projects" id="projects">
         <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2>
-                <span class="heading-line" data-figma-text="315:766"
-                  >Почему нам доверяют</span
-                ><span
-                  class="heading-line heading-line--inset"
-                  data-figma-text="315:767"
-                >
-                  строительство фундамента
-                </span>
-              </h2>
-            </div>
-            <p
-              class="heading-description with-yellow-rule"
-              data-figma-text="315:770"
-            >
-              Не слова — конкретные условия, которые фиксируем в договоре, и
-              реальные объекты, которые можно приехать посмотреть до подписания.
-            </p>
+          <div class="home-heading">
+            <h2 id="projects-title">Готовые проекты<br /><span>с ценами под ключ</span></h2>
+            <p>Любой проект можно адаптировать под ваш участок и пожелания.</p>
           </div>
-          <div class="carousel-bleed">
-            <div
-              class="advantage-grid advantage-grid--static"
-              id="advantage-track-2"
-            >
-              <article data-advantage-art="1">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-748.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:746">
-                    Фиксируем стоимость в договоре
-                  </h3>
-                  <p data-figma-text="315:747">
-                    До начала строительства согласовываем стоимость,
-                    комплектацию и полный объём работ. Если проект и объём работ
-                    не меняются — согласованная стоимость не меняется.
-                  </p>
-                </div>
-              </article>
-              <article data-advantage-art="2">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-753.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:751">
-                    Фиксируем сроки строительства
-                  </h3>
-                  <p data-figma-text="315:752">
-                    До начала работ составляем график строительства и закрепляем
-                    сроки в договоре. Вы заранее понимаете, когда начнётся
-                    каждый этап и когда получите готовый фундамент.
-                  </p>
-                </div>
-              </article>
-              <article data-advantage-art="3">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-758.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:756">
-                    Одна компания отвечает за результат
-                  </h3>
-                  <p data-figma-text="315:757">
-                    Геологи, проектировщики и строительные бригады работают по
-                    единым стандартам «ФундаментМонтаж». Вам не придётся
-                    выяснять, кто отвечает за ошибку — ответственность перед
-                    вами несём мы.
-                  </p>
+          <div aria-label="Фильтры готовых проектов" class="home-project-filters" role="group">
+            <button aria-pressed="true" data-filter="0" type="button">Все</button>
+            <button aria-pressed="false" data-filter="1" type="button">До 100 м²</button>
+            <button aria-pressed="false" data-filter="2" type="button">100–150 м²</button>
+            <button aria-pressed="false" data-filter="3" type="button">150–200 м²</button>
+            <button aria-pressed="false" data-filter="4" type="button">200+ м²</button>
+            <button aria-pressed="false" data-filter="5" type="button">Газобетон</button>
+            <button aria-pressed="false" data-filter="6" type="button">Кирпич</button>
+            <button aria-pressed="false" data-filter="7" type="button">Каркас</button>
+          </div>
+          <div class="home-project-viewport">
+            <div aria-label="Готовые проекты домов" class="home-project-track" data-carousel id="project-track">
+              <article class="home-project-card" data-area="100" data-material="Каркас" data-project>
+                <img alt="Современный частный дом с деревянной отделкой" decoding="async" height="822" loading="lazy" src="assets/figma-315-298.webp" width="1920" />
+                <div class="home-project-card__body">
+                  <p class="eyebrow">Каркасный</p>
+                  <h3>«Уют» 100 м²</h3>
+                  <ul aria-label="Характеристики проекта" class="home-project-card__facts"><li>100 м²</li><li>1 этаж</li><li>3 комнаты</li></ul>
+                  <p class="home-project-card__price">от 2 100 000 ₽ <span>под ключ</span></p>
+                  <button class="button button--dark" data-action="project" data-motion-button type="button"><span class="button-label">Подробнее</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-project-arrow" xlink:href="assets/icons/sprite.svg#i-project-arrow"></use></svg></span></button>
                 </div>
               </article>
             </div>
           </div>
-                  </div>
-      </section>
-      <section aria-labelledby="fig-principle-title" class="home-section fig-principle" id="principle">
-        <div class="container">
-          <div class="fig-principle__head">
-            <p class="fig-principle__eyebrow"><span aria-hidden="true"></span>Наш принцип</p>
-            <h2 id="fig-principle-title">Один договор. Одна смета.<br />Один ответственный.</h2>
-            <p class="fig-principle__lead">Ведём строительство под ключ от геологии и проекта до чистовой отделки.</p>
-          </div>
-          <div class="fig-steps">
-            <article class="fig-steps__card">
-              <div class="fig-steps__media"><img alt="" src="assets/figma-476-965.webp" /><span class="fig-steps__num">01</span></div>
-              <h3>Геология и проектирование</h3>
-              <p>Изучаем участок, проектируем дом под грунты, архитектуру и ваш бюджет</p>
-            </article>
-            <article class="fig-steps__card">
-              <div class="fig-steps__media"><img alt="" src="assets/figma-476-1092.webp" /><span class="fig-steps__num">02</span></div>
-              <h3>Фундамент</h3>
-              <p>Рассчитываем конструкцию фундамента и строим по проекту</p>
-            </article>
-            <article class="fig-steps__card">
-              <div class="fig-steps__media"><img alt="" src="assets/figma-476-1122.webp" /><span class="fig-steps__num">03</span></div>
-              <h3>Коробка дома</h3>
-              <p>Стены, перекрытия, кровля, окна и фасад</p>
-            </article>
-            <article class="fig-steps__card">
-              <div class="fig-steps__media"><img alt="" src="assets/figma-476-1148.webp" /><span class="fig-steps__num">04</span></div>
-              <h3>Инженерные системы</h3>
-              <p>Электрика, отопление, водоснабжение, канализация, вентиляция</p>
-            </article>
-            <article class="fig-steps__card">
-              <div class="fig-steps__media"><img alt="" src="assets/figma-476-1174.webp" /><span class="fig-steps__num">05</span></div>
-              <h3>Отделка</h3>
-              <p>Выполняем предчистовую или чистовую отделку</p>
-            </article>
-            <article class="fig-steps__card">
-              <div class="fig-steps__media"><img alt="" src="assets/figma-476-1200.webp" /><span class="fig-steps__num">06</span></div>
-              <h3>Готовый дом</h3>
-              <p>Принимаете работы — получаете готовый к проживанию дом</p>
-            </article>
-          </div>
+          <p class="empty-projects" hidden>По выбранному фильтру проектов нет.</p>
+          <div class="home-projects__actions"><button class="button button--soft-icon" data-action="catalog" data-motion-button type="button"><span class="button-label">Смотреть все проекты 50+ вариантов</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-dark" xlink:href="assets/icons/sprite.svg#i-arrow-dark"></use></svg></span></button></div>
         </div>
       </section>
-      <section class="section dark director" id="director">
-        <div aria-hidden="true" class="parallax-surface">
-          <img
-            alt=""
-            class="section-background img-reveal"
-            data-parallax="0.065"
-            src="assets/figma-315-298.webp"
-            srcset="
-              assets/figma-315-298@480.webp  480w,
-              assets/figma-315-298@960.webp  960w,
-              assets/figma-315-298.webp     1920w
-            "
-            sizes="(min-width: 1441px) 100vw, (min-width: 1025px) 100vw, (min-width: 641px) 100vw, 100vw"
-            width="1920"
-            height="822"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+
+      <section aria-labelledby="objects-title" class="home-section home-objects" id="objects">
         <div class="container">
-          <div class="director-grid">
-            <div>
-              <div class="section-heading">
-                <div>
-                  <h2 data-figma-text="315:301">
-                    За качество каждого фундамента я отвечаю своим именем
-                  </h2>
-                </div>
-              </div>
-              <p data-figma-text="315:303">
-                Я — Павел Ремизов, руководитель «ФундаментМонтаж» и
-                инженер-строитель с высшим образованием (СГУПС, Новосибирск). Я
-                публично рассказываю о технологиях строительства и показываю
-                нашу работу аудитории более 60 000 человек. Поэтому всё, чему я
-                учу в своих социальных сетях, становится стандартом работы моей
-                компании.
-              </p>
-              <p data-figma-text="315:304">
-                Для меня каждый построенный дом — это не просто очередной
-                договор. Это репутация компании и моя личная репутация.
-              </p>
-              <dl class="stats-grid">
-                <div>
-                  <dt data-figma-text="315:307">10 лет</dt>
-                  <dd data-figma-text="315:308">
-                    в строительстве — каждый этап знаю лично
-                  </dd>
-                </div>
-                <div>
-                  <dt data-figma-text="315:310">200+</dt>
-                  <dd data-figma-text="315:311">
-                    реализованных объектов под моим контролем
-                  </dd>
-                </div>
-                <div>
-                  <dt data-figma-text="315:313">60 000+</dt>
-                  <dd data-figma-text="315:314">
-                    подписчиков следят за нашей работой
-                  </dd>
-                </div>
-                <div>
-                  <dt data-figma-text="315:316">5 лет</dt>
-                  <dd data-figma-text="315:317">
-                    честной гарантии — фиксируем в договоре
-                  </dd>
-                </div>
-              </dl>
-              <div class="director-actions">
-                <button
-                  class="button button--yellow"
-                  data-action="quote"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span class="button-label"
-                    >Получить консультацию по фундаменту</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><svg
-                      class="figma-icon icon-sprite"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <use
-                        href="assets/icons/sprite.svg#i-project-arrow"
-                        xlink:href="assets/icons/sprite.svg#i-project-arrow"
-                      /></svg
-                  ></span>
-                </button>
-                <button
-                  class="button"
-                  data-action="question"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span class="button-label">Написать директору</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><svg
-                      class="figma-icon icon-sprite"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <use
-                        href="assets/icons/sprite.svg#i-project-arrow"
-                        xlink:href="assets/icons/sprite.svg#i-project-arrow"
-                      /></svg
-                  ></span>
-                </button>
-              </div>
-            </div>
-            <figure class="director-portrait">
-              <img
-                alt="Павел Ремизов — руководитель компании"
-                class="director-photo img-reveal"
-                src="assets/figma-597-1793.webp"
-                srcset="
-                  assets/figma-597-1793@480.webp  480w,
-                  assets/figma-597-1793.webp     1040w
-                "
-                sizes="(min-width: 1441px) 679px, (min-width: 1025px) 415px, (min-width: 641px) 420px, 354px"
-                width="1040"
-                height="1448"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                <p class="signature">
-                  <img
-                    alt="Павел Ремизов"
-                    class="signature-art"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/director-signature.png"
-                  />
-                </p>
-                <p data-figma-text="315:323">
-                  Руководитель «ФундаментМонтаж» Инженер-строитель
-                </p>
-              </figcaption>
-            </figure>
+          <div class="home-heading">
+            <h2 id="objects-title">Дома, которые<br /><span>мы уже построили</span></h2>
+            <p>Более 200 готовых объектов в Новосибирске и НСО. Привезём на экскурсию.</p>
           </div>
+          <div aria-label="Построенные дома" aria-roledescription="карусель" class="objects-gallery home-objects-gallery" role="region" tabindex="0">
+            <figure class="object-card is-active" data-object-index="0">
+              <img alt="Частный дом с современной деревянной отделкой" decoding="async" height="822" loading="lazy" src="assets/figma-315-298.webp" width="1920" />
+              <figcaption data-demo-caption="true"><h3>Дом «Классик» 130 м² · Академгородок</h3><p class="object-meta"><span>Газобетон</span><span>5 мес. строительства</span><span>2024 год</span></p><p class="home-object-price">2 800 000 ₽ <span>под ключ</span></p><button class="button button--yellow" data-action="object" data-motion-button type="button"><span class="button-label">Подробнее об объекте</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-project-arrow" xlink:href="assets/icons/sprite.svg#i-project-arrow"></use></svg></span></button></figcaption>
+            </figure>
+            <span aria-hidden="true" class="object-hover-cursor"><svg class="icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-object-cursor" xlink:href="assets/icons/sprite.svg#i-object-cursor"></use></svg></span>
+          </div>
+          <div class="home-objects__actions"><button class="button button--soft-icon" data-action="objects" data-motion-button type="button"><span class="button-label">Все объекты 200+ домов</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-dark" xlink:href="assets/icons/sprite.svg#i-arrow-dark"></use></svg></span></button><button class="button button--dark" data-action="visit" data-motion-button type="button"><span class="button-label">Записаться на экскурсию</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-visit-arrow" xlink:href="assets/icons/sprite.svg#i-visit-arrow"></use></svg></span></button></div>
         </div>
       </section>
-      <section class="section" id="projects">
+
+      <section aria-labelledby="design-title" class="home-section home-design" id="design">
         <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2>
-                <span class="heading-line" data-figma-text="315:645"
-                  >Готовые проекты</span
-                ><span
-                  class="heading-line heading-line--inset"
-                  data-figma-text="315:646"
-                  >с ценами под ключ</span
-                >
-              </h2>
-            </div>
-            <p
-              class="heading-description with-yellow-rule"
-              data-figma-text="315:649"
-            >
-              Любой проект можно адаптировать под ваш участок и пожелания.
-            </p>
+          <div class="home-heading">
+            <p class="eyebrow">Индивидуальное проектирование под ключ</p>
+            <h2 id="design-title">Проект дома под ваши задачи</h2>
+            <p>Выберите готовое решение или закажите индивидуальный проект — мы адаптируем его под участок, состав семьи и бюджет.</p>
           </div>
-          <div class="catalog-toolbar">
-            <div aria-label="Фильтры проектов" class="filters">
-              <button
-                aria-pressed="false"
-                data-figma-text="315:653"
-                data-filter="0"
-                type="button"
-              >
-                Все</button
-              ><button
-                aria-pressed="false"
-                data-figma-text="315:655"
-                data-filter="1"
-                type="button"
-              >
-                До 100 м²</button
-              ><button
-                aria-pressed="false"
-                data-figma-text="315:657"
-                data-filter="2"
-                type="button"
-              >
-                100-150 м²</button
-              ><button
-                aria-pressed="false"
-                data-figma-text="315:659"
-                data-filter="3"
-                type="button"
-              >
-                150-200 м²</button
-              ><button
-                aria-pressed="false"
-                data-figma-text="315:661"
-                data-filter="4"
-                type="button"
-              >
-                200+ м²</button
-              ><button
-                aria-pressed="false"
-                data-figma-text="315:663"
-                data-filter="5"
-                type="button"
-              >
-                Газобетон</button
-              ><button
-                aria-pressed="false"
-                data-figma-text="315:665"
-                data-filter="6"
-                type="button"
-              >
-                Кирпич</button
-              ><button
-                aria-pressed="true"
-                data-figma-text="315:667"
-                data-filter="7"
-                type="button"
-              >
-                Каркас
-              </button>
-            </div>
-            <div class="carousel-controls">
-              <button
-                aria-label="Предыдущие проекты"
-                data-scroll="-1"
-                data-target="project-track"
-              >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  class="figma-icon"
-                  decoding="async"
-                  src="assets/icons/arrow-left.svg"
-                /></button
-              ><button
-                aria-label="Следующие проекты"
-                data-scroll="1"
-                data-target="project-track"
-              >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  class="figma-icon"
-                  decoding="async"
-                  src="assets/icons/arrow-right.svg"
-                />
-              </button>
-            </div>
-          </div>
-          <div class="carousel-bleed">
-            <div
-              aria-label="Проекты домов"
-              class="card-track fidelity-track"
-              data-carousel=""
-              id="project-track"
-              tabindex="0"
-            >
-              <article
-                class="project-card"
-                data-area="100"
-                data-material="Каркас"
-                data-project=""
-              >
-                <div class="project-picture">
-                  <img
-                    alt="Проект каркасного дома «Уют»"
-                    class="project-frame is-active"
-                    data-photo="0"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-674_124-246.webp"
-                  /><span class="badge" data-figma-text="I315:674;124:280"
-                    >Каркасный</span
-                  >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--1"
-                    data-photo="1"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-674_124-246.webp"
-                  /><img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--2"
-                    data-photo="2"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-674_124-246.webp"
-                  />
-                  <div
-                    aria-label="Виды фотографии проекта"
-                    class="project-pagination"
-                    role="group"
-                  >
-                    <button
-                      aria-label="Общий вид"
-                      aria-pressed="true"
-                      data-photo-index="0"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 2"
-                      aria-pressed="false"
-                      data-photo-index="1"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 3"
-                      aria-pressed="false"
-                      data-photo-index="2"
-                      type="button"
-                    ></button>
-                  </div>
-                </div>
-                <div class="project-title">
-                  <h3 data-figma-text="I315:674;124:146">«Уют» 100 м²</h3>
-                  <p>
-                    <span class="" data-figma-text="I315:674;124:149"
-                      >от 2 100 000 ₽</span
-                    >
-                    <small class="" data-figma-text="I315:674;124:152"
-                      >под ключ</small
-                    >
-                  </p>
-                </div>
-                <ul class="inline-list">
-                  <li data-figma-text="I315:674;124:162">100 м²</li>
-                  <li data-figma-text="I315:674;124:166">1 этаж</li>
-                  <li data-figma-text="I315:674;124:169">3 комнаты</li>
-                </ul>
-                <button
-                  class="button button--dark"
-                  data-action="project"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span
-                    class="button-label"
-                    data-figma-text="I315:674;124:232;124:190"
-                    >Подробнее</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><img
-                      alt=""
-                      aria-hidden="true"
-                      class="figma-icon"
-                      decoding="async"
-                      src="assets/icons/project-arrow.svg"
-                  /></span>
-                </button>
-              </article>
-              <article
-                class="project-card"
-                data-area="100"
-                data-material="Каркас"
-                data-project=""
-              >
-                <div class="project-picture">
-                  <img
-                    alt="Проект каркасного дома «Уют»"
-                    class="project-frame is-active"
-                    data-photo="0"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-675_124-246.webp"
-                  /><span class="badge" data-figma-text="I315:675;124:280"
-                    >Каркасный</span
-                  >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--1"
-                    data-photo="1"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-675_124-246.webp"
-                  /><img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--2"
-                    data-photo="2"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-675_124-246.webp"
-                  />
-                  <div
-                    aria-label="Виды фотографии проекта"
-                    class="project-pagination"
-                    role="group"
-                  >
-                    <button
-                      aria-label="Общий вид"
-                      aria-pressed="true"
-                      data-photo-index="0"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 2"
-                      aria-pressed="false"
-                      data-photo-index="1"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 3"
-                      aria-pressed="false"
-                      data-photo-index="2"
-                      type="button"
-                    ></button>
-                  </div>
-                </div>
-                <div class="project-title">
-                  <h3 data-figma-text="I315:675;124:146">«Уют» 100 м²</h3>
-                  <p>
-                    <span class="" data-figma-text="I315:675;124:149"
-                      >от 2 100 000 ₽</span
-                    >
-                    <small class="" data-figma-text="I315:675;124:152"
-                      >под ключ</small
-                    >
-                  </p>
-                </div>
-                <ul class="inline-list">
-                  <li data-figma-text="I315:675;124:162">100 м²</li>
-                  <li data-figma-text="I315:675;124:166">1 этаж</li>
-                  <li data-figma-text="I315:675;124:169">3 комнаты</li>
-                </ul>
-                <button
-                  class="button button--dark"
-                  data-action="project"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span
-                    class="button-label"
-                    data-figma-text="I315:675;124:232;124:190"
-                    >Подробнее</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><img
-                      alt=""
-                      aria-hidden="true"
-                      class="figma-icon"
-                      decoding="async"
-                      src="assets/icons/project-arrow.svg"
-                  /></span>
-                </button>
-              </article>
-              <article
-                class="project-card"
-                data-area="100"
-                data-material="Каркас"
-                data-project=""
-              >
-                <div class="project-picture">
-                  <img
-                    alt="Проект каркасного дома «Уют»"
-                    class="project-frame is-active"
-                    data-photo="0"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-676_124-246.webp"
-                  /><span class="badge" data-figma-text="I315:676;124:280"
-                    >Каркасный</span
-                  >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--1"
-                    data-photo="1"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-676_124-246.webp"
-                  /><img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--2"
-                    data-photo="2"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-676_124-246.webp"
-                  />
-                  <div
-                    aria-label="Виды фотографии проекта"
-                    class="project-pagination"
-                    role="group"
-                  >
-                    <button
-                      aria-label="Общий вид"
-                      aria-pressed="true"
-                      data-photo-index="0"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 2"
-                      aria-pressed="false"
-                      data-photo-index="1"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 3"
-                      aria-pressed="false"
-                      data-photo-index="2"
-                      type="button"
-                    ></button>
-                  </div>
-                </div>
-                <div class="project-title">
-                  <h3 data-figma-text="I315:676;124:146">«Уют» 100 м²</h3>
-                  <p>
-                    <span class="" data-figma-text="I315:676;124:149"
-                      >от 2 100 000 ₽</span
-                    >
-                    <small class="" data-figma-text="I315:676;124:152"
-                      >под ключ</small
-                    >
-                  </p>
-                </div>
-                <ul class="inline-list">
-                  <li data-figma-text="I315:676;124:162">100 м²</li>
-                  <li data-figma-text="I315:676;124:166">1 этаж</li>
-                  <li data-figma-text="I315:676;124:169">3 комнаты</li>
-                </ul>
-                <button
-                  class="button button--dark"
-                  data-action="project"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span
-                    class="button-label"
-                    data-figma-text="I315:676;124:232;124:190"
-                    >Подробнее</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><img
-                      alt=""
-                      aria-hidden="true"
-                      class="figma-icon"
-                      decoding="async"
-                      src="assets/icons/project-arrow.svg"
-                  /></span>
-                </button>
-              </article>
-              <article
-                class="project-card"
-                data-area="100"
-                data-material="Каркас"
-                data-project=""
-              >
-                <div class="project-picture">
-                  <img
-                    alt="Проект каркасного дома «Уют»"
-                    class="project-frame is-active"
-                    data-photo="0"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-677_124-246.webp"
-                  /><span class="badge" data-figma-text="I315:677;124:280"
-                    >Каркасный</span
-                  >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--1"
-                    data-photo="1"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-677_124-246.webp"
-                  /><img
-                    alt=""
-                    aria-hidden="true"
-                    class="project-frame project-frame--2"
-                    data-photo="2"
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-677_124-246.webp"
-                  />
-                  <div
-                    aria-label="Виды фотографии проекта"
-                    class="project-pagination"
-                    role="group"
-                  >
-                    <button
-                      aria-label="Общий вид"
-                      aria-pressed="true"
-                      data-photo-index="0"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 2"
-                      aria-pressed="false"
-                      data-photo-index="1"
-                      type="button"
-                    ></button
-                    ><button
-                      aria-label="Фрагмент фотографии 3"
-                      aria-pressed="false"
-                      data-photo-index="2"
-                      type="button"
-                    ></button>
-                  </div>
-                </div>
-                <div class="project-title">
-                  <h3 data-figma-text="I315:677;124:146">«Уют» 100 м²</h3>
-                  <p>
-                    <span class="" data-figma-text="I315:677;124:149"
-                      >от 2 100 000 ₽</span
-                    >
-                    <small class="" data-figma-text="I315:677;124:152"
-                      >под ключ</small
-                    >
-                  </p>
-                </div>
-                <ul class="inline-list">
-                  <li data-figma-text="I315:677;124:162">100 м²</li>
-                  <li data-figma-text="I315:677;124:166">1 этаж</li>
-                  <li data-figma-text="I315:677;124:169">3 комнаты</li>
-                </ul>
-                <button
-                  class="button button--dark"
-                  data-action="project"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span
-                    class="button-label"
-                    data-figma-text="I315:677;124:232;124:190"
-                    >Подробнее</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><img
-                      alt=""
-                      aria-hidden="true"
-                      class="figma-icon"
-                      decoding="async"
-                      src="assets/icons/project-arrow.svg"
-                  /></span>
-                </button>
-              </article>
-            </div>
-          </div>
-          <p class="empty-projects" hidden="">
-            В макете нет проектов по этому фильтру.
-          </p>
-          <div class="section-actions">
-            <button
-              class="button button--soft-icon"
-              data-action="catalog"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="315:679"
-                >Смотреть все проекты 50+ вариантов</span
-              ><span aria-hidden="true" class="button-icon"
-                ><img
-                  alt=""
-                  aria-hidden="true"
-                  class="figma-icon"
-                  decoding="async"
-                  src="assets/icons/arrow-dark.svg"
-              /></span>
-            </button>
-          </div>
-        </div>
-      </section>
-      <section class="section" id="objects">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2>
-                <span class="heading-line" data-figma-text="315:689"
-                  >Фундаменты,</span
-                ><span
-                  class="heading-line heading-line--inset"
-                  data-figma-text="315:690"
-                  >которые мы построили</span
-                >
-              </h2>
-            </div>
-            <p class="heading-description">
-              <span class="" data-figma-text="315:692"
-                >Реальные объекты в Новосибирске и НСО.</span
-              ><span class="" data-figma-text="315:693"
-                >Привезём на экскурсию до подписания договора.</span
-              >
-            </p>
-          </div>
-          <div
-            aria-label="Построенные дома. Перетаскивайте фотографии или используйте стрелки клавиатуры."
-            aria-roledescription="карусель"
-            class="objects-gallery"
-            role="region"
-            tabindex="0"
-          >
-            <figure class="featured-object object-card" data-object-index="0">
-              <img
-                alt="Построенный загородный дом"
-                class=""
-                decoding="async"
-                draggable="false"
-                loading="lazy"
-                src="assets/figma-495-531.webp"
-              />
-              <figcaption
-                aria-label="Демонстрационные данные центрального объекта"
-                data-demo-caption="true"
-              >
-                <h3 class="" data-figma-text="315:704">
-                  Ленточный фундамент 180 пм · Бердск
-                </h3>
-                <p class="object-meta">
-                  <span class="" data-figma-text="315:706"
-                    >Под газобетонный дом 130 м²</span
-                  ><span class="" data-figma-text="315:708">6 дней</span
-                  ><span class="" data-figma-text="315:710">2024 год</span>
-                </p>
-                <ul class="object-tags">
-                  <li>Ленточный</li>
-                  <li>Глубина 1.8м</li>
-                  <li>М300</li>
-                </ul>
-              </figcaption>
-            </figure>
-            <figure class="featured-object object-card" data-object-index="1">
-              <img
-                alt="Построенный загородный дом"
-                class=""
-                decoding="async"
-                draggable="false"
-                loading="lazy"
-                src="assets/figma-495-533.webp"
-              />
-              <figcaption
-                aria-label="Демонстрационные данные центрального объекта"
-                data-demo-caption="true"
-              >
-                <h3 class="" data-figma-text="315:704">
-                  Ленточный фундамент 180 пм · Бердск
-                </h3>
-                <p class="object-meta">
-                  <span class="" data-figma-text="315:706"
-                    >Под газобетонный дом 130 м²</span
-                  ><span class="" data-figma-text="315:708">6 дней</span
-                  ><span class="" data-figma-text="315:710">2024 год</span>
-                </p>
-                <ul class="object-tags">
-                  <li>Ленточный</li>
-                  <li>Глубина 1.8м</li>
-                  <li>М300</li>
-                </ul>
-              </figcaption>
-            </figure>
-            <figure
-              class="featured-object object-card is-active source-object"
-              data-object-index="2"
-            >
-              <img
-                alt="Дом «Классик», Академгородок"
-                class="img-reveal"
-                src="assets/figma-495-535.webp"
-                srcset="
-                  assets/figma-495-535@480.webp 480w,
-                  assets/figma-495-535.webp     693w
-                "
-                sizes="(min-width: 1441px) 693px, (min-width: 1025px) 422px, (min-width: 641px) 289px, 100vw"
-                width="693"
-                height="975"
-                loading="lazy"
-                decoding="async"
-                draggable="false"
-              />
-              <figcaption>
-                <h3 class="" data-figma-text="315:704">
-                  Ленточный фундамент 180 пм · Бердск
-                </h3>
-                <p class="object-meta">
-                  <span class="" data-figma-text="315:706"
-                    >Под газобетонный дом 130 м²</span
-                  ><span class="" data-figma-text="315:708">6 дней</span
-                  ><span class="" data-figma-text="315:710">2024 год</span>
-                </p>
-                <ul class="object-tags">
-                  <li>Ленточный</li>
-                  <li>Глубина 1.8м</li>
-                  <li>М300</li>
-                </ul>
-              </figcaption>
-            </figure>
-            <figure class="featured-object object-card" data-object-index="3">
-              <img
-                alt="Завершённый объект"
-                class=""
-                decoding="async"
-                draggable="false"
-                loading="lazy"
-                src="assets/figma-495-556.webp"
-              />
-              <figcaption
-                aria-label="Демонстрационные данные центрального объекта"
-                data-demo-caption="true"
-              >
-                <h3 class="" data-figma-text="315:704">
-                  Ленточный фундамент 180 пм · Бердск
-                </h3>
-                <p class="object-meta">
-                  <span class="" data-figma-text="315:706"
-                    >Под газобетонный дом 130 м²</span
-                  ><span class="" data-figma-text="315:708">6 дней</span
-                  ><span class="" data-figma-text="315:710">2024 год</span>
-                </p>
-                <ul class="object-tags">
-                  <li>Ленточный</li>
-                  <li>Глубина 1.8м</li>
-                  <li>М300</li>
-                </ul>
-              </figcaption>
-            </figure>
-            <figure class="featured-object object-card" data-object-index="4">
-              <img
-                alt="Завершённый объект"
-                class=""
-                decoding="async"
-                draggable="false"
-                loading="lazy"
-                src="assets/figma-495-558.webp"
-              />
-              <figcaption
-                aria-label="Демонстрационные данные центрального объекта"
-                data-demo-caption="true"
-              >
-                <h3 class="" data-figma-text="315:704">
-                  Ленточный фундамент 180 пм · Бердск
-                </h3>
-                <p class="object-meta">
-                  <span class="" data-figma-text="315:706"
-                    >Под газобетонный дом 130 м²</span
-                  ><span class="" data-figma-text="315:708">6 дней</span
-                  ><span class="" data-figma-text="315:710">2024 год</span>
-                </p>
-                <ul class="object-tags">
-                  <li>Ленточный</li>
-                  <li>Глубина 1.8м</li>
-                  <li>М300</li>
-                </ul>
-              </figcaption>
-            </figure>
-            <span aria-hidden="true" class="object-hover-cursor"
-              ><svg class="icon-sprite" aria-hidden="true" focusable="false">
-                <use
-                  href="assets/icons/sprite.svg#i-object-cursor"
-                  xlink:href="assets/icons/sprite.svg#i-object-cursor"
-                /></svg
-            ></span>
-          </div>
-          <div class="section-actions centered">
-            <button
-              class="button button--soft-icon"
-              data-action="objects"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="315:726"
-                >Все объекты на Youtube</span
-              ><span aria-hidden="true" class="button-icon"
-                ><svg
-                  class="figma-icon icon-sprite"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use
-                    href="assets/icons/sprite.svg#i-arrow-dark"
-                    xlink:href="assets/icons/sprite.svg#i-arrow-dark"
-                  /></svg
-              ></span></button
-            ><button
-              class="button button--dark"
-              data-action="visit"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="315:730"
-                >Записаться на экскурсию на стройку</span
-              ><span aria-hidden="true" class="button-icon"
-                ><svg
-                  class="figma-icon icon-sprite"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use
-                    href="assets/icons/sprite.svg#i-visit-arrow"
-                    xlink:href="assets/icons/sprite.svg#i-visit-arrow"
-                  /></svg
-              ></span>
-            </button>
-          </div>
-        </div>
-      </section>
-      <section class="section dark" id="design">
-        <div aria-hidden="true" class="parallax-surface">
-          <img
-            alt=""
-            class="section-background"
-            data-parallax="0.065"
-            decoding="async"
-            loading="lazy"
-            src="assets/figma-315-325.webp"
-          />
-        </div>
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2 data-figma-text="315:329">
-                индивидуальное проектирование под ключ
-              </h2>
-            </div>
-          </div>
-          <ol class="service-grid">
-            <li>
-              <h3 data-figma-text="315:334">Индивидуальный проект</h3>
-              <p data-figma-text="315:335">
-                Разработаем планировку и архитектуру с учётом участка, состава
-                семьи, образа жизни и бюджета строительства.
-              </p>
-            </li>
-            <li>
-              <h3 data-figma-text="315:344">Готовые проекты</h3>
-              <p data-figma-text="315:345">
-                Проекты домов разных площадей и планировок с понятными
-                характеристиками и ориентировочной стоимостью строительства.
-              </p>
-            </li>
-            <li>
-              <h3 data-figma-text="315:339">Адаптация проекта</h3>
-              <p data-figma-text="315:340">
-                Скорректируем планировку, посадку на участок, конструктивные
-                решения и материалы с учётом условий строительства.
-              </p>
-            </li>
-            <li>
-              <h3 data-figma-text="315:349">3D-визуализация</h3>
-              <p data-figma-text="315:350">
-                Заранее согласуем архитектуру, фасады и материалы, чтобы вносить
-                изменения в проект, а не на стройплощадке.
-              </p>
-            </li>
+          <ol class="home-service-grid">
+            <li><span class="home-service-grid__number">01</span><h3>Индивидуальный проект</h3><p>Разработаем планировку и архитектуру с учётом участка, состава семьи, образа жизни и бюджета строительства.</p></li>
+            <li><span class="home-service-grid__number">02</span><h3>Готовые проекты</h3><p>Проекты домов разных площадей и планировок с понятными характеристиками и ориентировочной стоимостью строительства.</p></li>
+            <li><span class="home-service-grid__number">03</span><h3>Адаптация проекта</h3><p>Скорректируем планировку, посадку на участок, конструктивные решения и материалы с учётом условий строительства.</p></li>
+            <li><span class="home-service-grid__number">04</span><h3>3D-визуализация</h3><p>Заранее согласуем архитектуру, фасады и материалы, чтобы вносить изменения в проект, а не на стройплощадке.</p></li>
           </ol>
         </div>
       </section>
-      <section class="section" id="advantages">
+
+      <section aria-labelledby="advantages-title" class="home-section home-advantages" id="advantages">
         <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2>
-                <span class="heading-line" data-figma-text="315:766"
-                  >Почему нам доверяют</span
-                ><span
-                  class="heading-line heading-line--inset"
-                  data-figma-text="315:767"
-                >
-                  строительство фундамента
-                </span>
-              </h2>
-            </div>
-            <p
-              class="heading-description with-yellow-rule"
-              data-figma-text="315:770"
-            >
-              Не слова — конкретные условия, которые фиксируем в договоре, и
-              реальные объекты, которые можно приехать посмотреть до подписания.
-            </p>
+          <div class="home-heading">
+            <h2 id="advantages-title">Почему нам доверяют строительство дома</h2>
+            <p>Не обещания на словах — условия, которые мы готовы зафиксировать в договоре и показать на реальных объектах.</p>
           </div>
-          <div class="carousel-bleed">
-            <div
-              class="advantage-grid fidelity-track"
-              data-carousel=""
-              id="advantage-track"
-            >
-              <article data-advantage-art="1">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-748.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:746">
-                    Фиксируем стоимость в договоре
-                  </h3>
-                  <p data-figma-text="315:747">
-                    До начала строительства согласовываем стоимость,
-                    комплектацию и полный объём работ. Если проект и объём работ
-                    не меняются — согласованная стоимость не меняется.
-                  </p>
-                </div>
-              </article>
-              <article data-advantage-art="2">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-753.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:751">
-                    Фиксируем сроки строительства
-                  </h3>
-                  <p data-figma-text="315:752">
-                    До начала работ составляем график строительства и закрепляем
-                    сроки в договоре. Вы заранее понимаете, когда начнётся
-                    каждый этап и когда получите готовый фундамент.
-                  </p>
-                </div>
-              </article>
-              <article data-advantage-art="3">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-758.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:756">
-                    Одна компания отвечает за результат
-                  </h3>
-                  <p data-figma-text="315:757">
-                    Геологи, проектировщики и строительные бригады работают по
-                    единым стандартам «ФундаментМонтаж». Вам не придётся
-                    выяснять, кто отвечает за ошибку — ответственность перед
-                    вами несём мы.
-                  </p>
-                </div>
-              </article>
-              <article data-advantage-art="4">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-763.webp"
-                />
-                <div class="advantage-copy">
-                  <h3 data-figma-text="315:761">
-                    Проектируем до начала строительства
-                  </h3>
-                  <p data-figma-text="315:762">
-                    Не принимаем конструктивные решения «по месту». Сначала
-                    геология, потом расчёт нагрузок и проект — и только потом
-                    выходим на стройплощадку.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div class="carousel-controls advantage-controls">
-            <button
-              aria-label="Предыдущие преимущества"
-              data-scroll="-1"
-              data-target="advantage-track"
-            >
-              <svg
-                class="figma-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-arrow-left"
-                  xlink:href="assets/icons/sprite.svg#i-arrow-left"
-                />
-              </svg></button
-            ><button
-              aria-label="Следующие преимущества"
-              data-scroll="1"
-              data-target="advantage-track"
-            >
-              <svg
-                class="figma-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-arrow-right"
-                  xlink:href="assets/icons/sprite.svg#i-arrow-right"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="advantage-progress" data-advantage-progress>
-            <span aria-hidden="true" class="advantage-progress__line"></span>
-            <span aria-hidden="true" class="advantage-progress__thumb">
-              <svg class="figma-icon icon-sprite" focusable="false">
-                <use href="assets/icons/sprite.svg#i-chevron-left" xlink:href="assets/icons/sprite.svg#i-chevron-left"></use>
-              </svg>
-              <span class="advantage-progress__divider"></span>
-              <svg class="figma-icon icon-sprite" focusable="false">
-                <use href="assets/icons/sprite.svg#i-chevron-right" xlink:href="assets/icons/sprite.svg#i-chevron-right"></use>
-              </svg>
-            </span>
-            <input
-              aria-controls="advantage-track"
-              aria-label="Положение в карусели преимуществ"
-              max="100"
-              min="0"
-              step="any"
-              type="range"
-              value="0"
-            />
+          <div class="home-advantage-grid">
+            <article><img alt="" decoding="async" height="236" loading="lazy" src="assets/figma-315-748.webp" width="186" /><div><h3>Цена фиксирована в договоре</h3><p>Согласовываем стоимость, комплектацию и объём работы. Если проект и объём работ не меняются — согласованная стоимость остаётся прежней.</p></div></article>
+            <article><img alt="" decoding="async" height="234" loading="lazy" src="assets/figma-315-753.webp" width="199" /><div><h3>Фиксируем сроки строительства</h3><p>До начала работ составляем график строительства и закрепляем сроки в договоре. Вы заранее понимаете, когда начнётся строительство и когда получите готовый дом.</p></div></article>
           </div>
         </div>
       </section>
-      <section class="section dark" id="calculator">
-        <div aria-hidden="true" class="parallax-surface">
-          <img
-            alt=""
-            class="section-background img-reveal"
-            data-parallax="0.065"
-            src="assets/figma-315-359.webp"
-            srcset="
-              assets/figma-315-359@480.webp  480w,
-              assets/figma-315-359@960.webp  960w,
-              assets/figma-315-359.webp     1920w
-            "
-            sizes="(min-width: 1441px) 100vw, (min-width: 1025px) 100vw, (min-width: 641px) 100vw, 100vw"
-            width="1920"
-            height="845"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+
+      <section aria-labelledby="calculator-title" class="home-section home-calculator home-dark" id="calculator">
         <div class="container">
-          <div class="section-heading section-heading--quiz">
-            <h2>
-              <span data-figma-text="315:361" id="quiz-title"
-                >Рассчитайте стоимость<br />
-                фундамента за 2 минуты</span
-              >
-            </h2>
-            <p class="heading-description" data-figma-text="315:362">
-              Ответьте на 4 вопроса — пришлём смету и скидку 3% за онлайн-заявку
-            </p>
+          <div class="home-heading home-heading--dark">
+            <h2 id="calculator-title">Расскажите, какой дом вы планируете</h2>
+            <p>Ответьте на 4 вопроса, чтобы добавить ваши пожелания в заявку.</p>
           </div>
-          <p class="quiz-question" data-figma-text="495:580" id="quiz-question">
-            Какой тип фундамента вас интересует?
-          </p>
-          <div
-            aria-labelledby="quiz-question"
-            class="quiz-options"
-            role="group"
-          >
-            <button
-              aria-pressed="true"
-              data-figma-text="315:374"
-              data-quiz-option="0"
-              type="button"
-            >
-              Ленточный фундамент</button
-            ><button
-              aria-pressed="false"
-              data-figma-text="315:376"
-              data-quiz-option="1"
-              type="button"
-            >
-              Монолитная плита</button
-            ><button
-              aria-pressed="false"
-              data-figma-text="315:378"
-              data-quiz-option="2"
-              type="button"
-            >
-              Свайный фундамент</button
-            ><button
-              aria-pressed="false"
-              data-figma-text="315:380"
-              data-quiz-option="3"
-              type="button"
-            >
-              Не знаю — помогите выбрать
-            </button>
+          <p class="home-quiz-question" id="quiz-question">Какую технологию строительства вы рассматриваете?</p>
+          <div aria-labelledby="quiz-question" class="quiz-options home-quiz-options" role="group">
+            <button aria-pressed="true" data-quiz-option="0" type="button">Кирпич (надёжность, статус)</button>
+            <button aria-pressed="false" data-quiz-option="1" type="button">Газобетон (тепло, доступно)</button>
+            <button aria-pressed="false" data-quiz-option="2" type="button">Клеёный брус (натуральность, премиум)</button>
+            <button aria-pressed="false" data-quiz-option="3" type="button">Каркас (быстро, бюджетно)</button>
           </div>
-          <div class="quiz-progress">
-            <progress
-              aria-label="Прогресс расчёта"
-              id="quiz-progress"
-              max="4"
-              value="1"
-            ></progress>
-            <div>
-              <span aria-live="polite" class="quiz-count"
-                ><span data-figma-text="315:368" id="quiz-step">1</span
-                ><span class="quiz-count-sep" data-figma-text="315:369">|</span
-                ><span data-figma-text="315:370">4</span></span
-              ><span data-figma-text="315:371" id="quiz-percent">25%</span>
-            </div>
+          <div class="quiz-progress home-quiz-progress">
+            <progress aria-label="Прогресс расчёта" id="quiz-progress" max="4" value="1"></progress>
+            <div><span aria-live="polite" class="quiz-count"><span id="quiz-step">1</span><span class="quiz-count-sep">|</span><span>4</span></span><span id="quiz-percent">25%</span></div>
           </div>
-          <div class="section-actions end">
-            <button
-              class="button"
-              data-action="quiz-next"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="315:382">Далее</span
-              ><span aria-hidden="true" class="button-icon"
-                ><svg
-                  class="figma-icon icon-sprite"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use
-                    href="assets/icons/sprite.svg#i-arrow-light"
-                    xlink:href="assets/icons/sprite.svg#i-arrow-light"
-                  /></svg
-              ></span>
-            </button>
-          </div>
+          <div class="home-quiz-action"><button class="button button--yellow" data-action="quiz-next" data-motion-button type="button"><span class="button-label">Далее</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-light" xlink:href="assets/icons/sprite.svg#i-arrow-light"></use></svg></span></button></div>
         </div>
       </section>
-      <section class="section" id="process">
+
+      <section aria-labelledby="steps-title" class="home-section home-steps" id="steps">
         <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2 data-figma-text="315:772">6 шагов от звонка до новоселья</h2>
-            </div>
+          <div class="home-heading home-heading--compact"><h2 id="steps-title">6 шагов от звонка до новоселья</h2><p>Процесс работы</p></div>
+          <div class="home-steps-viewport">
+            <ol aria-label="Этапы строительства дома" class="home-steps-track" data-carousel id="home-steps-track">
+              <li class="home-step-card"><span>01</span><h3>Звонок и консультация</h3><p>Бесплатно, без обязательств</p></li>
+              <li class="home-step-card"><span>02</span><h3>Выезд и замер</h3><p>Едем на участок, оцениваем грунт</p></li>
+              <li class="home-step-card"><span>03</span><h3>Проект и смета</h3><p>3D-визуализация, точный расчёт</p></li>
+              <li class="home-step-card"><span>04</span><h3>Договор</h3><p>Фиксируем цену, сроки и гарантии</p></li>
+              <li class="home-step-card"><span>05</span><h3>Фундамент и коробка</h3><p>Фото каждого этапа в мессенджер</p></li>
+              <li class="home-step-card"><span>06</span><h3>Отделка, сдача и гарантия</h3><p>Инженерные системы, финишная отделка, приёмка + гарантия 5 лет</p></li>
+            </ol>
           </div>
-          <ol aria-live="polite" class="process-list" data-step="0">
-            <li>
-              <span class="process-number" data-figma-text="315:778">01</span>
-              <h3 class="" data-figma-text="315:779">Звонок и консультация</h3>
-              <p class="" data-figma-text="315:780">
-                Бесплатно, без обязательств
-              </p>
-            </li>
-          </ol>
-          <div class="process-range">
-            <input
-              aria-label="Положение на шкале процесса строительства"
-              max="100"
-              min="0"
-              type="range"
-              value="2"
-            />
-          </div>
+          <div aria-label="Управление этапами" class="carousel-controls home-steps-controls"><button aria-label="Предыдущий этап" data-scroll="-1" data-target="home-steps-track" type="button"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-left" xlink:href="assets/icons/sprite.svg#i-arrow-left"></use></svg></button><button aria-label="Следующий этап" data-scroll="1" data-target="home-steps-track" type="button"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-arrow-right" xlink:href="assets/icons/sprite.svg#i-arrow-right"></use></svg></button></div>
         </div>
       </section>
-      <section class="section" id="mortgage">
+
+      <section aria-labelledby="finance-title" class="home-section home-finance" id="finance">
         <div class="container">
-          <div class="section-heading section-heading--stacked">
-            <div>
-              <h2 data-figma-text="315:392">
-                Строим в ипотеку<br />
-                и с материнским капиталом
-              </h2>
-              <p class="heading-description" data-figma-text="315:393">
-                Аккредитованы в ведущих банках — поможем с оформлением от и до.
-              </p>
-            </div>
-            <button
-              class="button button--dark"
-              data-action="mortgage"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="I315:394;199:295"
-                >узнать Условия ипотеки</span
-              ><span aria-hidden="true" class="button-icon"
-                ><img
-                  alt=""
-                  aria-hidden="true"
-                  class="figma-icon"
-                  decoding="async"
-                  src="assets/icons/mortgage-arrow.svg"
-              /></span>
-            </button>
-          </div>
-          <div class="mortgage-grid">
-            <article>
-              <h3 data-figma-text="315:399">Ипотека на строительство</h3>
-              <p data-figma-text="315:400">
-                Аккредитованы в ДОМ.РФ и Сбербанке. Помогаем собрать документы,
-                сопровождаем до одобрения. Ставки — от 6% годовых. Первый взнос
-                — от 20%.
-              </p>
-              <ul class="tags">
-                <li data-figma-text="315:403">ДОМ.РФ</li>
-                <li data-figma-text="315:405">Сбербанк</li>
-                <li data-figma-text="315:407">от 6%</li>
-                <li data-figma-text="315:409">Одобрение за 3 дня</li>
-              </ul>
-              <img
-                alt=""
-                decoding="async"
-                loading="lazy"
-                src="assets/figma-315-410.webp"
-              />
+          <div class="home-heading"><h2 id="finance-title">Строим в ипотеку и с материнским капиталом</h2><p>Аккредитованы в ведущих банках — поможем с оформлением от и до.</p></div>
+          <div class="home-finance-grid">
+            <article class="home-finance-card">
+              <div class="home-finance-card__top"><p class="eyebrow">Ипотека на строительство</p><h3>Поможем пройти путь от заявки до одобрения</h3><p>Аккредитованы в ДОМ.РФ и Сбербанке. Помогаем собрать документы, сопровождаем до одобрения. Ставки — от 6% годовых. Первый взнос — от 20%.</p></div>
+              <ul class="home-finance-facts"><li>ДОМ.РФ</li><li>Сбербанк</li><li>от 6%</li><li>Одобрение за 3 дня</li></ul>
             </article>
-            <article>
-              <h3 data-figma-text="315:414">Материнский капитал</h3>
-              <p data-figma-text="315:415">
-                Принимаем материнский капитал как первоначальный взнос или для
-                частичного погашения ипотеки. Оформляем все документы
-                самостоятельно.
-              </p>
-              <ul class="tags">
-                <li data-figma-text="315:418">Маткапитал</li>
-                <li data-figma-text="315:420">Первый взнос</li>
-                <li data-figma-text="315:422">Помогаем с документами</li>
-              </ul>
-              <img
-                alt=""
-                decoding="async"
-                loading="lazy"
-                src="assets/figma-315-423.webp"
-              />
+            <article class="home-finance-card home-finance-card--alt">
+              <div class="home-finance-card__top"><p class="eyebrow">Материнский капитал</p><h3>Используйте сертификат при строительстве дома</h3><p>Принимаем материнский капитал как первоначальный взнос или для частичного погашения ипотеки. Оформляем все документы самостоятельно.</p></div>
+              <ul class="home-finance-facts"><li>Маткапитал</li><li>Первый взнос</li><li>Помогаем с документами</li></ul>
             </article>
           </div>
+          <div class="home-finance__actions"><button class="button button--dark" data-action="question" data-motion-button type="button"><span class="button-label">Узнать условия ипотеки</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-question-arrow" xlink:href="assets/icons/sprite.svg#i-question-arrow"></use></svg></span></button></div>
         </div>
       </section>
-      <section class="section" id="reviews">
+
+      <section aria-labelledby="reviews-title" class="home-section home-reviews" id="reviews">
         <div class="container">
-          <div class="section-heading section-heading--stacked">
-            <div>
-              <h2 data-figma-text="315:431">
-                Что говорят владельцы<br />
-                наших фундаментов
-              </h2>
-              <p class="heading-description" data-figma-text="315:432">
-                Реальные дома и люди, которые уже прошли с нами весь путь от
-                проекта до готового фундамента.
-              </p>
-            </div>
-            <button
-              aria-label="Отзывы на 2ГИС"
-              class="gis-card"
-              data-action="reviews"
-              type="button"
-            >
-              <img
-                alt=""
-                class="gis-logo"
-                src="assets/gis-map.webp"
-                width="105"
-                height="156"
-                loading="lazy"
-              /><span class="gis-copy"
-                ><span class="gis-name" data-figma-text="315:437"
-                  >ФУНДАМЕНТОМОНТАЖ</span
-                ><span class="gis-link" data-figma-text="315:438"
-                  >Читать отзывы на 2GIS</span
-                ><span class="gis-rating"
-                  ><svg
-                    class="icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-star"
-                      xlink:href="assets/icons/sprite.svg#i-star"
-                    /></svg
-                  ><span class="" data-figma-text="315:442">4.9</span
-                  ><span class="" data-figma-text="315:443"
-                    >34 оценки</span
-                  ></span
-                ></span
-              >
-            </button>
-          </div>
-          <div class="carousel-bleed">
-            <div
-              aria-label="Отзывы клиентов"
-              class="card-track fidelity-track"
-              data-carousel=""
-              id="review-track"
-              tabindex="0"
-            >
-              <figure class="review-card">
-                <blockquote data-figma-text="I315:446;199:346">
-                  «До стройки больше всего переживал за бюджет. У знакомых дом
-                  начинался с одной суммы, а заканчивался совсем другой. У нас
-                  обошлось без таких сюрпризов. По ходу стройки были рабочие
-                  вопросы, конечно, но всё обсуждали и решали. Особенно
-                  понравилось, что постоянно присылали фото и видео — мне не
-                  приходилось ездить на участок через день и проверять, что там
-                  происходит. Домом довольны. Сейчас уже живём.»
-                </blockquote>
-                <figcaption>
-                  <img
-                    alt=""
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-446_199-345.webp"
-                  />
-                  <div>
-                    <h3 data-figma-text="I315:446;199:352">Александр.к</h3>
-                    <p data-figma-text="I315:446;199:353">
-                      Кирпичный дом · 220 м² <br />
-                      с. Новолуговое · 2024
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-              <figure class="review-card">
-                <blockquote data-figma-text="I315:447;199:346">
-                  «До стройки больше всего переживал за бюджет. У знакомых дом
-                  начинался с одной суммы, а заканчивался совсем другой. У нас
-                  обошлось без таких сюрпризов. По ходу стройки были рабочие
-                  вопросы, конечно, но всё обсуждали и решали. Особенно
-                  понравилось, что постоянно присылали фото и видео — мне не
-                  приходилось ездить на участок через день и проверять, что там
-                  происходит. Домом довольны. Сейчас уже живём.»
-                </blockquote>
-                <figcaption>
-                  <img
-                    alt=""
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-447_199-345.webp"
-                  />
-                  <div>
-                    <h3 data-figma-text="I315:447;199:352">Александр.к</h3>
-                    <p data-figma-text="I315:447;199:353">
-                      Кирпичный дом · 220 м² <br />
-                      с. Новолуговое · 2024
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-              <figure class="review-card">
-                <blockquote data-figma-text="I315:448;199:346">
-                  «До стройки больше всего переживал за бюджет. У знакомых дом
-                  начинался с одной суммы, а заканчивался совсем другой. У нас
-                  обошлось без таких сюрпризов. По ходу стройки были рабочие
-                  вопросы, конечно, но всё обсуждали и решали. Особенно
-                  понравилось, что постоянно присылали фото и видео — мне не
-                  приходилось ездить на участок через день и проверять, что там
-                  происходит. Домом довольны. Сейчас уже живём.»
-                </blockquote>
-                <figcaption>
-                  <img
-                    alt=""
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-448_199-345.webp"
-                  />
-                  <div>
-                    <h3 data-figma-text="I315:448;199:352">Александр.к</h3>
-                    <p data-figma-text="I315:448;199:353">
-                      Кирпичный дом · 220 м² <br />
-                      с. Новолуговое · 2024
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-              <figure class="review-card">
-                <blockquote data-figma-text="I315:449;199:346">
-                  «До стройки больше всего переживал за бюджет. У знакомых дом
-                  начинался с одной суммы, а заканчивался совсем другой. У нас
-                  обошлось без таких сюрпризов. По ходу стройки были рабочие
-                  вопросы, конечно, но всё обсуждали и решали. Особенно
-                  понравилось, что постоянно присылали фото и видео — мне не
-                  приходилось ездить на участок через день и проверять, что там
-                  происходит. Домом довольны. Сейчас уже живём.»
-                </blockquote>
-                <figcaption>
-                  <img
-                    alt=""
-                    decoding="async"
-                    loading="lazy"
-                    src="assets/figma-I315-449_199-345.webp"
-                  />
-                  <div>
-                    <h3 data-figma-text="I315:449;199:352">Александр.к</h3>
-                    <p data-figma-text="I315:449;199:353">
-                      Кирпичный дом · 220 м² <br />
-                      с. Новолуговое · 2024
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-          <div class="carousel-controls reviews-controls">
-            <button
-              aria-label="Предыдущие отзывы"
-              data-scroll="-1"
-              data-target="review-track"
-            >
-              <svg
-                class="figma-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-arrow-left"
-                  xlink:href="assets/icons/sprite.svg#i-arrow-left"
-                />
-              </svg></button
-            ><button
-              aria-label="Следующие отзывы"
-              data-scroll="1"
-              data-target="review-track"
-            >
-              <svg
-                class="figma-icon icon-sprite"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use
-                  href="assets/icons/sprite.svg#i-arrow-right"
-                  xlink:href="assets/icons/sprite.svg#i-arrow-right"
-                />
-              </svg>
-            </button>
+          <div class="home-heading home-reviews__heading"><h2 id="reviews-title">Что говорят владельцы наших домов</h2><p>Реальные дома и люди, которые уже прошли с нами весь путь от проекта до переезда.</p></div>
+          <button aria-label="Читать отзывы на 2ГИС" class="home-gis-card" data-action="reviews" type="button"><img alt="" decoding="async" height="40" loading="lazy" src="assets/gis-map.webp" width="160" /><span><strong>4.9</strong><small>34 оценки</small></span><span class="home-gis-card__link">Читать отзывы на 2GIS</span></button>
+          <div class="home-review-viewport"><div class="home-review-track" data-carousel id="home-review-track">
+            <figure class="review-card home-review-card" data-demo-review="true"><blockquote>«До стройки больше всего переживал за бюджет. У знакомых дом начинался с одной суммы, а заканчивался совсем другой. У нас обошлось без таких сюрпризов. По ходу стройки были рабочие вопросы, конечно, но всё обсуждали и решали. Особенно понравилось, что постоянно присылали фото и видео — мне не приходилось ездить на участок через день и проверять, что там происходит. Домом довольны. Сейчас уже живём.»</blockquote><figcaption><span aria-hidden="true" class="home-review-avatar">АК</span><span><strong>Александр.к</strong><small>Кирпичный дом · 220 м² · с. Новолуговое · 2024</small></span></figcaption></figure>
+          </div></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="visit-title" class="home-section home-visit" id="visit">
+        <div class="container">
+          <div class="home-visit-card">
+            <img alt="" decoding="async" height="334" loading="lazy" src="assets/figma-315-791.webp" width="1280" />
+            <div class="home-visit-card__copy"><p class="eyebrow">Хотите сначала увидеть нашу работу?</p><h2 id="visit-title">Покажем действующий объект</h2><p>Сможете посмотреть качество работ, используемые материалы и организацию стройки — до заключения договора.</p><button class="button button--yellow" data-action="visit" data-motion-button type="button"><span class="button-label">Записаться на экскурсию</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-visit-arrow" xlink:href="assets/icons/sprite.svg#i-visit-arrow"></use></svg></span></button></div>
           </div>
         </div>
       </section>
-      <section class="section compact" id="visit">
+
+      <section aria-labelledby="social-proof-title" class="home-section home-social-proof home-dark" id="social-proof">
         <div class="container">
-          <div class="visit-banner dark">
-            <div aria-hidden="true" class="parallax-surface">
-              <img
-                alt=""
-                class="section-background img-reveal"
-                data-parallax="0.065"
-                src="assets/figma-315-791.webp"
-                srcset="
-                  assets/figma-315-791@480.webp  480w,
-                  assets/figma-315-791@960.webp  960w,
-                  assets/figma-315-791.webp     1280w
-                "
-                sizes="(min-width: 1441px) 1171px, (min-width: 1025px) 720px, (min-width: 641px) 497px, 250px"
-                width="1280"
-                height="334"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="visit-copy">
-              <p class="visit-kicker" data-figma-text="315:795">
-                Хотите сначала увидеть нашу работу?
-              </p>
-              <h2 data-figma-text="315:796">Покажем действующий объект</h2>
-              <p data-figma-text="315:797">
-                Сможете посмотреть качество армирования, используемые материалы
-                и организацию стройки — до заключения договора.
-              </p>
-            </div>
-            <button
-              class="button button--yellow"
-              data-action="visit"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="I315:798;292:301"
-                >Записаться на экскурсию</span
-              ><span aria-hidden="true" class="button-icon"
-                ><svg
-                  class="figma-icon icon-sprite"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use
-                    href="assets/icons/sprite.svg#i-visit-arrow"
-                    xlink:href="assets/icons/sprite.svg#i-visit-arrow"
-                  /></svg
-              ></span>
-            </button>
+          <div class="home-social-proof__intro">
+            <div><p class="eyebrow">ФундаментМонтаж — открыто о стройке</p><h2 id="social-proof-title">Показываем строительство изнутри</h2></div>
+            <p>Реальные объекты, технологии, ошибки и инженерные решения — от проекта и фундамента до отделки и готового дома.</p>
+          </div>
+          <p class="home-social-proof__lead">60 000+ человек уже следят за нашей работой в социальных сетях. Посмотрите несколько наших видео до встречи — и сами оцените наш подход к строительству.</p>
+          <blockquote class="home-social-proof__quote">«Я публично рассказываю о том, как правильно строить дома. Поэтому для меня принципиально, чтобы на наших объектах мы строили именно так, как я рассказываю своей аудитории».<cite>Павел Ремизов · Руководитель «ФундаментМонтаж» · инженер-строитель</cite></blockquote>
+          <div class="home-social-proof__bottom">
+            <div class="home-social-proof__channels"><strong>60 000+</strong><span>Подписчиков в соц. сетях</span><div><button data-action="social" type="button">VK</button><button data-action="social" type="button">YouTube</button><button data-action="social" type="button">Telegram</button></div></div>
+            <button aria-label="Открыть видео: Как правильно заливать фундамент" class="home-video-card" data-action="video" type="button"><img alt="" decoding="async" height="206" loading="lazy" src="assets/figma-315-555.webp" width="216" /><span aria-hidden="true" class="home-video-card__play"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-play" xlink:href="assets/icons/sprite.svg#i-play"></use></svg></span><span class="home-video-card__title">Как правильно заливать фундамент</span><span class="home-video-card__views">15,4 тыс. просмотров</span></button>
           </div>
         </div>
       </section>
-      <section class="section dark" id="videos">
-        <div aria-hidden="true" class="parallax-surface">
-          <img
-            alt=""
-            class="section-background"
-            data-parallax="0.065"
-            decoding="async"
-            loading="lazy"
-            src="assets/figma-315-456.webp"
-          />
-        </div>
+
+      <section aria-labelledby="faq-title" class="home-section home-faq" id="faq">
         <div class="container">
-          <div class="video-grid">
-            <div>
-              <div class="section-heading">
-                <div>
-                  <h2 data-figma-text="315:458">
-                    Показываем строительство изнутри
-                  </h2>
-                </div>
-              </div>
-              <p data-figma-text="315:460">
-                Реальные объекты, технологии, ошибки и инженерные решения — от
-                проекта и фундамента до отделки и готового дома.
-              </p>
-              <p data-figma-text="315:461">
-                60 000+ человек уже следят за нашей работой в социальных сетях.
-                Посмотрите несколько наших видео до встречи — и сами оцените наш
-                подход к строительству.
-              </p>
-              <blockquote class="director-quote" data-figma-text="315:463">
-                «Я публично рассказываю о том, как правильно строить дома.
-                Поэтому для меня принципиально, чтобы на наших объектах мы
-                строили именно так, как я рассказываю своей аудитории».
-              </blockquote>
-              <p data-figma-text="315:464">
-                Павел Ремизов · Руководитель «ФундаментМонтаж» ·
-                инженер-строитель
-              </p>
-              <p class="subscriber-count">
-                <span class="subscriber-number" data-figma-text="315:516"
-                  >60.000+</span
-                ><span class="subscriber-labels"
-                  ><span class="" data-figma-text="315:518">Подписчиков</span
-                  ><span class="" data-figma-text="315:519"
-                    >в соц.сетях</span
-                  ></span
-                >
-              </p>
-              <div class="video-social-links">
-                <button
-                  class=""
-                  data-action="social"
-                  data-figma-text="315:521"
-                  type="button"
-                >
-                  VK</button
-                ><button
-                  class=""
-                  data-action="social"
-                  data-figma-text="315:523"
-                  type="button"
-                >
-                  YouTube</button
-                ><button
-                  class=""
-                  data-action="social"
-                  data-figma-text="315:525"
-                  type="button"
-                >
-                  Telegram
-                </button>
-              </div>
-            </div>
-            <div class="video-list">
-              <button class="video-card" data-action="video" type="button">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-467.webp"
-                /><span
-                  ><strong data-figma-text="315:480"
-                    >Как правильно заливать фундамент</strong
-                  ><small data-figma-text="315:481"
-                    >15.4т просмотров</small
-                  ></span
-                ></button
-              ><button class="video-card" data-action="video" type="button">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-483.webp"
-                /><span
-                  ><strong data-figma-text="315:496"
-                    >Как правильно заливать фундамент</strong
-                  ><small data-figma-text="315:497"
-                    >15.4т просмотров</small
-                  ></span
-                ></button
-              ><button class="video-card" data-action="video" type="button">
-                <img
-                  alt=""
-                  decoding="async"
-                  loading="lazy"
-                  src="assets/figma-315-499.webp"
-                /><span
-                  ><strong data-figma-text="315:512"
-                    >Как правильно заливать фундамент</strong
-                  ><small data-figma-text="315:513"
-                    >15.4т просмотров</small
-                  ></span
-                >
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section" id="faq">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <h2>
-                <span class="heading-line" data-figma-text="315:838"
-                  >Отвечаем на</span
-                ><span
-                  class="heading-line heading-line--inset"
-                  data-figma-text="315:839"
-                  >главные вопросы</span
-                >
-              </h2>
-            </div>
-            <button
-              class="button button--dark"
-              data-action="question"
-              data-motion-button=""
-              type="button"
-            >
-              <span class="button-label" data-figma-text="I315:840;292:316"
-                >Задать вопрос</span
-              ><span aria-hidden="true" class="button-icon"
-                ><svg
-                  class="figma-icon icon-sprite"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use
-                    href="assets/icons/sprite.svg#i-question-arrow"
-                    xlink:href="assets/icons/sprite.svg#i-question-arrow"
-                  /></svg
-              ></span>
-            </button>
-          </div>
+          <div class="home-heading"><h2 id="faq-title">Отвечаем на<br /><span>главные вопросы</span></h2></div>
           <div class="faq-grid">
-            <details>
-              <summary data-figma-text="315:805">
-                Сколько стоит ленточный фундамент под ключ?<span
-                  aria-hidden="true"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-faq-plus"
-                      xlink:href="assets/icons/sprite.svg#i-faq-plus"
-                    /></svg
-                ></span>
-              </summary>
-              <p>
-                Итоговая стоимость зависит от проекта, участка и комплектации и
-                фиксируется в договоре. При неизменных проекте и объёме работ
-                согласованная стоимость остаётся прежней.
-              </p>
-            </details>
-            <details>
-              <summary data-figma-text="315:809">
-                Зачем нужна геология? Можно без неё?<span aria-hidden="true"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-faq-plus"
-                      xlink:href="assets/icons/sprite.svg#i-faq-plus"
-                    /></svg
-                ></span>
-              </summary>
-              <p>
-                Геологическое изыскание — обязательный первый шаг. Без него
-                невозможно правильно выбрать тип фундамента и рассчитать
-                нагрузки. Если вам предлагают фундамент «без лишних бумаг» — это
-                красный флаг.
-              </p>
-            </details>
-            <details>
-              <summary data-figma-text="315:813">
-                Какой фундамент лучше для газобетонного дома?<span
-                  aria-hidden="true"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-faq-plus"
-                      xlink:href="assets/icons/sprite.svg#i-faq-plus"
-                    /></svg
-                ></span>
-              </summary>
-              <p>
-                Не принимаем конструктивные решения «по месту». Сначала
-                геология, потом расчёт нагрузок и проект — и только потом
-                выходим на стройплощадку.
-              </p>
-            </details>
-            <details>
-              <summary data-figma-text="315:817">
-                За сколько дней зальёте фундамент?<span aria-hidden="true"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-faq-plus"
-                      xlink:href="assets/icons/sprite.svg#i-faq-plus"
-                    /></svg
-                ></span>
-              </summary>
-              <p>
-                Фундамент под ключ в Новосибирске — за 5–10 дней. До начала
-                работ составляется график строительства, сроки закрепляются в
-                договоре.
-              </p>
-            </details>
-            <details>
-              <summary data-figma-text="315:821">
-                Что будет, если фундамент треснет?<span aria-hidden="true"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-faq-plus"
-                      xlink:href="assets/icons/sprite.svg#i-faq-plus"
-                    /></svg
-                ></span>
-              </summary>
-              <p>
-                Рассчитываем точные нагрузки — фундамент не просядет и не
-                треснет. Гарантия 5 лет по договору.
-              </p>
-            </details>
-            <details>
-              <summary data-figma-text="315:825">
-                Работаете ли вы зимой?<span aria-hidden="true"
-                  ><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-faq-plus"
-                      xlink:href="assets/icons/sprite.svg#i-faq-plus"
-                    /></svg
-                ></span>
-              </summary>
-              <p>
-                Условия ведения работ в зимний период уточняются у компании.
-              </p>
-            </details>
+            <details><summary>Сколько стоит дом 100 м² под ключ?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>В макете проект «Уют» 100 м² указан от 2 100 000 ₽. Итоговая стоимость зависит от проекта, участка и комплектации и фиксируется в договоре.</p></details>
+            <details><summary>Действительно ли проект дома бесплатный?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>В макете указано: при заключении договора на строительство проект — в подарок. Подробные условия уточняются у компании.</p></details>
+            <details><summary>Что входит в цену «под ключ»?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>Состав работ и комплектация согласовываются до начала строительства и фиксируются в договоре. Запросите подробную смету для вашего проекта.</p></details>
+            <details><summary>Как вы гарантируете соблюдение сроков?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>До начала работ составляется график строительства, сроки закрепляются в договоре.</p></details>
+            <details><summary>Можно ли взять ипотеку на строительство?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>В макете указана аккредитация в ДОМ.РФ и Сбербанке. Актуальные ставки и условия уточняются в банке.</p></details>
+            <details><summary>Работаете ли вы в области и в каких районах?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>Регион работы — Новосибирск и Новосибирская область. Доступность конкретного района уточняется у компании.</p></details>
+            <details><summary>Можно ли приехать посмотреть на строящийся дом?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>Можно записаться на экскурсию на действующий объект. Воспользуйтесь кнопкой «Записаться на экскурсию».</p></details>
+            <details><summary>Что будет, если смета превысит договор?<span aria-hidden="true"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-faq-plus" xlink:href="assets/icons/sprite.svg#i-faq-plus"></use></svg></span></summary><p>При неизменных проекте и объёме работ согласованная стоимость остаётся прежней. Условия закрепляются в договоре.</p></details>
           </div>
+          <div class="home-faq__action"><button class="button button--dark" data-action="question" data-motion-button type="button"><span class="button-label">Задать вопрос</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-question-arrow" xlink:href="assets/icons/sprite.svg#i-question-arrow"></use></svg></span></button></div>
         </div>
       </section>
-      <section class="section" id="social">
-        <div class="container">
-          <div class="social-grid">
-            <div>
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow" data-figma-text="315:547">
-                    Директор-блогер
-                  </p>
-                  <h2>
-                    <span class="heading-line" data-figma-text="315:543"
-                      >Вы можете найти</span
-                    ><span
-                      class="heading-line heading-line--inset"
-                      data-figma-text="315:544"
-                      >нас на всех соц сетях</span
-                    >
-                  </h2>
-                </div>
-              </div>
-              <p data-figma-text="315:549">
-                Алексей ведёт открытые соцсети — показывает стройку честно: и
-                успехи, и трудности. Подписывайтесь — это лучший способ
-                убедиться в качестве до того, как вы нам позвоните.
-              </p>
-              <blockquote class="director-quote" data-figma-text="315:552">
-                «Я снимаю всё — от геологии до новоселья. Считаю, что открытость
-                — лучший аргумент. Посмотрите мои видео, и вы сами поймёте, как
-                мы работаем.» <br />
-                — Павел Ремизов
-              </blockquote>
-            </div>
-            <div class="social-list">
-              <article>
-                <span class="social-thumb">
-                  <img
-                    alt=""
-                    decoding="async"
-                    height="206"
-                    loading="lazy"
-                    src="assets/figma-315-555.webp"
-                    width="216"
-                  /><svg
-                    class="figma-icon icon-sprite"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use
-                      href="assets/icons/sprite.svg#i-play"
-                      xlink:href="assets/icons/sprite.svg#i-play"
-                    />
-                  </svg>
-                </span>
-                <div>
-                  <h3 data-figma-text="315:566">ВКОнтакте</h3>
-                  <p data-figma-text="315:567">
-                    Новости компании, реальные объекты и ход реализации проектов
-                  </p>
-                </div>
-                <button
-                  aria-label="Подписаться"
-                  class="button button--dark"
-                  data-action="social"
-                  data-motion-button=""
-                  type="button"
-                >
-                  <span class="button-label" data-figma-text="I315:568;240:368"
-                    >Подписаться</span
-                  ><span aria-hidden="true" class="button-icon"
-                    ><svg
-                      class="figma-icon icon-sprite"
-                      aria-hidden="true"
-                      focusable="false"
-                    >
-                      <use
-                        href="assets/icons/sprite.svg#i-subscribe-arrow"
-                        xlink:href="assets/icons/sprite.svg#i-subscribe-arrow"
-                      /></svg
-                  ></span>
-                </button>
-              </article>
-            </div>
-          </div>
+
+      <section aria-labelledby="home-social-title" class="home-section home-social" id="home-social">
+        <div class="container home-social__layout">
+          <div><p class="eyebrow">Директор-блогер</p><h2 id="home-social-title">Вы можете найти нас на всех соцсетях</h2><p>Я публично рассказываю о технологиях строительства и показываю нашу работу аудитории более 60 000 человек.</p><blockquote class="home-social__quote">«Я снимаю всё — от геологии до новоселья. Считаю, что открытость — лучший аргумент. Посмотрите мои видео, и вы сами поймёте, как мы работаем.»<cite>— Павел Ремизов</cite></blockquote></div>
+          <article class="home-social-card"><img alt="" decoding="async" height="206" loading="lazy" src="assets/figma-315-555.webp" width="216" /><div><h3>ВКонтакте</h3><p>Новости компании, реальные объекты и ход реализации проектов</p></div><button class="button button--dark" data-action="social" data-motion-button type="button"><span class="button-label">Подписаться</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-subscribe-arrow" xlink:href="assets/icons/sprite.svg#i-subscribe-arrow"></use></svg></span></button></article>
         </div>
       </section>
     </main>
