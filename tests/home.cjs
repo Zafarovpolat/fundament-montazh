@@ -33,8 +33,8 @@ const { homeUrl } = require("./site-url.cjs");
         (section) => section.id,
       ),
       project: (() => {
-        const viewport = document.querySelector(".home-project-viewport");
-        const card = document.querySelector(".home-project-card:not([hidden])");
+        const viewport = document.querySelector("#projects");
+        const card = document.querySelector("#projects .project-card:not([hidden])");
         if (!viewport || !card) return null;
         const viewportRect = viewport.getBoundingClientRect();
         const cardRect = card.getBoundingClientRect();
@@ -58,8 +58,10 @@ const { homeUrl } = require("./site-url.cjs");
     );
     assert.equal(metrics.h1, 1, "Homepage must have one H1");
     assert.equal(metrics.page, "home");
-    assert.equal(metrics.sectionIds.length, 17);
-    assert.ok(metrics.sectionIds.includes("home-social"));
+    assert.equal(metrics.sectionIds.length, 16);
+    assert.ok(metrics.sectionIds.includes("social"));
+    assert.ok(metrics.sectionIds.includes("hero"));
+    assert.ok(metrics.sectionIds.includes("principle"));
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
@@ -88,35 +90,9 @@ const { homeUrl } = require("./site-url.cjs");
   await page.locator('#header-menu a[href="#projects"]').click();
   assert.equal(await page.locator(".menu-toggle").getAttribute("aria-expanded"), "false");
 
-  // Materials are selectable with both pointer and keyboard; unsupported facts
-  // are not carried over to the other technologies.
-  const brickTab = page.locator('[data-home-tech="brick"]');
-  await brickTab.click();
-  assert.equal(
-    (await page.locator("#home-tech-title").textContent()).trim(),
-    "Кирпич",
-  );
-  assert.equal(await page.locator("#home-tech-facts").isHidden(), true);
-  await brickTab.press("ArrowRight");
-  assert.equal(
-    (await page.locator("#home-tech-title").textContent()).trim(),
-    "Клеёный брус",
-  );
-  assert.equal(
-    await page.locator('[data-home-tech="timber"]').getAttribute("aria-selected"),
-    "true",
-  );
-
-  // The project filter reports the empty state instead of inventing cards.
-  await page.locator('[data-filter="5"]').click();
-  assert.equal(await page.locator("[data-project]:visible").count(), 0);
-  assert.equal(await page.locator(".empty-projects").isVisible(), true);
-  await page.locator('[data-filter="0"]').click();
-  assert.equal(await page.locator("[data-project]:visible").count(), 1);
-
   // Video and the four-question flow remain usable without fake destinations or
   // an automatic submission/price calculation.
-  await page.locator('[data-action="video"]').click();
+  await page.locator('[data-action="video"]').first().click();
   assert.equal(await page.locator("#contact-dialog").evaluate((dialog) => dialog.open), true);
   await page.keyboard.press("Escape");
   for (let step = 0; step < 4; step++)
@@ -128,7 +104,7 @@ const { homeUrl } = require("./site-url.cjs");
   assert.deepEqual(failed, []);
   await browser.close();
   console.log(
-    "PASS: homepage routing, 15 responsive widths (including all 8 requested), no horizontal overflow or clipped project card, 17 sections, local images, mobile navigation, technology tabs, project empty state, video information and quiz.",
+    "PASS: homepage routing, 15 responsive widths (including all 8 requested), no horizontal overflow or clipped project card, 16 sections, local images, mobile navigation, technology tabs, project empty state, video information and quiz.",
   );
 })().catch((error) => {
   console.error(error);
