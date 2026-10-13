@@ -33,8 +33,8 @@ const { homeUrl } = require("./site-url.cjs");
         (section) => section.id,
       ),
       project: (() => {
-        const viewport = document.querySelector(".home-project-viewport");
-        const card = document.querySelector(".home-project-card:not([hidden])");
+        const viewport = document.querySelector("#projects .foundation-cards");
+        const card = viewport?.querySelector(".foundation-card");
         if (!viewport || !card) return null;
         const viewportRect = viewport.getBoundingClientRect();
         const cardRect = card.getBoundingClientRect();
@@ -43,6 +43,7 @@ const { homeUrl } = require("./site-url.cjs");
           right: cardRect.right,
           viewportLeft: viewportRect.left,
           viewportRight: viewportRect.right,
+          cardCount: viewport.querySelectorAll(".foundation-card").length,
         };
       })(),
     }));
@@ -88,35 +89,30 @@ const { homeUrl } = require("./site-url.cjs");
   await page.locator('#header-menu a[href="#projects"]').click();
   assert.equal(await page.locator(".menu-toggle").getAttribute("aria-expanded"), "false");
 
-  // Materials are selectable with both pointer and keyboard; unsupported facts
-  // are not carried over to the other technologies.
-  const brickTab = page.locator('[data-home-tech="brick"]');
-  await brickTab.click();
-  assert.equal(
-    (await page.locator("#home-tech-title").textContent()).trim(),
-    "Кирпич",
-  );
-  assert.equal(await page.locator("#home-tech-facts").isHidden(), true);
-  await brickTab.press("ArrowRight");
-  assert.equal(
-    (await page.locator("#home-tech-title").textContent()).trim(),
-    "Клеёный брус",
-  );
-  assert.equal(
-    await page.locator('[data-home-tech="timber"]').getAttribute("aria-selected"),
-    "true",
-  );
+  // Materials accordion: one panel open at a time, price/term only for gas.
+  const gasItem = page.locator('[data-tech="gas"]');
+  const brickToggle = page.locator('[data-tech="brick"] .home-tech-item__toggle');
+  const timberToggle = page.locator('[data-tech="timber"] .home-tech-item__toggle');
+  assert.equal(await gasItem.evaluate((el) => el.classList.contains("is-open")), true);
+  assert.equal(await page.locator('[data-tech="gas"] .home-tech-item__toggle').getAttribute("aria-expanded"), "true");
+  assert.equal(await page.locator('[data-tech="gas"] .home-tech-item__price').count(), 1);
+  assert.equal(await page.locator('[data-tech="brick"] .home-tech-item__price').count(), 0);
+  await brickToggle.click();
+  assert.equal(await page.locator('[data-tech="brick"]').evaluate((el) => el.classList.contains("is-open")), true);
+  assert.equal(await gasItem.evaluate((el) => el.classList.contains("is-open")), false);
+  assert.equal(await brickToggle.getAttribute("aria-expanded"), "true");
+  await timberToggle.click();
+  assert.equal(await page.locator('[data-tech="timber"]').evaluate((el) => el.classList.contains("is-open")), true);
+  assert.equal(await page.locator('[data-tech="brick"]').evaluate((el) => el.classList.contains("is-open")), false);
 
-  // The project filter reports the empty state instead of inventing cards.
-  await page.locator('[data-filter="5"]').click();
-  assert.equal(await page.locator("[data-project]:visible").count(), 0);
-  assert.equal(await page.locator(".empty-projects").isVisible(), true);
-  await page.locator('[data-filter="0"]').click();
-  assert.equal(await page.locator("[data-project]:visible").count(), 1);
+  // The homepage keeps the complete foundation card carousel and mobile rail.
+  assert.equal(await page.locator("#projects .foundation-card").count(), 6);
+  assert.equal(await page.locator("#projects [data-foundation-progress]").count(), 1);
+  assert.ok(await page.locator("#projects .foundation-cards").evaluate((track) => track.scrollWidth > track.clientWidth));
 
   // Video and the four-question flow remain usable without fake destinations or
   // an automatic submission/price calculation.
-  await page.locator('[data-action="video"]').click();
+  await page.locator('[data-action="video"]').first().click();
   assert.equal(await page.locator("#contact-dialog").evaluate((dialog) => dialog.open), true);
   await page.keyboard.press("Escape");
   for (let step = 0; step < 4; step++)
