@@ -33,9 +33,10 @@ const { homeUrl } = require("./site-url.cjs");
         (section) => section.id,
       ),
       project: (() => {
-        const viewport = document.querySelector("#projects .foundation-cards");
-        const card = viewport?.querySelector(".foundation-card");
-        if (!viewport || !card) return null;
+        const viewport = document.querySelector("#projects .home-project-viewport");
+        const track = document.querySelector("#projects #project-track");
+        const card = track?.querySelector(".home-project-card:not([hidden])");
+        if (!viewport || !track || !card) return null;
         const viewportRect = viewport.getBoundingClientRect();
         const cardRect = card.getBoundingClientRect();
         return {
@@ -43,7 +44,9 @@ const { homeUrl } = require("./site-url.cjs");
           right: cardRect.right,
           viewportLeft: viewportRect.left,
           viewportRight: viewportRect.right,
-          cardCount: viewport.querySelectorAll(".foundation-card").length,
+          cardCount: track.querySelectorAll(".home-project-card").length,
+          trackScrollWidth: track.scrollWidth,
+          viewportClientWidth: viewport.clientWidth,
         };
       })(),
     }));
@@ -105,10 +108,29 @@ const { homeUrl } = require("./site-url.cjs");
   assert.equal(await page.locator('[data-tech="timber"]').evaluate((el) => el.classList.contains("is-open")), true);
   assert.equal(await page.locator('[data-tech="brick"]').evaluate((el) => el.classList.contains("is-open")), false);
 
-  // The homepage keeps the complete foundation card carousel and mobile rail.
-  assert.equal(await page.locator("#projects .foundation-card").count(), 6);
-  assert.equal(await page.locator("#projects [data-foundation-progress]").count(), 1);
-  assert.ok(await page.locator("#projects .foundation-cards").evaluate((track) => track.scrollWidth > track.clientWidth));
+  // Main-page catalog uses its own ready-house cards and working filters.
+  assert.equal(await page.locator("#projects .home-project-card").count(), 2);
+  assert.equal(await page.locator("#projects .home-project-card h3").first().innerText(), "«Уют» 100 м²");
+  assert.ok(await page.locator("#projects #project-track").evaluate((track) => track.scrollWidth > track.parentElement.clientWidth));
+  await page.locator('#projects [data-filter="6"]').click();
+  assert.equal(await page.locator("#projects .home-project-card:not([hidden])").count(), 0);
+  assert.equal(await page.locator("#projects .empty-projects").isVisible(), true);
+  await page.locator('#projects [data-filter="0"]').click();
+  assert.equal(await page.locator("#projects .home-project-card:not([hidden])").count(), 2);
+  assert.equal(await page.locator("#projects .empty-projects").isVisible(), false);
+
+  // Main-page design services and its separate six-step section stay distinct
+  // from foundation.html's seven-step pinned carousel.
+  assert.equal(await page.locator("#design .home-service-grid > li").count(), 4);
+  assert.equal(await page.locator("#steps .home-step-card").count(), 1);
+  assert.equal(await page.locator("#steps .home-steps-track").getAttribute("aria-label"), "Первый из шести шагов");
+  assert.equal(await page.locator("#steps [data-carousel]").count(), 0);
+  for (const selector of ["#safety", "#process", "#advantages"]) {
+    const viewport = page.locator(`${selector} [role="region"]`);
+    assert.equal(await viewport.count(), 1, `${selector} must expose a scrollable region`);
+    assert.ok(await viewport.evaluate((el) => el.scrollWidth > el.clientWidth), `${selector} cards should overflow horizontally on mobile`);
+    assert.equal(await page.locator(`${selector} .home-carousel-rail`).count(), 1);
+  }
 
   // Video and the four-question flow remain usable without fake destinations or
   // an automatic submission/price calculation.
@@ -124,7 +146,7 @@ const { homeUrl } = require("./site-url.cjs");
   assert.deepEqual(failed, []);
   await browser.close();
   console.log(
-    "PASS: homepage routing, 15 responsive widths (including all 8 requested), no horizontal overflow or clipped project card, 17 sections, local images, mobile navigation, technology tabs, project empty state, video information and quiz.",
+    "PASS: homepage routing, 15 responsive widths, no horizontal overflow or clipped project card, 17 sections, local images, mobile navigation, technology accordion, project filters, four design services, six-step module distinction, mobile card rails, video information and quiz.",
   );
 })().catch((error) => {
   console.error(error);
