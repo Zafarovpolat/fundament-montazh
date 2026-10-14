@@ -6,6 +6,8 @@ on:
       - 'tools/elisart-probe.sh'
       - '.github/workflows/elisart-probe.yml'
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -16,4 +18,13 @@ jobs:
           ELISART_B64: 'c2stZHItbHdGcHlGR3dlNzdybEtkTnR3VEo5X29KR1hxcjIxMl92S1Z6TS04Rg=='
         run: |
           export ELISART_API_KEY="$(printf '%s' "$ELISART_B64" | base64 -d)"
-          bash tools/elisart-probe.sh
+          bash tools/elisart-probe.sh > probe-results.txt 2>&1
+          echo "probe exit code: $?"
+          tail -c 1200 probe-results.txt
+      - name: publish results
+        run: |
+          git config user.name  "probe-bot"
+          git config user.email "probe@arena.ai"
+          git add -f probe-results.txt
+          git commit -m "chore(probe): raw results [skip ci]" || echo "nothing to commit"
+          git push origin HEAD:arena/2cae36fd-fundament-montazh
