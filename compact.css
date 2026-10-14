@@ -4567,7 +4567,7 @@ html[data-motion="off"] #hero .hero-grid {
     max-width: 100%;
     white-space: normal;
   }
-  html body:not(.home-page) #director .director-actions > .button:not(.button--yellow) .button-icon .figma-icon {
+  html #director .director-actions > .button:not(.button--yellow) .button-icon .figma-icon {
     filter: brightness(0) invert(1);
   }
 
@@ -4631,7 +4631,7 @@ html body:not(.home-page) #advantages .advantage-progress[hidden] {
     margin: 0;
   }
 }
-html body:not(.home-page) #director .director-actions > .button:not(.button--yellow) .button-icon .figma-icon {
+html #director .director-actions > .button:not(.button--yellow) .button-icon .figma-icon {
   filter: brightness(0) invert(1);
 }
 
