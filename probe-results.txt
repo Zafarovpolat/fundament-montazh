@@ -1,0 +1,132 @@
+==============================================================================
+БЕНЧМАРК МОДЕЛЕЙ DUOROUTE / ELISART   модели: glm-5.3, qwen-3.8-max, kimi-k3, deepseek-v4.1-flash, grok-4.7
+==============================================================================
+
+##############################################################################
+### МОДЕЛЬ: glm-5.3
+##############################################################################
+  [PASS] math-165min     14.2s  out= 190 reas= 156
+        → **165 минут** (от 14:20 до 17:20 — 3 часа = 180 мин, минус 15 мин = 165)
+  [FAIL] math-47.5        0.0s  out=   0 reas=   0
+        → unsupported format character '?' (0x43e) at index 14 | test-crash unsupported format character '?' (0x43e) at index 14
+  [FAIL] code-exec       15.7s  out= 722 reas= 634
+        → FAILS: [([9, 8, 8], None, 8)]
+  [PASS] json-strict      3.3s  out=  57 reas=  51
+        → {"n":3}
+  [FAIL] instr-exact      4.3s  out= 128 reas= 117
+        → OK-DONE. ref=9edee6
+  [PASS] ru-idiom         3.3s  out=  98 reas=  89
+        → Льёт как из ведра.
+  [PASS] tool-call        2.4s  out=  46 reas=  32
+        → get_weather({'city': 'Tashkent'})
+  [PASS] needle-ctx       2.7s  out=  27 reas=  22
+        → НАЙДЕН
+
+  ИТОГ: 5/8 | средняя задержка 5.7s | макс 15.7s | completion-токенов 1268
+
+##############################################################################
+### МОДЕЛЬ: qwen-3.8-max
+##############################################################################
+  [PASS] math-165min      7.7s  out= 242 reas= 208
+        → 165 (17:05 − 14:20 = 2 ч 45 мин = 165 мин)
+  [FAIL] math-47.5        0.0s  out=   0 reas=   0
+        → unsupported format character '?' (0x43e) at index 14 | test-crash unsupported format character '?' (0x43e) at index 14
+  [FAIL] code-exec       33.4s  out=1042 reas= 925
+        → FAILS: [([9, 8, 8], None, 8)]
+  [PASS] json-strict     35.3s  out= 110 reas= 102
+        → {"n":3}
+  [FAIL] instr-exact      3.4s  out=  46 reas=  32
+        → OK-DONE. ref=0bf0d9
+  [PASS] ru-idiom         6.2s  out= 149 reas= 138
+        → Льёт как из ведра.
+  [PASS] tool-call        3.6s  out=  61 reas=  31
+        → get_weather({'city': 'Tashkent'})
+  [PASS] needle-ctx       5.7s  out=  80 reas=  71
+        → НАЙДЕН
+
+  ИТОГ: 5/8 | средняя задержка 11.9s | макс 35.3s | completion-токенов 1730
+
+##############################################################################
+### МОДЕЛЬ: kimi-k3
+##############################################################################
+  [PASS] math-165min      5.6s  out= 256 reas= 203
+        → 165 минут (с 14:20 до 17:00 — 2 ч 40 мин = 160 мин, плюс 5 мин до 17:05).
+  [FAIL] math-47.5        0.0s  out=   0 reas=   0
+        → unsupported format character '?' (0x43e) at index 14 | test-crash unsupported format character '?' (0x43e) at index 14
+  [FAIL] code-exec       19.2s  out= 960 reas= 892
+        → FAILS: [([9, 8, 8], None, 8)]
+  [PASS] json-strict      3.6s  out= 107 reas=  87
+        → {"n":3}
+  [FAIL] instr-exact      4.9s  out= 181 reas= 157
+        → OK-DONE. ref=d5cb80
+  [PASS] ru-idiom         4.0s  out= 123 reas=  99
+        → Льёт как из ведра.
+  [PASS] tool-call        3.7s  out= 151 reas=  86
+        → get_weather({'city': 'Tashkent'})
+  [PASS] needle-ctx       3.9s  out=  56 reas=  36
+        → НАЙДЕН
+
+  ИТОГ: 5/8 | средняя задержка 5.6s | макс 19.2s | completion-токенов 1834
+
+##############################################################################
+### МОДЕЛЬ: deepseek-v4.1-flash
+##############################################################################
+  [PASS] math-165min     11.1s  out= 121 reas=  97
+        → 165 минут (17:05 − 14:20 = 2 ч 45 мин = 165 мин)
+  [FAIL] math-47.5        0.0s  out=   0 reas=   0
+        → unsupported format character '?' (0x43e) at index 14 | test-crash unsupported format character '?' (0x43e) at index 14
+  [FAIL] code-exec        4.9s  out= 353 reas= 289
+        → FAILS: [([9, 8, 8], None, 8)]
+  [PASS] json-strict      3.7s  out= 143 reas= 137
+        → {"n":3}
+  [FAIL] instr-exact      2.6s  out=  34 reas=  23
+        → OK-DONE. ref=69c13a
+  [PASS] ru-idiom         3.3s  out=  52 reas=  43
+        → Льёт как из ведра.
+  [PASS] tool-call        2.5s  out=  59 reas=  17
+        → get_weather({'city': 'Tashkent'})
+  [PASS] needle-ctx       3.5s  out=  58 reas=  54
+        → НАЙДЕН
+
+  ИТОГ: 5/8 | средняя задержка 3.9s | макс 11.1s | completion-токенов 820
+
+##############################################################################
+### МОДЕЛЬ: grok-4.7
+##############################################################################
+  [PASS] math-165min     22.7s  out=1617 reas=1603
+        → 165 минут (3 часа 00 мин - 15 мин) ```
+  [FAIL] math-47.5        0.0s  out=   0 reas=   0
+        → unsupported format character '?' (0x43e) at index 14 | test-crash unsupported format character '?' (0x43e) at index 14
+  [FAIL] code-exec       15.1s  out= 745 reas= 679
+        → FAILS: [([9, 8, 8], None, 8)]
+  [PASS] json-strict     10.8s  out= 469 reas= 464
+        → {"n":3}
+  [FAIL] instr-exact      9.9s  out= 186 reas= 176
+        → OK-DONE. ref=6a9371
+  [PASS] ru-idiom        44.9s  out=2035 reas=2026
+        → Идет дождь как из ведра.
+  [PASS] tool-call        8.9s  out= 292 reas= 280
+        → get_weather({'city': 'Tashkent'})
+  [FAIL] needle-ctx     244.9s  out=   0 reas=   0
+        → HTTP 503 {"error":{"message":"no provider available for model 'grok-4.7'","type":"provider_unavailable"}} | НЕ НАЙДЕН (ждали ABS32B) → ''
+
+  ИТОГ: 4/8 | средняя задержка 44.7s | макс 244.9s | completion-токенов 5344
+
+==============================================================================
+СВОДНАЯ ТАБЛИЦА (сортировка по числу пройденных тестов)
+==============================================================================
+модель                 балл     ср.сек   макс.сек    токенов
+deepseek-v4.1-flash     5/8        3.9       11.1        820
+kimi-k3                 5/8        5.6       19.2       1834
+glm-5.3                 5/8        5.7       15.7       1268
+qwen-3.8-max            5/8       11.9       35.3       1730
+grok-4.7                4/8       44.7      244.9       5344
+
+ПЕРЕВОДЫ ИДИОМЫ (для ручной оценки):
+  glm-5.3              'Льёт как из ведра.'
+  qwen-3.8-max         'Льёт как из ведра.'
+  kimi-k3              'Льёт как из ведра.'
+  deepseek-v4.1-flash  'Льёт как из ведра.'
+  grok-4.7             'Идет дождь как из ведра.'
+
+DONE
