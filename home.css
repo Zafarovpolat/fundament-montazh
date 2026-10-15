@@ -1556,7 +1556,7 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .home-page .topbar {
     display: none;
   }
@@ -2313,7 +2313,7 @@
   }
 }
 
-@media (min-width: 481px) and (max-width: 760px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .home-page .home-hero h1 {
     max-width: none;
     font-size: clamp(36px, 6.8vw, 43px);
@@ -2630,7 +2630,7 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .home-page #finance .mortgage-grid,
   .home-page #social-proof .video-grid {
     grid-template-columns: 1fr;
@@ -2834,4 +2834,58 @@
 }
 .home-page .page-path .is-dark.is-passed .path-label {
   color: rgba(255, 255, 255, 0.55);
+}
+
+/* ===========================================================================
+   Адаптивная лестница главной: 1920 → 1600 → 1440 → 1280 → 1024 → 880 → 768
+   → 640 → 480 → 375.
+   Схема та же, что у страницы «Фундамент» (compact.css): до 1440 px работают
+   ступени compact-типографики, с 768 px включается мобильный кадр Figma 540:662
+   — 335 px контента и 20 px поля. Поля и `.container` главной берут общий
+   `--gutter`, который сам даёт кадр 375 px, поэтому отдельный кап 335 px из
+   compact.css главной не нужен: на планшете 769–1024 px контент занимает всю
+   ширину (816–960 px при gutter 32 px), а не узкую телефонную колонку.
+   =========================================================================== */
+
+/* Заголовок и описание секции стоят в одной строке, пока заголовку хватает
+   ширины: колонка заголовка не сжимается уже ~2/3 типовой строки, иначе
+   описание уходит на свою строку целиком. Правило только для рядной раскладки
+   (769–1023 px): при 1024 px и выше действует общий компактный переход, а при
+   768 px и ниже шапка секции — колонка, где flex-basis задаёт уже высоту. */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .home-page .home-heading h2,
+  .home-page .home-safety .home-heading h2 {
+    flex: 1 1 420px;
+    min-width: min(100%, 320px);
+  }
+}
+
+/* Статистика героя: на 1920 px это ряд из четырёх блоков (855 px), а в
+   двухколоночном герое 1201–1499 px контент уже 695–844 px — четвёртый блок
+   срывался на свою строку и висел один (3+1). Ниже 1200 px перенос и так даёт
+   ровные 2+2 (как в мобильном макете 540:662), поэтому в этом диапазоне
+   фиксируем ту же сетку 2×2, чтобы ряд не разваливался на 3+1. */
+@media (min-width: 1201px) and (max-width: 1499px) {
+  .home-page .home-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    align-items: center;
+    column-gap: 30px;
+    row-gap: 22px;
+  }
+}
+
+/* В колоночной раскладке шапки секции (≤768 px) ширинная база `flex: 0 1
+   470/664px` из десктопных правил работает как высота и оставляла под
+   заголовком пустую полосу 400–660 px (process, materials, advantages).
+   В колонке высота — по контенту. */
+@media (max-width: 768px) {
+  .home-page .home-heading > p:not(.eyebrow),
+  .home-page #safety .home-heading > p:not(.eyebrow),
+  .home-page #process .home-heading > p:not(.eyebrow),
+  .home-page #materials .home-heading > p:not(.eyebrow),
+  .home-page #advantages .home-heading > p:not(.eyebrow) {
+    flex-basis: auto;
+  }
 }
