@@ -192,10 +192,10 @@
     <link href="styles.css?v=3.6.4" rel="stylesheet" />
     <script defer="" src="app.js?v=3.6.5"></script>
     <link href="interactions.css?v=3.6.5" rel="stylesheet" />
-    <script defer="" src="motion.js?v=3.6.4"></script>
+    <script defer="" src="motion.js?v=3.6.5"></script>
     <script defer="" src="hero-carousel.js?v=3.6.5"></script>
     <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
-    <link href="fidelity.css?v=3.6.4" rel="stylesheet" />
+    <link href="fidelity.css?v=3.6.6" rel="stylesheet" />
     <script defer="" src="sliders.js?v=3.6.6"></script>
     <script defer="" src="steps-pin.js?v=3.6.4"></script>
     <script defer="" src="refinements.js?v=3.6.6"></script>
@@ -203,7 +203,7 @@
     <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
     <link href="compact.css?v=3.6.8" rel="stylesheet" />
     <script defer="" src="layout.js?v=3.6.4"></script>
-    <link href="home.css?v=13" rel="stylesheet" />
+    <link href="home.css?v=20" rel="stylesheet" />
     <script defer="" src="home.js?v=3"></script>
   </head>
   <body class="home-page" data-page="home">
@@ -343,13 +343,18 @@
       <nav aria-label="Путь по разделам страницы" class="page-path" hidden>
         <div aria-hidden="true" class="path-line"><span class="path-progress"></span></div>
         <ol>
-          <li><a aria-label="Безопасность" class="path-link" data-section="safety" href="#safety"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Безопасность</span></a></li>
+          <li><a aria-label="Как мы работаем" class="path-link" data-marker-offset="48" data-section="safety" href="#safety"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Как мы<br>Работаем</span></a></li>
+          <li><a aria-label="Наш принцип" class="path-link" data-section="process" href="#process"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Наш<br>Принцип</span></a></li>
           <li><a aria-label="Материалы" class="path-link" data-section="materials" href="#materials"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Материалы</span></a></li>
-          <li><a aria-label="Проекты" class="path-link" data-section="projects" href="#projects"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Проекты</span></a></li>
-          <li><a aria-label="Объекты" class="path-link" data-section="objects" href="#objects"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Объекты</span></a></li>
-          <li><a aria-label="Как строим" class="path-link" data-section="steps" href="#steps"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Как строим</span></a></li>
+          <li><a aria-label="Каталог проектов" class="path-link" data-section="projects" href="#projects"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Каталог<br>Проектов</span></a></li>
+          <li><a aria-label="Готовые объекты" class="path-link" data-section="objects" href="#objects"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Готовые<br>Объекты</span></a></li>
+          <li><a aria-label="Готовые объекты" class="path-link" data-section="design" href="#design"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Готовые<br>Объекты</span></a></li>
+          <li><a aria-label="Почему мы" class="path-link" data-section="advantages" href="#advantages"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Почему<br>мы?</span></a></li>
+          <li><a aria-label="Процесс работы" class="path-link" data-section="steps" href="#steps"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Процесс<br>Работы</span></a></li>
+          <li><a aria-label="Финансирование" class="path-link" data-section="finance" href="#finance"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Финанси-<br>рование</span></a></li>
           <li><a aria-label="Отзывы" class="path-link" data-section="reviews" href="#reviews"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Отзывы</span></a></li>
-          <li><a aria-label="Контакты" class="path-link" data-section="contacts" href="#contacts"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Контакты</span></a></li>
+          <li><a aria-label="Вопросы и ответы" class="path-link" data-section="faq" href="#faq"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Вопросы<br>и ответы</span></a></li>
+          <li><a aria-label="Директор-блогер" class="path-link" data-section="home-social" href="#home-social"><span aria-hidden="true" class="path-dot"></span><span class="path-label">Директор-<br>Блогер</span></a></li>
         </ol>
       </nav>
 
@@ -395,7 +400,6 @@
       <section aria-labelledby="safety-title" class="home-section home-safety" id="safety">
         <div class="container">
           <div class="home-heading">
-            <p class="eyebrow">Как мы<br>Работаем</p>
             <h2 id="safety-title"><span class="heading-line">Как мы защищаем ваш</span><span class="heading-line heading-line--inset">бюджет и сроки</span></h2>
             <p>Мы заранее прорабатываем все ключевые этапы строительства: от проекта и сметы до сроков и порядка работ. Это позволяет ещё до начала строительства понимать объём работ, бюджет и последовательность этапов — без неожиданных решений в процессе.</p>
           </div>
@@ -422,7 +426,6 @@
       <section aria-labelledby="home-process-title" class="home-section home-process" id="process">
         <div class="container">
           <div class="home-heading">
-            <p class="eyebrow">Наш<br>Принцип</p>
             <h2 id="home-process-title"><span class="heading-line">Один договор. Одна смета.</span><span class="heading-line heading-line--inset">Один ответственный.</span></h2>
             <p>Ведём строительство под ключ от геологии и проекта до чистовой отделки.</p>
           </div>
@@ -470,7 +473,6 @@
       <section aria-labelledby="materials-title" class="home-section home-materials" id="materials">
         <div class="container">
           <div class="home-heading">
-            <p class="eyebrow">Материалы</p>
             <h2 id="materials-title"><span class="heading-line">Подберём технологию</span><span class="heading-line heading-line--inset">строительства</span></h2>
             <p>Не существует одного лучшего материала для всех. Сравним технологии по стоимости, характеристикам и срокам — и предложим решение под ваш проект и бюджет.</p>
           </div>
@@ -547,7 +549,6 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Каталог<br>Проектов</p>
               <h2>
                 <span class="heading-line" data-figma-text="315:645"
                   >Готовые проекты</span
@@ -1030,7 +1031,6 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Готовые<br>Объекты</p>
               <h2><span class="heading-line">Дома, которые</span><span class="heading-line heading-line--inset">мы уже построили</span></h2>
             </div>
             <p class="heading-description"><span data-figma-text="315:692">Более 200 готовых объектов в Новосибирске и НСО.</span><span data-figma-text="315:693">Привезём на экскурсию.</span></p>
@@ -1071,7 +1071,6 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Готовые<br>Объекты</p>
               <h2 data-figma-text="315:329">
                 индивидуальное проектирование под ключ
               </h2>
@@ -1113,7 +1112,6 @@
       <section aria-labelledby="advantages-title" class="home-section home-advantages" id="advantages">
         <div class="container">
           <div class="home-heading">
-            <p class="eyebrow">Почему<br>мы?</p>
             <h2 id="advantages-title"><span class="heading-line">Почему нам доверяют</span><span class="heading-line heading-line--inset">строительство дома</span></h2>
             <p>Не обещания на словах — условия, которые мы готовы зафиксировать в договоре и показать на реальных объектах.</p>
           </div>
@@ -1156,7 +1154,6 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Процесс<br>Работы</p>
               <h2 data-figma-text="315:772">6 шагов от звонка до новоселья</h2>
             </div>
           </div>
@@ -1220,7 +1217,6 @@
         <div class="container">
           <div class="section-heading section-heading--stacked">
             <div>
-              <p class="eyebrow">Финанси-<br>рование</p>
               <h2 data-figma-text="315:392">
                 Строим в ипотеку<br />
                 и с материнским капиталом
@@ -1451,7 +1447,6 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Вопросы<br>и ответы</p>
               <h2><span class="heading-line">Отвечаем на</span><span class="heading-line heading-line--inset">главные вопросы</span></h2>
             </div>
             <button class="button button--dark" data-action="question" data-motion-button type="button"><span class="button-label">Задать вопрос</span><span aria-hidden="true" class="button-icon"><svg class="figma-icon icon-sprite" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-question-arrow" xlink:href="assets/icons/sprite.svg#i-question-arrow"></use></svg></span></button>
@@ -1475,7 +1470,6 @@
             <div>
               <div class="section-heading">
                 <div>
-                  <p class="eyebrow">Директор-<br>Блогер</p>
                   <h2><span class="heading-line">Вы можете найти</span><span class="heading-line heading-line--inset">нас на всех соц сетях</span></h2>
                 </div>
               </div>

@@ -285,19 +285,16 @@
 }
 .home-page .home-heading h2 {
   flex: 1 1 0%;
-  min-width: 0;
+  min-width: auto;
   max-width: 920px;
   font-size: clamp(32px, 3.4vw, 58px);
   line-height: 1.15;
   text-transform: uppercase;
 }
-/* Подпись всегда отдельной строкой над заголовком. */
-.home-page .home-heading > .eyebrow {
-  flex: 1 1 100%;
-}
 .home-page .home-heading > p:not(.eyebrow) {
   flex: 0 1 470px;
   align-self: end;
+  min-width: 0;
   max-width: 470px;
   padding-left: 22px;
   border-left: 2px solid var(--home-accent);
@@ -333,20 +330,26 @@
 .home-page .home-safety {
   min-height: 590px;
 }
+/* Safety: вместо марджина секции — внутренний паддинг сверху. */
+.home-page #safety {
+  margin-top: 0;
+  padding-top: 150px;
+}
 .home-page .home-safety .home-heading {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: end;
   gap: 24px 50px;
-  margin-top: 50px;
+  margin-top: 0;
+  padding-top: 0;
 }
 .home-page .home-safety .home-heading h2 {
   flex: 1 1 0%;
-  min-width: 0;
+  min-width: auto;
 }
 .home-page .home-safety .home-heading > p:not(.eyebrow) {
-  flex: 0 1 703px;
+  flex: 0 1 auto;
   align-self: center;
   max-width: 703px;
 }
@@ -412,26 +415,29 @@
   margin-left: auto;
   max-width: 350px;
 }
-/* Кнопки директора ниже stats-сетки с запасом (~150px по зазору). */
+/* Кнопки директора ниже stats-сетки. */
 .home-page #director .director-actions {
-  margin-top: 150px;
+  margin-top: 120px;
 }
 /* Правка заказчика: портрет больше и прижат к низу секции — низ фото у
-   нижнего края сетки. Только десктоп; foundation не трогаем (review.cjs
-   сторожит protruding portrait). */
+   нижнего края сетки. Фото никогда не обрезается (contain поверх чужого
+   cover). Только десктоп; foundation не трогаем (review.cjs сторожит). */
 @media (min-width: 1200px) {
   .home-page #director .director-portrait {
     height: auto;
   }
   .home-page #director .director-portrait > .director-photo {
     top: auto;
-    bottom: -50px;
-    height: calc(100% + 120px);
+    bottom: -30px;
+    width: 100%;
+    height: calc(100% + 30px);
+    object-fit: contain;
+    object-position: center bottom;
   }
   .home-page #director .director-portrait::after {
     top: auto;
-    bottom: -50px;
-    height: calc(100% + 120px);
+    bottom: -30px;
+    height: calc(100% + 30px);
   }
 }
 .home-page #materials .home-heading > p:not(.eyebrow) {
@@ -2782,21 +2788,6 @@
 .home-page #social-proof [data-figma-text="315:464"] {
   color: var(--accent);
 }
-/* Главная #design: подпись обычной строкой над заголовком (без гуттера,
-   точки и скрытия foundation-версии). */
-.home-page #design .eyebrow {
-  position: static;
-  width: auto;
-  margin-bottom: 14px;
-}
-.home-page #design .eyebrow::before {
-  content: none;
-}
-@media (min-width: 1200px) {
-  .home-page #design .eyebrow {
-    display: flex;
-  }
-}
 /* Page-path как в foundation, тексты главной: та же типографика подписей
    и те же состояния (fidelity правит только [data-figma-text], которых
    на главной нет; порядок блоков повторяет fidelity 2620→2672). */
@@ -2830,12 +2821,9 @@
   }
 }
 .home-page .page-path .path-label {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-  max-height: 42px;
+  display: block;
+  overflow: visible;
+  max-height: none;
   color: rgba(7, 11, 31, 0.4);
 }
 .home-page .page-path .is-dark .path-label {

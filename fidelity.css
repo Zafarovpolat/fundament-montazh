@@ -31,6 +31,16 @@ dd[data-figma-text] {
 .heading-line--inset {
   margin-left: 136px;
 }
+/* Вторая строка заголовка нигде не рвётся внутри (десктоп: ширины хватает
+   с запасом; на мобиле переносы остаются, иначе переполнение). */
+@media (min-width: 1024px) {
+  .heading-line--inset {
+    white-space: nowrap;
+  }
+  .heading-line {
+    white-space: nowrap;
+  }
+}
 .section-heading {
   gap: 30px;
   align-items: center;

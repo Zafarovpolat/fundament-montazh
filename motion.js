@@ -73,6 +73,7 @@
     anchors = sections.map((section, index) => {
       const heading =
         section.querySelector(".section-heading") ||
+        section.querySelector(".home-heading") ||
         section.querySelector(".eyebrow") ||
         section;
       const transform = getComputedStyle(heading).transform;
