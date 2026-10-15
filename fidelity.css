@@ -2131,10 +2131,11 @@ html #objects .heading-description > span:last-child {
    Держим его только ровно на макетной ширине: шрифт считается от вьюпорта
    (3.125vw), а контейнер упирается в фиксированные боковые врезки, поэтому на
    1512–1680 строка «которые мы построили» / «нас на всех соц сетях» разбивалась
-   на три строки. В #projects («Выберите тип фундамента / для вашего дома»)
-   вторая строка по просьбе заказчика липнет к правому краю колонки: отступ
-   снят, строка прижата text-align — коробку span тянет на всю ширину h2. */
-#projects .section-heading .heading-line--inset {
+   на три строки. */
+/* Foundation #projects: вторая строка липнет к правому краю колонки (отступ
+   снят). На главной (#projects — карточки домов) нужен обычный отступ 136px,
+   поэтому правило ограничено не-home страницами. */
+body:not(.home-page) #projects .section-heading .heading-line--inset {
   margin-left: 0;
   text-align: right;
 }
@@ -2491,6 +2492,10 @@ html #projects .heading-description.with-yellow-rule[data-figma-text] {
   width: 360px;
   max-width: 100%;
   flex-shrink: 1;
+}
+/* Главная: описание карточек домов уже (313px), чем у foundation. */
+html .home-page #projects .heading-description.with-yellow-rule[data-figma-text] {
+  width: 313px;
 }
 html #advantages .heading-description.with-yellow-rule[data-figma-text] {
   width: 550px;

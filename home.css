@@ -289,7 +289,7 @@
 .home-page .home-heading > p:not(.eyebrow) {
   grid-column: 2;
   grid-row: 1 / span 2;
-  align-self: start;
+  align-self: end;
   max-width: 470px;
   padding-left: 22px;
   border-left: 2px solid var(--home-accent);
@@ -394,6 +394,13 @@
 .home-page #materials .heading-line--inset {
   margin-left: 68px;
 }
+@media (min-width: 1441px) {
+  /* Проекты: вторая строка с фирменным отступом 136px (Figma 124:102).
+     Ниже десктопа действуют компактные инсеты (80px/130px mobile). */
+  .home-page #projects .section-heading .heading-line--inset {
+    margin-left: 136px;
+  }
+}
 .home-page #process .home-heading > p:not(.eyebrow) {
   align-self: end;
   justify-self: end;
@@ -401,7 +408,25 @@
 }
 /* Кнопки директора ниже stats-сетки с запасом (~150px по зазору). */
 .home-page #director .director-actions {
-  margin-top: 172px;
+  margin-top: 150px;
+}
+/* Правка заказчика: портрет больше и прижат к низу секции — низ фото у
+   нижнего края сетки. Только десктоп; foundation не трогаем (review.cjs
+   сторожит protruding portrait). */
+@media (min-width: 1200px) {
+  .home-page #director .director-portrait {
+    height: auto;
+  }
+  .home-page #director .director-portrait > .director-photo {
+    top: auto;
+    bottom: -50px;
+    height: calc(100% + 120px);
+  }
+  .home-page #director .director-portrait::after {
+    top: auto;
+    bottom: -50px;
+    height: calc(100% + 120px);
+  }
 }
 .home-page #materials .home-heading {
   grid-template-columns: minmax(0, 1fr) minmax(0, 800px);
@@ -563,6 +588,15 @@
   bottom: 0;
   right: clamp(24px, 4vw, 72px);
   height: clamp(340px, 28vw, 430px);
+}
+/* Figma 1:2: газобетон 426×443 — крупный план открытого пункта; брус 256×140
+   и каркас 377×141 — компактные миниатюры. Открытые фото 3 и 4 держим заметно
+   ниже газобетона, иначе квадрат 344×344 и панорама 575×345 рвут карточку. */
+.home-page .home-tech-item[data-tech="timber"].is-open .home-tech-item__photo {
+  height: clamp(200px, 20vw, 300px);
+}
+.home-page .home-tech-item[data-tech="frame"].is-open .home-tech-item__photo {
+  height: clamp(180px, 18vw, 260px);
 }
 .home-page .home-materials__actions {
   display: flex;
@@ -833,11 +867,12 @@
   min-height: 600px;
 }
 .home-page .home-advantage-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
   gap: 12px;
 }
 .home-page .home-advantage-card {
+  flex: 0 0 calc((100% - 24px) / 3);
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1475,8 +1510,8 @@
 }
 
 @media (max-width: 880px) {
-  .home-page .home-advantage-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .home-page .home-advantage-card {
+    flex-basis: calc((100% - 12px) / 2);
   }
   .home-page .home-safety__cards,
   .home-page .home-stage-grid {
@@ -1944,10 +1979,10 @@
     min-height: 598px;
   }
   .home-page .home-advantage-grid {
-    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
   }
   .home-page .home-advantage-card {
+    flex-basis: 84%;
     min-height: 0;
     padding: 20px;
     border-radius: 14px;
@@ -2333,31 +2368,125 @@
 }
 
 
-/* Стили старых главных секций, скопированных без упрощения разметки. */
-.home-page #steps .process-list {
-  counter-reset: process;
+/* Steps 1:1 с old-main (#process): номер рисует .process-number (50px),
+   счётчик li::before выключен; внизу рельса 32px с ручкой-стрелками. */
+.home-page #steps .section-heading {
+  margin-bottom: 80px;
 }
-
 .home-page #steps .process-list li {
-  counter-increment: process;
-  max-width: 500px;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--line);
+  max-width: 228px;
+  padding: 0;
+  border: 0;
 }
-
+/* Самый высокий шаг — 06 (221px): фиксируем высоту списка, чтобы секция
+   не прыгала при движении ползунка. */
+.home-page #steps .process-list {
+  min-height: 225px;
+}
 .home-page #steps .process-list li::before {
-  content: counter(process, decimal-leading-zero);
-  display: block;
-  margin-bottom: 12px;
-  font-size: 50px;
+  content: none;
 }
-
+.home-page #steps .process-number {
+  display: block;
+  margin-bottom: 10px;
+}
 .home-page #steps .process-list h3 {
   margin-bottom: 10px;
 }
-
+.home-page #steps [data-figma-text="315:778"],
+.home-page #steps [data-figma-text="491:643"],
+.home-page #steps [data-figma-text="491:647"],
+.home-page #steps [data-figma-text="491:651"],
+.home-page #steps [data-figma-text="491:655"],
+.home-page #steps [data-figma-text="491:659"],
+.home-page #steps [data-figma-text="491:663"] {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.60417vw, 50px);
+  line-height: 1.268;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000;
+}
+.home-page #steps [data-figma-text="315:779"],
+.home-page #steps [data-figma-text="491:644"],
+.home-page #steps [data-figma-text="491:648"],
+.home-page #steps [data-figma-text="491:652"],
+.home-page #steps [data-figma-text="491:656"],
+.home-page #steps [data-figma-text="491:660"],
+.home-page #steps [data-figma-text="491:664"] {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  line-height: 1.268;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000;
+}
+.home-page #steps .process-list li > p {
+  color: rgb(0 0 0 / 40%);
+}
 .home-page #steps .process-range {
-  margin-top: 32px;
+  position: relative;
+  margin-top: 50px;
+  height: 32px;
+}
+.home-page #steps .process-range::before,
+.home-page #steps .process-range::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+  pointer-events: none;
+  z-index: 1;
+}
+.home-page #steps .process-range::before {
+  left: 0;
+}
+.home-page #steps .process-range::after {
+  right: 0;
+}
+.home-page #steps .process-range input {
+  position: relative;
+  z-index: 2;
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  border: 0;
+  border-radius: 0;
+  outline-offset: 8px;
+  background: transparent;
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  cursor: ew-resize;
+}
+.home-page #steps .process-range input::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #00000026;
+}
+.home-page #steps .process-range input::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 62px;
+  height: 32px;
+  background: #fff url("assets/process-handle.webp") center/62px 32px no-repeat;
+  border: 0;
+  border-radius: 10px;
+  margin-top: -15px;
+}
+.home-page #steps .process-range input::-moz-range-track {
+  height: 2px;
+  background: #00000026;
+}
+.home-page #steps .process-range input::-moz-range-thumb {
+  width: 62px;
+  height: 32px;
+  background: #fff url("assets/process-handle.webp") center/62px 32px no-repeat;
+  border: 0;
+  border-radius: 10px;
 }
 
 .home-page #finance .mortgage-grid {
@@ -2397,10 +2526,12 @@
 }
 
 .home-page #finance .tags li {
-  padding: 6px 10px;
-  background: var(--paper);
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 12px 15px;
+  background: none;
+  border: 1px solid rgb(0 0 0 / 40%);
+  border-radius: 37px;
+  color: rgb(0 0 0 / 40%);
+  font-size: 15px;
 }
 
 .home-page #finance .mortgage-grid img {
@@ -2409,10 +2540,6 @@
   margin-top: 25px;
   object-fit: contain;
   object-position: left bottom;
-}
-
-.home-page #finance .mortgage-grid article:nth-child(2) img {
-  object-position: right bottom;
 }
 
 .home-page #social-proof .video-grid {
@@ -2457,15 +2584,19 @@
   gap: 20px;
 }
 
+/* Карточка видео: текст сверху, превью под ним. */
 .home-page #social-proof .video-card {
   display: grid;
-  grid-template-columns: 40% 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
   gap: 22px;
   padding: 10px;
   border-radius: 10px;
   background: #ffffff14;
   text-align: left;
+}
+.home-page #social-proof .video-card > span {
+  order: -1;
 }
 
 .home-page #social-proof .video-card > img {
@@ -2518,7 +2649,7 @@
   }
 
   .home-page #finance .mortgage-grid .tags li {
-    padding: 8px 12px;
+    padding: 12px 15px;
   }
 
   .home-page #finance .mortgage-grid img {
@@ -2528,8 +2659,128 @@
   .home-page #steps .process-list {
     min-height: 205px;
   }
+  .home-page #steps .section-heading {
+    margin-bottom: 40px;
+  }
+  .home-page #steps .process-range {
+    margin-top: 35px;
+  }
 
   .home-page #social-proof .video-card {
     min-height: 0;
   }
+}
+/* Правка заказчика: на мобильном вторая строка projects без зануления —
+   тот же инсет 130px, что у objects (compact.css), foundation не трогаем. */
+@media (max-width: 768px) {
+  .home-page #projects .heading-line--inset {
+    margin-left: 130px;
+  }
+}
+/* Квиз: вопрос приглушён до белого 60%; вместо max-width:none из fidelity —
+   компактная колонка 320px. */
+.home-page #calculator .quiz-question {
+  max-width: 320px;
+  color: rgb(255 255 255 / 60%);
+}
+/* Карусель преимуществ: остаются стрелки и кнопки; прозрачный range-input,
+   дублирующий управление, скрыт. */
+.home-page #advantages .advantage-progress input[type="range"] {
+  display: none;
+}
+/* Карусель преимуществ: лишний ползунок-тамб скрыт, остаётся тонкая линия. */
+.home-page #advantages .advantage-progress__thumb {
+  display: none;
+}
+/* --- Пакет: materials, finance, visit, social --- */
+/* Materials: воздух под шапкой секции. */
+.home-page #materials .home-heading {
+  margin-bottom: 50px;
+}
+/* Finance: описание без жёлтой линии, в 2 строки, чёрный 40%. */
+.home-page #finance .heading-description::before {
+  content: none;
+}
+.home-page #finance .heading-description {
+  padding-left: 0;
+  max-width: 350px;
+  color: rgb(0 0 0 / 40%);
+}
+/* Stacked-заголовки главной: описания чёрные 40%, не шире 370px. */
+.home-page .section-heading--stacked > div > .heading-description {
+  max-width: 370px;
+  color: rgb(0 0 0 / 40%);
+}
+/* Finance: тексты карточек чёрные 40%. */
+.home-page #finance .mortgage-grid p {
+  color: rgb(0 0 0 / 40%);
+}
+/* Finance: теги без фона, рамка и текст чёрные 40%. */
+.home-page #finance .tags li {
+  background: none;
+  border: 1px solid rgb(0 0 0 / 40%);
+  color: rgb(0 0 0 / 40%);
+}
+/* Finance: первая картинка закреплена влево и сдвинута левее на 50px,
+   вторая закреплена вправо и сдвинута правее на 50px (лишнее режет article). */
+.home-page #finance .mortgage-grid article:nth-child(1) img {
+  object-position: left bottom;
+  width: calc(100% + 50px);
+  margin-left: -50px;
+}
+.home-page #finance .mortgage-grid article:nth-child(2) img {
+  object-position: right bottom;
+  width: calc(100% + 50px);
+  margin-right: -50px;
+}
+/* Visit: кикер серым на тёмной плашке. */
+.home-page #visit .visit-kicker {
+  color: rgb(255 255 255 / 60%);
+}
+/* Home-social: описание серым. */
+.home-page #home-social .social-grid > div > p {
+  color: rgb(0 0 0 / 60%);
+}
+/* Social-proof 1:1 с old-main: цифры-градиент, подписи, соцкнопки 60%. */
+.home-page #social-proof .subscriber-count {
+  gap: 32px;
+  margin-top: 49px !important;
+}
+.home-page #social-proof .subscriber-count .subscriber-number {
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 5.20833vw, 100px);
+  line-height: 1.268;
+  font-weight: 400;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 86.051%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.home-page #social-proof .subscriber-count .subscriber-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.home-page #social-proof .subscriber-count .subscriber-labels span {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.268;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d9d9d9;
+}
+.home-page #social-proof .video-social-links {
+  gap: 30px;
+}
+.home-page #social-proof .video-social-links button {
+  color: rgba(255, 255, 255, 0.6);
+}
+.home-page #social-proof .video-social-links button + button {
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  padding-left: 30px;
+}
+.home-page #social-proof [data-figma-text="315:460"],
+.home-page #social-proof [data-figma-text="315:461"] {
+  color: rgba(255, 255, 255, 0.6);
 }

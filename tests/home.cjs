@@ -33,9 +33,10 @@ const { homeUrl } = require("./site-url.cjs");
         (section) => section.id,
       ),
       project: (() => {
-        const viewport = document.querySelector("#projects .foundation-cards");
-        const card = viewport?.querySelector(".foundation-card");
-        if (!viewport || !card) return null;
+        const viewport = document.querySelector("#projects .carousel-bleed");
+        const track = document.querySelector("#projects #project-track");
+        const card = track?.querySelector(".project-card:not([hidden])");
+        if (!viewport || !track || !card) return null;
         const viewportRect = viewport.getBoundingClientRect();
         const cardRect = card.getBoundingClientRect();
         return {
@@ -43,7 +44,7 @@ const { homeUrl } = require("./site-url.cjs");
           right: cardRect.right,
           viewportLeft: viewportRect.left,
           viewportRight: viewportRect.right,
-          cardCount: viewport.querySelectorAll(".foundation-card").length,
+          cardCount: track.querySelectorAll(".project-card").length,
         };
       })(),
     }));
@@ -105,10 +106,17 @@ const { homeUrl } = require("./site-url.cjs");
   assert.equal(await page.locator('[data-tech="timber"]').evaluate((el) => el.classList.contains("is-open")), true);
   assert.equal(await page.locator('[data-tech="brick"]').evaluate((el) => el.classList.contains("is-open")), false);
 
-  // The homepage keeps the complete foundation card carousel and mobile rail.
-  assert.equal(await page.locator("#projects .foundation-card").count(), 6);
-  assert.equal(await page.locator("#projects [data-foundation-progress]").count(), 1);
-  assert.ok(await page.locator("#projects .foundation-cards").evaluate((track) => track.scrollWidth > track.clientWidth));
+  // The homepage shows old-mockup house cards with photo pagination,
+  // working filters and an empty state (not foundation cards).
+  assert.equal(await page.locator("#projects .project-card").count(), 4);
+  assert.equal(await page.locator("#projects .project-card .project-frame.is-active").count(), 4);
+  await page.locator('#projects .project-card[data-area="100"] [data-photo-index="1"]').first().click();
+  assert.equal(await page.locator('#projects .project-card[data-area="100"] .project-frame.is-active').first().getAttribute("data-photo"), "1");
+  await page.locator('#projects [data-filter="5"]').click();
+  assert.equal(await page.locator("#projects .project-card:not([hidden])").count(), 0);
+  assert.equal(await page.locator("#projects .empty-projects").isVisible(), true);
+  await page.locator('#projects [data-filter="0"]').click();
+  assert.equal(await page.locator("#projects .project-card:not([hidden])").count(), 4);
 
   // Video and the four-question flow remain usable without fake destinations or
   // an automatic submission/price calculation.

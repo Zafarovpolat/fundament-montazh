@@ -2996,7 +2996,9 @@ html[data-motion="off"] #hero .hero-grid {
     display: block;
     margin: 0;
   }
-  #projects .heading-line--inset {
+  /* Foundation #projects: вторая строка без отступа (как на десктопе в
+     fidelity.css). На главной действует общий inset 22px из правила выше. */
+  body:not(.home-page) #projects .heading-line--inset {
     margin-left: 0;
   }
   #projects .heading-description.with-yellow-rule {
