@@ -269,26 +269,34 @@
   position: relative;
   z-index: 1;
 }
+/* Как общая формула fidelity (≥1200px): те же боковые поля 260px,
+   чтобы home-секции шли наравне с .section. */
+@media (min-width: 1200px) {
+  .home-page main > .home-section > .container {
+    width: calc(100% - max(260px, 2 * var(--gutter)));
+  }
+}
 .home-page .home-heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: end;
   gap: 24px 50px;
   margin-bottom: 34px;
 }
-.home-page .home-heading h2,
-.home-page .home-heading > .eyebrow {
-  grid-column: 1;
-}
 .home-page .home-heading h2 {
+  flex: 1 1 0%;
+  min-width: 0;
   max-width: 920px;
   font-size: clamp(32px, 3.4vw, 58px);
   line-height: 1.15;
   text-transform: uppercase;
 }
+/* Подпись всегда отдельной строкой над заголовком. */
+.home-page .home-heading > .eyebrow {
+  flex: 1 1 100%;
+}
 .home-page .home-heading > p:not(.eyebrow) {
-  grid-column: 2;
-  grid-row: 1 / span 2;
+  flex: 0 1 470px;
   align-self: end;
   max-width: 470px;
   padding-left: 22px;
@@ -331,12 +339,10 @@
   justify-content: space-between;
   align-items: end;
   gap: 24px 50px;
-}
-.home-page .home-safety .home-heading > .eyebrow {
-  flex: 1 1 100%;
+  margin-top: 50px;
 }
 .home-page .home-safety .home-heading h2 {
-  flex: 1 1 auto;
+  flex: 1 1 0%;
   min-width: 0;
 }
 .home-page .home-safety .home-heading > p:not(.eyebrow) {
@@ -403,7 +409,7 @@
 }
 .home-page #process .home-heading > p:not(.eyebrow) {
   align-self: end;
-  justify-self: end;
+  margin-left: auto;
   max-width: 350px;
 }
 /* Кнопки директора ниже stats-сетки с запасом (~150px по зазору). */
@@ -428,15 +434,10 @@
     height: calc(100% + 120px);
   }
 }
-.home-page #materials .home-heading {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 800px);
-}
-.home-page #materials .home-heading {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-}
 .home-page #materials .home-heading > p:not(.eyebrow) {
-  justify-self: end;
+  flex: 0 1 664px;
   max-width: 664px;
+  margin-left: auto;
 }
 .home-page .home-stage-grid {
   display: grid;
@@ -867,12 +868,11 @@
   min-height: 600px;
 }
 .home-page .home-advantage-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 .home-page .home-advantage-card {
-  flex: 0 0 calc((100% - 24px) / 3);
-  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1490,7 +1490,6 @@
     padding: 22px 24px;
   }
   .home-page .home-heading {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
     gap: 20px 28px;
   }
   .home-page .home-director__layout {
@@ -1510,8 +1509,8 @@
 }
 
 @media (max-width: 880px) {
-  .home-page .home-advantage-card {
-    flex-basis: calc((100% - 12px) / 2);
+  .home-page .home-advantage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .home-page .home-safety__cards,
   .home-page .home-stage-grid {
@@ -1681,19 +1680,15 @@
   .home-page #objects .home-heading,
   .home-page .home-design .home-heading,
   .home-page .home-calculator .home-heading {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
     gap: 16px;
     margin-bottom: 20px;
   }
   .home-page .home-heading h2 {
-    grid-column: 1;
     font-size: 30px;
     line-height: 1.27;
   }
   .home-page .home-heading > p:not(.eyebrow) {
-    grid-column: 1;
-    grid-row: auto;
     max-width: 100%;
     font-size: 15px;
     line-height: 1.4;
@@ -1979,10 +1974,10 @@
     min-height: 598px;
   }
   .home-page .home-advantage-grid {
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
   }
   .home-page .home-advantage-card {
-    flex-basis: 84%;
     min-height: 0;
     padding: 20px;
     border-radius: 14px;
@@ -2559,8 +2554,8 @@
 
 .home-page #social-proof .director-quote {
   margin-block: 28px;
-  padding-left: 22px;
-  border-left: 2px solid var(--accent);
+  padding-left: 0;
+  border-left: 0;
   font-size: 19px;
   line-height: 1.5;
 }
@@ -2584,19 +2579,16 @@
   gap: 20px;
 }
 
-/* Карточка видео: текст сверху, превью под ним. */
+/* Карточка видео: превью слева, текст справа и прижат к верху. */
 .home-page #social-proof .video-card {
   display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
+  grid-template-columns: 40% 1fr;
+  align-items: start;
   gap: 22px;
   padding: 10px;
   border-radius: 10px;
   background: #ffffff14;
   text-align: left;
-}
-.home-page #social-proof .video-card > span {
-  order: -1;
 }
 
 .home-page #social-proof .video-card > img {
@@ -2771,7 +2763,10 @@
   color: #d9d9d9;
 }
 .home-page #social-proof .video-social-links {
+  display: flex;
+  align-items: center;
   gap: 30px;
+  margin-top: 5px;
 }
 .home-page #social-proof .video-social-links button {
   color: rgba(255, 255, 255, 0.6);
@@ -2783,4 +2778,72 @@
 .home-page #social-proof [data-figma-text="315:460"],
 .home-page #social-proof [data-figma-text="315:461"] {
   color: rgba(255, 255, 255, 0.6);
+}
+.home-page #social-proof [data-figma-text="315:464"] {
+  color: var(--accent);
+}
+/* Главная #design: подпись обычной строкой над заголовком (без гуттера,
+   точки и скрытия foundation-версии). */
+.home-page #design .eyebrow {
+  position: static;
+  width: auto;
+  margin-bottom: 14px;
+}
+.home-page #design .eyebrow::before {
+  content: none;
+}
+@media (min-width: 1200px) {
+  .home-page #design .eyebrow {
+    display: flex;
+  }
+}
+/* Page-path как в foundation, тексты главной: та же типографика подписей
+   и те же состояния (fidelity правит только [data-figma-text], которых
+   на главной нет; порядок блоков повторяет fidelity 2620→2672). */
+.home-page .page-path .path-label {
+  font-size: 15px;
+  line-height: 21px;
+  text-transform: uppercase;
+  width: max-content;
+  min-width: 0;
+  max-width: 90px;
+  white-space: normal;
+  color: rgba(7, 11, 31, 0.4);
+}
+.home-page .page-path .is-dark .path-label {
+  color: rgba(255, 255, 255, 0.4);
+}
+.home-page .page-path .is-passed .path-label {
+  color: #070b1f;
+}
+.home-page .page-path .is-dark.is-passed .path-label {
+  color: #fff;
+}
+@media (max-width: 1899px) {
+  .home-page .page-path .path-label {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .home-page .page-path .path-label {
+    display: block;
+  }
+}
+.home-page .page-path .path-label {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  max-height: 42px;
+  color: rgba(7, 11, 31, 0.4);
+}
+.home-page .page-path .is-dark .path-label {
+  color: rgba(255, 255, 255, 0.4);
+}
+.home-page .page-path .is-passed .path-label {
+  color: rgba(7, 11, 31, 0.55);
+}
+.home-page .page-path .is-dark.is-passed .path-label {
+  color: rgba(255, 255, 255, 0.55);
 }
