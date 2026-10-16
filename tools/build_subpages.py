@@ -314,6 +314,10 @@ def legal_main(head_html: str, nav_html: str, body_html: str) -> str:
 
 
 # --------------------------------------------------------------- статусные
+# Мобильный арт (≤768 px) там, где макет отдаёт отдельный кадр: 404 (363×244).
+MOBILE_ART = {"439:1533": ("assets/figma-439-1533-mobile.webp", 363, 244)}
+
+
 def status_main(modifier: str, art_node: str, art_w: int, art_h: int, art_alt: str,
                 title_node: str | None, text_node: str | None,
                 button_node: str) -> str:
@@ -338,7 +342,7 @@ def status_main(modifier: str, art_node: str, art_w: int, art_h: int, art_alt: s
         else ""
     )
     if (ROOT / asset).exists():
-        art_inner = f'''          <img
+        img = f'''<img
             alt="{art_alt}"
             data-figma-text="{art_node}"
             decoding="async"
@@ -346,6 +350,14 @@ def status_main(modifier: str, art_node: str, art_w: int, art_h: int, art_alt: s
             src="{asset}"
             width="{art_w}"
           />'''
+        mobile = MOBILE_ART.get(art_node)
+        if mobile and (ROOT / mobile[0]).exists():
+            art_inner = f'''          <picture>
+            <source height="{mobile[2]}" media="(max-width: 768px)" srcset="{mobile[0]}" width="{mobile[1]}" />
+            {img}
+          </picture>'''
+        else:
+            art_inner = "          " + img
         art_class = "status-art"
         comment = ""
     else:

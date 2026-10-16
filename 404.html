@@ -199,14 +199,18 @@
     </header>
     <main class="subpage status status--404" id="main">
       <div class="container status-inner">
-        <!-- Артворк 1270×644 (узел 439:1533) выгружается из
-             Figma в assets/figma-439-1533.webp; после этого блок собирается заново
-             командой python3 tools/build_subpages.py. -->
-        <div class="status-art is-missing" data-artwork-pending="">
-          <span class="status-art__pending"
-            >Артворк 1270×644 из макета (узел 439:1533) ещё не выгружен
-            в assets/figma-439-1533.webp</span
-          >
+        <div class="status-art" data-artwork-pending="">
+          <picture>
+            <source height="244" media="(max-width: 768px)" srcset="assets/figma-439-1533-mobile.webp" width="363" />
+            <img
+            alt="Страница не найдена"
+            data-figma-text="439:1533"
+            decoding="async"
+            height="644"
+            src="assets/figma-439-1533.webp"
+            width="1270"
+          />
+          </picture>
         </div>
         <div class="status-actions">
           <a class="button button--yellow" data-motion-button="" href="index.html">
