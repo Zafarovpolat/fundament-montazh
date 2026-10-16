@@ -3821,3 +3821,11 @@
   }
 }
 
+/* 2ГИС (мобайл): ссылка «Читать отзывы» и «34 оценки» — серым. */
+@media (max-width: 768px) {
+  #reviews .gis-card .gis-link,
+  #reviews .gis-card .gis-rating > span:last-child {
+    color: rgb(0 0 0 / 40%);
+  }
+}
+
