@@ -3578,8 +3578,8 @@
     color: #fff;
     filter: brightness(0) invert(1);
   }
-  /* Кнопка «Смотреть все проекты» на всю ширину карточки. */
-  .home-page .project-card > .button.button--soft-icon {
+  /* Кнопка «Смотреть все проекты» (блок .section-actions в #projects) на всю ширину. */
+  .home-page #projects .section-actions > .button.button--soft-icon {
     width: 100%;
     max-width: 100%;
     justify-content: space-between;
