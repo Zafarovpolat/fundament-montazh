@@ -4483,10 +4483,10 @@ html[data-motion="off"] #hero .hero-grid {
   }
 
   /* Advantages: replace the two small arrows with the same range rail pattern. */
-  html body:not(.home-page) #advantages .advantage-controls {
+  html #advantages .advantage-controls {
     display: none;
   }
-  html body:not(.home-page) #advantages .advantage-progress {
+  html #advantages .advantage-progress {
     position: relative;
     display: block;
     width: min(100%, 335px);
@@ -4494,7 +4494,7 @@ html[data-motion="off"] #hero .hero-grid {
     margin: 0 auto;
     isolation: isolate;
   }
-  html body:not(.home-page) #advantages .advantage-progress__line {
+  html #advantages .advantage-progress__line {
     position: absolute;
     inset-inline: 0;
     top: 50%;
@@ -4502,7 +4502,7 @@ html[data-motion="off"] #hero .hero-grid {
     transform: translateY(-50%);
     background: rgb(7 11 31 / 18%);
   }
-  html body:not(.home-page) #advantages .advantage-progress__thumb {
+  html #advantages .advantage-progress__thumb {
     position: absolute;
     top: 0;
     left: var(--advantage-thumb-x, 0px);
@@ -4517,16 +4517,16 @@ html[data-motion="off"] #hero .hero-grid {
     border-radius: 9px;
     background: #f5b71b;
   }
-  html body:not(.home-page) #advantages .advantage-progress__thumb .figma-icon {
+  html #advantages .advantage-progress__thumb .figma-icon {
     width: 5.13px;
     height: 10.26px;
   }
-  html body:not(.home-page) #advantages .advantage-progress__divider {
+  html #advantages .advantage-progress__divider {
     width: 1px;
     height: 9.4px;
     background: rgb(7 11 31 / 20%);
   }
-  html body:not(.home-page) #advantages .advantage-progress input {
+  html #advantages .advantage-progress input {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -4536,7 +4536,7 @@ html[data-motion="off"] #hero .hero-grid {
     cursor: ew-resize;
     touch-action: none;
   }
-  html body:not(.home-page) #advantages .advantage-progress:focus-within .advantage-progress__thumb {
+  html #advantages .advantage-progress:focus-within .advantage-progress__thumb {
     outline: 2px solid #101323;
     outline-offset: 2px;
   }
@@ -4608,11 +4608,11 @@ html[data-motion="off"] #hero .hero-grid {
 }
 
 @media (min-width: 769px) {
-  html body:not(.home-page) #advantages .advantage-progress {
+  html #advantages .advantage-progress {
     display: none;
   }
 }
-html body:not(.home-page) #advantages .advantage-progress[hidden] {
+html #advantages .advantage-progress[hidden] {
   display: none !important;
 }
 
@@ -4680,7 +4680,7 @@ html #advantages .heading-description.with-yellow-rule[data-figma-text] {
 }
 
 /* The visible arrow thumb sits above the transparent range input. */
-html body:not(.home-page) #advantages .advantage-progress__thumb {
+html #advantages .advantage-progress__thumb {
   background: #fff;
   color: #070b1f;
 }
@@ -4769,5 +4769,112 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
 @media (max-width: 1440px) {
   html .social-list article > .button[data-motion-button] {
     min-height: 58px !important;
+  }
+}
+
+/* ═══ Раунд 4 (2026-10-16). Общие мобильные правки обеих страниц ═════════ */
+
+/* 1. ≤1024: вторая строка заголовка идёт без отступа — на обеих страницах
+   (включая #process, #materials, #projects главной и #faq .section-heading). */
+@media (max-width: 1024px) {
+  .heading-line--inset,
+  #projects .heading-line--inset,
+  #objects .heading-line--inset,
+  #included .heading-line--inset,
+  #advantages .section-heading .heading-line--inset,
+  #social .section-heading .heading-line--inset,
+  #faq .section-heading .heading-line--inset {
+    margin-left: 0;
+  }
+}
+
+/* 4. Мобильные кнопки: подпись может переноситься на две строки — при
+   высоте 75 px и паддингах 21 px две строки 16.38 px укладываются ровно. */
+@media (max-width: 768.98px) {
+  html .button[data-motion-button] .button-label {
+    max-width: 100%;
+    white-space: normal !important;
+  }
+}
+
+/* 6. Проекты главной: на мобиле стрелки карусели не нужны — ряд листается. */
+@media (max-width: 768px) {
+  .home-page #projects .carousel-controls {
+    display: none;
+  }
+}
+
+/* 10. Рельса преимуществ: на главной она отстоит от слайдера на 26 px
+   (кадр 540:662: карточки до 7526, рельса 544:1469 — с 7552). */
+@media (max-width: 768px) {
+  .home-page #advantages .advantage-progress {
+    margin-top: 26px;
+  }
+}
+
+/* 11. Квиз: вопрос мельче (кадр 540:662, узел 544:1521 — 15/18.9),
+   кнопка «Далее» прижата к правому краю колонки (544:1550). */
+@media (max-width: 768px) {
+  .home-page #calculator .quiz-question {
+    font-size: 15px;
+    line-height: 18.9px;
+  }
+  html #calculator .section-actions > .button[data-motion-button] {
+    margin-left: auto;
+  }
+}
+
+/* 18. FAQ: иконка мельче (как на «Фундаменте») и каждая строка вопроса
+   занимает всю ширину карточки. */
+@media (max-width: 768px) {
+  html #faq .faq-grid details,
+  html #faq .faq-grid summary {
+    width: 100%;
+    max-width: none;
+    align-self: stretch;
+  }
+  html #faq .faq-grid summary > span .figma-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.62;
+  }
+}
+
+/* 20. Карточка соцсети «Фундамента»: верхний отступ равен боковым
+   (кадр 540:662, узел 597:1273 — превью на +8/+9 при паддингах 8 px). */
+@media (max-width: 768px) {
+  #social .social-list article {
+    padding: 8px;
+  }
+}
+
+/* 24. Ссылки футера: возвращаем стрелку 12×12 у правого края строки. */
+@media (max-width: 768px) {
+  .footer-columns nav > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .footer-columns nav > a > span {
+    display: inline-flex;
+    flex: none;
+  }
+}
+
+/* 7. Описание в объектах на мобиле — по правому краю (кадр 540:662:
+   540:1278 al=RIGHT; на «Фундаменте» 606:909/606:910 — то же). */
+@media (max-width: 768px) {
+  #objects .heading-description {
+    text-align: right;
+  }
+}
+
+/* 23. Низ футера: «Оферта» отдельной строкой по левому краю, как в кадре
+   540:662 (узел 609:1049 — x 5115, строка «Политика…» ниже). */
+@media (max-width: 768px) {
+  html #contacts .footer-legal > div {
+    flex-wrap: nowrap;
+    align-items: flex-start;
   }
 }

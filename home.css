@@ -417,13 +417,17 @@
 .home-page .home-process .home-heading {
   margin-bottom: 50px;
 }
-/* Отступ второй строки в process вдвое меньше базовых 136px. */
-.home-page #process .heading-line--inset {
-  margin-left: 68px;
-}
-/* Отступ второй строки в materials — как в process. */
-.home-page #materials .heading-line--inset {
-  margin-left: 68px;
+/* Отступ второй строки в process вдвое меньше базовых 136px.
+   Раунд 4: заказчик убрал инсет у всех заголовков ≤1024 px, поэтому правило
+   действует только на десктопе (на мобиле отступ снимает compact.css). */
+@media (min-width: 1025px) {
+  .home-page #process .heading-line--inset {
+    margin-left: 68px;
+  }
+  /* Отступ второй строки в materials — как в process. */
+  .home-page #materials .heading-line--inset {
+    margin-left: 68px;
+  }
 }
 @media (min-width: 1441px) {
   /* Проекты: вторая строка с фирменным отступом 136px (Figma 124:102).
@@ -1828,14 +1832,16 @@
     font-size: 14px;
     line-height: 17.64px;
   }
-  .home-page .home-safety__range {
+  .home-page .home-safety__range,
+  .home-page .home-stage-range {
     position: relative;
     display: block;
     height: 27.35px;
     margin-top: 13px;
     isolation: isolate;
   }
-  .home-page .home-safety__range-line {
+  .home-page .home-safety__range-line,
+  .home-page .home-stage-range-line {
     position: absolute;
     inset-inline: 0;
     top: 50%;
@@ -1843,7 +1849,8 @@
     transform: translateY(-50%);
     background: rgb(0 0 0 / 15%);
   }
-  .home-page .home-safety__range-ctrl {
+  .home-page .home-safety__range-ctrl,
+  .home-page .home-stage-range-ctrl {
     position: absolute;
     top: 0;
     left: var(--safety-thumb-x, 0px);
@@ -1863,22 +1870,27 @@
     user-select: none;
     -webkit-user-drag: none;
   }
-  html.is-scrubbing .home-page .home-safety__range-ctrl {
+  html.is-scrubbing .home-page .home-safety__range-ctrl,
+  html.is-scrubbing .home-page .home-stage-range-ctrl {
     cursor: grabbing;
   }
-  .home-page .home-safety__range-ctrl .figma-icon {
+  .home-page .home-safety__range-ctrl .figma-icon,
+  .home-page .home-stage-range-ctrl .figma-icon {
     width: 5.13px;
     height: 10.26px;
   }
-  .home-page .home-safety__range-ctrl .figma-icon:first-child {
+  .home-page .home-safety__range-ctrl .figma-icon:first-child,
+  .home-page .home-stage-range-ctrl .figma-icon:first-child {
     opacity: 0.25;
   }
-  .home-page .home-safety__range-divider {
+  .home-page .home-safety__range-divider,
+  .home-page .home-stage-range-divider {
     width: 1px;
     height: 9.4px;
     background: rgb(0 0 0 / 25%);
   }
-  .home-page .home-safety__range input {
+  .home-page .home-safety__range input,
+  .home-page .home-stage-range input {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1888,7 +1900,8 @@
     cursor: ew-resize;
     touch-action: none;
   }
-  .home-page .home-safety__range:focus-within .home-safety__range-ctrl {
+  .home-page .home-safety__range:focus-within .home-safety__range-ctrl,
+  .home-page .home-stage-range:focus-within .home-stage-range-ctrl {
     outline: 2px solid #101323;
     outline-offset: 2px;
   }
@@ -2846,11 +2859,12 @@
     min-height: 0;
   }
 }
-/* Правка заказчика: на мобильном вторая строка projects без зануления —
-   тот же инсет 130px, что у objects (compact.css), foundation не трогаем. */
+/* Правка заказчика (раунд 4): на мобильном вторая строка projects без
+   отступа — как и у остальных заголовков главной (общее правило ≤1024 px
+   в compact.css; здесь оно перебивало его по специфичности). */
 @media (max-width: 768px) {
   .home-page #projects .heading-line--inset {
-    margin-left: 130px;
+    margin-left: 0;
   }
 }
 /* Квиз: вопрос приглушён до белого 60%; вместо max-width:none из fidelity —
@@ -2859,15 +2873,10 @@
   max-width: 320px;
   color: rgb(255 255 255 / 60%);
 }
-/* Карусель преимуществ: остаются стрелки и кнопки; прозрачный range-input,
-   дублирующий управление, скрыт. */
-.home-page #advantages .advantage-progress input[type="range"] {
-  display: none;
-}
-/* Карусель преимуществ: лишний ползунок-тамб скрыт, остаётся тонкая линия. */
-.home-page #advantages .advantage-progress__thumb {
-  display: none;
-}
+/* Карусель преимуществ (раунд 4): на мобиле главной та же рельса-«рендж»,
+   что на «Фундаменте» — линия 2 px, белая пилюля 53×27 со стрелками и
+   прозрачный range-input для перетаскивания. Раньше здесь оставались только
+   две мелкие кнопки-стрелки, а линия и ползунок были скрыты. */
 /* --- Пакет: materials, finance, visit, social --- */
 /* Materials: воздух под шапкой секции. */
 .home-page #materials .home-heading {
@@ -3121,5 +3130,262 @@
   .home-page #materials .home-heading > p:not(.eyebrow),
   .home-page #advantages .home-heading > p:not(.eyebrow) {
     flex-basis: auto;
+  }
+}
+
+/* ═══ Раунд 4 (2026-10-16). Мобильные правки главной по списку заказчика ═══ */
+
+/* 2. «Этапы» на мобиле — слайдер 222×276 (кадр 540:662: трек 540:976,
+   карточка 540:978) с рельсой-«ренджем» как у карточек защиты (540:988). */
+.home-page .home-stage-range {
+  display: none;
+}
+.home-page .home-stage-range[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Ряд уходит за правый край экрана, как в кадре: лишнее режет обёртка. */
+  .home-page .home-stage-bleed {
+    width: calc(100% + var(--gutter));
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  .home-page .home-stage-grid {
+    display: flex;
+    gap: 5px;
+    transform: translate3d(var(--slide-x, 0px), 0, 0);
+    transition: transform 380ms cubic-bezier(0.22, 0.8, 0.25, 1);
+    touch-action: pan-y;
+  }
+  .home-page .home-stage-grid > .home-stage {
+    flex: 0 0 222px;
+  }
+  .home-page .home-stage {
+    min-height: 276px;
+    padding: 13px 12px 12px;
+    border-radius: 15px;
+  }
+  .home-page .home-stage__num {
+    top: 16px;
+    right: 16px;
+    font-size: 15px;
+    line-height: 19.02px;
+  }
+  /* Плитка фото: в макете 175×134 (540:994), картинка внутри 159×82. */
+  .home-page .home-stage__media {
+    width: 175px;
+    aspect-ratio: 175 / 134;
+  }
+  .home-page .home-stage h3 {
+    margin-top: 11px;
+    max-width: 181px;
+    font-size: 18px;
+    line-height: 22.82px;
+  }
+  .home-page .home-stage p {
+    margin-top: 5px;
+    max-width: 200px;
+    font-size: 14px;
+    line-height: 17.64px;
+  }
+  /* Рельса «этапов» отстоит от слайдера на 8 px (540:976: карточки до 2092,
+     рельса 540:988 начинается с 2100). */
+  .home-page .home-stage-range {
+    display: block;
+    margin-top: 8px;
+  }
+  .home-page .home-stage-range-ctrl {
+    left: var(--stage-thumb-x, 0px);
+  }
+}
+
+/* 3. Цена и срок технологии: мельче и без переноса (кадр 540:662:
+   540:1032 — 18 px, 540:1035 — 14 px). */
+@media (max-width: 768px) {
+  .home-page .home-tech-item__price {
+    font-size: 18px;
+    line-height: 22.82px;
+    white-space: nowrap;
+  }
+  .home-page .home-tech-item__term {
+    font-size: 14px;
+    line-height: 17.64px;
+    white-space: nowrap;
+  }
+}
+
+/* 5. Фильтры проектов: одна строка с горизонтальным скроллом вместо переноса
+   (в кадре 540:662 ряд 540:1150 — 621 px при 375 px экрана). */
+@media (max-width: 768px) {
+  .home-page .filters {
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .home-page .filters::-webkit-scrollbar {
+    display: none;
+  }
+  .home-page .filters button {
+    flex: 0 0 auto;
+  }
+}
+
+/* 8. Галерея объектов: активный слайд выше соседних (кадр 540:662 —
+   активная карточка 540:1281 308×408, соседние 540:1317/540:1333 243×322). */
+@media (max-width: 480px) {
+  .home-page #objects .objects-gallery > .object-card {
+    flex-basis: min(243px, calc(100vw - 40px));
+    width: min(243px, calc(100vw - 40px));
+    height: 322px;
+  }
+  .home-page #objects .objects-gallery > .object-card.is-active {
+    flex-basis: min(308px, calc(100vw - 40px));
+    width: min(308px, calc(100vw - 40px));
+    height: 408px;
+  }
+}
+
+/* 9. Отступ сверху у «Проектирования»: в кадре 540:662 между секциями 50 px
+   (низ 540:1384 — 5993, верх 540:1385 — 6043). */
+@media (max-width: 768px) {
+  .home-page #design {
+    margin-top: 50px;
+  }
+}
+
+/* 12. Кнопку «Узнать условия ипотеки» на мобиле убираем — просьба заказчика. */
+@media (max-width: 768px) {
+  .home-page #finance .section-heading--stacked > .button[data-action="mortgage"] {
+    display: none;
+  }
+}
+
+/* 13. Карточки ипотеки: паддинги как в макете 540:662 (544:1630 — контент
+   начинается на +14 px слева и +17 px сверху вместо 24 px). */
+@media (max-width: 768px) {
+  .home-page #finance .mortgage-grid article {
+    padding: 16px 14px 0;
+  }
+}
+
+/* 14. Описание в отзывах — без левого отступа: в кадре 540:662 (547:1688)
+   текст начинается на той же x, что и заголовок (5115). Отступ 15 px приходит
+   из общего правила .heading-description в fidelity.css — оно нужно только там,
+   где слева стоит жёлтая линия .with-yellow-rule::before (left: -15px). На
+   «Фундаменте» его снимает правило для [data-figma-text], у главной такого
+   атрибута нет, поэтому убираем точечно. */
+.home-page #reviews .section-heading .heading-description {
+  padding-left: 0;
+}
+
+/* 15. Цитаты на мобиле мельче (кадр 540:662: 559:610 и 629:977 — 15/16.73),
+   у подписчиков нет зазора между строками (559:615), число не переносится. */
+@media (max-width: 768px) {
+  .home-page #social-proof .director-quote,
+  .home-page #home-social .director-quote {
+    margin-block: 20px;
+    font-size: 15px;
+    line-height: 16.73px;
+  }
+  .home-page #social-proof .subscriber-count {
+    flex-wrap: wrap;
+    gap: 19px;
+  }
+  .home-page #social-proof .subscriber-count .subscriber-number {
+    white-space: nowrap;
+  }
+  .home-page #social-proof .subscriber-count .subscriber-labels {
+    gap: 0;
+  }
+  .home-page #social-proof .subscriber-count .subscriber-labels span {
+    font-size: 15px;
+    line-height: 19.02px;
+  }
+}
+
+/* 16. Карточки видео: подпись мельче, превью на всю высоту карточки
+   (кадр 540:662, узел 559:628 — карточка 88 px, превью 120×87, 15/19.02). */
+@media (max-width: 768px) {
+  .home-page #social-proof .video-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    grid-template-rows: minmax(88px, auto);
+    align-items: stretch;
+    gap: 11px;
+    min-height: 88px;
+    padding: 0;
+  }
+  .home-page #social-proof .video-card > img {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .home-page #social-proof .video-card strong {
+    font-size: 15px;
+    line-height: 19.02px;
+  }
+  .home-page #social-proof .video-card small {
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 10.84px;
+  }
+}
+
+/* 17. Отступ сверху у FAQ: 50 px между секциями (кадр 540:662: низ 559:598 —
+   11690, верх 559:772 — 11740). */
+@media (max-width: 768px) {
+  .home-page #faq {
+    margin-top: 20px;
+  }
+}
+
+/* 19. Соцсети: заголовок собран в один тег (кадр 629:977 — один текстовый
+   блок). На десктопе вторая строка сохраняет фирменный инсет 136 px
+   (кадр 315:160, узел 315:544). */
+@media (min-width: 1025px) {
+  .home-page #home-social .section-heading h2 > .heading-line {
+    padding-left: 136px;
+    text-indent: -136px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1700px) {
+  .home-page #home-social .section-heading h2 > .heading-line {
+    padding-left: clamp(8px, calc(5vw - 17px), 68px);
+    text-indent: calc(-1 * clamp(8px, calc(5vw - 17px), 68px));
+  }
+}
+/* Общее мобильное правило «h2 br { display: none }» (styles.css:1377) резало
+   перенос внутри собранного заголовка — «найти» и «нас» слипались. Возвращаем
+   его: в кадре 629:977 перенос стоит после «найти». */
+@media (max-width: 768px) {
+  .home-page #home-social .section-heading h2 br {
+    display: block;
+  }
+}
+
+/* 21. Соцсети: превью крупнее и на всю высоту карточки (кадр 540:662,
+   узел 597:1273 — карточка 336×113 с превью 88×88). */
+@media (max-width: 768px) {
+  .home-page #home-social .social-list article {
+    grid-template-columns: 88px minmax(0, 1fr) 58px;
+    min-height: 113px;
+  }
+  .home-page #home-social .social-list article > .social-thumb {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+/* 22. Нижний CTA: дом остаётся внутри панели (кадр 540:662, узел 609:1038 —
+   панель 291 px, картинка 415×203 вплотную к нижнему краю). Отрицательные
+   поля -69/-17 px выносили картинку за панель на 17 px. */
+@media (max-width: 768px) {
+  .home-page #contacts .footer-house {
+    margin-top: -86px;
+    margin-bottom: 0;
   }
 }

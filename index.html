@@ -201,10 +201,10 @@
     <script defer="" src="refinements.js?v=3.6.6"></script>
     <script defer="" src="header.js?v=3.6.4"></script>
     <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
-    <link href="compact.css?v=3.7.0" rel="stylesheet" />
+    <link href="compact.css?v=3.8.0" rel="stylesheet" />
     <script defer="" src="layout.js?v=3.6.4"></script>
-    <link href="home.css?v=25" rel="stylesheet" />
-    <script defer="" src="home.js?v=4"></script>
+    <link href="home.css?v=27" rel="stylesheet" />
+    <script defer="" src="home.js?v=5"></script>
   </head>
   <body class="home-page" data-page="home">
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -440,7 +440,8 @@
             <h2 id="home-process-title"><span class="heading-line">Один договор. Одна смета.</span><span class="heading-line heading-line--inset">Один ответственный.</span></h2>
             <p>Ведём строительство под ключ от геологии и проекта до чистовой отделки.</p>
           </div>
-          <ol class="home-stage-grid">
+          <div class="home-stage-bleed">
+          <ol class="home-stage-grid" data-carousel id="process-track" tabindex="0">
             <li class="home-stage">
               <span aria-hidden="true" class="home-stage__num">01</span>
               <span class="home-stage__media"><img alt="" decoding="async" loading="lazy" width="211" height="109" src="assets/figma-184-121.webp" /></span>
@@ -478,6 +479,16 @@
               <p>Принимаете работы — получаете готовый к проживанию дом</p>
             </li>
           </ol>
+          </div>
+          <div class="home-stage-range" data-stage-range>
+            <span aria-hidden="true" class="home-stage-range-line"></span>
+            <span aria-hidden="true" class="home-stage-range-ctrl">
+              <svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-left" xlink:href="assets/icons/sprite.svg#i-chevron-left"></use></svg>
+              <span class="home-stage-range-divider"></span>
+              <svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-right" xlink:href="assets/icons/sprite.svg#i-chevron-right"></use></svg>
+            </span>
+            <input aria-controls="process-track" aria-label="Положение в карусели этапов строительства" max="100" min="0" step="any" type="range" value="0" />
+          </div>
         </div>
       </section>
 
@@ -1481,7 +1492,7 @@
             <div>
               <div class="section-heading">
                 <div>
-                  <h2><span class="heading-line">Вы можете найти</span><span class="heading-line heading-line--inset">нас на всех соц сетях</span></h2>
+                  <h2><span class="heading-line">Вы можете найти<br />нас на всех соц сетях</span></h2>
                 </div>
               </div>
               <p>Павел ведёт открытые соцсети — показывает стройку честно: и успехи, и трудности. Подписывайтесь — это лучший способ убедиться в качестве до того, как вы нам позвоните.</p>
