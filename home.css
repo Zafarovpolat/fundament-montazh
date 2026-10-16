@@ -3798,3 +3798,26 @@
     padding: 6px;
   }
 }
+
+/* Правки заказчика (мобайл): кикер визита — прозрачность 40%; миниатюра соцсетей
+   на всю высоту карточки; иконка первого преимущества отражена по оси X;
+   заголовки преимуществ начинаются с одной линии; название в 2ГИС — капсом. */
+@media (max-width: 768px) {
+  .home-page #visit .visit-kicker {
+    opacity: 0.4;
+  }
+  .home-page #home-social .social-list article > .social-thumb {
+    align-self: stretch;
+    height: auto;
+  }
+  .home-page .home-advantage-card:first-child .home-advantage-card__icon {
+    transform: scaleX(-1);
+  }
+  .home-page .home-advantage-card h3 {
+    margin-top: 0;
+  }
+  #reviews .gis-card .gis-name {
+    text-transform: uppercase;
+  }
+}
+
