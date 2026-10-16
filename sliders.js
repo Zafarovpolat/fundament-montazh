@@ -20,7 +20,10 @@
       suppressClick = false;
     let pointer = null;
     let finishLoop = null;
-    const loops = track.matches(".card-track.fidelity-track");
+    // Отзывы: ряд не зацикливается и останавливается на последней карточке (edge).
+    const loops =
+      track.matches(".card-track.fidelity-track") &&
+      track.dataset.carouselEnd !== "edge";
     const originalOrder = [...track.children];
     const visibleCards = () =>
       [...track.children].filter(

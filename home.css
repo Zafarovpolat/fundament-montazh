@@ -3744,6 +3744,11 @@
     min-height: 160px;
   }
 
+  /* Отзывы: без верхней линии у подписи карточки. */
+  .home-page #reviews .review-card figcaption {
+    border-top: 0;
+  }
+
   /* Отзывы 2ГИС: карточка на всю ширину. */
   .home-page #reviews .gis-card {
     width: 100%;
