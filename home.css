@@ -3788,3 +3788,13 @@
     height: auto;
   }
 }
+
+/* Объекты (мобайл): заголовки карточек капсом. Соцсети (мобайл): паддинг карточки 6px. */
+@media (max-width: 768px) {
+  .home-page #objects .objects-gallery > .object-card h3 {
+    text-transform: uppercase;
+  }
+  .home-page #home-social .social-list article {
+    padding: 6px;
+  }
+}
