@@ -924,7 +924,7 @@ html .featured-object h3[data-figma-text] {
 
 /* Compact only the animated label-plus-icon actions; the icon still expands
    on hover/focus using the same inset and transition behavior. */
-@media (min-width: 769px) and (max-width: 1440px) {
+@media (min-width: 769px) and (max-width: 1439.98px) {
   html .button[data-motion-button] {
     --button-height: 76px;
     --button-inset: 7px;
@@ -980,7 +980,7 @@ html .featured-object h3[data-figma-text] {
     width: calc(100% - var(--button-inset) - var(--button-inset));
   }
 }
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 1439.98px) {
   html .project-card > .button[data-motion-button],
   html .social-list .button[data-motion-button],
   html #calculator .button[data-motion-button] {
@@ -998,7 +998,7 @@ html .featured-object h3[data-figma-text] {
     min-height: 68px;
     padding: 12px calc(var(--icon-width) + 24px) 12px 20px;
     font-size: 13px;
-    line-height: 22px;
+    line-height: 16.38px;
   }
   html .button[data-motion-button] .button-icon {
     top: var(--button-inset);
@@ -1010,7 +1010,7 @@ html .featured-object h3[data-figma-text] {
   }
   html .button[data-motion-button] .button-label {
     font-size: 13px;
-    line-height: 22px;
+    line-height: 16.38px;
   }
   html .project-card > .button[data-motion-button],
   html .social-list .button[data-motion-button],
@@ -3989,7 +3989,8 @@ html[data-motion="off"] #hero .hero-grid {
   }
   #social .social-list article {
     display: grid;
-    grid-template-columns: min(26.27vw, 88px) minmax(0, 1fr) min(16.42vw, 55px);
+    /* Кнопка соцсети — тот же квадрат 58×58, что у главной (общий токен social). */
+    grid-template-columns: min(26.27vw, 88px) minmax(0, 1fr) 58px;
     align-items: center;
     gap: 10px;
     min-width: 0;
@@ -4012,12 +4013,12 @@ html[data-motion="off"] #hero .hero-grid {
     line-height: 17.64px;
   }
   #social .social-list article > .button {
-    justify-self: stretch;
-    align-self: stretch;
-    width: 100%;
-    height: auto;
-    min-width: 0;
-    min-height: 0;
+    justify-self: center;
+    align-self: center;
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+    min-height: 58px;
     aspect-ratio: 1;
     padding: 0;
   }
@@ -4629,7 +4630,23 @@ html body:not(.home-page) #advantages .advantage-progress[hidden] {
     flex: 1 1 0;
     align-self: center;
     min-width: 0;
-    min-height: 82px;
+    margin: 0;
+  }
+}
+
+/* Планшетная ступень (769–1024): без правила кнопки директора прилипали к
+   сетке статистики — тот же ряд с тем же отступом 32 px, ширина по тексту. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html body:not(.home-page) #director .director-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 32px 0 0;
+  }
+  html body:not(.home-page) #director .director-actions > .button {
+    align-self: center;
     margin: 0;
   }
 }
@@ -4723,5 +4740,34 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
   html body:not(.home-page) #hero .hero-slide--price .price-list h3[data-figma-text] {
     max-width: min-content;
     overflow-wrap: normal;
+  }
+}
+
+/* Заказчик: высота кнопки одна и та же на «Фундаменте» и на главной —
+   107 px от 1440, 76 px до 1439, 75 px на мобиле; выше 1440 не меняется.
+   Ступени задают ещё текст, паддинги и иконку, поэтому 1440 входит в
+   десктопную ступень (её блок выше теперь ограничен 1439.98). */
+@media (min-width: 1440px) {
+  html .button[data-motion-button] {
+    min-height: 107px !important;
+  }
+}
+@media (min-width: 769px) and (max-width: 1439.98px) {
+  html .button[data-motion-button] {
+    min-height: 76px !important;
+  }
+}
+@media (max-width: 768.98px) {
+  html .button[data-motion-button] {
+    min-height: 75px !important;
+    padding-block: 21px !important;
+  }
+}
+/* Единственное исключение — квадратная кнопка-иконка «Подписаться» в карточках
+   соцсетей: подписи у неё нет, высота равна ширине (58 px), поэтому в общую
+   лестницу высот она не входит. */
+@media (max-width: 1440px) {
+  html .social-list article > .button[data-motion-button] {
+    min-height: 58px !important;
   }
 }

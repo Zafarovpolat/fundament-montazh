@@ -201,10 +201,10 @@
     <script defer="" src="refinements.js?v=3.6.6"></script>
     <script defer="" src="header.js?v=3.6.4"></script>
     <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
-    <link href="compact.css?v=3.6.8" rel="stylesheet" />
+    <link href="compact.css?v=3.7.0" rel="stylesheet" />
     <script defer="" src="layout.js?v=3.6.4"></script>
-    <link href="home.css?v=23" rel="stylesheet" />
-    <script defer="" src="home.js?v=3"></script>
+    <link href="home.css?v=25" rel="stylesheet" />
+    <script defer="" src="home.js?v=4"></script>
   </head>
   <body class="home-page" data-page="home">
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -403,7 +403,8 @@
             <h2 id="safety-title"><span class="heading-line">Как мы защищаем ваш</span><span class="heading-line heading-line--inset">бюджет и сроки</span></h2>
             <p>Мы заранее прорабатываем все ключевые этапы строительства: от проекта и сметы до сроков и порядка работ. Это позволяет ещё до начала строительства понимать объём работ, бюджет и последовательность этапов — без неожиданных решений в процессе.</p>
           </div>
-          <div class="home-safety__cards">
+          <div class="carousel-bleed">
+          <div class="home-safety__cards" data-carousel id="safety-track" tabindex="0">
             <article class="home-safety-card">
               <img class="home-safety-card__icon" alt="" decoding="async" loading="lazy" width="164" height="234" src="assets/figma-237-145.webp" />
               <h3>Смета фиксируется до начала работ</h3>
@@ -419,6 +420,16 @@
               <h3>Вам не нужно ежедневно контролировать процесс</h3>
               <p>Регулярные фото/видео отчёты по заранее согласованному плану.</p>
             </article>
+          </div>
+          </div>
+          <div class="home-safety__range" data-safety-range>
+            <span aria-hidden="true" class="home-safety__range-line"></span>
+            <span aria-hidden="true" class="home-safety__range-ctrl">
+              <svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-left" xlink:href="assets/icons/sprite.svg#i-chevron-left"></use></svg>
+              <span class="home-safety__range-divider"></span>
+              <svg class="figma-icon icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-right" xlink:href="assets/icons/sprite.svg#i-chevron-right"></use></svg>
+            </span>
+            <input aria-controls="safety-track" aria-label="Положение в карусели «Как мы защищаем ваш бюджет и сроки»" max="100" min="0" step="any" type="range" value="0" />
           </div>
         </div>
       </section>

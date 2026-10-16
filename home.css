@@ -372,6 +372,14 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
+/* Рельс-«рендж» карусели карточек защиты — только в мобильном кадре
+   (узлы 540:949/540:956: линия 1 px и белая пилюля 53×27.35 со стрелками). */
+.home-page .home-safety__range {
+  display: none;
+}
+.home-page .home-safety__range[hidden] {
+  display: none !important;
+}
 .home-page .home-safety-card {
   display: flex;
   flex-direction: column;
@@ -1700,20 +1708,49 @@
   .home-page .home-hero__stats dt {
     font-size: 28px;
   }
+  /* Видео-блок мобильного кадра 629:1003: 335×253, белая рамка 5 px,
+     постер 325×243 с радиусом 16.18, органы управления прижаты на 18.5 px. */
   .home-page .home-hero__video {
     max-width: 100%;
+    height: 253px;
+    aspect-ratio: auto;
+    padding: 5px;
+    border-radius: 23.12px;
+  }
+  .home-page .home-hero__video-poster {
+    border-radius: 16.18px;
+  }
+  .home-page .home-hero__video::after {
+    inset: 5px;
+    border-radius: 16.18px;
   }
   .home-page .home-hero__video-ui {
-    bottom: 34px;
-    gap: 8px;
+    bottom: 18.5px;
+    gap: 11.37px;
+  }
+  .home-page .home-hero__video-rate {
+    font-size: 11.37px;
+    line-height: 14.33px;
+  }
+  .home-page .home-hero__video-controls {
+    gap: 6.69px;
   }
   .home-page .hv-ctrl {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 47.49px;
+    height: 47.49px;
+    border-radius: 50%;
+  }
+  .home-page .hv-ctrl .icon-sprite {
+    width: 18.73px;
+    height: 18.73px;
   }
   .home-page .hv-ctrl--play {
-    width: 62px;
+    width: 70.23px;
+    border-radius: 13.38px;
+  }
+  /* Полоса прогресса в мобильном кадре не рисуется. */
+  .home-page .home-hero__video-progress {
+    display: none;
   }
   /* Видео-полоса в мобильном кадре главной не показывается (базовая
      `display: none`); правила раскрытия были лишними. */
@@ -1742,28 +1779,118 @@
     font-size: 15px;
     line-height: 18.9px;
   }
+  /* Отступ сверху секции уже даёт низ героя (в кадре 540:662 между
+     видео-блоком и секцией 50 px), внутренний паддинг 150 px был лишним. */
+  .home-page #safety {
+    padding-top: 0;
+  }
   .home-page .home-safety {
     min-height: 591px;
   }
+  /* Карточки защиты — карусель 222 px с зазором 5 px (кадр 540:662,
+     узел 540:949): второй лист виден частично, как в макете. */
+  /* Ряд уходит за правый край экрана, как в кадре: лишнее режет обёртка. */
+  .home-page #safety .carousel-bleed {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
   .home-page .home-safety__cards {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+    display: flex;
+    gap: 5px;
+    transition: transform 380ms cubic-bezier(0.22, 0.8, 0.25, 1);
+    transform: translate3d(var(--slide-x, 0px), 0, 0);
+    touch-action: pan-y;
+  }
+  .home-page .home-safety__cards > .home-safety-card {
+    flex: 0 0 222px;
   }
   .home-page .home-safety-card {
-    min-height: 300px;
-    padding: 22px;
-    border-radius: 14px;
+    min-height: 279px;
+    padding: 7px 12px 12px;
+    border-radius: 15px;
   }
   .home-page .home-safety-card__icon {
-    height: 130px;
+    height: 137px;
+    margin-left: 5px;
   }
   .home-page .home-safety-card h3 {
-    padding-top: 20px;
-    font-size: 19px;
+    /* В мобильном кадре заголовок идёт сразу за иконкой (зазор 9 px),
+       а не прижат к низу карточки, как на десктопе. */
+    margin-top: 0;
+    padding-top: 9px;
+    max-width: 181px;
+    font-size: 15px;
+    line-height: 19.02px;
   }
   .home-page .home-safety-card p {
-    margin-top: 8px;
+    margin-top: 10px;
+    max-width: 181px;
     font-size: 14px;
+    line-height: 17.64px;
+  }
+  .home-page .home-safety__range {
+    position: relative;
+    display: block;
+    height: 27.35px;
+    margin-top: 13px;
+    isolation: isolate;
+  }
+  .home-page .home-safety__range-line {
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%);
+    background: rgb(0 0 0 / 15%);
+  }
+  .home-page .home-safety__range-ctrl {
+    position: absolute;
+    top: 0;
+    left: var(--safety-thumb-x, 0px);
+    display: grid;
+    grid-template-columns: 5.13px 1px 5.13px;
+    align-items: center;
+    justify-items: center;
+    column-gap: 12.82px;
+    width: 53px;
+    height: 27.35px;
+    padding-inline: 8.55px;
+    border-radius: 8.55px;
+    background: #fff;
+    transition: left 260ms cubic-bezier(0.22, 0.8, 0.25, 1);
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  html.is-scrubbing .home-page .home-safety__range-ctrl {
+    cursor: grabbing;
+  }
+  .home-page .home-safety__range-ctrl .figma-icon {
+    width: 5.13px;
+    height: 10.26px;
+  }
+  .home-page .home-safety__range-ctrl .figma-icon:first-child {
+    opacity: 0.25;
+  }
+  .home-page .home-safety__range-divider {
+    width: 1px;
+    height: 9.4px;
+    background: rgb(0 0 0 / 25%);
+  }
+  .home-page .home-safety__range input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: none;
+  }
+  .home-page .home-safety__range:focus-within .home-safety__range-ctrl {
+    outline: 2px solid #101323;
+    outline-offset: 2px;
   }
   .home-page .home-process {
     min-height: 509px;

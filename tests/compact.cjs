@@ -243,8 +243,22 @@ const { foundationUrl } = require("./site-url.cjs");
     );
     const m = await metrics();
     assert.ok(m.h1 < desktop.h1);
-    assert.ok(m.button < desktop.button);
-    assert.ok(m.buttonLabel < desktop.buttonLabel);
+    /* Заказчик: от 1440 высота кнопки не меняется (десктопная),
+       ниже — компактная ступень. */
+    if (width >= 1440) {
+      assert.equal(m.button, desktop.button, `${width}px: высота кнопки как на 1920`);
+    } else {
+      assert.ok(m.button < desktop.button);
+    }
+    if (width >= 1440) {
+      assert.equal(
+        m.buttonLabel,
+        desktop.buttonLabel,
+        `${width}px: подпись кнопки как на 1920`,
+      );
+    } else {
+      assert.ok(m.buttonLabel < desktop.buttonLabel);
+    }
     assert.ok(m.headerHeight < desktop.headerHeight);
     assert.ok(m.sectionHeading < desktop.sectionHeading);
     assert.ok(m.foundationTitle < desktop.foundationTitle);

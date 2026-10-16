@@ -169,8 +169,10 @@
       const shift = delta;
       delta = 0;
       /* Свободный рендж: ряд остаётся там, где его отпустили — к целому листу
-         не притягиваем. Состояние листа (стрелки, подпись) — по ближайшему. */
-      pos = Math.max(0, Math.min(limit, pos + shift / size));
+         не притягиваем. Состояние листа (стрелки, подпись) — по ближайшему.
+         Знак минус: сдвиг пальца влево (shift < 0) должен уводить ряд на
+         следующий лист, а не возвращать его назад (иначе свайп «отскакивал»). */
+      pos = Math.max(0, Math.min(limit, pos - shift / size));
       index = Math.round(pos);
       paint();
       track.dispatchEvent(new Event("carouselchange"));
