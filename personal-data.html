@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="ru">
+
+<html data-motion="on" lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -9,10 +10,31 @@
     />
     <meta content="#101323" name="theme-color" />
     <title>Правила обработки персональных данных — ФундаментМонтаж</title>
-    <link
-      href="https://fundament-montazh.vercel.app/personal-data.html"
-      rel="canonical"
+    <link href="https://fundament-montazh.vercel.app/personal-data.html" rel="canonical" />
+    <meta content="index, follow" name="robots" />
+    <meta content="ru_RU" property="og:locale" />
+    <meta content="ФундаментМонтаж" property="og:site_name" />
+    <meta content="website" property="og:type" />
+    <meta content="Правила обработки персональных данных — ФундаментМонтаж" property="og:title" />
+    <meta content="Условия обработки, хранения и защиты персональных данных на сайте ФундаментМонтаж." property="og:description" />
+    <meta content="https://fundament-montazh.vercel.app/personal-data.html" property="og:url" />
+    <meta
+      content="https://fundament-montazh.vercel.app/assets/brand/og-cover.webp"
+      property="og:image"
     />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="Правила обработки персональных данных ФундаментМонтаж" property="og:image:alt" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <link href="assets/brand/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link
+      href="assets/brand/favicon-32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link href="assets/brand/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="site.webmanifest" rel="manifest" />
     <link
       as="font"
       crossorigin=""
@@ -20,80 +42,506 @@
       rel="preload"
       type="font/woff2"
     />
+    <link
+      as="font"
+      crossorigin=""
+      href="assets/fonts/web/cofo-sans-400-normal.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
     <link href="fonts.css?v=3.6.4" rel="stylesheet" />
     <link href="styles.css?v=3.6.4" rel="stylesheet" />
-    <link href="legal.css?v=3.6.4" rel="stylesheet" />
+    <script defer="" src="app.js?v=3.6.6"></script>
+    <link href="interactions.css?v=3.6.5" rel="stylesheet" />
+    <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
+    <link href="fidelity.css?v=3.6.6" rel="stylesheet" />
+    <script defer="" src="header.js?v=3.6.4"></script>
+    <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
+    <link href="compact.css?v=3.11.1" rel="stylesheet" />
+    <script defer="" src="layout.js?v=3.6.4"></script>
+    <link href="subpages.css?v=1.0.0" rel="stylesheet" />
+    <script defer="" src="subpages.js?v=1.0.0"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
     <header class="site-header">
+      <div class="topbar">
+        <div class="container topbar-inner">
+          <p data-figma-text="315:531">Работаем в Новосибирске и НСО</p>
+          <span aria-hidden="true" class="topbar-divider"></span>
+          <p data-figma-text="315:535">Аккредитация ДОМ.РФ и Сбербанк</p>
+          <span aria-hidden="true" class="topbar-divider"></span>
+          <p data-figma-text="315:539">Гарантия 5 лет по договору</p>
+          <p class="hours" data-figma-text="315:540">
+            Пн–Пт 9:00–18:00 · Сб 10:00–16:00
+          </p>
+        </div>
+      </div>
       <div class="container header-inner">
-        <a aria-label="ФундаментМонтаж — главная" class="brand" href="./"
+        <a aria-label="ФундаментМонтаж — главная" class="brand" href="index.html"
           ><img
             alt="ФундаментМонтаж"
-            height="55"
-            loading="eager"
             decoding="async"
-            src="assets/figma-360-436.webp"
-            width="293" /></a
-        ><a class="button button--dark legal-back" href="./">На главную</a>
+            loading="lazy"
+            src="assets/figma-360-436.webp" /></a
+        ><button
+          aria-controls="header-menu"
+          aria-expanded="false"
+          aria-label="Открыть меню"
+          class="menu-toggle"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="header-action-icon"
+            width="16"
+            height="12"
+            viewBox="0 0 16 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 11H15M1 6H15M1 1H15"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <nav aria-label="Основная навигация" id="main-navigation">
+          <a data-figma-text="360:438" href="index.html#geology">Материалы</a
+          ><a data-figma-text="360:439" href="index.html#projects">Проекты</a
+          ><a data-figma-text="360:440" href="index.html#objects">Объекты</a
+          ><a data-figma-text="360:441" href="index.html#design">Как строим</a
+          ><a data-figma-text="360:442" href="index.html#contacts">Контакты</a>
+        </nav>
+        <div class="header-contact">
+          <a class="phone" data-figma-text="360:447" href="tel:+78452323553"
+            >+7 (8452) 32-35-53</a
+          ><a
+            aria-label="Позвонить: +7 (8452) 32-35-53"
+            class="text-button header-callback"
+            href="tel:+78452323553"
+          >
+            <span data-figma-text="360:448">заказать звонок</span
+            ><svg
+              aria-hidden="true"
+              class="header-action-icon"
+              fill="none"
+              viewbox="0 0 24 24"
+            >
+              <path
+                d="M7.2 3H4.6C3.7 3 3 3.7 3 4.6 3 13.7 10.3 21 19.4 21c.9 0 1.6-.7 1.6-1.6v-2.6l-4.6-2-1.8 1.8a14 14 0 0 1-7.2-7.2l1.8-1.8L7.2 3Z"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="1.7"
+              ></path>
+            </svg>
+          </a>
+        </div>
+        <div aria-label="Связь в социальных сетях" class="header-social">
+          <button
+            aria-label="ВКонтакте"
+            class="social-icon-button"
+            data-action="vk"
+            type="button"
+          >
+            <svg
+              class="figma-icon icon-sprite"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use
+                href="assets/icons/sprite.svg#i-vk"
+                xlink:href="assets/icons/sprite.svg#i-vk"
+              />
+            </svg></button
+          ><button
+            aria-label="WhatsApp"
+            class="social-icon-button"
+            data-action="whatsapp"
+            type="button"
+          >
+            <svg
+              class="figma-icon icon-sprite"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use
+                href="assets/icons/sprite.svg#i-whatsapp"
+                xlink:href="assets/icons/sprite.svg#i-whatsapp"
+              />
+            </svg>
+          </button>
+        </div>
+        <button
+          aria-label="Рассчитать стоимость"
+          class="button button--dark header-quote"
+          data-action="quote"
+          type="button"
+        >
+          <span class="button-label" data-figma-text="360:455"
+            >Расчитать стоимость
+          </span>
+          <svg
+            class="header-action-icon icon-sprite"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <use
+              href="assets/icons/sprite.svg#i-calculator"
+              xlink:href="assets/icons/sprite.svg#i-calculator"
+            />
+          </svg>
+        </button>
       </div>
     </header>
-    <main class="legal" id="main">
-      <div class="container legal-grid">
+    <main class="subpage" id="main">
+      <div class="container subpage-head">
+        <div class="subpage-head__main">
+      <nav aria-label="Вы здесь" class="subpage-crumbs">
+        <a href="index.html">Главная</a
+        ><span aria-hidden="true" class="subpage-crumbs__sep"></span
+        ><span data-figma-text="440:1663">Правила обработки персональных данных</span>
+      </nav>
+          <h1 class="subpage-title" data-figma-text="440:1664">
+            Правила обработки персональных данных
+          </h1>
+        </div>
+        <p class="subpage-date" data-figma-text="440:1766">
+          Дата публикации: «___» __________ 2026 г.
+        </p>
+      </div>
+      <div class="container subpage-layout">
         <nav aria-label="Разделы документа" class="legal-nav">
-          <a href="#1">1. Состав данных</a>
-          <a href="#2">2. Порядок сбора и хранения</a>
-          <a href="#3">3. Защита</a>
-          <a href="#4">4. Cookie и аналитика</a>
+          <a class="is-current" aria-current="true" data-figma-text="440:1670" href="#s1">1. Общие положения</a>
+          <a data-figma-text="440:1672" href="#s2">2. Какие данные обрабатываются</a>
+          <a data-figma-text="440:1674" href="#s3">3. Цели обработки</a>
+          <a data-figma-text="440:1676" href="#s4">4. Защита данных</a>
+          <a data-figma-text="440:1678" href="#s5">5. Права пользователя</a>
+          <a data-figma-text="440:1680" href="#s6">6. Контакты</a>
         </nav>
-        <article>
-          <h1>Правила обработки персональных данных</h1>
-          <p class="legal-meta">
-            Редакция от 5 октября 2026 г. · действует с даты размещения
-          </p>
-          <section aria-labelledby="s1" id="s1">
-            <h2 id="h-1">1. Состав данных</h2>
-            <p>
-              Персональные данные на сайте: имя, номер телефона, содержание
-              сообщения в форме заявки. Отдельных категорий данных (о здоровье,
-              биометрия и т. п.) сайт не собирает.
-            </p>
+        <article class="legal-body">
+          <section id="s1">
+            <h2 data-figma-text="440:1690">1. Общие положения</h2>
+            <p data-figma-text="440:1692">Оператор осуществляет обработку персональных данных в соответствии с действующим законодательством и принимает необходимые меры для обеспечения их безопасности.</p>
           </section>
-          <section aria-labelledby="s2" id="s2">
-            <h2 id="h-2">2. Порядок сбора и хранения</h2>
-            <p>
-              Данные принимаются по HTTPS, хранятся на сервере заказчика в
-              России, доступ имеют только сотрудники, обрабатывающие заявки.
-              Срок хранения — до отзыва согласия или 3 года с даты последнего
-              обращения.
-            </p>
+          <section id="s2">
+            <h2>2. Какие данные обрабатываются</h2>
+            <p class="legal-pending" data-copy-pending>Юридический текст этого раздела в макете не передан: вёрстка раздела готова, текст добавляется без правок разметки и стилей.</p>
           </section>
-          <section aria-labelledby="s3" id="s3">
-            <h2 id="h-3">3. Защита</h2>
-            <p>
-              Применяются разграничение прав доступа, резервное копирование и
-              журнал обращений; автоматизированных решений, порождающих
-              юридические последствия, не принимается.
-            </p>
+          <section id="s3">
+            <h2>3. Цели обработки</h2>
+            <p class="legal-pending" data-copy-pending>Юридический текст этого раздела в макете не передан: вёрстка раздела готова, текст добавляется без правок разметки и стилей.</p>
           </section>
-          <section aria-labelledby="s4" id="s4">
-            <h2 id="h-4">4. Cookie и аналитика</h2>
-            <p>
-              Необходимые cookie включены всегда. Аналитические cookie и счётчик
-              посещений подключаются только после нажатия «Принять» в плашке;
-              «Только необходимые» отключает их. Решение хранится в localStorage
-              и действует до отзыва.
-            </p>
+          <section id="s4">
+            <h2>4. Защита данных</h2>
+            <p class="legal-pending" data-copy-pending>Юридический текст этого раздела в макете не передан: вёрстка раздела готова, текст добавляется без правок разметки и стилей.</p>
           </section>
-          <p class="notice-placeholder">
-            <strong>Техническая заметка по вёрстке.</strong> Структура и стили
-            готовы; окончательный юридический текст, реквизиты оператора и адрес
-            предоставляются заказчиком (в макете Figma 430:365 и 440:1643 эти
-            абзацы ещё не актуализированы).
-          </p>
+          <section id="s5">
+            <h2>5. Права пользователя</h2>
+            <p class="legal-pending" data-copy-pending>Юридический текст этого раздела в макете не передан: вёрстка раздела готова, текст добавляется без правок разметки и стилей.</p>
+          </section>
+          <section id="s6">
+            <h2>6. Контакты</h2>
+            <p class="legal-pending" data-copy-pending>Юридический текст этого раздела в макете не передан: вёрстка раздела готова, текст добавляется без правок разметки и стилей.</p>
+          </section>
         </article>
       </div>
     </main>
+    <footer class="site-footer" id="contacts">
+      <div class="container footer-grid">
+        <div class="footer-main">
+          <div class="footer-columns">
+            <nav aria-label="Навигация в подвале">
+              <p class="eyebrow" data-figma-text="609:943">Информация</p>
+              <a data-figma-text="609:946" href="index.html#geology"
+                >Материалы<span aria-hidden="true"
+                  ><svg
+                    class="figma-icon icon-sprite"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use
+                      href="assets/icons/sprite.svg#i-arrow-up-right"
+                      xlink:href="assets/icons/sprite.svg#i-arrow-up-right"
+                    /></svg></span
+              ></a>
+              <a data-figma-text="609:949" href="index.html#projects"
+                >Проекты<span aria-hidden="true"
+                  ><svg
+                    class="figma-icon icon-sprite"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use
+                      href="assets/icons/sprite.svg#i-arrow-up-right"
+                      xlink:href="assets/icons/sprite.svg#i-arrow-up-right"
+                    /></svg></span
+              ></a>
+              <a data-figma-text="609:952" href="index.html#objects"
+                >Объекты<span aria-hidden="true"
+                  ><svg
+                    class="figma-icon icon-sprite"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use
+                      href="assets/icons/sprite.svg#i-arrow-up-right"
+                      xlink:href="assets/icons/sprite.svg#i-arrow-up-right"
+                    /></svg></span
+              ></a>
+              <a data-figma-text="609:955" href="index.html#design"
+                >Как строим<span aria-hidden="true"
+                  ><svg
+                    class="figma-icon icon-sprite"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use
+                      href="assets/icons/sprite.svg#i-arrow-up-right"
+                      xlink:href="assets/icons/sprite.svg#i-arrow-up-right"
+                    /></svg></span
+              ></a>
+            </nav>
+            <address>
+              <p class="eyebrow" data-figma-text="609:958">Контакты</p>
+              <div class="footer-contact">
+                <div class="footer-phones">
+                  <a data-figma-text="609:960" href="tel:+73832128620"
+                    >+7 (383) 212-86-20</a
+                  ><a data-figma-text="609:990" href="tel:+79930112311"
+                    >+7 (993) 011-23-11</a
+                  >
+                </div>
+                <button
+                  class="text-button"
+                  data-action="quote"
+                  data-figma-text="609:961"
+                >
+                  Заказать звонок
+                </button>
+              </div>
+              <div class="footer-contact">
+                <a
+                  data-figma-text="609:963"
+                  href="mailto:fundamentnso@yandex.ru"
+                  >fundamentnso@yandex.ru</a
+                >
+                <small data-figma-text="609:964">Электронный адрес</small>
+              </div>
+              <div class="footer-contact">
+                <p data-figma-text="609:966">
+                  Новосибирская область,<br />
+                  г. Новосибирск, ул. Орджоникидзе 47, офис 213
+                </p>
+                <small data-figma-text="609:967">Регион работы</small>
+              </div>
+            </address>
+          </div>
+          <div class="footer-legal">
+            <p data-figma-text="609:976">
+              © ООО «ФундаментМонтаж», 2010–2026. Все права защищены.<br />
+              Информация на сайте не является публичной офертой.
+            </p>
+            <div>
+              <button data-action="legal" data-figma-text="609:978">
+                Оферта</button
+              ><a data-figma-text="609:979" href="privacy.html">
+                Политика конфиденциальности
+              </a>
+            </div>
+            <p class="footer-credit">
+              <span data-figma-text="609:981">Сделано в</span
+              ><a
+                aria-label="Студия RUSO"
+                href="https://ruso.ru"
+                rel="noopener noreferrer"
+                target="_blank"
+                ><img alt="" src="assets/figma-I315-526_169-260.webp"
+              /></a>
+            </p>
+          </div>
+        </div>
+        <div class="footer-cta">
+          <h2 data-figma-text="609:971">
+            Расскажите, какой<br />
+            дом планируете
+          </h2>
+          <button
+            class="button button--dark"
+            data-action="quote"
+            data-motion-button=""
+            type="button"
+          >
+            <span class="button-label" data-figma-text="I609:972;169:273"
+              >Расчитать стоимость дома</span
+            ><span aria-hidden="true" class="button-icon"
+              ><svg
+                class="figma-icon icon-sprite"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use
+                  href="assets/icons/sprite.svg#i-arrow-dark"
+                  xlink:href="assets/icons/sprite.svg#i-arrow-dark"
+                /></svg
+            ></span></button
+          ><img
+            alt=""
+            class="footer-house"
+            decoding="async"
+            loading="lazy"
+            src="assets/figma-I315-526_169-289.webp"
+            width="539"
+            height="263"
+          />
+        </div>
+      </div>
+    </footer>
+    <aside
+      aria-label="Уведомление об использовании файлов cookie"
+      class="cookie-bar"
+      data-consent-banner=""
+      hidden=""
+      role="region"
+    >
+      <div class="cookie-bar__inner">
+        <div class="cookie-bar__text">
+          <p class="cookie-bar__title">Мы используем файлы cookie</p>
+          <p class="cookie-bar__note">
+            Мы используем файлы cookie, чтобы сайт работал корректно и был
+            удобнее для вас. Продолжая пользоваться сайтом, вы соглашаетесь с их
+            использованием.
+          </p>
+        </div>
+        <button
+          class="button button--yellow cookie-bar__accept"
+          data-consent-accept=""
+          data-motion-button=""
+          type="button"
+        >
+          <span class="button-label">Хорошо, принимаю</span
+          ><span aria-hidden="true" class="button-icon"
+            ><svg
+              aria-hidden="true"
+              class="figma-icon icon-sprite"
+              focusable="false"
+            >
+              <use
+                href="assets/icons/sprite.svg#i-visit-arrow"
+                xlink:href="assets/icons/sprite.svg#i-visit-arrow"
+              /></svg
+          ></span>
+        </button>
+      </div>
+    </aside>
+    <script src="consent.js?v=3.6.4" defer=""></script>
+    <dialog
+      aria-labelledby="dialog-title"
+      class="request-dialog"
+      id="contact-dialog"
+    >
+      <button aria-label="Закрыть" class="dialog-close" type="button">
+        <svg
+          class="figma-icon icon-sprite"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <use
+            href="assets/icons/sprite.svg#i-close"
+            xlink:href="assets/icons/sprite.svg#i-close"
+          />
+        </svg>
+      </button>
+      <div aria-label="Форма обратной связи" class="dialog-scroll" tabindex="0">
+        <p class="eyebrow">ФУНДАМЕНТМОНТАЖ</p>
+        <h2 id="dialog-title">Рассчитать стоимость</h2>
+        <p id="dialog-description">Расскажите о вашем проекте.</p>
+        <form id="contact-form">
+          <label
+            >Ваше имя<input
+              autocomplete="name"
+              maxlength="80"
+              name="name"
+              placeholder="Как к вам обращаться"
+              required="" /></label
+          ><label
+            >Телефон<input
+              autocomplete="tel"
+              inputmode="tel"
+              maxlength="18"
+              name="phone"
+              pattern="\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}"
+              placeholder="+7 (___) ___-__-__"
+              required=""
+              type="tel" /></label
+          ><label
+            >О проекте<textarea
+              maxlength="2000"
+              name="message"
+              placeholder="Участок, площадь, пожелания"
+              rows="3"
+            ></textarea></label
+          ><label class="consent"
+            ><input required="" type="checkbox" />Я понимаю, что это
+            демонстрационная форма: данные не отправляются.</label
+          ><button
+            class="button button--yellow form-submit"
+            data-motion-button=""
+            type="submit"
+          >
+            <span class="button-label">Подготовить заявку</span
+            ><span aria-hidden="true" class="button-icon"
+              ><svg
+                class="figma-icon icon-sprite"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use
+                  href="assets/icons/sprite.svg#i-quote-arrow"
+                  xlink:href="assets/icons/sprite.svg#i-quote-arrow"
+                /></svg
+            ></span>
+          </button>
+          <p class="form-status" role="status"></p>
+        </form>
+        <div hidden="" id="info-content"></div>
+      </div>
+    </dialog>
+    <div aria-live="polite" class="toast" role="status"></div>
+    <dialog
+      aria-label="Навигация по сайту"
+      class="header-menu"
+      id="header-menu"
+    >
+      <div class="header-menu-top">
+        <a
+          aria-label="ФундаментМонтаж — главная"
+          class="menu-brand"
+          href="index.html"
+          ><img alt="ФундаментМонтаж" src="assets/figma-360-436.webp" /></a
+        ><button aria-label="Закрыть меню" class="menu-close" type="button">
+          <svg
+            aria-hidden="true"
+            class="header-action-icon"
+            fill="none"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="m6 6 12 12M18 6 6 18"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="1.8"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="header-menu-content">
+        <div class="menu-navigation-slot"></div>
+        <div class="menu-social-slot"></div>
+      </div>
+    </dialog>
   </body>
 </html>

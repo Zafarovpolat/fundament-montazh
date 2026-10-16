@@ -2552,7 +2552,10 @@ html[data-motion="off"] #hero .hero-grid {
   }
 
   html #contacts .footer-legal > div > button[data-figma-text="609:978"],
-  html #contacts .footer-legal > div > button[data-figma-text="609:979"] {
+  html #contacts .footer-legal > div > button[data-figma-text="609:979"],
+  /* «Политика конфиденциальности» — ссылка на готовую страницу (узел 609:979):
+     кегль 12/15,12 приходит правилом для кнопки и ссылкам не наследуется. */
+  html #contacts .footer-legal > div > a[data-figma-text="609:979"] {
     font-size: 12px;
     line-height: 15.12px;
   }
