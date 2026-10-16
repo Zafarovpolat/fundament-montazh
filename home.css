@@ -3555,8 +3555,18 @@
   display: block;
 }
 @media (max-width: 768px) {
+  /* Верхний отступ героя на мобильном — половина прежних 28 px. */
   .home-page .home-hero__grid {
-    padding-top: 0;
+    padding-top: 14px;
+  }
+  /* Только строка «Один ответственный.» в блоке «Один договор. Одна смета.». */
+  .home-page #home-process-title .heading-line--inset {
+    font-size: 28px;
+    white-space: nowrap;
+  }
+  /* В мобильном кадре кнопка расчёта в блоке материалов не показывается. */
+  .home-page .home-materials__actions {
+    display: none;
   }
 }
 
