@@ -12,6 +12,10 @@
 .home-page .header-callback {
   color: var(--home-muted);
 }
+/* Иконка телефона на жёлтой кнопке шапки — белая (заказчик). */
+.home-page .header-callback .header-action-icon {
+  color: #fff;
+}
 /* Навигация главной: у «Фундамента» межстрочный 1.26 приходит из
    figma-type.css по id узлов 360:438…442, у главной свои id (87:131…152),
    поэтому задаём тот же интерлиньяж здесь. Специфичность низкая, чтобы
@@ -57,13 +61,19 @@
   font-size: 15px;
   line-height: 24px;
 }
+.home-page .home-hero__eyebrow-sep {
+  white-space: pre;
+}
+/* h1 — та же лестница, что у страницы «Фундамент»:
+   clamp(42px, 3.90625vw, 75px) / 1.268 → ≤1440 clamp(28px, 3.05vw, 44px) / 1.2
+   → ≤1024 clamp(23px, 3.4vw, 36px) / 1.12 → ≤768 35px / 44.38px. */
 .home-page .home-hero h1 {
   margin: 0 0 24px;
   max-width: 940px;
   font-family: var(--font-heading);
   font-weight: 400;
-  font-size: clamp(38px, 4.4vw, 75px);
-  line-height: 1.26;
+  font-size: clamp(42px, 3.90625vw, 75px);
+  line-height: 1.268;
   letter-spacing: 0;
   text-transform: uppercase;
   color: #000;
@@ -72,8 +82,8 @@
   max-width: 706px;
   margin: 0;
   color: rgb(0 0 0 / 60%);
-  font-size: clamp(16px, 1.1vw, 18px);
-  line-height: 1.34;
+  font-size: 18px;
+  line-height: 24px;
 }
 .home-page .home-hero__actions {
   display: flex;
@@ -81,11 +91,19 @@
   gap: 12px;
   margin-top: clamp(26px, 3vw, 44px);
 }
+/* Кнопки героя: высоты, тексты и иконки берём из общих токенов «Фундамента»
+   (interactions.css + compact.css: 107 → 76 (≤1440) → 75 (≤768), текст
+   14/24 → 13/22 → 13/16.38, блок иконки 60×87 → 48×62 → 56×65). Домашнее
+   правило задаёт только минимальную ширину, чтобы не перебивать лестницу. */
 .home-page .home-hero__actions .button {
-  min-height: 108px;
   min-width: 300px;
 }
 .home-page .home-hero__actions .button-icon svg {
+  width: 14px;
+  height: 12px;
+}
+/* Вторая кнопка героя «Фундамента» — ссылка на цены, её иконка 22×22. */
+.home-page .home-hero__secondary .button-icon svg {
   width: 22px;
   height: 22px;
 }
@@ -285,6 +303,8 @@
   line-height: 1.268;
   text-transform: uppercase;
 }
+/* Описание секции — как .heading-description «Фундамента»: 17/22, компактная
+   ступень clamp(14px, 1.05vw, 15px) / 1.4, мобильная 15/18.9. */
 .home-page .home-heading > p:not(.eyebrow) {
   flex: 0 1 470px;
   align-self: end;
@@ -293,8 +313,8 @@
   padding-left: 22px;
   border-left: 2px solid var(--home-accent);
   color: #000;
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 22px;
 }
 .home-page .home-heading .eyebrow {
   display: inline-flex;
@@ -1515,7 +1535,12 @@
     max-width: 460px;
   }
   .home-page .home-hero h1 {
-    font-size: clamp(34px, 6vw, 60px);
+    font-size: clamp(23px, 3.4vw, 36px);
+    line-height: 1.12;
+  }
+  .home-page .home-hero__lead {
+    font-size: clamp(9px, 1.3vw, 13px);
+    line-height: 1.25;
   }
   .home-page .home-hero__stats {
     gap: 18px;
@@ -1587,23 +1612,51 @@
 }
 
 @media (max-width: 768px) {
+  /* В мобильном кадре главной шапка лежит на фоне страницы, без белой плашки. */
+  .home-page .site-header {
+    background: transparent;
+  }
   .home-page .home-hero__grid {
     padding-block: 28px 32px;
   }
+  /* Пилюли героя: каждый блок — отдельная пилюля с зазором 4 px (кадр 540:662,
+     узлы 589:640/643/647: высота 38, радиус 65, паддинг 11/10). */
   .home-page .home-hero__eyebrow {
-    margin-bottom: 20px;
-    padding: 8px 12px;
-    font-size: 12px;
-    line-height: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0 0 20px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+  .home-page .home-hero__eyebrow-item {
+    padding: 11px 10px;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 16.38px;
+    white-space: nowrap;
+  }
+  .home-page .home-hero__eyebrow-sep {
+    display: none;
   }
   .home-page .home-hero h1 {
     margin-bottom: 16px;
-    font-size: clamp(29px, 8.2vw, 40px);
-    line-height: 1.2;
+    font-size: 35px;
+    line-height: 44.38px;
+  }
+  /* Второй перенос главного заголовка скрыт, чтобы строка «отвечаем своим»
+     не рвалась. */
+  .home-page #home-title br:first-of-type {
+    display: block;
+  }
+  .home-page #home-title br:nth-of-type(2) {
+    display: none;
   }
   .home-page .home-hero__lead {
     font-size: 15px;
-    line-height: 1.35;
+    line-height: 18.9px;
   }
   .home-page .home-hero__actions {
     display: grid;
@@ -1614,8 +1667,31 @@
   .home-page .home-hero__actions .button {
     width: 100%;
     min-width: 0;
-    min-height: 66px;
-    padding-block: 13px;
+    min-height: 75px;
+    padding: 29.31px 74px 29.31px 20px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 16.38px;
+  }
+  .home-page .home-hero__actions .button:first-child {
+    padding: 21px 71px 21px 21px;
+  }
+  .home-page .home-hero__actions .button .button-label {
+    font-size: 13px;
+    line-height: 16.38px;
+    font-weight: 500;
+    letter-spacing: 0.52px;
+  }
+  .home-page .home-hero__actions .button:first-child .button-label {
+    white-space: normal;
+  }
+  html .home-page .home-hero__actions .button-icon {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    width: 56px;
+    flex-basis: 56px;
+    border-radius: 17px;
   }
   .home-page .home-hero__stats {
     gap: 14px 18px;
@@ -1639,50 +1715,10 @@
   .home-page .hv-ctrl--play {
     width: 62px;
   }
+  /* Видео-полоса в мобильном кадре главной не показывается (базовая
+     `display: none`); правила раскрытия были лишними. */
   .home-page .home-video-band {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 253px;
-    margin: 0 var(--home-gutter);
-    overflow: hidden;
-    border-radius: 16px;
-    color: #fff;
-    background: var(--home-ink);
-  }
-  .home-page .home-video-band > * {
-    grid-area: 1 / 1;
-  }
-  .home-page .home-video-band > img {
-    width: 100%;
-    height: 253px;
-    object-fit: cover;
-  }
-  .home-page .home-video-band::after {
-    content: "";
-    grid-area: 1 / 1;
-    background: linear-gradient(0deg, rgb(7 11 31 / 80%), transparent 70%);
-  }
-  .home-page .home-video-band__play {
-    align-self: center;
-    justify-self: center;
-    z-index: 1;
-    display: grid;
-    place-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--home-accent);
-  }
-  .home-page .home-video-band__play .figma-icon {
-    width: 18px;
-    height: 18px;
-    filter: brightness(0);
-  }
-  .home-page .home-video-band__label {
-    align-self: end;
-    z-index: 1;
-    padding: 18px;
-    font-size: 17px;
+    display: none;
   }
   .home-page .home-section {
     margin-top: 48px;
@@ -1699,12 +1735,12 @@
   }
   .home-page .home-heading h2 {
     font-size: 30px;
-    line-height: 1.27;
+    line-height: 38.04px;
   }
   .home-page .home-heading > p:not(.eyebrow) {
     max-width: 100%;
     font-size: 15px;
-    line-height: 1.4;
+    line-height: 18.9px;
   }
   .home-page .home-safety {
     min-height: 591px;
@@ -2329,12 +2365,12 @@
 @media (min-width: 481px) and (max-width: 768px) {
   .home-page .home-hero h1 {
     max-width: none;
-    font-size: clamp(36px, 6.8vw, 43px);
+    font-size: 35px;
   }
   .home-page .home-hero__lead {
     max-width: 100%;
-    font-size: 16px;
-    line-height: 1.4;
+    font-size: 15px;
+    line-height: 18.9px;
   }
   .home-page .home-project-card {
     flex-basis: min(500px, calc(100vw - 2 * var(--gutter)));
@@ -2358,8 +2394,10 @@
 }
 
 @media (max-width: 380px) {
+  /* Мобильный кадр «Фундамента» держит 35 px и на 320–380 px. */
   .home-page .home-hero h1 {
-    font-size: 30px;
+    font-size: 35px;
+    line-height: 44.38px;
   }
   .home-page .home-safety-card {
     grid-template-columns: 34px minmax(0, 1fr);
@@ -2904,18 +2942,28 @@
 
 /* Компактная ступень «Фундамента» ведёт заголовки с интерлиньяжем 1.2
    (1440 → 1025 px), мобильный кадр — снова 1.268. */
+/* Компактная ступень «Фундамента»: h2 — clamp(23px, 2.32vw, 33px) / 1.2. */
 @media (min-width: 1025px) and (max-width: 1440px) {
-  .home-page .home-heading h2 {
+  .home-page .home-hero h1 {
+    font-size: clamp(28px, 3.05vw, 44px);
     line-height: 1.2;
   }
 }
 
-/* Статистика героя: на 1920 px это ряд из четырёх блоков (855 px), а в
-   двухколоночном герое 1201–1499 px контент уже 695–844 px — четвёртый блок
-   срывался на свою строку и висел один (3+1). Ниже 1200 px перенос и так даёт
-   ровные 2+2 (как в мобильном макете 540:662), поэтому в этом диапазоне
-   фиксируем ту же сетку 2×2, чтобы ряд не разваливался на 3+1. */
-@media (min-width: 1201px) and (max-width: 1499px) {
+@media (min-width: 769px) and (max-width: 1440px) {
+  .home-page .home-heading h2 {
+    font-size: clamp(23px, 2.32vw, 33px);
+    line-height: 1.2;
+  }
+  .home-page .home-heading > p:not(.eyebrow) {
+    font-size: clamp(14px, 1.05vw, 15px);
+    line-height: 1.4;
+  }
+}
+
+/* Статистика героя: от 1600 px и ниже — сетка 2×2, у каждого второго блока нет
+   правого разделителя; при 1200 px и ниже статистика убирается совсем. */
+@media (max-width: 1600px) {
   .home-page .home-hero__stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2923,6 +2971,15 @@
     align-items: center;
     column-gap: 30px;
     row-gap: 22px;
+  }
+  .home-page .home-hero__stats > div:nth-child(2n) {
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+@media (max-width: 1200px) {
+  .home-page .home-hero__stats {
+    display: none;
   }
 }
 
