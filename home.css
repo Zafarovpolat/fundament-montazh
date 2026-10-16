@@ -3555,9 +3555,9 @@
   display: block;
 }
 @media (max-width: 768px) {
-  /* Верхний отступ героя на мобильном — половина прежних 28 px. */
+  /* Верхний отступ героя на мобильном: 28 → 14 → 7 px (вдвое, по запросу). */
   .home-page .home-hero__grid {
-    padding-top: 14px;
+    padding-top: 7px;
   }
   /* Только строка «Один ответственный.» в блоке «Один договор. Одна смета.». */
   .home-page #home-process-title .heading-line--inset {
