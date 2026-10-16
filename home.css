@@ -3755,3 +3755,36 @@
     max-width: 100%;
   }
 }
+
+/* Визит (мобайл): фон баннера — присланное фото; кикер капсом; перенос в кнопке. */
+@media (max-width: 768px) {
+  .home-page #visit .visit-banner > .parallax-surface {
+    display: none;
+  }
+  .home-page #visit .visit-banner {
+    background-image: url("assets/visit-bg.webp");
+    background-size: cover;
+    background-position: center;
+  }
+  .home-page #visit .visit-kicker {
+    text-transform: uppercase;
+  }
+}
+
+/* FAQ (мобайл): второй строке заголовка — отступ слева; вопросы капсом. */
+@media (max-width: 768px) {
+  .home-page #faq .section-heading .heading-line--inset {
+    margin-left: 58px;
+  }
+  .home-page #faq .faq-grid summary {
+    text-transform: uppercase;
+  }
+}
+
+/* Соцсети (мобайл): кнопка на всю высоту карточки. */
+@media (max-width: 768px) {
+  .home-page #home-social .social-list article > .button {
+    align-self: stretch;
+    height: auto;
+  }
+}
