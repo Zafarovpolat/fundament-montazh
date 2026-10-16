@@ -196,15 +196,15 @@
     <script defer="" src="hero-carousel.js?v=3.6.5"></script>
     <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
     <link href="fidelity.css?v=3.6.6" rel="stylesheet" />
-    <script defer="" src="sliders.js?v=3.6.7"></script>
+    <script defer="" src="sliders.js?v=3.6.8"></script>
     <script defer="" src="steps-pin.js?v=3.6.4"></script>
     <script defer="" src="refinements.js?v=3.6.6"></script>
     <script defer="" src="header.js?v=3.6.4"></script>
     <link href="compact-type.css?v=3.6.4" rel="stylesheet" />
     <link href="compact.css?v=3.11.1" rel="stylesheet" />
     <script defer="" src="layout.js?v=3.6.4"></script>
-    <link href="home.css?v=30" rel="stylesheet" />
-    <script defer="" src="home.js?v=5"></script>
+    <link href="home.css?v=31" rel="stylesheet" />
+    <script defer="" src="home.js?v=6"></script>
   </head>
   <body class="home-page" data-page="home">
     <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -376,18 +376,20 @@
               <div><dt>5 лет</dt><dd>честной гарантии</dd></div>
             </dl>
           </div>
-          <button class="home-hero__video" data-action="video" type="button" aria-label="Смотреть видео о строительстве">
-            <img alt="Павел Ремизов, руководитель «ФундаментМонтаж»" class="home-hero__video-poster" decoding="async" width="604" height="789" src="assets/figma-77-10.webp" srcset="assets/figma-77-10@480.webp 480w, assets/figma-77-10@960.webp 960w, assets/figma-77-10.webp 1208w" sizes="(max-width: 1024px) 92vw, 600px" />
-            <span class="home-hero__video-ui" aria-hidden="true">
-              <span class="home-hero__video-rate">1x</span>
+          <div class="home-hero__video" data-hero-video>
+            <video aria-label="Видео о строительстве: Павел Ремизов, руководитель «ФундаментМонтаж»" class="home-hero__video-el" data-hero-video-el playsinline poster="assets/figma-77-10.webp" preload="metadata">
+              <source src="assets/hero-video.mp4" type="video/mp4" />
+            </video>
+            <span class="home-hero__video-ui">
+              <button aria-label="Скорость воспроизведения" class="home-hero__video-rate" data-hv="rate" type="button">1x</button>
               <span class="home-hero__video-controls">
-                <span class="hv-ctrl"><svg class="icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-player-backward" xlink:href="assets/icons/sprite.svg#i-player-backward"></use></svg></span>
-                <span class="hv-ctrl hv-ctrl--play"><svg class="icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-player-pause" xlink:href="assets/icons/sprite.svg#i-player-pause"></use></svg></span>
-                <span class="hv-ctrl"><svg class="icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-player-forward" xlink:href="assets/icons/sprite.svg#i-player-forward"></use></svg></span>
+                <button aria-label="Назад на 10 секунд" class="hv-ctrl" data-hv="back" type="button"><svg class="icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-player-backward" xlink:href="assets/icons/sprite.svg#i-player-backward"></use></svg></button>
+                <button aria-label="Воспроизвести" class="hv-ctrl hv-ctrl--play" data-hv="play" type="button"><svg aria-hidden="true" class="icon-sprite hv-ico hv-ico--play" focusable="false" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></svg><svg aria-hidden="true" class="icon-sprite hv-ico hv-ico--pause" focusable="false"><use href="assets/icons/sprite.svg#i-player-pause" xlink:href="assets/icons/sprite.svg#i-player-pause"></use></svg></button>
+                <button aria-label="Вперёд на 10 секунд" class="hv-ctrl" data-hv="forward" type="button"><svg class="icon-sprite" focusable="false"><use href="assets/icons/sprite.svg#i-player-forward" xlink:href="assets/icons/sprite.svg#i-player-forward"></use></svg></button>
               </span>
             </span>
             <span class="home-hero__video-progress" aria-hidden="true"><span></span></span>
-          </button>
+          </div>
         </div>
       </section>
 
@@ -404,7 +406,7 @@
             <p>Мы заранее прорабатываем все ключевые этапы строительства: от проекта и сметы до сроков и порядка работ. Это позволяет ещё до начала строительства понимать объём работ, бюджет и последовательность этапов — без неожиданных решений в процессе.</p>
           </div>
           <div class="carousel-bleed">
-          <div class="home-safety__cards" data-carousel id="safety-track" tabindex="0">
+          <div class="home-safety__cards" data-carousel data-carousel-end="edge" id="safety-track" tabindex="0">
             <article class="home-safety-card">
               <img class="home-safety-card__icon" alt="" decoding="async" loading="lazy" width="164" height="234" src="assets/figma-237-145.webp" />
               <h3>Смета фиксируется до начала работ</h3>

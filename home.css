@@ -3518,3 +3518,45 @@
     text-transform: uppercase;
   }
 }
+
+/* Видео героя — настоящий <video>; кнопки — <button>, поэтому сбрасываем
+   их кнопочный вид. Мобильный отступ сверху у героя убран. */
+.home-page .home-hero__video-el {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  background: #082031;
+}
+.home-page button.home-hero__video-rate,
+.home-page button.hv-ctrl {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+.home-page button.home-hero__video-rate {
+  background: none;
+}
+.home-page .hv-ctrl .hv-ico--play {
+  display: block;
+  fill: currentColor;
+}
+.home-page .hv-ctrl .hv-ico--pause {
+  display: none;
+}
+.home-page .home-hero__video.is-playing .hv-ico--play {
+  display: none;
+}
+.home-page .home-hero__video.is-playing .hv-ico--pause {
+  display: block;
+}
+@media (max-width: 768px) {
+  .home-page .home-hero__grid {
+    padding-top: 0;
+  }
+}
+

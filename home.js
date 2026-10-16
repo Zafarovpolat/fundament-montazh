@@ -73,7 +73,7 @@
     input.disabled = last < 1;
     input.setAttribute(
       "aria-valuetext",
-      `Карточка ${Math.round(position) + 1} из ${pages}`,
+      `Карточка ${Math.round(position) + 1} из ${Math.ceil(pages)}`,
     );
     const travel = Math.max(0, rail.clientWidth - thumb.offsetWidth);
     const x = last > 0 ? (travel * position) / last : 0;
@@ -155,4 +155,48 @@
   new ResizeObserver(paint).observe(rail);
   document.fonts.ready.then(paint);
   paint();
+})();
+
+// Видео в герое: настоящий <video> с кнопками «назад / пауза / вперёд» и
+// скоростью. Файл — assets/hero-video.mp4 (без него кнопки просто не играют).
+(() => {
+  const root = document.querySelector("[data-hero-video]");
+  const video = root?.querySelector("[data-hero-video-el]");
+  if (!root || !video) return;
+  const playBtn = root.querySelector('[data-hv="play"]');
+  const rateBtn = root.querySelector('[data-hv="rate"]');
+  const bar = root.querySelector(".home-hero__video-progress > span");
+  const rates = [1, 1.5, 2];
+  let rateIndex = 0;
+
+  const toggle = () => {
+    if (video.paused) video.play().catch(() => {});
+    else video.pause();
+  };
+  playBtn.addEventListener("click", toggle);
+  video.addEventListener("click", toggle);
+  root.querySelector('[data-hv="back"]').addEventListener("click", () => {
+    video.currentTime = Math.max(0, video.currentTime - 10);
+  });
+  root.querySelector('[data-hv="forward"]').addEventListener("click", () => {
+    const end = Number.isFinite(video.duration) ? video.duration : Infinity;
+    video.currentTime = Math.min(end, video.currentTime + 10);
+  });
+  rateBtn.addEventListener("click", () => {
+    rateIndex = (rateIndex + 1) % rates.length;
+    video.playbackRate = rates[rateIndex];
+    rateBtn.textContent = `${rates[rateIndex]}x`;
+  });
+  const paint = () => {
+    const playing = !video.paused && !video.ended;
+    root.classList.toggle("is-playing", playing);
+    playBtn.setAttribute("aria-label", playing ? "Пауза" : "Воспроизвести");
+  };
+  video.addEventListener("play", paint);
+  video.addEventListener("pause", paint);
+  video.addEventListener("ended", paint);
+  video.addEventListener("timeupdate", () => {
+    if (!video.duration) return;
+    bar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+  });
 })();

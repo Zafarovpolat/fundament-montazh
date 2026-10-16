@@ -37,7 +37,18 @@
         1,
         Math.floor((content.clientWidth + gap + 2) / size),
       );
-      limit = Math.max(0, cards.length - shown);
+      if (track.dataset.carouselEnd === "edge") {
+        // Ряд останавливается, когда последняя карточка заканчивается у правого
+        // края колонки, а не когда она прилипает к левому краю.
+        const style = getComputedStyle(content);
+        const inner =
+          content.clientWidth -
+          parseFloat(style.paddingLeft) -
+          parseFloat(style.paddingRight);
+        limit = Math.max(0, (cards.length * size - gap - inner) / size);
+      } else {
+        limit = Math.max(0, cards.length - shown);
+      }
       index = Math.min(index, limit);
       pos = Math.max(0, Math.min(pos, limit));
       paint();
@@ -49,7 +60,11 @@
       controls.forEach((button) => {
         button.disabled =
           !(loops && limit > 0) &&
-          (Number(button.dataset.scroll) < 0 ? index === 0 : index === limit);
+          (Number(button.dataset.scroll) < 0
+            ? index === 0
+            : track.dataset.carouselEnd === "edge"
+              ? pos >= limit - 0.01
+              : index === limit);
       });
     }
     function rotate(direction, count) {
