@@ -3597,6 +3597,8 @@
   }
   .home-page .project-card > .project-title > h3 {
     order: 1;
+    /* Отступ, который был у .project-title (16 px), при display: contents переехал сюда. */
+    margin-top: 16px;
   }
   .home-page .project-card > .inline-list {
     order: 2;
