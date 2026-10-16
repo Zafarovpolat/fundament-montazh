@@ -2,9 +2,6 @@
 /** Source-sized carousels. The viewport gutter remains visible; no native scrollbar. */
 (() => {
   const controllers = new Map();
-  const hasFoundationCards = Boolean(
-    document.querySelector("#projects .foundation-cards"),
-  );
   document.querySelectorAll("[data-carousel]").forEach((track) => {
     const content = track.closest(".container");
     const controls = [
@@ -26,10 +23,10 @@
       track.dataset.carouselEnd !== "edge";
     const originalOrder = [...track.children];
     const visibleCards = () =>
+      // Скрытые через CSS карточки (display: none, напр. 3-я отзыв на мобиле)
+      // не считаются слайдами — иначе появляется пустой слайд в конце.
       [...track.children].filter(
-        (card) =>
-          !card.hidden &&
-          (!hasFoundationCards || getComputedStyle(card).display !== "none"),
+        (card) => !card.hidden && getComputedStyle(card).display !== "none",
       );
     function measure() {
       const cards = visibleCards();
