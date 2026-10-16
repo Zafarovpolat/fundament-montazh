@@ -9,23 +9,15 @@
 .home-page .home-main {
   display: block;
 }
-.home-page .topbar-inner {
-  min-height: 48px;
-}
-.home-page .header-inner {
-  min-height: 108px;
-  padding-block: 14px;
-}
-.home-page .header-inner > .brand {
-  flex: 0 1 246px;
-  max-width: 246px;
-  min-width: 180px;
-}
-.home-page .header-contact .phone {
-  font-size: 18px;
-}
 .home-page .header-callback {
   color: var(--home-muted);
+}
+/* Навигация главной: у «Фундамента» межстрочный 1.26 приходит из
+   figma-type.css по id узлов 360:438…442, у главной свои id (87:131…152),
+   поэтому задаём тот же интерлиньяж здесь. Специфичность низкая, чтобы
+   компактная ступень compact.css (12 px / 1.2) продолжала работать. */
+.home-page #main-navigation a {
+  line-height: 1.26;
 }
 .home-page .home-hero {
   position: relative;
@@ -287,8 +279,10 @@
   flex: 1 1 0%;
   min-width: auto;
   max-width: 920px;
-  font-size: clamp(32px, 3.4vw, 58px);
-  line-height: 1.15;
+  /* Как h2 в styles.css у «Фундамента»: clamp(32px, 3.15vw, 60px), тот же
+     интерлиньяж 1.268, что у заголовков макета (60 / 76.08). */
+  font-size: clamp(32px, 3.15vw, 60px);
+  line-height: 1.268;
   text-transform: uppercase;
 }
 .home-page .home-heading > p:not(.eyebrow) {
@@ -416,8 +410,33 @@
   max-width: 350px;
 }
 /* Кнопки директора ниже stats-сетки. */
+/* Кнопки секции автора: рядом, отступ сверху кнопок — как в foundation
+   (было 120px, из-за этого секция была выше на 88px и кнопки срывались
+   друг под друга). */
 .home-page #director .director-actions {
-  margin-top: 120px;
+  margin-top: 32px;
+}
+@media (min-width: 1025px) {
+  .home-page #director .director-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 32px 0 0;
+  }
+  .home-page #director .director-actions > .button {
+    flex: 1 1 0;
+    align-self: center;
+    min-width: 0;
+    min-height: 82px;
+    margin: 0;
+  }
+}
+@media (max-width: 768px) {
+  .home-page #director .director-actions {
+    margin-top: 25px;
+  }
 }
 /* Правка заказчика: портрет больше и прижат к низу секции — низ фото у
    нижнего края сетки. Фото никогда не обрезается (contain поверх чужого
@@ -873,10 +892,21 @@
 .home-page .home-advantages {
   min-height: 600px;
 }
-.home-page .home-advantage-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+/* Три слайда в экране, четвёртый уходит за правую границу контейнера —
+   механика `#advantage-track` страницы «Фундамент» (.fidelity-track).
+   Домашняя вёрстка была сеткой 4×N, из-за этого все четыре слайда попадали
+   в кадр. */
+.home-page .home-advantages .carousel-bleed > .home-advantage-grid {
+  --advantage-shown: 3;
+  display: flex;
+  gap: 8px;
+}
+.home-page .home-advantages .home-advantage-grid > * {
+  flex: 0 0 calc(
+    (100% - var(--bleed, 0px) - (var(--advantage-shown) - 1) * 8px) /
+      var(--advantage-shown)
+  );
+  min-width: 0;
 }
 .home-page .home-advantage-card {
   display: flex;
@@ -1472,10 +1502,6 @@
 }
 
 @media (max-width: 1024px) {
-  .home-page .header-inner {
-    min-height: 76px;
-    padding-block: 10px;
-  }
   .home-page .home-section {
     margin-top: 54px;
   }
@@ -1514,10 +1540,14 @@
   }
 }
 
-@media (max-width: 880px) {
-  .home-page .home-advantage-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* Компактная ступень «Фундамента» (≤1024px) показывает два слайда. */
+@media (max-width: 1024px) {
+  .home-page .home-advantages .carousel-bleed > .home-advantage-grid {
+    --advantage-shown: 2;
   }
+}
+
+@media (max-width: 880px) {
   .home-page .home-safety__cards,
   .home-page .home-stage-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1557,29 +1587,6 @@
 }
 
 @media (max-width: 768px) {
-  .home-page .topbar {
-    display: none;
-  }
-  .home-page .header-inner {
-    min-height: 73px;
-    gap: 6px;
-    padding-block: 9px;
-  }
-  .home-page .header-inner > .brand {
-    flex: 0 1 246px;
-    width: min(246px, calc(100% - 61px));
-    max-width: 246px;
-    min-width: 0;
-  }
-  .home-page .header-inner > .menu-toggle {
-    display: grid;
-    place-items: center;
-    flex: 0 0 55px;
-    width: 55px;
-    height: 55px;
-    border-radius: 15px;
-    background: var(--home-ink);
-  }
   .home-page .home-hero__grid {
     padding-block: 28px 32px;
   }
@@ -1979,24 +1986,30 @@
   .home-page .home-advantages {
     min-height: 598px;
   }
-  .home-page .home-advantage-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+  /* Кадр мобильной главной 544:1458: две карточки 222px с зазором 5px, блок
+     449px выходит за правый край экрана — как в макете. */
+  .home-page .home-advantages .carousel-bleed > .home-advantage-grid {
+    gap: 5px;
+  }
+  .home-page .home-advantages .home-advantage-grid > * {
+    flex: 0 0 222px;
   }
   .home-page .home-advantage-card {
-    min-height: 0;
-    padding: 20px;
+    min-height: 350px;
+    padding: 10px 12px 17px;
     border-radius: 14px;
   }
   .home-page .home-advantage-card__icon {
-    height: 120px;
+    height: 161px;
   }
   .home-page .home-advantage-card h3 {
-    padding-top: 18px;
-    font-size: 17px;
+    padding-top: 12px;
+    font-size: 15px;
   }
   .home-page .home-advantage-card p {
+    margin-top: 5px;
     font-size: 14px;
+    line-height: 1.26;
   }
   .home-page .home-calculator {
     min-height: 538px;
@@ -2857,6 +2870,43 @@
   .home-page .home-safety .home-heading h2 {
     flex: 1 1 420px;
     min-width: min(100%, 320px);
+  }
+}
+
+/* Шапка секции: заголовок и описание стоят в одной строке — как
+   `.section-heading` страницы «Фундамент». Описание не переносится под
+   заголовок: оба блока делят строку, заголовок и описание сжимаются, но не
+   разъезжаются. Мобильный кадр (≤768 px) остаётся колонкой, как в макете
+   540:662. */
+@media (min-width: 1025px) {
+  .home-page .home-heading {
+    flex-wrap: nowrap;
+  }
+  .home-page .home-heading h2 {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+  .home-page .home-heading > p:not(.eyebrow) {
+    flex: 1 1 280px;
+    min-width: 0;
+  }
+  /* У #safety свои правила шапки (flex: 0 1 auto у описания) — повторяем
+     здесь, иначе описание снова срывается под заголовок. */
+  .home-page .home-safety .home-heading h2 {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+  .home-page .home-safety .home-heading > p:not(.eyebrow) {
+    flex: 1 1 280px;
+    min-width: 0;
+  }
+}
+
+/* Компактная ступень «Фундамента» ведёт заголовки с интерлиньяжем 1.2
+   (1440 → 1025 px), мобильный кадр — снова 1.268. */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .home-page .home-heading h2 {
+    line-height: 1.2;
   }
 }
 

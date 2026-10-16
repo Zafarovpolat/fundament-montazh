@@ -103,6 +103,11 @@ compact-типографики (`compact.css`, `compact-type.css`), с 768 px в
 - `adaptive-home-mobile-768-375.jpg` — materials / finance / FAQ на 768/640/375/1024.
 - `adaptive-home-before-after.jpg` — «до/после» по пунктам 1 и 2 на 768 и 880 px.
 
+Снимки `adaptive-home-*` относятся именно к этому проходу. Следующий проход
+(шапка строго по «Фундаменту», три слайда в «Почему мы», кнопки секции автора,
+мобильные преимущества по кадру `540:662`) снят в `parity-*.jpg|png` и описан в
+`docs/home-foundation-parity.md` — там часть геометрии уже другая.
+
 ## Проверки
 
 `npm run test`, `test:home`, `test:phone-mask`, `test:header`, `test:path`,
