@@ -3573,10 +3573,17 @@
     background: #070b1f;
     color: #fff;
   }
+  /* Иконка из спрайта задаёт свой цвет, поэтому белим фильтром. */
   .home-page .button--soft-icon .button-icon svg {
     color: #fff;
-    fill: #fff;
-    stroke: #fff;
+    filter: brightness(0) invert(1);
+  }
+  /* Кнопка «Смотреть все проекты» на всю ширину карточки. */
+  .home-page .project-card > .button.button--soft-icon {
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
   }
   /* Перенос текста кнопки: «Смотреть все проекты / 50+ вариантов». */
   .home-page .button-br {
