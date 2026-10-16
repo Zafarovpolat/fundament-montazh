@@ -2104,10 +2104,21 @@
   .home-page #objects .home-heading {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* Раунд 5, доработка: вылет только влево давал «прилипание» галереи к
+     левому краю — теперь вылет симметричный, а карточки стоят на внутреннем
+     отступе --object-edge (как в «Фундаменте»: активная карточка 308 px
+     центрируется, крайние пиксели галереи уходят под край экрана). */
   .home-page #objects .objects-gallery {
-    width: calc(100% + var(--home-gutter));
+    --object-active-width: min(308px, calc(100vw - 40px));
+    --object-edge: max(
+      var(--home-gutter),
+      calc((100vw - var(--object-active-width)) / 2)
+    );
+    width: calc(100% + 2 * var(--home-gutter));
     height: 408px;
-    margin-left: calc(-1 * var(--home-gutter));
+    margin-inline: calc(-1 * var(--home-gutter));
+    padding-inline: var(--object-edge);
+    scroll-padding-inline: var(--object-edge);
     border-radius: 0;
   }
   .home-page #objects .objects-gallery > .object-card,

@@ -1991,14 +1991,22 @@ html[data-motion="off"] #hero .hero-grid {
 }
 
 @media (max-width: 768px) {
+  /* Раунд 5, доработка по просьбе заказчика: на ≤768 px колонка больше не
+     зажата мобильными 335 px — контейнер идёт во всю ширину минус гаттеры
+     (100% - 40px), а гаттер фиксированный 20 px (раньше он рос, чтобы
+     центрировать 335 px, и из-за него слайдеры уезжали за левый край). */
   :root {
-    --gutter: max(20px, calc((100vw - 335px) / 2));
+    --gutter: 20px;
   }
 
   .container {
-    max-width: 335px;
+    max-width: none;
   }
 
+  /* Исключение: у hero-слайдера «Фундамента» трек остаётся 335 px — по
+     правилу AGENTS.md бейдж-доказательство должен быть одной длинной
+     полосой ШИРЕ трека (это же проверяет test:responsive ≤768), а на более
+     широком контейнере полоса 524 px перестала бы перекрывать трек. */
   #hero .hero-grid {
     width: 100%;
     max-width: 335px;
@@ -2045,9 +2053,9 @@ html[data-motion="off"] #hero .hero-grid {
   }
 
   .footer-grid {
-    width: min(100%, 375px);
-    max-width: 375px;
-    margin-inline: auto;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
   }
 
   #projects {
@@ -2060,9 +2068,9 @@ html[data-motion="off"] #hero .hero-grid {
     position: relative;
     display: block;
     width: 100%;
-    max-width: 335px;
+    max-width: none;
     min-height: 27.35px;
-    margin: 20px auto 0;
+    margin: 20px 0 0;
     isolation: isolate;
   }
 
@@ -3275,7 +3283,7 @@ html[data-motion="off"] #hero .hero-grid {
   }
   #design .steps-track {
     --card-gap: 15px;
-    width: min(100%, 334px);
+    width: 100%;
     max-width: 100%;
     align-items: flex-start;
     overflow: visible;
@@ -3305,7 +3313,7 @@ html[data-motion="off"] #hero .hero-grid {
     line-height: 18.9px;
   }
   #design .steps-range {
-    width: min(100%, 334px);
+    width: 100%;
     max-width: 100%;
     height: auto;
     min-height: 0;
@@ -3755,9 +3763,9 @@ html[data-motion="off"] #hero .hero-grid {
     gap: 5px;
   }
   #reviews .review-card {
-    flex: 0 0 min(100%, 336px);
+    flex: 0 0 calc(100% - var(--gutter));
     width: auto;
-    max-width: 336px;
+    max-width: none;
     min-height: 0;
     padding: 15px;
     gap: 14px;
@@ -4183,7 +4191,7 @@ html[data-motion="off"] #hero .hero-grid {
 
 @media (max-width: 768px) {
   html:root {
-    --gutter: max(20px, calc((100vw - 335px) / 2));
+    --gutter: 20px;
   }
 
   html #design {
@@ -4441,9 +4449,9 @@ html[data-motion="off"] #hero .hero-grid {
     scroll-behavior: auto !important;
   }
   html body:not(.home-page) #projects .foundation-card {
-    flex: 0 0 335px;
-    width: 335px;
-    max-width: 335px;
+    flex: 0 0 100%;
+    width: auto;
+    max-width: none;
     scroll-snap-align: none;
   }
   html body:not(.home-page) #projects .foundation-card .button[data-motion-button] {
@@ -4492,9 +4500,9 @@ html[data-motion="off"] #hero .hero-grid {
   html #advantages .advantage-progress {
     position: relative;
     display: block;
-    width: min(100%, 335px);
+    width: 100%;
     height: 27.35px;
-    margin: 0 auto;
+    margin: 0;
     isolation: isolate;
   }
   html #advantages .advantage-progress__line {
