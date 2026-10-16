@@ -107,7 +107,6 @@
   /* Пункты карточки: в кадре 430:1314 неактивные — #F4F4F4, в мобильном
      606:1924 — акцентный жёлтый. Дальше по состояниям: жёлтый на наведении
      (кадр 430:1317), чёрный у текущего раздела (кадр 433:1349). */
-  --nav-pill: #f4f4f4;
   padding: clamp(10px, 0.7813vw, 15px);
   border-radius: 25px;
   background: #fff;
@@ -121,7 +120,7 @@
   height: clamp(70px, 5.2083vw, 100px);
   padding: 20px;
   border-radius: 20px;
-  background: var(--nav-pill);
+  background: #fff;
   color: #000;
   font-family: var(--font-body);
   font-size: var(--sp-nav);
@@ -134,14 +133,26 @@
     background-color 200ms ease,
     color 200ms ease;
 }
-.legal-nav a:hover,
+/* Все пункты белые; текущий раздел — чёрный. Наведение и фокус не меняют фон,
+   фокус подсвечивается контуром. */
 .legal-nav a:focus-visible {
-  background: var(--accent);
-  color: var(--ink);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 .legal-nav a.is-current {
-  background: var(--ink);
+  background: #000;
   color: #fff;
+}
+/* 1025–1440 px: карточка разделов и пункты чуть меньше. */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .legal-nav {
+    padding: 10px;
+  }
+  .legal-nav a {
+    height: clamp(64px, 4.7vw, 80px);
+    padding: 16px;
+    font-size: clamp(13px, 0.95vw, 15px);
+  }
 }
 .legal-body {
   /* 462 - 428 = 34 px: текст начинается ниже верхнего края карточки */
@@ -306,9 +317,9 @@
   /* Карточка разделов остаётся шириной десктопного макета (540 px), а не
      растягивается на всю планшетную колонку; в мобильном кадре — 335 px. */
   /* В мобильном кадре 606:1924 неактивные пункты уже акцентные. */
+  /* Планшет и мобильный: карточка разделов на всю ширину экрана. */
   .legal-nav {
-    --nav-pill: var(--accent);
-    width: min(100%, 540px);
+    width: 100%;
   }
   .legal-nav a {
     line-height: 1.43;

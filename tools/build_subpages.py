@@ -373,7 +373,7 @@ def status_main(modifier: str, art_node: str, art_w: int, art_h: int, art_alt: s
 
 
 privacy_main = legal_main(
-    head_block("430:1306", "Политика конфиден\u00adциальности", "430:1311",
+    head_block("430:1306", "Политика<br /> конфиден\u00adциальности", "430:1311",
                "440:1767"),
     # Статичный is-current — состояние из макета («1. Общие положения»);
     # дальше его пересчитывает scrollspy в subpages.js.
