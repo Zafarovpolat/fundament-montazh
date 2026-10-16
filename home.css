@@ -3277,12 +3277,6 @@
   }
 }
 
-/* 12. Кнопку «Узнать условия ипотеки» на мобиле убираем — просьба заказчика. */
-@media (max-width: 768px) {
-  .home-page #finance .section-heading--stacked > .button[data-action="mortgage"] {
-    display: none;
-  }
-}
 
 /* 13. Карточки ипотеки: паддинги как в макете 540:662 (544:1630 — контент
    начинается на +14 px слева и +17 px сверху вместо 24 px). */
@@ -3723,8 +3717,28 @@
     margin-bottom: -50px;
   }
   .home-page #finance .mortgage-grid article:nth-child(2) img {
-    margin-left: 30px;
-    margin-bottom: -20px;
+    margin-left: 80px;
+    margin-bottom: -40px;
+  }
+  /* Кнопка «Узнать условия ипотеки» на мобиле — снизу, после карточек, на всю ширину.
+     Заголовок-блок раскрываем (display: contents), чтобы порядок задать детям контейнера. */
+  .home-page #finance .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .home-page #finance .section-heading--stacked {
+    display: contents;
+  }
+  .home-page #finance .section-heading--stacked > .button[data-action="mortgage"] {
+    display: flex;
+    order: 2;
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+  }
+  .home-page #finance .mortgage-grid {
+    order: 1;
   }
   .home-page #steps .process-list {
     min-height: 160px;
