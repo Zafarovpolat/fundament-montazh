@@ -3568,6 +3568,18 @@
   .home-page #objects .objects-gallery > .object-card figcaption {
     padding: 0 0 10px;
   }
+  /* Цена под характеристиками: белая сумма и серая подпись «под ключ». */
+  .home-page #objects .object-price {
+    margin: 6px 0 0;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .home-page #objects .object-price__note {
+    margin-left: 8px;
+    color: rgb(255 255 255 / 55%);
+    font-size: 14px;
+  }
   /* Характеристики объекта — одной строкой с разделителями. */
   .home-page #objects .object-meta {
     flex-direction: row;
