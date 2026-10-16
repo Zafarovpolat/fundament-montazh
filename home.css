@@ -3564,6 +3564,11 @@
     font-size: 28px;
     white-space: nowrap;
   }
+  /* styles.css прячет <br> в заголовках на мобильном; в заголовке директора
+     переносы строк нужны по макету. */
+  .home-page #director h2[data-figma-text] br {
+    display: inline;
+  }
   /* В мобильном кадре кнопка расчёта в блоке материалов не показывается. */
   .home-page .home-materials__actions {
     display: none;
