@@ -3723,8 +3723,11 @@
     margin-bottom: -50px;
   }
   .home-page #finance .mortgage-grid article:nth-child(2) img {
-    margin-left: -30px;
+    margin-left: 30px;
     margin-bottom: -20px;
+  }
+  .home-page #steps .process-list {
+    min-height: 160px;
   }
 
   /* Отзывы 2ГИС: карточка на всю ширину. */
