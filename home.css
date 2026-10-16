@@ -3652,6 +3652,10 @@
   .home-page #director h2[data-figma-text] br {
     display: inline;
   }
+  /* Вторая строка кнопки «Записаться на экскурсию» — только на мобильном. */
+  .home-page .button-only-m {
+    display: inline;
+  }
   /* В мобильном кадре кнопка расчёта в блоке материалов не показывается. */
   .home-page .home-materials__actions {
     display: none;
@@ -3661,6 +3665,11 @@
 /* Перенос в кнопке «Смотреть все проекты» нужен только на мобильном. */
 @media (min-width: 769px) {
   .home-page .button-br {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .home-page .button-only-m {
     display: none;
   }
 }
