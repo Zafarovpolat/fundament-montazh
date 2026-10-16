@@ -392,13 +392,14 @@ privacy_main = legal_main(
     # Статичный is-current — состояние из макета («1. Общие положения»);
     # дальше его пересчитывает scrollspy в subpages.js.
     legal_nav(PRIVACY, "s1"),
-    legal_body(PRIVACY),
+    # В тексте оставлен только первый раздел; пункты навигации перечисляют все.
+    legal_body([i for i in PRIVACY if i[0] == "s1"]),
 )
 pd_main = legal_main(
     head_block("440:1664", "Правила обработки персональных данных", "440:1663",
                "440:1766"),
     legal_nav(PD, "s1"),
-    legal_body(PD),
+    legal_body([i for i in PD if i[0] == "s1"]),
 )
 
 PAGES = {
