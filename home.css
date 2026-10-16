@@ -3652,6 +3652,22 @@
   .home-page #director h2[data-figma-text] br {
     display: inline;
   }
+  /* Квиз: заголовок с трекингом -1 px; вопрос на 40% прозрачности. */
+  html .home-page #calculator #quiz-title,
+  html .home-page #calculator #quiz-title[data-figma-text] {
+    letter-spacing: -1px !important;
+  }
+  .home-page #calculator .quiz-question {
+    opacity: 0.4;
+  }
+  .home-page #calculator .quiz-q-desk {
+    display: none;
+  }
+  /* Варианты квиза: отступы 15 px 20 px, текст заглавными. */
+  html .home-page #calculator .quiz-options > button[data-quiz-option] {
+    padding: 15px 20px !important;
+    text-transform: uppercase;
+  }
   /* Вторая строка кнопки «Записаться на экскурсию» — только на мобильном. */
   .home-page .button-only-m {
     display: inline;
@@ -3670,6 +3686,11 @@
 }
 @media (min-width: 769px) {
   .home-page .button-only-m {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .home-page .quiz-q-mob {
     display: none;
   }
 }
