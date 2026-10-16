@@ -3564,6 +3564,25 @@
     font-size: 28px;
     white-space: nowrap;
   }
+  /* Карточка объекта: отступы подписи как в заданном правиле. */
+  .home-page #objects .objects-gallery > .object-card figcaption {
+    padding: 0 0 10px;
+  }
+  /* Характеристики объекта — одной строкой с разделителями. */
+  .home-page #objects .object-meta {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .home-page #objects .object-meta > span + span {
+    margin-left: 6px;
+    padding-left: 6px;
+    border-left: 1px solid rgb(255 255 255 / 45%);
+  }
   /* Фильтры проектов: поля по бокам 25 px (было 16). */
   .home-page .filters button {
     padding-inline: 25px !important;
