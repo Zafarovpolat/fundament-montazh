@@ -270,7 +270,8 @@
     let active = 2,
       start = 0,
       drag = false,
-      pointer = null;
+      pointer = null,
+      scrollTimer = 0;
     function centerActiveCard() {
       if (innerWidth > 768) return;
       const card = cards[active];
@@ -292,6 +293,34 @@
         .join(" ");
       gallery.dataset.activeObject = String(active);
       if (innerWidth <= 768) requestAnimationFrame(centerActiveCard);
+    }
+    // Пункт 9: после ручной прокрутки ряда активным становится слайд,
+    // ближайший к центру кадра — без дополнительного тапа по карточке.
+    function nearestCardIndex() {
+      const rect = gallery.getBoundingClientRect();
+      const center = rect.left + gallery.clientLeft + gallery.clientWidth / 2;
+      let nearest = 0;
+      let distance = Infinity;
+      cards.forEach((card, i) => {
+        const cardRect = card.getBoundingClientRect();
+        const nextDistance = Math.abs(
+          cardRect.left + cardRect.width / 2 - center,
+        );
+        if (nextDistance < distance) {
+          nearest = i;
+          distance = nextDistance;
+        }
+      });
+      return nearest;
+    }
+    function settleAfterScroll() {
+      clearTimeout(scrollTimer);
+      if (innerWidth > 768) return;
+      scrollTimer = window.setTimeout(() => {
+        if (innerWidth > 768 || drag) return;
+        const nearest = nearestCardIndex();
+        if (nearest !== active) activate(nearest);
+      }, 170);
     }
     activate(2);
     cards.forEach((card, i) => {
@@ -318,6 +347,7 @@
       if (cursor) cursor.style.transform = "translate3d(0,0,0)";
     }
     gallery.addEventListener("pointerleave", resetCursor);
+    gallery.addEventListener("scroll", settleAfterScroll, { passive: true });
     new ResizeObserver(() => {
       resetCursor();
       centerActiveCard();

@@ -1148,10 +1148,13 @@ html .featured-object h3[data-figma-text] {
     font-size: clamp(28px, 3.05vw, 44px);
     line-height: 1.2;
   }
+  /* Раунд 5: заголовки с data-figma-text шли своим, более мелким размером
+     (23 px на мобиле и в адаптиве) — теперь та же ступень, что у остальных
+     заголовков: 30 px в мобильном кадре (540:662/597:663) и 3.15vw выше. */
   html .section-heading h2[data-figma-text],
   html .section-heading h2 .heading-line[data-figma-text] {
-    font-size: clamp(23px, 2.32vw, 33px);
-    line-height: 1.2;
+    font-size: clamp(30px, 3.15vw, 60px);
+    line-height: 1.268;
   }
   html .visit-banner h2[data-figma-text] {
     font-size: clamp(22px, 2.05vw, 29.5px);
@@ -4876,5 +4879,51 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
   html #contacts .footer-legal > div {
     flex-wrap: nowrap;
     align-items: flex-start;
+  }
+}
+
+/* ═══ Раунд 5 (2026-10-16). Правки по списку заказчика ═════════════════════ */
+
+/* 8. Вторая строка заголовка «объектов» снова с отступом слева, как в макете:
+   мобильный «Фундамент» 606:906/606:976 — +130 px, мобильная главная
+   540:1270/540:1271 — +36 px и кегль второй строки 27,016/34,236. */
+@media (max-width: 768px) {
+  /* Селектор с .section-heading — иначе правило перебивает fidelity.css
+     (строка 2153, ≤1919 px: `#objects .section-heading .heading-line--inset`). */
+  #objects .section-heading .heading-line--inset {
+    margin-left: 130px;
+  }
+  /* На главной вторая строка короткая («мы уже построили» — в кадре 299 px при
+     27,016 и отступе 36 стоит в одну строку) и упирается ровно в правый край
+     колонки; у нас шрифт на пару пикселей шире, поэтому поджимаем трекинг
+     (как у второй строки FAQ, letter-spacing -0.35px), чтобы строка не рвалась.
+     На очень узких экранах (≤340 px) строка предсказуемо переносится. */
+  .home-page #objects .section-heading .heading-line--inset {
+    margin-left: 36px;
+    font-size: 27.016px;
+    line-height: 34.236px;
+    letter-spacing: -0.35px;
+  }
+}
+
+/* 10. Вопрос квиза на мобиле — в две строки: колонка занимает всю ширину
+   контейнера (кадр 540:662, узел 544:1521 — 307×38 при 15/18,9). */
+@media (max-width: 768px) {
+  #calculator .quiz-question {
+    width: 100%;
+  }
+}
+
+/* 11. `#visit .container` — внутренний паддинг 5 px на обеих страницах. */
+#visit .container {
+  padding: 5px;
+}
+
+/* 12. Заголовки квиза: на мобиле тот же кегль, что у соседних секций
+   (кадр 540:662 → 544:1515 и 597:663 → 606:1013 — 30/38,04). */
+@media (max-width: 768px) {
+  #calculator .section-heading h2 {
+    font-size: 30px;
+    line-height: 38.04px;
   }
 }

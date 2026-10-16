@@ -344,10 +344,12 @@
 .home-page .home-safety {
   min-height: 590px;
 }
-/* Safety: вместо марджина секции — внутренний паддинг сверху. */
+/* Safety: вместо марджина секции — внутренний паддинг сверху.
+   Раунд 5: заказчик просил уменьшить отступ на ПК; 150 px → 72 px
+   (до заголовка остаётся ≈98 px вместе с внутренним зазором шапки секции). */
 .home-page #safety {
   margin-top: 0;
-  padding-top: 150px;
+  padding-top: 72px;
 }
 .home-page .home-safety .home-heading {
   display: flex;
@@ -1783,10 +1785,10 @@
     font-size: 15px;
     line-height: 18.9px;
   }
-  /* Отступ сверху секции уже даёт низ героя (в кадре 540:662 между
-     видео-блоком и секцией 50 px), внутренний паддинг 150 px был лишним. */
+  /* Раунд 4 убрал внутренний паддинг 150 px (низ героя уже даёт зазор);
+     раунд 5: заказчик просил ≈50 px сверху у «защиты» на мобиле. */
   .home-page #safety {
-    padding-top: 0;
+    padding-top: 50px;
   }
   .home-page .home-safety {
     min-height: 591px;
@@ -1818,9 +1820,10 @@
     margin-left: 5px;
   }
   .home-page .home-safety-card h3 {
-    /* В мобильном кадре заголовок идёт сразу за иконкой (зазор 9 px),
-       а не прижат к низу карточки, как на десктопе. */
-    margin-top: 0;
+    /* Раунд 4 показывал заголовок сразу за иконкой; раунд 5: заказчик просил
+       прижать текст к низу карточки — в мобильном кадре так же (иконка сверху,
+       заголовок и описание у нижнего края). */
+    margin-top: auto;
     padding-top: 9px;
     max-width: 181px;
     font-size: 15px;
@@ -3076,9 +3079,10 @@
   }
 }
 
-/* Компактная ступень «Фундамента» ведёт заголовки с интерлиньяжем 1.2
-   (1440 → 1025 px), мобильный кадр — снова 1.268. */
-/* Компактная ступень «Фундамента»: h2 — clamp(23px, 2.32vw, 33px) / 1.2. */
+/* Ступень заголовков на адаптиве: та же формула, что у остальных секций
+   (styles.css h2 — clamp(32px, 3.15vw, 60px)), иначе заголовки главной
+   расходились с соседними: на 1024 px было 23,8 против 32,3 px, на 1440 —
+   33 против 45,4 px (раунд 5, пункт «заголовки не того размера»). */
 @media (min-width: 1025px) and (max-width: 1440px) {
   .home-page .home-hero h1 {
     font-size: clamp(28px, 3.05vw, 44px);
@@ -3088,8 +3092,8 @@
 
 @media (min-width: 769px) and (max-width: 1440px) {
   .home-page .home-heading h2 {
-    font-size: clamp(23px, 2.32vw, 33px);
-    line-height: 1.2;
+    font-size: clamp(30px, 3.15vw, 60px);
+    line-height: 1.268;
   }
   .home-page .home-heading > p:not(.eyebrow) {
     font-size: clamp(14px, 1.05vw, 15px);
@@ -3215,22 +3219,27 @@
   }
 }
 
-/* 5. Фильтры проектов: одна строка с горизонтальным скроллом вместо переноса
-   (в кадре 540:662 ряд 540:1150 — 621 px при 375 px экрана). */
+/* 5. Фильтры проектов: одна строка вместо переноса (в кадре 540:662 ряд
+   540:1150 — 621 px при 375 px экрана). Раунд 5: без гаттер-паддингов и
+   отрицательных маргинов — ширина по содержимому, ряд уходит за правый край,
+   а листает его контейнер-скроллер. */
 @media (max-width: 768px) {
   .home-page .filters {
     flex-wrap: nowrap;
-    margin-inline: calc(-1 * var(--gutter));
-    padding-inline: var(--gutter);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-  }
-  .home-page .filters::-webkit-scrollbar {
-    display: none;
+    width: fit-content;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
   }
   .home-page .filters button {
     flex: 0 0 auto;
+  }
+  .home-page .catalog-toolbar {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .home-page .catalog-toolbar::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -3387,5 +3396,114 @@
   .home-page #contacts .footer-house {
     margin-top: -86px;
     margin-bottom: 0;
+  }
+}
+
+/* ═══ Раунд 5 (2026-10-16). Правки по списку заказчика ═════════════════════ */
+
+/* 3. Футер главной в мобильном кадре — как на «Фундаменте»: панель идёт во
+   всю ширину экрана, внутренние колонки держат гаттер. До этого панель
+   главной была зажата в 375 px и на 430–768 px расходилась с секциями
+   (у «Фундамента» то же самое делает блок «Full-bleed footer CTA»). */
+@media (max-width: 768px) {
+  .home-page #contacts .footer-grid {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+  .home-page #contacts .footer-main {
+    --footer-main-inline-padding: var(--gutter);
+    padding-inline: var(--footer-main-inline-padding);
+  }
+  .home-page #contacts .footer-columns {
+    width: min(
+      calc(
+        100% - var(--footer-main-inline-padding) -
+          var(--footer-main-inline-padding)
+      ),
+      330px
+    );
+    max-width: 100%;
+  }
+  .home-page #contacts .footer-legal {
+    width: min(
+      calc(
+        100% - var(--footer-main-inline-padding) -
+          var(--footer-main-inline-padding)
+      ),
+      335px
+    );
+    max-width: 100%;
+  }
+  .home-page #contacts .footer-cta {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+}
+
+/* 4. Заголовок «защиты» на мобиле — три строки: «Как мы» / «защищаем ваш» /
+   «бюджет и сроки», у последней отступ слева (кадр 540:662: 540:917 идёт
+   в две строки, 540:918 — x 5166 при контейнере 5115, то есть +51 px). */
+@media (max-width: 768px) {
+  .home-page #safety .heading-line__part {
+    display: block;
+  }
+  .home-page #safety .heading-line--inset {
+    margin-left: 51px;
+  }
+}
+
+/* 5. «Материалы» на мобиле — четыре строки: «подберём» / «технологию» /
+   «строительства» без отступа и «под ваш дом» с бо́льшим отступом
+   (кадр 540:662: 540:1013/540:1014 стоят на x 5115/5140, 540:1022 — на
+   x 5223, то есть +108 px к колонке). */
+@media (min-width: 769px) {
+  .home-page #materials .home-heading h2 .heading-line--tail {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .home-page #materials .home-heading h2 .heading-line--tail {
+    display: block;
+    margin-left: 108px;
+  }
+}
+
+/* 6. Открытый пункт технологий: фото уходит в абсолют и режется карточкой,
+   а его место держит нижний паддинг 140 px (просьба заказчика). */
+@media (max-width: 768px) {
+  .home-page .home-tech-item.is-open {
+    padding: 20px 20px 140px;
+    overflow: hidden;
+  }
+  .home-page .home-tech-item.is-open .home-tech-item__photo {
+    position: absolute;
+    right: -60px;
+    bottom: -40px;
+    height: 220px;
+    margin: 0;
+  }
+}
+
+/* 12. Заголовок соцсетей главной на мобиле — 30/38,04 как у соседних секций
+   (кадр 540:662, узел I629:977;597:1266). */
+@media (max-width: 768px) {
+  .home-page #home-social .section-heading h2 {
+    font-size: 30px;
+    line-height: 38.04px;
+  }
+}
+
+/* 13. Карточки видео: подпись по центру колонки, справа 10 px, заголовок
+   капсом (просьба заказчика, кадр 540:662 — узел 559:628 высотой 88 px). */
+@media (max-width: 768px) {
+  .home-page #social-proof .video-card {
+    align-items: center;
+    padding: 0 10px 0 0;
+  }
+  .home-page #social-proof .video-card strong {
+    text-transform: uppercase;
   }
 }
