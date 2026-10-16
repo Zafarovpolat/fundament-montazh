@@ -126,7 +126,7 @@
     input.disabled = last < 1;
     input.setAttribute(
       "aria-valuetext",
-      `Этап ${Math.round(position) + 1} из ${pages}`,
+      `Этап ${Math.round(position) + 1} из ${Math.ceil(pages)}`,
     );
     const travel = Math.max(0, rail.clientWidth - thumb.offsetWidth);
     const x = last > 0 ? (travel * position) / last : 0;

@@ -3564,6 +3564,49 @@
     font-size: 28px;
     white-space: nowrap;
   }
+  /* Фильтры проектов: поля по бокам 25 px (было 16). */
+  .home-page .filters button {
+    padding-inline: 25px !important;
+  }
+  /* Кнопка «Смотреть все проекты»: тёмно-синяя иконка, белая стрелка. */
+  .home-page .button--soft-icon .button-icon {
+    background: #070b1f;
+    color: #fff;
+  }
+  .home-page .button--soft-icon .button-icon svg {
+    color: #fff;
+    fill: #fff;
+    stroke: #fff;
+  }
+  /* Перенос текста кнопки: «Смотреть все проекты / 50+ вариантов». */
+  .home-page .button-br {
+    display: inline;
+  }
+  /* Описание в объектах прижато к правому краю. */
+  .home-page #objects .heading-description {
+    margin-left: auto;
+    text-align: right;
+  }
+  /* Карточка проекта: заголовок, характеристики, затем цена. */
+  .home-page .project-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .home-page .project-card > .project-title {
+    display: contents;
+  }
+  .home-page .project-card > .project-title > h3 {
+    order: 1;
+  }
+  .home-page .project-card > .inline-list {
+    order: 2;
+  }
+  .home-page .project-card > .project-title > p {
+    order: 3;
+  }
+  .home-page .project-card > .button {
+    order: 4;
+  }
   /* styles.css прячет <br> в заголовках на мобильном; в заголовке директора
      переносы строк нужны по макету. */
   .home-page #director h2[data-figma-text] br {
@@ -3575,3 +3618,9 @@
   }
 }
 
+/* Перенос в кнопке «Смотреть все проекты» нужен только на мобильном. */
+@media (min-width: 769px) {
+  .home-page .button-br {
+    display: none;
+  }
+}
