@@ -113,7 +113,7 @@ def make_variants(src: str, dry: bool) -> list[tuple[int, str]]:
             resized.save(full_out, "WEBP", quality=QUALITY, method=6)
         size = prev_size if dry else os.path.getsize(full_out)
         if size > prev_size * (1 - KEEP_IF_SAVES):
-            if os.path.exists(full_out):
+            if not dry and os.path.exists(full_out):
                 os.remove(full_out)
             continue
         accepted.append((target, out_path))
@@ -201,13 +201,23 @@ def main() -> int:
     new_html = IMG_RE.sub(lambda m: rewrite_tag(m.group(0), boxes, dry, stats), html)
 
     # Удалённые ранее варианты, которые больше не нужны (например после правок макета).
+    # Вариант считается устаревшим, только если на него не ссылается ни один
+    # HTML/CSS/JS файл репозитория (foundation.html и другие страницы тоже).
+    all_text = []
+    for dirpath, dirnames, filenames in os.walk(ROOT):
+        dirnames[:] = [d for d in dirnames if d not in (".git", "node_modules")]
+        for fn in filenames:
+            if fn.endswith((".html", ".css", ".js", ".mjs")):
+                with open(os.path.join(dirpath, fn), encoding="utf-8", errors="ignore") as fh:
+                    all_text.append(fh.read())
+    referenced = "\n".join(all_text) + new_html
     stale = 0
     for name in os.listdir(os.path.join(ROOT, "assets")):
         if "@480." not in name and "@960." not in name:
             continue
-        stem = re.sub(r"@\d+(?=\.\w+$)", "", name)
-        if f"assets/{stem}" not in new_html:
-            os.remove(os.path.join(ROOT, "assets", name))
+        if f"assets/{name}" not in referenced:
+            if not dry:  # сухой прогон ничего не удаляет
+                os.remove(os.path.join(ROOT, "assets", name))
             stale += 1
 
     if not dry:

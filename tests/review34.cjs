@@ -8,6 +8,12 @@ const { foundationUrl } = require("./site-url.cjs");
   p.on("pageerror", (e) => errors.push(e.message));
   await p.goto(foundationUrl);
   await p.evaluate(() => document.fonts.ready);
+  // Блок директора ниже первого экрана: показываем его и даём завершиться
+  // анимации появления, иначе замер попадает на сдвинутые на 40px элементы.
+  await p.evaluate(() =>
+    document.querySelector("#director .director-actions")?.scrollIntoView({ block: "center" }),
+  );
+  await p.waitForTimeout(2000);
   for (const button of await p.locator(".filters button").all())
     assert.equal(
       await button.evaluate((e) => getComputedStyle(e).paddingLeft),
