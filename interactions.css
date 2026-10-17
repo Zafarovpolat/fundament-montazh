@@ -418,14 +418,28 @@ main {
 .path-link:focus-visible .path-label {
   opacity: 1;
 }
-.motion-enabled .reveal {
-  transition:
-    opacity 700ms ease,
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.motion-enabled .reveal.is-pending {
+/* Появление при скролле (Komtrans): JS ставит .reveal, затем .is-inview. */
+.reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(48px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+.reveal.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Обёртка карусели: только проявление, без сдвига (overflow: hidden обрезал бы его). */
+.reveal--fade {
+  opacity: 0;
+  transform: none;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+.reveal--fade.is-inview {
+  opacity: 1;
 }
 @media (min-width: 1800px) {
   .path-label {

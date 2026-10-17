@@ -164,7 +164,7 @@ HEAD_TPL = '''<!doctype html>
     <link href="fonts.css?v=3.6.4" rel="stylesheet" />
     <link href="styles.css?v=3.6.4" rel="stylesheet" />
     <script defer="" src="app.js?v=3.6.6"></script>
-    <link href="interactions.css?v=3.6.5" rel="stylesheet" />
+    <link href="interactions.css?v=3.6.6" rel="stylesheet" />
     <link href="figma-type.css?v=3.6.4" rel="stylesheet" />
     <link href="fidelity.css?v=3.6.6" rel="stylesheet" />
     <script defer="" src="header.js?v=3.6.4"></script>

@@ -195,50 +195,18 @@
   );
   media.forEach((item) => visibility.observe(item.surface));
 
-  // Reveal once. Content above the fold never starts hidden.
-  const candidates = [
-    ...document.querySelectorAll(
-      ".section-heading, .number-list, .warning, .stats-grid, .advantage-grid article, .visit-banner, .social-list article",
-    ),
-  ];
-  let revealObserver;
   function configureMotion() {
     document.documentElement.classList.toggle(
       "motion-enabled",
       !reducedMotion.matches,
     );
-    revealObserver?.disconnect();
     if (reducedMotion.matches) {
-      candidates.forEach((el) => el.classList.remove("is-pending"));
       media.forEach((item) => {
         item.value = 0;
         item.el.style.removeProperty("transform");
         item.el.style.removeProperty("will-change");
       });
-      schedule();
-      return;
     }
-    revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("is-pending");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.06, rootMargin: "0px 0px 45px 0px" },
-    );
-    candidates.forEach((el) => {
-      el.classList.add("reveal");
-      if (
-        !el.dataset.revealRegistered &&
-        el.getBoundingClientRect().top > innerHeight + 30
-      )
-        el.classList.add("is-pending");
-      el.dataset.revealRegistered = "true";
-      if (el.classList.contains("is-pending")) revealObserver.observe(el);
-    });
     schedule();
   }
   configureMotion();
@@ -319,4 +287,78 @@
   });
   // Страховка: всё, что не дошло за 6 с, показываем без ожидания.
   setTimeout(() => targets.forEach(show), 6000);
+})();
+
+/** Появление при скролле (как в Komtrans): IntersectionObserver ставит
+    .is-inview, CSS (.reveal в interactions.css) плавно проявляет блок.
+    Соседи в одной группе появляются волной: задержка 110 мс на шаг, до 500 мс.
+    Элементы внутри каруселей не трогаем — анимируется обёртка карусели (fade),
+    иначе overflow: hidden обрежет сдвиг. Вложенные блоки не анимируем дважды. */
+(() => {
+  if (!("IntersectionObserver" in window)) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const selectors = [
+    "h2",
+    "h3",
+    ".heading-description",
+    ".project-card",
+    ".home-advantage-card",
+    ".home-safety-card",
+    ".home-tech-item",
+    ".mortgage-grid article",
+    ".faq-grid details",
+    ".social-list article",
+    ".visit-banner",
+    ".director-quote",
+    ".stats-grid",
+    ".home-hero__stats",
+    ".gis-card",
+    ".service-grid > li",
+    ".director-portrait",
+  ];
+  const fadeSelectors = [".carousel-bleed"];
+  // Внутри этих блоков элементы управляются слайдером или уже анимированы.
+  const skipInside =
+    "[data-carousel], .fidelity-track, .card-track, .carousel-track, .home-stage-grid, .home-safety__cards, .process-list, .foundation-cards, .objects-gallery, .hero, .home-hero, .hero-slide, .parallax-surface, .site-header, dialog, .cookie-bar, .modal, nav";
+  const all = [...document.querySelectorAll(selectors.concat(fadeSelectors).join(","))];
+  const nodes = all.filter((el) => {
+    if (el.parentElement?.closest(skipInside)) return false;
+    if (el.closest(skipInside) && !el.matches(fadeSelectors.join(","))) return false;
+    // Вложенный блок (h3 внутри карточки) не анимируем отдельно.
+    if (el.parentElement?.closest(selectors.concat(fadeSelectors).join(","))) return false;
+    return true;
+  });
+  if (!nodes.length) return;
+
+  function enable() {
+    const seen = new WeakMap();
+    nodes.forEach((el) => {
+      const fade = fadeSelectors.some((s) => el.matches(s));
+      el.classList.add(fade ? "reveal--fade" : "reveal");
+      const parent = el.parentElement;
+      const idx = parent ? seen.get(parent) || 0 : 0;
+      el.style.transitionDelay = Math.min(idx * 110, 500) + "ms";
+      if (parent) seen.set(parent, idx + 1);
+    });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-inview");
+          io.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -60px 0px" },
+    );
+    nodes.forEach((el) => io.observe(el));
+  }
+  function disable() {
+    nodes.forEach((el) => {
+      el.classList.remove("reveal", "reveal--fade", "is-inview");
+      el.style.removeProperty("transition-delay");
+    });
+  }
+  const apply = () => (reduced.matches ? disable() : enable());
+  apply();
+  reduced.addEventListener("change", apply);
 })();
