@@ -120,9 +120,9 @@ const { homeUrl } = require("./site-url.cjs");
 
   // Video and the four-question flow remain usable without fake destinations or
   // an automatic submission/price calculation.
+  // Модалка видео убрана по решению заказчика (7e484aa): клик ничего не открывает.
   await page.locator('[data-action="video"]').first().click();
-  assert.equal(await page.locator("#contact-dialog").evaluate((dialog) => dialog.open), true);
-  await page.keyboard.press("Escape");
+  assert.equal(await page.locator("#contact-dialog").evaluate((dialog) => dialog.open), false);
   for (let step = 0; step < 4; step++)
     await page.locator('[data-action="quiz-next"]').click();
   assert.equal(await page.locator("#contact-dialog").evaluate((dialog) => dialog.open), true);

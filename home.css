@@ -3837,3 +3837,11 @@
   opacity: 0.8;
 }
 
+/* Узкие экраны (320 px): «Один ответственный.» с nowrap не помещается — даём перенос,
+   иначе заголовок выходит за ширину страницы (тест home.cjs на 320 px). */
+@media (max-width: 359px) {
+  .home-page #home-process-title .heading-line--inset {
+    white-space: normal;
+  }
+}
+
