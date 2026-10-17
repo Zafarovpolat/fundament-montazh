@@ -255,6 +255,9 @@
     Progressive enhancement: без JS html.img-fade не выставляется, и все
     изображения видны сразу. См. .img-reveal в interactions.css. */
 (() => {
+  document
+    .querySelectorAll('img[loading="lazy"]')
+    .forEach((img) => img.classList.add("img-reveal"));
   const root = document.documentElement;
   const targets = [...document.images].filter((img) => {
     if (!img.classList.contains("img-reveal")) return false;
@@ -300,16 +303,25 @@
   const selectors = [
     "h2",
     "h3",
+    "h4",
+    "p",
+    "li",
+    "figure",
+    "blockquote",
+    "details",
+    "dl",
+    "dt",
+    "dd",
+    "button",
+    ".button",
     ".heading-description",
     ".project-card",
     ".home-advantage-card",
     ".home-safety-card",
     ".home-tech-item",
     ".mortgage-grid article",
-    ".faq-grid details",
     ".social-list article",
     ".visit-banner",
-    ".director-quote",
     ".stats-grid",
     ".home-hero__stats",
     ".gis-card",

@@ -3829,3 +3829,11 @@
   }
 }
 
+/* Видео hero: курсор-указатель — при наведении плавно приглушаем (opacity .8). */
+.home-page .home-hero__video {
+  transition: opacity 0.3s ease;
+}
+.home-page .home-hero__video:hover {
+  opacity: 0.8;
+}
+
