@@ -3861,17 +3861,26 @@
   }
   .home-page #director .director-text--d {
     display: block;
+    color: rgba(255, 255, 255, 0.6);
   }
   .home-page .home-advantage-card__icon {
     height: clamp(150px, 13vw, 190px);
   }
+  .home-page .home-advantage-card {
+    min-height: 0;
+  }
+  .home-page .home-advantage-card h3 {
+    margin-top: 0;
+    padding-top: 12px;
+  }
 }
 
-/* Абзац материалов чуть шире — только где справа есть место (на 1280–1440 он
-   уже упирается в линию заголовка и букву «А»). */
-@media (min-width: 1441px) {
+/* Абзац материалов 720px и по центру — только от 1800px: ниже он налезает на
+   заголовок «ТЕХНОЛОГИЮ» (проверено на 1280, 1440, 1600). */
+@media (min-width: 1800px) {
   .home-page #materials .home-heading > p:not(.eyebrow) {
-    flex: 0 1 700px;
-    max-width: 700px;
+    flex: 0 1 720px;
+    max-width: 720px;
+    align-self: center;
   }
 }
