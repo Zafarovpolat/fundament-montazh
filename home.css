@@ -3866,3 +3866,12 @@
     height: clamp(150px, 13vw, 190px);
   }
 }
+
+/* Абзац материалов чуть шире — только где справа есть место (на 1280–1440 он
+   уже упирается в линию заголовка и букву «А»). */
+@media (min-width: 1441px) {
+  .home-page #materials .home-heading > p:not(.eyebrow) {
+    flex: 0 1 700px;
+    max-width: 700px;
+  }
+}
