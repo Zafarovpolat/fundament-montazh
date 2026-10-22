@@ -476,21 +476,26 @@
    нижнего края сетки. Фото никогда не обрезается (contain поверх чужого
    cover). Только десктоп; foundation не трогаем (review.cjs сторожит). */
 @media (min-width: 1200px) {
+  /* Низ портрета — ровно у нижнего края секции (padding-bottom секции). */
+  .home-page #director {
+    --director-pb: clamp(38px, 2.6vw, 50px);
+    padding-bottom: var(--director-pb);
+  }
   .home-page #director .director-portrait {
     height: auto;
   }
   .home-page #director .director-portrait > .director-photo {
     top: auto;
-    bottom: -30px;
+    bottom: calc(-1 * var(--director-pb));
     width: 100%;
-    height: calc(100% + 30px);
+    height: calc(100% + var(--director-pb));
     object-fit: contain;
     object-position: center bottom;
   }
   .home-page #director .director-portrait::after {
     top: auto;
-    bottom: -30px;
-    height: calc(100% + 30px);
+    bottom: calc(-1 * var(--director-pb));
+    height: calc(100% + var(--director-pb));
   }
 }
 .home-page #materials .home-heading > p:not(.eyebrow) {
@@ -3845,3 +3850,19 @@
   }
 }
 
+
+/* Правки заказчика: два текста директора (мобильный / десктопный), крупнее иконки преимуществ (десктоп). */
+.home-page #director .director-text--d {
+  display: none;
+}
+@media (min-width: 1025px) {
+  .home-page #director .director-text--m {
+    display: none;
+  }
+  .home-page #director .director-text--d {
+    display: block;
+  }
+  .home-page .home-advantage-card__icon {
+    height: clamp(150px, 13vw, 190px);
+  }
+}
