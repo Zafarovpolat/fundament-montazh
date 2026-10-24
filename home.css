@@ -3884,3 +3884,45 @@
     align-self: center;
   }
 }
+
+/* Правки заказчика (главная): заголовок активного слайда объектов в верхнем
+   регистре (fidelity.css исключал .source-object); карточка «преимущества»
+   первая — иконка зеркально (справа налево) на десктопе; абзац материалов по
+   ширине ≤1600/≤1440/≤1280 (только планшет и десктоп, на мобильной он в колонке
+   и flex-basis в px там ломает высоту); отступы заголовков проектов и отзывов. */
+.home-page #objects .objects-gallery > .object-card h3 {
+  text-transform: uppercase;
+}
+@media (min-width: 1025px) {
+  .home-page .home-advantage-card:first-child .home-advantage-card__icon {
+    transform: scaleX(-1);
+  }
+}
+@media (min-width: 769px) and (max-width: 1600px) {
+  .home-page #materials .home-heading > p:not(.eyebrow) {
+    flex: 0 1 534px;
+    max-width: 534px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1440px) {
+  .home-page #materials .home-heading > p:not(.eyebrow) {
+    flex: 0 1 434px;
+    max-width: 434px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1280px) {
+  .home-page #materials .home-heading > p:not(.eyebrow) {
+    flex: 0 1 404px;
+    max-width: 404px;
+  }
+}
+@media (max-width: 1050px) {
+  html .home-page #projects .heading-description.with-yellow-rule[data-figma-text] {
+    margin-top: 24px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  html .home-page #reviews .section-heading .heading-description {
+    margin-bottom: 12px;
+  }
+}
