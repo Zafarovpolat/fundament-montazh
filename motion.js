@@ -218,27 +218,134 @@
 /** Keep the existing form usable with a short window or the on-screen keyboard. */
 (() => {
   const dialog = document.querySelector("#contact-dialog");
+  if (!dialog) return;
   const scroller = dialog.querySelector(".dialog-scroll");
+  const mobile = window.matchMedia("(max-width: 1024px)");
+  const fields = "input:not([type='checkbox']), textarea";
+  const scrollTargets = "input, textarea, button, a";
+  const keyboardInset = 120;
+  let activeField = null;
+  let fullHeight = 0;
+  let shift = 0;
+  let frame = 0;
+
+  function viewport() {
+    const vv = window.visualViewport;
+    return {
+      height: vv?.height || window.innerHeight,
+      top: vv?.offsetTop || 0,
+    };
+  }
+
   function fitDialog() {
-    if (!dialog.open) return;
-    const height = Math.min(
-      window.innerHeight,
-      window.visualViewport?.height || innerHeight,
-    );
+    if (!dialog.open || dialog.classList.contains("is-keyboard")) return;
+    const height = Math.min(window.innerHeight, viewport().height);
+    fullHeight = Math.max(fullHeight, height);
     dialog.style.setProperty("--dialog-viewport", `${height}px`);
   }
+
+  function clearKeyboard() {
+    dialog.classList.remove("is-keyboard");
+    dialog.style.removeProperty("--dialog-keyboard-shift");
+    shift = 0;
+  }
+
+  function updateKeyboard() {
+    if (!dialog.open) return;
+    const vv = viewport();
+    const keyboardOpen =
+      mobile.matches && activeField && fullHeight - vv.height > keyboardInset;
+    if (!keyboardOpen) {
+      if (dialog.classList.contains("is-keyboard")) {
+        clearKeyboard();
+        fitDialog();
+      }
+      return;
+    }
+    if (!dialog.classList.contains("is-keyboard")) {
+      dialog.classList.add("is-keyboard");
+      scroller.scrollTop = 0;
+    }
+    const rect = activeField.getBoundingClientRect();
+    const naturalBottom = rect.bottom + shift;
+    const visibleBottom = vv.top + vv.height - 16;
+    shift = Math.max(0, naturalBottom - visibleBottom);
+    dialog.style.setProperty("--dialog-keyboard-shift", `${-shift}px`);
+  }
+
+  function scheduleKeyboard() {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      updateKeyboard();
+    });
+  }
+
+  function resetDialog() {
+    activeField = null;
+    fullHeight = 0;
+    clearKeyboard();
+    scroller.scrollTop = 0;
+    dialog.style.removeProperty("--dialog-viewport");
+  }
+
   new MutationObserver(() => {
     if (dialog.open) {
-      fitDialog();
+      fullHeight = Math.max(window.innerHeight, viewport().height);
+      clearKeyboard();
       scroller.scrollTop = 0;
-    } else dialog.style.removeProperty("--dialog-viewport");
+      fitDialog();
+    } else resetDialog();
   }).observe(dialog, { attributes: true, attributeFilter: ["open"] });
+
   window.visualViewport?.addEventListener("resize", fitDialog, {
     passive: true,
   });
-  window.addEventListener("resize", fitDialog, { passive: true });
+  window.visualViewport?.addEventListener("resize", scheduleKeyboard, {
+    passive: true,
+  });
+  window.visualViewport?.addEventListener("scroll", scheduleKeyboard, {
+    passive: true,
+  });
+  window.addEventListener(
+    "resize",
+    () => {
+      fitDialog();
+      scheduleKeyboard();
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "orientationchange",
+    () => {
+      activeField = null;
+      fullHeight = 0;
+      clearKeyboard();
+      setTimeout(() => {
+        fitDialog();
+        scheduleKeyboard();
+      }, 200);
+    },
+    { passive: true },
+  );
+  mobile.addEventListener?.("change", () => {
+    if (!mobile.matches) {
+      activeField = null;
+      clearKeyboard();
+      fitDialog();
+    } else scheduleKeyboard();
+  });
+
   scroller.addEventListener("focusin", (event) => {
-    if (event.target.matches("input, textarea, button, a")) {
+    const field = event.target.closest(fields);
+    if (field && mobile.matches) {
+      activeField = field;
+      scheduleKeyboard();
+      setTimeout(scheduleKeyboard, 120);
+      setTimeout(scheduleKeyboard, 320);
+      return;
+    }
+    if (event.target.matches(scrollTargets)) {
       requestAnimationFrame(() =>
         event.target.scrollIntoView({
           block: "nearest",
@@ -248,6 +355,22 @@
         }),
       );
     }
+  });
+  scroller.addEventListener("focusout", () => {
+    requestAnimationFrame(() => {
+      const field = document.activeElement?.closest?.(fields);
+      if (field && scroller.contains(field)) {
+        activeField = field;
+        scheduleKeyboard();
+        return;
+      }
+      setTimeout(() => {
+        if (!scroller.contains(document.activeElement)) {
+          activeField = null;
+          scheduleKeyboard();
+        }
+      }, 120);
+    });
   });
 })();
 

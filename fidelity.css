@@ -213,7 +213,7 @@ html .price-list .muted {
 .number-list {
   gap: 25px;
   margin-top: 42px;
-  max-width: 425px;
+  max-width: 390px;
 }
 .number-list li {
   grid-template-columns: 45px minmax(0, 1fr);
@@ -3488,6 +3488,7 @@ html .header-menu .header-contact > .phone[data-figma-text] {
 }
 .included-tile__text {
   margin-top: 10px;
+  max-width: 100px;
 }
 .included-tile--price {
   justify-content: space-between;

@@ -251,6 +251,17 @@ dialog.request-dialog {
 .dialog-scroll :is(input, textarea, button, a) {
   scroll-margin-block: 25px;
 }
+@media (max-width: 1024px) {
+  html dialog.request-dialog.is-keyboard {
+    max-height: none;
+    transform: translateY(var(--dialog-keyboard-shift, 0px));
+  }
+  html dialog.request-dialog.is-keyboard .dialog-scroll {
+    max-height: none;
+    overflow-y: hidden;
+    scrollbar-gutter: auto;
+  }
+}
 .dialog-close {
   display: grid;
   place-items: center;

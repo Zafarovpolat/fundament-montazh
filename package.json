@@ -12,6 +12,7 @@
     "test:phone-mask": "node tests/phone-mask.cjs",
     "test:browser": "node tests/smoke.cjs",
     "test:ui": "node tests/ui.cjs",
+    "test:dialog-keyboard": "node tests/dialog-keyboard.cjs",
     "test:responsive": "node tests/responsive.cjs",
     "test:mobile-foundation": "node tests/foundation-mobile.cjs",
     "test:fidelity": "node tests/fidelity.cjs",
