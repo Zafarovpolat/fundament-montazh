@@ -3370,7 +3370,7 @@ html[data-motion="off"] #hero .hero-grid {
     margin: 0;
   }
   #objects .heading-line--inset {
-    margin-left: 130px;
+    margin-left: 36px;
     font-size: 30px;
     line-height: 38.04px;
   }
@@ -4880,6 +4880,8 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
    540:1278 al=RIGHT; на «Фундаменте» 606:909/606:910 — то же). */
 @media (max-width: 768px) {
   #objects .heading-description {
+    justify-self: end;
+    margin-left: auto;
     text-align: right;
   }
 }
@@ -4895,14 +4897,14 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
 
 /* ═══ Раунд 5 (2026-10-16). Правки по списку заказчика ═════════════════════ */
 
-/* 8. Вторая строка заголовка «объектов» снова с отступом слева, как в макете:
-   мобильный «Фундамент» 606:906/606:976 — +130 px, мобильная главная
-   540:1270/540:1271 — +36 px и кегль второй строки 27,016/34,236. */
+/* 8. Вторая строка заголовка «объектов» с отступом слева:
+   мобильный «Фундамент» — +36 px (уменьшено со 130 px по правке заказчика),
+   мобильная главная 540:1270/540:1271 — +36 px и кегль 27,016/34,236. */
 @media (max-width: 768px) {
   /* Селектор с .section-heading — иначе правило перебивает fidelity.css
      (строка 2153, ≤1919 px: `#objects .section-heading .heading-line--inset`). */
   #objects .section-heading .heading-line--inset {
-    margin-left: 130px;
+    margin-left: 36px;
   }
   /* На главной вторая строка короткая («мы уже построили» — в кадре 299 px при
      27,016 и отступе 36 стоит в одну строку) и упирается ровно в правый край
