@@ -2523,6 +2523,13 @@ html[data-motion="off"] #hero .hero-grid {
     white-space: nowrap;
   }
 
+  /* Перенос кнопки футера на мобильных: первая строка — «Расчитать»,
+     вторая — «стоимость дома». Держим последние два слова вместе, поэтому
+     единственная точка переноса остаётся после первого слова. */
+  html #contacts .footer-cta > .button .button-label__nowrap {
+    white-space: nowrap;
+  }
+
   html #contacts .footer-house {
     width: min(415px, calc(100% + 80px));
     margin-right: -201px;
