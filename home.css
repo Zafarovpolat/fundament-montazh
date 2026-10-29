@@ -497,6 +497,12 @@
     bottom: calc(-1 * var(--director-pb));
     height: calc(100% + var(--director-pb));
   }
+  /* Плашка держится на 3 px выше общей нижней кромки фото и градиента:
+     иначе её нижний край попадал в полупрозрачную часть градиента и под
+     подписью проступала жёлтая полоска (как было на «Фундаменте»). */
+  .home-page #director .director-portrait::before {
+    bottom: calc(3px - var(--director-pb));
+  }
 }
 .home-page #materials .home-heading > p:not(.eyebrow) {
   flex: 0 1 664px;
@@ -730,11 +736,31 @@
   max-width: none;
 }
 /* Портрет руководителя на главной крупнее: голова уходит за верхнюю кромку
-   секции. Масштаб от нижней кромки, поэтому блок и сетка не меняют геометрию. */
+   секции. Масштаб от нижней кромки, поэтому блок и сетка не меняют геометрию.
+   Плашка (::before) и градиент (::after) — отдельные слои, поэтому масштаб
+   задаётся всем трём через одну переменную: иначе они оставались в исходном
+   размере и не совпадали с увеличенным фото. */
 @media (min-width: 1025px) {
+  .home-page #director .director-portrait {
+    --portrait-scale: 1.18;
+  }
+  .home-page #director .director-portrait::before,
+  .home-page #director .director-portrait::after,
   .home-page #director .director-portrait > .director-photo {
-    transform: scale(1.18);
+    transform: scale(var(--portrait-scale));
     transform-origin: 50% 100%;
+  }
+  /* Плашка сдвинута от центра карточки (left 24.6%, width 62%), её точка
+     масштабирования — 41% ширины, то есть центр фото. */
+  .home-page #director .director-portrait::before {
+    transform-origin: 41% 100%;
+  }
+}
+/* До 1200 px фото стоит на нижней кромке карточки: плашку поднимаем на 3 px,
+   чтобы её край не совпадал с кромкой градиента. */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .home-page #director .director-portrait::before {
+    bottom: 3px;
   }
 }
 .home-page .home-director__copy > p:not(.eyebrow) {
@@ -2937,10 +2963,22 @@
   }
 }
 /* Квиз: вопрос приглушён до белого 60%; вместо max-width:none из fidelity —
-   компактная колонка 320px. */
+   компактная колонка 350px. */
 .home-page #calculator .quiz-question {
-  max-width: 320px;
+  max-width: 350px;
   color: rgb(255 255 255 / 60%);
+}
+/* Варианты квиза на главной — заглавными на всех разрешениях (в макете так);
+   переносы внутри текста заданы в разметке, чтобы было ровно две строки. */
+.home-page #calculator .quiz-options > button[data-quiz-option] {
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  /* На узком экране жёсткие переносы из разметки мешают: текст переносится
+     сам по ширине кнопки. */
+  .home-page #calculator .quiz-options br {
+    display: none;
+  }
 }
 /* Карусель преимуществ (раунд 4): на мобиле главной та же рельса-«рендж»,
    что на «Фундаменте» — линия 2 px, белая пилюля 53×27 со стрелками и
@@ -3027,7 +3065,7 @@
 .home-page #social-proof .video-social-links {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
   margin-top: 5px;
 }
 .home-page #social-proof .video-social-links button {
@@ -3035,7 +3073,7 @@
 }
 .home-page #social-proof .video-social-links button + button {
   border-left: 1px solid rgba(255, 255, 255, 0.3);
-  padding-left: 30px;
+  padding-left: 15px;
 }
 .home-page #social-proof [data-figma-text="315:460"],
 .home-page #social-proof [data-figma-text="315:461"] {
@@ -4008,4 +4046,10 @@
    только в мобильном блоке). */
 .home-page .faq-grid summary {
   text-transform: uppercase;
+}
+
+/* Подвал главной: ссылки навигации выше (63px), чтобы попадать в тап и
+   дышать как в макете. Специфичность выше html #contacts … из compact.css. */
+html .home-page #contacts .footer-columns nav > a {
+  min-height: 63px;
 }

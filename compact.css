@@ -4961,23 +4961,64 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
 #director {
   overflow-x: clip;
 }
+/* Масштаб портрета на «Фундаменте». Жёлтая плашка (::before) и градиент
+   (::after) — отдельные слои, поэтому масштаб задаётся всем трём: иначе они
+   оставались в исходном размере и не совпадали с увеличенным фото.
+   Блок не сдвигаем: на 1025–1440 его низ и так совпадает с кромкой секции,
+   а translate уводил подпись под кромку и фото вылезало в следующую секцию. */
 @media (min-width: 1025px) {
-  /* Страница «Фундамент»: портрет прижат к нижней кромке секции и увеличен,
-     чтобы голова уходила за верхнюю кромку. */
   body:not(.home-page) #director .director-portrait {
-    translate: 0 38px;
+    --portrait-scale: 1.3;
   }
+  body:not(.home-page) #director .director-portrait::before,
+  body:not(.home-page) #director .director-portrait::after,
   body:not(.home-page) #director .director-portrait > .director-photo {
-    transform: scale(1.32);
+    transform: scale(var(--portrait-scale));
     transform-origin: 50% 100%;
   }
+  /* Плашка сдвинута от центра карточки (left 24.6%, width 62%), поэтому её
+     точка масштабирования — 41% её ширины, то есть центр фото. */
+  body:not(.home-page) #director .director-portrait::before {
+    transform-origin: 41% 100%;
+  }
+  /* Плашка и градиент больше не заходят под кромку секции: фото здесь тоже
+     стоит на bottom: 0. Кромки плашки и градиента при этом совпадали пиксель
+     в пиксель, и по низу фото проступала жёлтая полоска — сглаживание нижней
+     кромки градиента. Поднимаем плашку на 3 px: там градиент уже полностью
+     непрозрачный, и стык не виден. */
+  body:not(.home-page) #director .director-portrait::before {
+    bottom: 3px;
+  }
+  body:not(.home-page) #director .director-portrait::after {
+    bottom: 0;
+  }
 }
+/* От 1300 px карточка выше, и 1.3 выносит макушку за верхнюю кромку секции
+   (до 37 px на 1440) — там масштаб чуть меньше, портрет остаётся в секции. */
+@media (min-width: 1300px) and (max-width: 1440px) {
+  body:not(.home-page) #director .director-portrait {
+    --portrait-scale: 1.26;
+  }
+}
+/* От 1441 px высота секции растёт быстрее карточки: она фиксированной высоты
+   и остаётся у верхней кромки, из-за чего внизу появлялся зазор до 126 px.
+   Прижимаем карточку к низу строки (align-self: end) — фото при этом доходит
+   ровно до кромки секции, а подпись остаётся внутри. */
 @media (min-width: 1441px) {
   body:not(.home-page) #director .director-portrait {
-    translate: 0 var(--section-space);
+    --portrait-scale: 1.06;
+    align-self: end;
+    translate: none;
   }
+  /* Фото, плашка и градиент сидят на 10 px ниже карточки — ровно до кромки
+     секции; при bottom: -50px они вылезали на 40 px в следующую секцию.
+     Плашку держим на 3 px выше общей кромки (см. блок 1025px). */
+  body:not(.home-page) #director .director-portrait::after,
   body:not(.home-page) #director .director-portrait > .director-photo {
-    transform: scale(1.12);
+    bottom: -10px;
+  }
+  body:not(.home-page) #director .director-portrait::before {
+    bottom: -7px;
   }
 }
 
@@ -5023,4 +5064,23 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
 /* Плашки услуг: абзац не растягивается на всю карточку. */
 .service-grid li p {
   max-width: 360px;
+}
+
+/* Правки заказчика (раунд 12), карточка 2ГИС в отзывах:
+   12.1 название компании — всегда капсом (в макете смешанный регистр, но
+   заказчик просит капс), 12.2 ссылка «Читать отзывы…» и число отзывов —
+   серым, как вторичный текст на белой карточке. Рейтинг 4.9 остаётся чёрным. */
+#reviews .gis-card .gis-name {
+  text-transform: uppercase;
+}
+html #reviews .gis-card .gis-link,
+html #reviews .gis-card .gis-rating > span:last-child {
+  color: var(--muted);
+}
+/* Кикер блока визита — всегда капсом. На главной у него нет data-figma-text,
+   поэтому правило html .visit-kicker[data-figma-text] из fidelity.css
+   срабатывало только на «Фундаменте», а на главной капс включался лишь
+   на мобильном. */
+#visit .visit-kicker {
+  text-transform: uppercase;
 }
