@@ -4947,3 +4947,80 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
     line-height: 38.04px;
   }
 }
+
+/* Правки заказчика по секции директора.
+   Фон 315:298 экспортирован из Figma с альфой 5% в самом файле, из-за чего
+   фото было практически не видно; файл перезаписан с полной альфой, поэтому
+   плотность задаётся здесь. */
+#director > .parallax-surface .section-background {
+  opacity: 0.3;
+}
+/* Увеличенный портрет выходит за правую кромку секции и растягивал документ
+   по горизонтали (scrollWidth > viewport). Режем только по X: overflow: clip
+   не трогает вертикаль, поэтому голова над верхней кромкой остаётся видна. */
+#director {
+  overflow-x: clip;
+}
+@media (min-width: 1025px) {
+  /* Страница «Фундамент»: портрет прижат к нижней кромке секции и увеличен,
+     чтобы голова уходила за верхнюю кромку. */
+  body:not(.home-page) #director .director-portrait {
+    translate: 0 38px;
+  }
+  body:not(.home-page) #director .director-portrait > .director-photo {
+    transform: scale(1.32);
+    transform-origin: 50% 100%;
+  }
+}
+@media (min-width: 1441px) {
+  body:not(.home-page) #director .director-portrait {
+    translate: 0 var(--section-space);
+  }
+  body:not(.home-page) #director .director-portrait > .director-photo {
+    transform: scale(1.12);
+  }
+}
+
+/* Кнопки «Записаться на экскурсию» (объекты и баннер визита).
+   В диапазоне 769–1199 кнопки сжимались по тексту, и иконка упиралась в
+   надпись (зазор 19px). Добавляем место справа, а кнопке в баннере визита
+   задаём фиксированную ширину — так иконка стоит свободно. */
+@media (min-width: 769px) and (max-width: 1199px) {
+  #objects .section-actions > .button {
+    padding-right: 86px;
+  }
+  #visit .visit-banner > .button {
+    width: 336px;
+  }
+}
+
+/* Кнопка «Записаться на экскурсию» в блоке объектов.
+   С 1440px кегль лейбла 14px: у «Фундамента» текст «…на стройку» требует
+   320px, а в кнопке 420px под текст оставалось 314px — на 1440–1799 он
+   переносился на вторую строку, а с 1800 (там включается white-space: nowrap)
+   вылезал под иконку. Расширяем кнопку и держим зазор под иконку. */
+@media (min-width: 1440px) {
+  #objects .section-actions > .button[data-action="visit"] {
+    width: auto;
+    min-width: 440px;
+    padding-right: 106px;
+  }
+}
+
+/* Главная, мобилка: у кнопки в объектах теперь тот же длинный текст, что на
+   «Фундаменте» («…на стройку»), — разрешаем перенос на две строки, иначе
+   надпись уезжает под иконку (там базовое правило ставит white-space: nowrap). */
+@media (max-width: 768px) {
+  .home-page #objects .section-actions > .button:nth-child(2),
+  .home-page #objects .section-actions > .button:nth-child(2) .button-label {
+    white-space: normal;
+  }
+  .home-page #objects .section-actions > .button:nth-child(2) .button-label {
+    max-width: 100%;
+  }
+}
+
+/* Плашки услуг: абзац не растягивается на всю карточку. */
+.service-grid li p {
+  max-width: 360px;
+}

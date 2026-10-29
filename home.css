@@ -654,14 +654,47 @@
   right: clamp(24px, 4vw, 72px);
   height: clamp(340px, 28vw, 430px);
 }
-/* Figma 1:2: газобетон 426×443 — крупный план открытого пункта; брус 256×140
-   и каркас 377×141 — компактные миниатюры. Открытые фото 3 и 4 держим заметно
-   ниже газобетона, иначе квадрат 344×344 и панорама 575×345 рвут карточку. */
-.home-page .home-tech-item[data-tech="timber"].is-open .home-tech-item__photo {
-  height: clamp(200px, 20vw, 300px);
+/* Figma 1:2: газобетон 426×443 — крупный план открытого пункта. По требованию
+   владельца открытые фото 2–4-го пунктов увеличиваются так же и тоже выходят за
+   верхнюю кромку карточки, поэтому отдельных понижений высоты для бруса и
+   каркаса больше нет — все три используют общий clamp выше. */
+/* До 1280 px карточка слишком узкая для этого: квадрат бруса и панорама каркаса
+   в общей высоте накрывают текст и кнопку, поэтому там остаются прежние
+   умеренные высоты (они же держат фото внутри карточки). */
+@media (min-width: 769px) and (max-width: 1279px) {
+  .home-page
+    .home-tech-item[data-tech="timber"].is-open
+    .home-tech-item__photo {
+    height: clamp(200px, 20vw, 300px);
+  }
+  .home-page
+    .home-tech-item[data-tech="frame"].is-open
+    .home-tech-item__photo {
+    height: clamp(180px, 18vw, 260px);
+  }
 }
-.home-page .home-tech-item[data-tech="frame"].is-open .home-tech-item__photo {
-  height: clamp(180px, 18vw, 260px);
+/* Точечные значения заказчика для свёрнутых миниатюр 2–4-го пунктов. Скоуп
+   :not(.is-open) обязателен: иначе правило перебивает .is-open и фото
+   перестаёт увеличиваться при раскрытии. На мобиле остаются штатные 60 px,
+   поэтому только от 769 px. */
+@media (min-width: 769px) {
+  .home-page
+    .home-tech-item[data-tech="brick"]:not(.is-open)
+    .home-tech-item__photo {
+    bottom: -118px;
+    width: auto;
+    height: 260px;
+  }
+  .home-page
+    .home-tech-item[data-tech="timber"]:not(.is-open)
+    .home-tech-item__photo {
+    bottom: -28px;
+  }
+  .home-page
+    .home-tech-item[data-tech="frame"]:not(.is-open)
+    .home-tech-item__photo {
+    bottom: -38px;
+  }
 }
 .home-page .home-materials__actions {
   display: flex;
@@ -686,6 +719,23 @@
   font-size: clamp(31px, 3.2vw, 54px);
   line-height: 1.16;
   text-transform: uppercase;
+}
+/* Главная: заголовок в блоке руководителя без ограничения ширины
+   (перебивает max-width: 957px у h2 и 1050px у .section-heading > div
+   из fidelity.css). */
+.home-page .director .section-heading > div {
+  max-width: none;
+}
+.home-page .director .section-heading h2 {
+  max-width: none;
+}
+/* Портрет руководителя на главной крупнее: голова уходит за верхнюю кромку
+   секции. Масштаб от нижней кромки, поэтому блок и сетка не меняют геометрию. */
+@media (min-width: 1025px) {
+  .home-page #director .director-portrait > .director-photo {
+    transform: scale(1.18);
+    transform-origin: 50% 100%;
+  }
 }
 .home-page .home-director__copy > p:not(.eyebrow) {
   max-width: 770px;
@@ -3924,5 +3974,32 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   html .home-page #reviews .section-heading .heading-description {
     margin-bottom: 12px;
+  }
+}
+
+/* Цена в карточке объекта (главная, десктоп): сумма крупнее, подпись «под ключ»
+   мельче и серая — как в макете (21.64 / 14 px, белый 40%). */
+@media (min-width: 769px) {
+  .home-page #objects .object-price__value {
+    font-size: 21.64px;
+    line-height: 27.44px;
+  }
+  .home-page #objects .object-price__note {
+    font-size: 14px;
+    line-height: 17.64px;
+    color: rgb(255 255 255 / 40%);
+  }
+}
+
+/* Кнопка «Записаться на экскурсию» в объектах — всегда в одну строку.
+   На самых узких экранах (≤360) текст чуть мельче, иначе не влезает. */
+@media (max-width: 360px) {
+  .home-page #objects button[data-action="visit"] .button-label,
+  .home-page #visit .visit-banner > .button .button-label {
+    font-size: 12px;
+  }
+  /* В баннере визита кнопка уже́, поэтому ещё и уменьшаем отступ под иконку. */
+  .home-page #visit .visit-banner > .button {
+    padding-right: 68px;
   }
 }
