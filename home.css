@@ -4003,3 +4003,9 @@
     padding-right: 68px;
   }
 }
+
+/* FAQ на главной: вопросы в верхнем регистре на всех ширинах (раньше капс был
+   только в мобильном блоке). */
+.home-page .faq-grid summary {
+  text-transform: uppercase;
+}
