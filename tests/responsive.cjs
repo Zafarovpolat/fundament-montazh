@@ -177,7 +177,7 @@ const { foundationUrl } = require("./site-url.cjs");
     }
     assert.equal(state.projectColor, "rgb(0, 0, 0)");
     assert.equal(state.includedColor, "rgb(0, 0, 0)");
-    assert.equal(state.objectButton, "Все объекты на Youtube");
+    assert.equal(state.objectButton, "Все объекты 200+ домов");
 
     if (width <= 1440) {
       assert.ok(state.dialogWidth <= 520);

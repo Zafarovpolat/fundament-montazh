@@ -1719,6 +1719,9 @@ html[data-motion="off"] dialog.request-dialog .dialog-scroll {
     gap: 3px;
     margin-top: 24px;
   }
+  #hero .button-row > .button:nth-child(2) .button-icon .icon-mobile {
+    display: none;
+  }
   #hero .hero-grid {
     display: flex;
     flex-flow: row nowrap;
@@ -2738,6 +2741,18 @@ html[data-motion="off"] #hero .hero-grid {
     flex-basis: 56px;
     border-radius: 17px;
   }
+  /* Вторая кнопка хиро: на мобиле белая стрелка в чёрной плашке. */
+  #hero .button-row > .button:nth-child(2) .button-icon {
+    background-color: #000;
+  }
+  #hero .button-row > .button:nth-child(2) .button-icon svg:not(.icon-mobile) {
+    display: none;
+  }
+  #hero .button-row > .button:nth-child(2) .button-icon .icon-mobile {
+    display: block;
+    width: 14px;
+    height: 12px;
+  }
   #hero .hero-slide--copy > .hero-benefits {
     display: flex;
     flex: none;
@@ -2995,6 +3010,13 @@ html[data-motion="off"] #hero .hero-grid {
     margin-top: 5px;
     font-size: 13px;
     line-height: 17px;
+  }
+  /* Подпись директора — 2 строки без тире. */
+  #director .director-portrait figcaption > p:not(.signature) {
+    margin-top: 0;
+  }
+  #director .director-portrait figcaption > p:not(.signature) + p {
+    margin-top: 4px;
   }
 
   #projects {
@@ -4643,6 +4665,8 @@ html #advantages .advantage-progress[hidden] {
 /* Keep the desktop director actions in one aligned row with both arrows legible. */
 @media (min-width: 1025px) {
   html body:not(.home-page) #director .director-actions {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -4810,6 +4834,10 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
   #faq .section-heading .heading-line--inset {
     margin-left: 0;
   }
+  /* «Фундамент»: вторая строка заголовка FAQ — отступ сохраняем. */
+  html #faq .section-heading .heading-line--inset[data-figma-text="315:839"] {
+    margin-left: 58px;
+  }
 }
 
 /* 4. Мобильные кнопки: подпись может переноситься на две строки — при
@@ -4818,6 +4846,13 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
   html .button[data-motion-button] .button-label {
     max-width: 100%;
     white-space: normal !important;
+  }
+}
+
+/* «Фундамент»: на мобиле отступ у «главные вопросы» меньше. */
+@media (max-width: 768px) {
+  html #faq .section-heading .heading-line--inset[data-figma-text="315:839"] {
+    margin-left: 24px;
   }
 }
 
@@ -4844,7 +4879,7 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
     line-height: 18.9px;
   }
   html #calculator .section-actions > .button[data-motion-button] {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 
@@ -4971,57 +5006,19 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
    а translate уводил подпись под кромку и фото вылезало в следующую секцию. */
 @media (min-width: 1025px) {
   body:not(.home-page) #director .director-portrait {
-    --portrait-scale: 1.3;
+    translate: 0 38px;
   }
-  body:not(.home-page) #director .director-portrait::before,
-  body:not(.home-page) #director .director-portrait::after,
   body:not(.home-page) #director .director-portrait > .director-photo {
-    transform: scale(var(--portrait-scale));
+    transform: scale(1.32);
     transform-origin: 50% 100%;
   }
-  /* Плашка сдвинута от центра карточки (left 24.6%, width 62%), поэтому её
-     точка масштабирования — 41% её ширины, то есть центр фото. */
-  body:not(.home-page) #director .director-portrait::before {
-    transform-origin: 41% 100%;
-  }
-  /* Плашка и градиент больше не заходят под кромку секции: фото здесь тоже
-     стоит на bottom: 0. Кромки плашки и градиента при этом совпадали пиксель
-     в пиксель, и по низу фото проступала жёлтая полоска — сглаживание нижней
-     кромки градиента. Поднимаем плашку на 3 px: там градиент уже полностью
-     непрозрачный, и стык не виден. */
-  body:not(.home-page) #director .director-portrait::before {
-    bottom: 3px;
-  }
-  body:not(.home-page) #director .director-portrait::after {
-    bottom: 0;
-  }
 }
-/* От 1300 px карточка выше, и 1.3 выносит макушку за верхнюю кромку секции
-   (до 37 px на 1440) — там масштаб чуть меньше, портрет остаётся в секции. */
-@media (min-width: 1300px) and (max-width: 1440px) {
-  body:not(.home-page) #director .director-portrait {
-    --portrait-scale: 1.26;
-  }
-}
-/* От 1441 px высота секции растёт быстрее карточки: она фиксированной высоты
-   и остаётся у верхней кромки, из-за чего внизу появлялся зазор до 126 px.
-   Прижимаем карточку к низу строки (align-self: end) — фото при этом доходит
-   ровно до кромки секции, а подпись остаётся внутри. */
 @media (min-width: 1441px) {
   body:not(.home-page) #director .director-portrait {
-    --portrait-scale: 1.06;
-    align-self: end;
-    translate: none;
+    translate: 0 var(--section-space);
   }
-  /* Фото, плашка и градиент сидят на 10 px ниже карточки — ровно до кромки
-     секции; при bottom: -50px они вылезали на 40 px в следующую секцию.
-     Плашку держим на 3 px выше общей кромки (см. блок 1025px). */
-  body:not(.home-page) #director .director-portrait::after,
   body:not(.home-page) #director .director-portrait > .director-photo {
-    bottom: -10px;
-  }
-  body:not(.home-page) #director .director-portrait::before {
-    bottom: -7px;
+    transform: scale(1.12);
   }
 }
 

@@ -115,6 +115,22 @@
   background: var(--home-ink);
   color: #fff;
 }
+.home-page .home-hero__secondary .button-icon .icon-mobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .home-page .home-hero__secondary .button-icon {
+    background: #000 !important;
+  }
+  .home-page .home-hero__secondary .button-icon svg:not(.icon-mobile) {
+    display: none;
+  }
+  .home-page .home-hero__secondary .button-icon .icon-mobile {
+    display: block;
+    width: 14px;
+    height: 12px;
+  }
+}
 .home-page .home-hero__stats {
   display: flex;
   flex-wrap: wrap;
@@ -452,6 +468,8 @@
 }
 @media (min-width: 1025px) {
   .home-page #director .director-actions {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -496,12 +514,6 @@
     top: auto;
     bottom: calc(-1 * var(--director-pb));
     height: calc(100% + var(--director-pb));
-  }
-  /* Плашка держится на 3 px выше общей нижней кромки фото и градиента:
-     иначе её нижний край попадал в полупрозрачную часть градиента и под
-     подписью проступала жёлтая полоска (как было на «Фундаменте»). */
-  .home-page #director .director-portrait::before {
-    bottom: calc(3px - var(--director-pb));
   }
 }
 .home-page #materials .home-heading > p:not(.eyebrow) {
@@ -736,31 +748,11 @@
   max-width: none;
 }
 /* Портрет руководителя на главной крупнее: голова уходит за верхнюю кромку
-   секции. Масштаб от нижней кромки, поэтому блок и сетка не меняют геометрию.
-   Плашка (::before) и градиент (::after) — отдельные слои, поэтому масштаб
-   задаётся всем трём через одну переменную: иначе они оставались в исходном
-   размере и не совпадали с увеличенным фото. */
+   секции. Масштаб от нижней кромки, поэтому блок и сетка не меняют геометрию. */
 @media (min-width: 1025px) {
-  .home-page #director .director-portrait {
-    --portrait-scale: 1.18;
-  }
-  .home-page #director .director-portrait::before,
-  .home-page #director .director-portrait::after,
   .home-page #director .director-portrait > .director-photo {
-    transform: scale(var(--portrait-scale));
+    transform: scale(1.18);
     transform-origin: 50% 100%;
-  }
-  /* Плашка сдвинута от центра карточки (left 24.6%, width 62%), её точка
-     масштабирования — 41% ширины, то есть центр фото. */
-  .home-page #director .director-portrait::before {
-    transform-origin: 41% 100%;
-  }
-}
-/* До 1200 px фото стоит на нижней кромке карточки: плашку поднимаем на 3 px,
-   чтобы её край не совпадал с кромкой градиента. */
-@media (min-width: 1025px) and (max-width: 1199px) {
-  .home-page #director .director-portrait::before {
-    bottom: 3px;
   }
 }
 .home-page .home-director__copy > p:not(.eyebrow) {
@@ -3563,9 +3555,12 @@
   }
 }
 @media (max-width: 768px) {
+  .home-page #materials .home-heading h2 .heading-line--inset {
+    margin-left: 25px;
+  }
   .home-page #materials .home-heading h2 .heading-line--tail {
     display: block;
-    margin-left: 108px;
+    margin-left: 68px;
   }
 }
 
@@ -3935,6 +3930,14 @@
 @media (max-width: 359px) {
   .home-page #home-process-title .heading-line--inset {
     white-space: normal;
+  }
+}
+
+/* ≤560 px: строка мельче и плотнее. */
+@media (max-width: 560px) {
+  .home-page #home-process-title .heading-line--inset {
+    font-size: 27px;
+    letter-spacing: -0.03em;
   }
 }
 
