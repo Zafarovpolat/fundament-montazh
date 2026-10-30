@@ -354,6 +354,14 @@ html .price-list .muted {
   max-width: 309px;
   text-align: center;
 }
+/* Строка «Руководитель «ФундаментМонтаж»» (узел 315:323) уже последней получает
+   ограничение по --text-width (309 px) из общего правила p[data-figma-text], но
+   без margin:auto стояла по левому краю подписи — текст внутри центрировался,
+   а сам блок нет, и строка уезжала влево от подписи и второй строки. */
+.director-portrait figcaption > p[data-figma-text] {
+  margin-inline: auto;
+  text-align: center;
+}
 /* Catalog and bleed: fourth card remains visible in the outer page gutter.
    Only the outer viewport boundary is clipped, not the 1660px content boundary. */
 .carousel-bleed {

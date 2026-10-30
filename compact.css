@@ -4999,36 +4999,51 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
 #director {
   overflow-x: clip;
 }
-/* Масштаб портрета на «Фундаменте». Жёлтая плашка (::before) и градиент
-   (::after) — отдельные слои, поэтому масштаб задаётся всем трём: иначе они
-   оставались в исходном размере и не совпадали с увеличенным фото.
-   Блок не сдвигаем: на 1025–1440 его низ и так совпадает с кромкой секции,
-   а translate уводил подпись под кромку и фото вылезало в следующую секцию. */
+/* Портрет директора на «Фундаменте»: низ фото, градиент и подпись стоят ровно
+   на нижней кромке секции — как на главной. Раньше translate: 0 38px уводил
+   весь блок на высоту padding-bottom секции, поэтому фото вместе с подписью
+   вылезало в следующую секцию. Теперь низ считается от той же переменной,
+   что и padding-bottom секции: photo bottom = −(--director-pb), значит
+   низ фото = низ секции. Масштаб задаётся всем трём слоям (фото, градиент,
+   плашка), иначе они не совпадают с увеличенным портретом. */
 @media (min-width: 1025px) {
+  body:not(.home-page) #director {
+    --director-pb: clamp(38px, 2.6vw, 50px);
+    padding-bottom: var(--director-pb);
+  }
   body:not(.home-page) #director .director-portrait {
-    translate: 0 38px;
+    translate: none;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 679/945;
   }
   body:not(.home-page) #director .director-portrait > .director-photo {
-    height: calc(100% + 227px);
-    bottom: -50px;
+    top: auto;
+    bottom: calc(-1 * var(--director-pb));
+    width: 100%;
+    height: calc(100% + var(--director-pb));
+    object-fit: contain;
+    object-position: center bottom;
+    transform: scale(1.32);
+    transform-origin: 50% 100%;
   }
   body:not(.home-page) #director .director-portrait::after {
-    height: calc(100% + 227px);
-    bottom: -50px;
+    top: auto;
+    bottom: calc(-1 * var(--director-pb));
+    height: calc(100% + var(--director-pb));
+    transform: scale(1.32);
+    transform-origin: 50% 100%;
   }
   body:not(.home-page) #director .director-portrait::before {
-    bottom: 0;
+    bottom: calc(-1 * var(--director-pb));
   }
 }
 @media (min-width: 1441px) {
-  body:not(.home-page) #director .director-portrait {
-    translate: 0 var(--section-space);
-  }
   body:not(.home-page) #director .director-portrait > .director-photo {
-    height: calc(100% + 120px);
+    transform: scale(1.12);
   }
   body:not(.home-page) #director .director-portrait::after {
-    height: calc(100% + 120px);
+    transform: scale(1.12);
   }
 }
 

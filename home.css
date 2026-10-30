@@ -1855,6 +1855,11 @@
     flex-direction: column;
     gap: 16px;
     margin-bottom: 20px;
+    /* В колонке align-items: end из рядной раскладки прижимал H2 к правому
+       краю: ширина заголовка = fit-content, поэтому заголовки уже контейнера
+       («Как мы защищаем ваш бюджет и сроки», «Этапы», «Материалы») уезжали
+       вправо. В колонке шапка должна начинаться от левого гуттера. */
+    align-items: start;
   }
   .home-page .home-heading h2 {
     font-size: 30px;
@@ -3652,6 +3657,12 @@
   .home-page #home-process-title .heading-line--inset {
     font-size: 28px;
     white-space: nowrap;
+  }
+  /* Кадр 540:662 (узел 563:618): «Один договор.» и «Одна смета.» — две строки
+     в рамке 301 px. Без явного переноса при 390–430 px фраза рвалась как
+     «ОДИН ДОГОВОР. ОДНА» / «СМЕТА.». Итого на мобиле три строки, как в макете. */
+  .home-page #home-process-title .heading-line__part {
+    display: block;
   }
   /* Карточка объекта: отступы подписи как в заданном правиле. */
   .home-page #objects .objects-gallery > .object-card figcaption {

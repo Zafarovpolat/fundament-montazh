@@ -111,11 +111,17 @@ const { foundationUrl } = require("./site-url.cjs");
   const portrait = p.locator("#director .director-portrait");
   const photo = await p.locator(".director-photo").boundingBox();
   assert.equal(await portrait.evaluate((e) => getComputedStyle(e).marginTop), "100px");
-  assert.ok(photo.y < dr.y, "portrait still protrudes slightly above the section");
+  // Владелец: фото директора стоит на нижней кромке секции, как на главной,
+  // и не вылезает в следующую секцию. Выше верхней кромки фото выходит только
+  // там, где портрет выше самой секции (≤1440), поэтому проверяем низ.
+  assert.ok(
+    Math.abs(photo.y + photo.height - (dr.y + dr.height)) <= 2,
+    "portrait bottom sits on the section's bottom edge",
+  );
   assert.deepEqual(errors, []);
   await b.close();
   console.log(
-    "PASS: centered CTA, eyebrow only where the new mockup has it, warning, white list numbers, themed path, project autoplay/dots, expanding hover gallery, unclipped title, protruding portrait.",
+    "PASS: centered CTA, eyebrow only where the new mockup has it, warning, white list numbers, themed path, project autoplay/dots, expanding hover gallery, unclipped title, portrait bottom flush with the section.",
   );
 })().catch((e) => {
   console.error(e);
