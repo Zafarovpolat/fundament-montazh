@@ -3458,6 +3458,9 @@ html[data-motion="off"] #hero .hero-grid {
     padding-left: 0;
     border-left: 0;
   }
+  #objects .object-meta > span:not(:last-child) {
+    padding-right: 0;
+  }
   #objects .object-tags {
     gap: 4px;
     margin-top: 10px;
@@ -5083,4 +5086,70 @@ html #reviews .gis-card .gis-rating > span:last-child {
    на мобильном. */
 #visit .visit-kicker {
   text-transform: uppercase;
+}
+
+/* Правки заказчика (раунд 14), ПК: жёлтая линия у описания
+   (.with-yellow-rule) — 2px вместо 1px. left сдвинут на -16px, чтобы зазор
+   до текста остался прежним (было 14px при линии 1px). */
+@media (min-width: 769px) {
+  .with-yellow-rule::before {
+    left: -16px;
+    width: 2px;
+  }
+}
+
+/* Правки заказчика (раунд 15), «Фундамент»: на мобиле вторая строка
+   заголовка блока «Проекты» идёт по левому краю. На планшете и ПК остаётся
+   прижатой вправо (text-align: right из fidelity.css, 2169). */
+@media (max-width: 768px) {
+  body:not(.home-page) #projects .section-heading .heading-line--inset {
+    text-align: left;
+  }
+}
+
+/* Правки заказчика (раунд 16): на мобиле «ушка» панели «Что входит» сдвинута
+   на 20px вправо — отступ у неё самой, а не у карточки (у карточки padding
+   остаётся прежним, 0 5px 9px). Плитки внутри не двигаются. */
+@media (max-width: 768px) {
+  html #included .included-panel__tab {
+    margin-left: 20px;
+  }
+}
+
+/* Плитки «Что входит» на мобиле: вместо `overflow-wrap: anywhere` (рвёт
+   слово без дефиса — «Проектирован-ие») включаем переносы по словарю,
+   `lang="ru"` на <html> есть. */
+@media (max-width: 768px) {
+  html #included .included-tile__text[data-figma-text] {
+    overflow-wrap: normal;
+    hyphens: auto;
+  }
+}
+
+/* Правки заказчика (раунд 17): на мобиле слайдер #design больше не режет
+   соседние слайды — `overflow: visible` у обёртки рельса (стр. 3289 стоял
+   hidden) и снятый clip-path (fidelity, 2845 обрезал левую кромку).
+   Горизонтальный скролл не появляется: секция #design держит overflow-x: clip. */
+@media (max-width: 768px) {
+  #design .carousel-bleed {
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
+/* Правки заказчика (раунд 18), «Фундамент»: вторая строка заголовка блока
+   «Объекты» («которые мы построили») — по правому краю, первая
+   («Фундаменты,») остаётся слева. Строки — блочные спаны, поэтому align
+   нужен именно им, а не h2. */
+body:not(.home-page) #objects .section-heading h2 [data-figma-text]:not(:first-child) {
+  text-align: right;
+}
+
+/* Правки заказчика (раунд 19), «Фундамент», мобилка: описание блока
+   «Объекты» — колонка 210px (в блоке оно и так прижато вправо через
+   justify-self/margin-left: auto). */
+@media (max-width: 768px) {
+  html #objects .heading-description {
+    max-width: 210px;
+  }
 }

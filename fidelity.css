@@ -616,6 +616,11 @@ html.is-steps-pinned .steps-range__ctrl {
   padding-left: 10px;
   border-left: 1px solid #ffffff26;
 }
+/* Такой же отступ, но справа, у всех частей кроме последней: разделитель
+   встаёт ровно между текстами, а не вплотную к правому. */
+.object-meta > span:not(:last-child) {
+  padding-right: 10px;
+}
 /* теги-квадраты 495:570: паддинг 10, радиус 10, подложка 20% белого */
 .object-tags {
   display: flex;
@@ -891,9 +896,21 @@ html.is-steps-pinned .steps-range__ctrl {
 .review-card blockquote {
   max-width: 455px;
 }
+/* Пунктир над подписью отзыва: border-style: dashed не даёт управлять
+   длиной штриха (в Chrome она зависит от толщины рамки), поэтому линия
+   нарисована повтором градиента — штрих 6px, промежуток 6px. padding-top
+   на 1px больше прежнего, чтобы общая высота не изменилась. */
 .review-card figcaption {
-  border-top: 1px dashed #00000026;
-  padding-top: 39px;
+  border-top: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    #00000026 0 6px,
+    transparent 6px 12px
+  );
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 1px;
+  padding-top: 40px;
   gap: 15px;
   width: 100%;
   align-items: start;
@@ -1311,6 +1328,9 @@ html[data-motion="off"] .reveal {
   .object-meta > span + span {
     border-left: 0;
     padding-left: 0;
+  }
+  .object-meta > span:not(:last-child) {
+    padding-right: 0;
   }
   .featured-object h3 {
     font-size: 23px;
