@@ -5009,12 +5009,15 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
     translate: 0 38px;
   }
   body:not(.home-page) #director .director-portrait > .director-photo {
-    transform: scale(1.32);
-    transform-origin: 50% 100%;
+    height: calc(100% + 227px);
+    bottom: -50px;
   }
   body:not(.home-page) #director .director-portrait::after {
-    transform: scale(1.32);
-    transform-origin: 50% 100%;
+    height: calc(100% + 227px);
+    bottom: -50px;
+  }
+  body:not(.home-page) #director .director-portrait::before {
+    bottom: 0;
   }
 }
 @media (min-width: 1441px) {
@@ -5022,11 +5025,10 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
     translate: 0 var(--section-space);
   }
   body:not(.home-page) #director .director-portrait > .director-photo {
-    transform: scale(1.12);
+    height: calc(100% + 120px);
   }
   body:not(.home-page) #director .director-portrait::after {
-    transform: scale(1.12);
-    transform-origin: 50% 100%;
+    height: calc(100% + 120px);
   }
 }
 

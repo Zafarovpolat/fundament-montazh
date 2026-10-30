@@ -758,6 +758,9 @@
     transform: scale(1.18);
     transform-origin: 50% 100%;
   }
+  .home-page #director .director-portrait::before {
+    bottom: 0;
+  }
 }
 .home-page .home-director__copy > p:not(.eyebrow) {
   max-width: 770px;
