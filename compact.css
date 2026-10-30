@@ -4666,7 +4666,7 @@ html #advantages .advantage-progress[hidden] {
 @media (min-width: 1025px) {
   html body:not(.home-page) #director .director-actions {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -5012,6 +5012,10 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
     transform: scale(1.32);
     transform-origin: 50% 100%;
   }
+  body:not(.home-page) #director .director-portrait::after {
+    transform: scale(1.32);
+    transform-origin: 50% 100%;
+  }
 }
 @media (min-width: 1441px) {
   body:not(.home-page) #director .director-portrait {
@@ -5019,6 +5023,10 @@ html #hero .hero-slide--price .price-list h3[data-figma-text="360:582"] {
   }
   body:not(.home-page) #director .director-portrait > .director-photo {
     transform: scale(1.12);
+  }
+  body:not(.home-page) #director .director-portrait::after {
+    transform: scale(1.12);
+    transform-origin: 50% 100%;
   }
 }
 
