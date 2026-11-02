@@ -486,6 +486,22 @@
       { threshold: 0.18, rootMargin: "0px 0px -60px 0px" },
     );
     nodes.forEach((el) => io.observe(el));
+    // Последние элементы страницы при максимальной прокрутке остаются в
+    // rootMargin -60px, а сдвиг reveal на 40px уводит их ещё ниже — observer
+    // их не видит, и они навсегда остаются с opacity: 0 (подвал: «Оферта»,
+    // «Сделано в», копирайт). У низа документа показываем остаток принудительно.
+    const revealAtEnd = () => {
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY < doc.scrollHeight - 80) return;
+      nodes.forEach((el) => {
+        if (el.classList.contains("is-inview")) return;
+        el.classList.add("is-inview");
+        io.unobserve(el);
+      });
+    };
+    window.addEventListener("scroll", revealAtEnd, { passive: true });
+    window.addEventListener("resize", revealAtEnd, { passive: true });
+    revealAtEnd();
   }
   function disable() {
     nodes.forEach((el) => {

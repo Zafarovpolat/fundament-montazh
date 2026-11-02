@@ -2583,6 +2583,22 @@ html[data-motion="off"] #hero .hero-grid {
   }
 }
 
+/* Цена в карточке объекта есть только в мобильном макете «Фундамента»
+   (597:663, карточка 606:918); на десктопе 315:160 вместо неё теги. */
+body:not(.home-page) #objects .object-price {
+  display: none;
+}
+
+/* Переносы в заголовке и подписи «Что входит» включаются только на мобиле. */
+.included-mobile-br {
+  display: none;
+}
+
+/* Перенос описания объектов на главной — только на мобиле. */
+.objects-description-br {
+  display: none;
+}
+
 /* Mobile art-direction for the Foundation page (Figma 597:663).
    Keep the desktop/tablet cascade above 768px intact; dimensions below are
    content-led and use caps/aspect ratios rather than card heights. */
@@ -3191,6 +3207,14 @@ html[data-motion="off"] #hero .hero-grid {
     font-size: 30px;
     line-height: 38.04px;
   }
+  /* «Что входит в» / «стоимость под» / «ключ»: строки заголовка идут
+     единым потоком, переносы заданы в разметке. */
+  #included .section-heading h2 .heading-line {
+    display: inline;
+  }
+  .included-mobile-br {
+    display: inline;
+  }
   #included .heading-line--inset {
     margin-left: 0;
   }
@@ -3467,31 +3491,49 @@ html[data-motion="off"] #hero .hero-grid {
     font-size: 22px;
     line-height: 27.9px;
   }
-  #objects .object-meta {
+  /* Характеристики — каждая на своей строке с линией снизу. */
+  body:not(.home-page) #objects .object-meta {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    align-items: stretch;
+    width: fit-content;
+    max-width: 100%;
+    gap: 0;
     margin: 0;
     font-size: 14px;
     line-height: 17.64px;
   }
-  #objects .object-meta > span + span {
+  /* У частей строки свои размеры из figma-type.css (16px); в карточке
+     они наследуют размер контейнера. */
+  body:not(.home-page) #objects .object-meta > span {
+    padding-block: 6px;
+    border-bottom: 1px solid rgb(255 255 255 / 45%);
+    font-size: inherit;
+    line-height: inherit;
+  }
+  body:not(.home-page) #objects .object-meta > span + span {
+    margin-left: 0;
     padding-left: 0;
     border-left: 0;
   }
   #objects .object-meta > span:not(:last-child) {
     padding-right: 0;
   }
+  /* На мобиле цена заменяет теги — как в макете 597:663. */
   #objects .object-tags {
-    gap: 4px;
-    margin-top: 10px;
+    display: none;
   }
-  #objects .object-tags li {
-    padding: 5px 7px;
-    border-radius: 7px;
-    font-size: 10px;
-    line-height: 12px;
+  body:not(.home-page) #objects .object-price {
+    display: block;
+    margin: 6px 0 0;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  #objects .object-price__note {
+    margin-left: 8px;
+    color: rgb(255 255 255 / 55%);
+    font-size: 14px;
   }
   #objects .object-hover-cursor {
     display: none;

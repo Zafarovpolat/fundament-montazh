@@ -3344,7 +3344,10 @@
   }
   .home-page .catalog-toolbar {
     overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
+    touch-action: pan-x;
+    overscroll-behavior-inline: contain;
   }
   .home-page .catalog-toolbar::-webkit-scrollbar {
     display: none;
@@ -3720,10 +3723,14 @@
   .home-page .button-br {
     display: inline;
   }
-  /* Описание в объектах прижато к правому краю. */
+  /* Описание объектов: первая строка до «в», блок прижат вправо (540:662). */
   .home-page #objects .heading-description {
+    max-width: 250px;
     margin-left: auto;
     text-align: right;
+  }
+  .objects-description-br {
+    display: inline;
   }
   /* Карточка проекта: заголовок, характеристики, затем цена. */
   .home-page .project-card {
