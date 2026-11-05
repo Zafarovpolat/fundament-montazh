@@ -3343,6 +3343,8 @@
     flex: 0 0 auto;
   }
   .home-page .catalog-toolbar {
+    width: calc(100% + var(--gutter));
+    max-width: none;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
